@@ -1,0 +1,7 @@
+файлы отложенной модификации
+
+test/admin/model/localisation/currency.php
+Автообновление валют и все вызовы updateCurrencies() в других файлах.
+Валюты обновляются через cron в update_currency.php
+
+
