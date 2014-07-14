@@ -153,6 +153,172 @@ class ControllerCommonHeader extends Controller {
 			$this->template = 'default/template/common/header.tpl';
 		}
 		
+	// sidebar
+	
+	    // cart
+	    $this->language->load('module/cart');
+	    
+	    $this->load->model('setting/extension');
+		
+		$total_data = array();					
+		$total = 0;
+		$taxes = $this->cart->getTaxes();
+		
+		// Display prices
+		if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
+			$sort_order = array(); 
+			
+			$results = $this->model_setting_extension->getExtensions('total');
+			
+			foreach ($results as $key => $value) {
+				$sort_order[$key] = $this->config->get($value['code'] . '_sort_order');
+			}
+			
+			array_multisort($sort_order, SORT_ASC, $results);
+			
+			foreach ($results as $result) {
+				if ($this->config->get($result['code'] . '_status')) {
+					$this->load->model('total/' . $result['code']);
+		
+					$this->{'model_total_' . $result['code']}->getTotal($total_data, $total, $taxes);
+				}
+				
+				$sort_order = array(); 
+			  
+				foreach ($total_data as $key => $value) {
+					$sort_order[$key] = $value['sort_order'];
+				}
+	
+				array_multisort($sort_order, SORT_ASC, $total_data);			
+			}		
+		}
+		
+		$this->data['totals'] = $total_data;
+		
+		$this->data['heading_title'] = $this->language->get('heading_title');
+		
+		$this->data['text_items'] = sprintf($this->language->get('text_items'), $this->cart->countProducts() + (isset($this->session->data['vouchers']) ? count($this->session->data['vouchers']) : 0), $this->currency->format($total));
+		$this->data['text_empty'] = $this->language->get('text_empty');
+		$this->data['text_cart'] = $this->language->get('text_cart');
+		$this->data['text_checkout'] = $this->language->get('text_checkout');
+		$this->data['text_order'] = $this->language->get('text_order');
+		
+		$this->data['button_remove'] = $this->language->get('button_remove');
+		
+		$this->load->model('tool/image');
+		
+		$this->data['products'] = array();
+			
+		foreach ($this->cart->getProducts() as $product) {
+			if ($product['image']) {
+				$image = $this->model_tool_image->resize($product['image'], $this->config->get('config_image_cart_width'), $this->config->get('config_image_cart_height'));
+			} else {
+				$image = '';
+			}
+							
+			$option_data = array();
+			
+			foreach ($product['option'] as $option) {
+				if ($option['type'] != 'file') {
+					$value = $option['option_value'];	
+				} else {
+					$filename = $this->encryption->decrypt($option['option_value']);
+					
+					$value = utf8_substr($filename, 0, utf8_strrpos($filename, '.'));
+				}				
+				
+				$option_data[] = array(								   
+					'name'  => $option['name'],
+					'value' => (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value),
+					'type'  => $option['type']
+				);
+			}
+			
+			// Display prices
+			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
+				$price = $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax')));
+			} else {
+				$price = false;
+			}
+			
+			// Display prices
+			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
+				$total = $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax')) * $product['quantity']);
+			} else {
+				$total = false;
+			}
+													
+			$this->data['products'][] = array(
+				'key'      => $product['key'],
+				'thumb'    => $image,
+				'name'     => $product['name'],
+				'model'    => $product['model'], 
+				'option'   => $option_data,
+				'quantity' => $product['quantity'],
+				'price'    => $price,	
+				'total'    => $total,	
+				'href'     => $this->url->link('product/product', 'product_id=' . $product['product_id'])		
+			);
+		}
+		
+		// Gift Voucher
+		$this->data['vouchers'] = array();
+		
+		if (!empty($this->session->data['vouchers'])) {
+			foreach ($this->session->data['vouchers'] as $key => $voucher) {
+				$this->data['vouchers'][] = array(
+					'key'         => $key,
+					'description' => $voucher['description'],
+					'amount'      => $this->currency->format($voucher['amount'])
+				);
+			}
+		}
+					
+		$this->data['cart'] = $this->url->link('checkout/cart');
+						
+		$this->data['checkout'] = $this->url->link('checkout/checkout', '', 'SSL');
+		$this->data['order'] = $this->url->link('account/order', '', 'SSL');
+		
+		// for account
+		$this->language->load('account/account');
+		
+		$this->data['text_my_account'] = $this->language->get('text_my_account');
+		$this->data['text_my_orders'] = $this->language->get('text_my_orders');
+		$this->data['text_my_newsletter'] = $this->language->get('text_my_newsletter');
+    	$this->data['text_edit'] = $this->language->get('text_edit');
+    	$this->data['text_password'] = $this->language->get('text_password');
+    	$this->data['text_address'] = $this->language->get('text_address');
+		$this->data['text_wishlist'] = $this->language->get('text_wishlist');
+    	$this->data['text_order'] = $this->language->get('text_order');
+    	$this->data['text_download'] = $this->language->get('text_download');
+		$this->data['text_reward'] = $this->language->get('text_reward');
+		$this->data['text_return'] = $this->language->get('text_return');
+		$this->data['text_transaction'] = $this->language->get('text_transaction');
+		$this->data['text_newsletter'] = $this->language->get('text_newsletter');
+		$this->data['text_shopping_list'] = $this->language->get('text_shopping_list');
+		$this->data['text_view_list'] = $this->language->get('text_view_list');
+		$this->data['text_delete_list'] = $this->language->get('text_delete_list');
+		$this->data['text_categories'] = $this->language->get('text_categories');
+
+    	$this->data['edit'] = $this->url->link('account/edit', '', 'SSL');
+    	$this->data['password'] = $this->url->link('account/password', '', 'SSL');
+		$this->data['address'] = $this->url->link('account/address', '', 'SSL');
+		$this->data['wishlist'] = $this->url->link('account/wishlist');
+    	$this->data['order'] = $this->url->link('account/order', '', 'SSL');
+    	$this->data['view_shopping_list'] = $this->url->link('account/view_shopping_list', '', 'SSL');
+    	$this->data['download'] = $this->url->link('account/download', '', 'SSL');
+		$this->data['return'] = $this->url->link('account/return', '', 'SSL');
+		$this->data['transaction'] = $this->url->link('account/transaction', '', 'SSL');
+		$this->data['newsletter'] = $this->url->link('account/newsletter', '', 'SSL');
+		
+		if ($this->config->get('reward_status')) {
+			$this->data['reward'] = $this->url->link('account/reward', '', 'SSL');
+		} else {
+			$this->data['reward'] = '';
+		}
+		
+		
+		
     	$this->render();
 	} 	
 }
