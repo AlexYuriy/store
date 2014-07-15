@@ -180,3 +180,82 @@ function addToCompare(product_id) {
 		}
 	});
 }
+	
+// обеспечивает работу бокового меню sidebar
+
+    var id_menu = new Array('sub_menu_1','sub_menu_2','sub_menu_3', 'account', 'categories', 'cart');
+    var id_sidebar_left_space = "id_sidebar_left_space";
+    var for_scroll = new Array('sidebar', 'sub_menu_1','sub_menu_2','sub_menu_3', id_sidebar_left_space, 'account', 'categories', 'cart');
+    var y_coord; // сохроняет координат при перемотке вверх
+
+    // открыть элемент меню закрыв другие элементы
+    function openMenu(id){
+	    for (i=0; i < id_menu.length; i++){
+		    if (id != id_menu[i]){
+			    document.getElementById(id_menu[i]).style.display = "none";
+		    }
+	    }
+	    if (document.getElementById(id).style.display == "block"){
+		    document.getElementById(id).style.display = "none";
+		    document.getElementById(id_sidebar_left_space).style.display = "none";
+	    }else{
+		    document.getElementById(id).style.display = "block";
+		    document.getElementById(id_sidebar_left_space).style.display = "block";
+	    }	
+    }
+
+    // закрыть элемент меню
+    function closeMenu(id){
+        for (var i = 0; i < id_menu.length; i++){
+            document.getElementById(id_menu[i]).style.display = "none";
+            document.getElementById(id_sidebar_left_space).style.display = "none";
+        } 
+    }
+
+    // меню всегда слева на весь экран
+    function moveMenuScreen(){  
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;    
+     //   obj.style.left = (document.body.clientWidth / 2 - obj.clientWidth / 2 + document.body.scrollLeft) + 'px';  
+        for (var i = 0; i < for_scroll.length; i++){
+            var obj = document.getElementById(for_scroll[i]);
+            obj.style.top = scrollTop + 'px';  
+        }
+    }  
+
+    // перематывает вверх 
+    function scrollToTop(){
+        y_coord = window.pageYOffset || document.documentElement.scrollTop;
+        window.scrollTo(0, 0);
+        document.getElementById('scroll_to_top').style.display = "none";
+        document.getElementById('scroll_to_bottom').style.display = "block";
+    }
+
+    // перематывает вниз после перемотки вверх
+    function scrollToBottom(){
+        window.scrollTo(0, y_coord);
+        document.getElementById('scroll_to_bottom').style.display = "none";
+        document.getElementById('scroll_to_top').style.display = "block";
+    }
+
+    // управляет элементом перемотки
+    // отображает необходимый элемент при перемотки
+    function displayScrollItem(){
+        var coord = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (coord > 100){
+            document.getElementById('scroll_to_bottom').style.display = "none";
+            document.getElementById('scroll_to_top').style.display = "block";
+            document.getElementById('temp_scroll_item').style.display = "none";
+        }
+        else {
+            document.getElementById('scroll_to_top').style.display = "none";
+            if (document.getElementById('scroll_to_bottom').style.display == "none" &&
+                document.getElementById('scroll_to_top').style.display == "none")
+            {
+                document.getElementById('temp_scroll_item').style.display = "block";
+            }
+        }
+    }
+    
+
+
