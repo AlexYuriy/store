@@ -1,30 +1,30 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://test.istochnik-spb.com/admin/');
-define('HTTP_CATALOG', 'http://test.istochnik-spb.com/');
+define('HTTP_SERVER', 'http://osstore/admin/');
+define('HTTP_CATALOG', 'http://osstore/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://test.istochnik-spb.com/admin/');
-define('HTTPS_CATALOG', 'http://test.istochnik-spb.com/');
+define('HTTPS_SERVER', 'http://osstore/admin/');
+define('HTTPS_CATALOG', 'http://osstore/');
 
 // DIR
-define('DIR_APPLICATION', '/home/host1245282/istochnik-spb.com/htdocs/test/admin/');
-define('DIR_SYSTEM', '/home/host1245282/istochnik-spb.com/htdocs/test/system/');
-define('DIR_DATABASE', '/home/host1245282/istochnik-spb.com/htdocs/test/system/database/');
-define('DIR_LANGUAGE', '/home/host1245282/istochnik-spb.com/htdocs/test/admin/language/');
-define('DIR_TEMPLATE', '/home/host1245282/istochnik-spb.com/htdocs/test/admin/view/template/');
-define('DIR_CONFIG', '/home/host1245282/istochnik-spb.com/htdocs/test/system/config/');
-define('DIR_IMAGE', '/home/host1245282/istochnik-spb.com/htdocs/test/image/');
-define('DIR_CACHE', '/home/host1245282/istochnik-spb.com/htdocs/test/system/cache/');
-define('DIR_DOWNLOAD', '/home/host1245282/istochnik-spb.com/htdocs/test/download/');
-define('DIR_LOGS', '/home/host1245282/istochnik-spb.com/htdocs/test/system/logs/');
-define('DIR_CATALOG', '/home/host1245282/istochnik-spb.com/htdocs/test/catalog/');
+define('DIR_APPLICATION', '/home/kovalev/job/osStore/workspace/store/sourse/admin/');
+define('DIR_SYSTEM', '/home/kovalev/job/osStore/workspace/store/sourse/system/');
+define('DIR_DATABASE', '/home/kovalev/job/osStore/workspace/store/sourse/system/database/');
+define('DIR_LANGUAGE', '/home/kovalev/job/osStore/workspace/store/sourse/admin/language/');
+define('DIR_TEMPLATE', '/home/kovalev/job/osStore/workspace/store/sourse/admin/view/template/');
+define('DIR_CONFIG', '/home/kovalev/job/osStore/workspace/store/sourse/system/config/');
+define('DIR_IMAGE', '/home/kovalev/job/osStore/workspace/store/sourse/image/');
+define('DIR_CACHE', '/home/kovalev/job/osStore/workspace/store/sourse/system/cache/');
+define('DIR_DOWNLOAD', '/home/kovalev/job/osStore/workspace/store/sourse/download/');
+define('DIR_LOGS', '/home/kovalev/job/osStore/workspace/store/sourse/system/logs/');
+define('DIR_CATALOG', '/home/kovalev/job/osStore/workspace/store/sourse/catalog/');
 
 // DB
 define('DB_DRIVER', 'mysql');
 define('DB_HOSTNAME', 'localhost');
-define('DB_USERNAME', 'host1245282_test');
-define('DB_PASSWORD', 'test');
-define('DB_DATABASE', 'host1245282_test');
-define('DB_PREFIX', '');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', 'root');
+define('DB_DATABASE', 'osstore');
+define('DB_PREFIX', 'oc_');
 ?>
