@@ -26,6 +26,7 @@ $_['text_wait']         = 'Bitte warten!';
 $_['text_tags']         = 'Tags:';
 $_['text_error']        = 'Produkt nicht gefunden!';
 
+
 // Entry
 $_['entry_name']        = 'Mein Name:';
 $_['entry_review']      = 'Meine Beurteilung:';
