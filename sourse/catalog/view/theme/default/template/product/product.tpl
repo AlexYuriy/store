@@ -371,6 +371,8 @@ $('#button-cart').bind('click', function() {
 			}	
 		}
 	});
+	
+	location.reload();
 });
 //--></script>
 <?php if ($options) { ?>
