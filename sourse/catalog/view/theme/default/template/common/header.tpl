@@ -57,94 +57,69 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
 <?php } ?>
 <?php echo $google_analytics; ?>
 </head>
-<body onScroll="moveMenuScreen(); displayScrollItem();">
+<body onScroll="moveMenuScreen(); displayScrollItem();" onLoad="calc_sidebar_meter();">
 
 <!-- при добавлении элементов в меню их так же нужно добавить и в массив id_menu и for_scroll в common.js -->
 <div class="main_sidebar" id="main_sidebar">
     <div class="sidebar" id="sidebar" onScroll="MoveCenterScreen('main_sidebar');">
     
-        <!-- категории товаров -->
-		<div class="sidebar_item" onclick="openMenu('categories');return(false)">
-		    <img class="sidebar_item_img" src="categories.jpg">
-		</div>
-		 
-		<!-- Q/A -->
+		<!-- Главная страница -->
 		<div class="sidebar_item">
-		    <a href="#"> <img class="sidebar_item_img" src="q_and_a.jpg"> </a>
+		    <a href="<?php echo home ?>"> <img class="sidebar_item_img" src="main_page.jpg"> </a>
 		</div>
 		
-		<!-- blog -->
-		<div class="sidebar_item">
-		    <a href="#"> <img class="sidebar_item_img" src="blog.jpg"> </a>
-		</div>
-		
-		<!-- news -->
-		<div class="sidebar_item">
-		    <a href="#"> <img class="sidebar_item_img" src="news.jpg"> </a>
-		</div>
-		
-		<!-- stocks -->
-		<div class="sidebar_item">
-		    <a href="#"> <img class="sidebar_item_img" src="stocks.jpg"> </a>
+		<!-- ссылки на важные страницы, такие как блог, новости, вопрос/ответ, акции, категории товаров -->
+		<div class="sidebar_item" onclick="openMenu('other_links'); return('false');">
+		    <img class="sidebar_item_img" src="other_lincks_img.jpg">
 		</div>
 		
 		<!-- пустой элемент для перемотки -->
 		<div class="temp_scroll_item" id="temp_scroll_item">
-		    <img class="sidebar_item_img" src="temp_scroll_item.jpg">
+		    <img class="scroll_img" alt="temp" id="temp_scroll_img" src="temp_scroll_item.jpg">
 		</div>
 		
 		<!-- перемотка наверх -->
 		<div class="scroll_item" id="scroll_to_top" onclick="scrollToTop();"> 
-	        <img class="sidebar_item_img" src="scroll_to_top.jpg"> 
-	    </div>
+		  <img class="scroll_img" alt="top" id="scroll_to_top_img src="scroll_to_top.jpg"> 
+		</div>
 		
 		<!-- перемотка обратно -->
-	    <div class="scroll_item" id="scroll_to_bottom" onclick="scrollToBottom();">
-	        <img class="sidebar_item_img" src="scroll_to_bottom.jpg"> 
-        </div>  
+		<div class="scroll_item" id="scroll_to_bottom" onclick="scrollToBottom();">
+		  <img class="scroll_img" alt="bottom" id="scroll_to_bottom_img" src="scroll_to_bottom.jpg"> 
+		</div>  
         
-        <!-- количество продуктов в корзине -->
-	    <div class="sidebar_num_products" >
-	        <?php $num_products = 0; ?>
-	        <?php if ($products || $vouchers) { ?>
-	            <?php foreach ($products as $product) { ?>
-	                <?php $num_products += $product['quantity'];} ?>
-	            <?php foreach ($vouchers as $voucher) { ?>
-	                <?php $num_products += $voucher['quantity'];} ?>
-	        <?php } ?>
-	        <?php echo $num_products; ?>
-	    </div> 
+		<!-- количество продуктов в корзине -->
+		<div class="sidebar_num_products" >
+		    <?php $num_products = 0; ?>
+		    <?php if ($products || $vouchers) { ?>
+			<?php foreach ($products as $product) { ?>
+			    <?php $num_products += $product['quantity'];} ?>
+			<?php foreach ($vouchers as $voucher) { ?>
+			    <?php $num_products += $voucher['quantity'];} ?>
+		    <?php } ?>
+		    <?php echo $num_products; ?>
+		</div> 
         
-        <!-- корзина -->      
+		<!-- корзина -->      
 		<div class="sidebar_item" onclick="openMenu('cart');return(false)">
 		    <img class="sidebar_item_img" src="cart.jpg">
 		</div>
         
-        <!-- Личный кабинет" -->
-		<div class="sidebar_account" onclick="openMenu('account');return(false);">
-		    <img class="sidebar_item_img" src="account.jpg"> 
-		</div>   		
-				
+		<!-- Личный кабинет" -->
+		<div class="sidebar_item">
+		    <a href="<?php echo $account; ?>" >  <img class="sidebar_item_img" src="account.jpg"> </a>
+		</div>   				
     </div>
     
-    <div class="sidebar_item_body" id="sub_menu_1" onScroll="MoveCenterScreen('sub_menu_1');">
+    <!-- ссылки на важные страницы, такие как блог, новости, вопрос/ответ, акции, категории товаров -->
+    <div class="sidebar_item_body" id="other_links" onScroll="MoveCenterScreen('other_links');">
         <ul >
-	        <li><a href="#">Подпункт №1</a></li>
-        </ul>
-    </div>
-
-    <div class="sidebar_item_body" id="sub_menu_2" onScroll="MoveCenterScreen('sub_menu_2');">
-        <ul >
-	        <li><a href="#">Подпункт №1</a></li>
-	        <li><a href="#">Подпункт №2</a></li>
-        </ul>
-    </div>
-
-    <div class="sidebar_item_body" id="sub_menu_3" onScroll="MoveCenterScreen('sub_menu_3');">
-        <ul >:
-        	<li><a href="#">Подпункт №1</a></li>
-        	<li><a href="#">Подпункт №2</a></li>
-        	<li><a href="#">Подпункт №3</a></li>
+        	<li><a href="<?php echo $categories; ?>" onclick="openMenu('categories');return(false)"><?php echo $text_categories; ?></a></li>
+        	<li><a href="<?php echo $blog; ?>"><?php echo $text_blog; ?></a></li>
+        	<li><a href="<?php echo $news; ?>"><?php echo $text_news; ?></a></li>
+        	<li><a href="<?php echo $q_and_a; ?>"><?php echo $text_q_and_a; ?></a></li>
+        	<!-- stocks - это акции -->
+        	<li><a href="<?php echo $stocks; ?>"><?php echo $text_stocks; ?></a></li>
         </ul>
     </div>
     
@@ -279,7 +254,7 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
     
 </div>
 
-    <div class="sidebar_left_space" id="id_sidebar_left_space" onclick="closeMenu(); return(false)" onScroll="MoveCenterScreen('id_sidebar_left_space');"> </div>
+    <div class="sidebar_right_space" id="id_sidebar_right_space" onclick="closeMenu(); return(false)" onScroll="MoveCenterScreen('id_sidebar_right_space');"> </div>
 </div>
 <div id="container">
 <div id="header">

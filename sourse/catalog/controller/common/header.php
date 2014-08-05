@@ -46,6 +46,10 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_account'] = $this->language->get('text_account');
 		$this->data['text_checkout'] = $this->language->get('text_checkout');
 		$this->data['text_page'] = $this->language->get('text_page');
+		$this->data['text_blog'] = $this->language->get('text_blog');
+		$this->data['text_q_and_a'] = $this->language->get('text_q_and_a');
+		$this->data['text_stocks'] = $this->language->get('text_stocks'); // акции
+		$this->data['text_news'] = $this->language->get('text_news');
 				
 		$this->data['home'] = $this->url->link('common/home');
 		$this->data['wishlist'] = $this->url->link('account/wishlist', '', 'SSL');
@@ -53,6 +57,12 @@ class ControllerCommonHeader extends Controller {
 		$this->data['account'] = $this->url->link('account/account', '', 'SSL');
 		$this->data['shopping_cart'] = $this->url->link('checkout/cart');
 		$this->data['checkout'] = $this->url->link('checkout/checkout', '', 'SSL');
+		
+		// ссылки для других страниц надо вставить, когда эти страницы будут разработанны
+		$this->data['blog'] = $this->url->link('common/home');
+		$this->data['q_and_a'] = $this->url->link('common/home');
+		$this->data['stocks'] = $this->url->link('common/home');
+		$this->data['news'] = $this->url->link('common/home');
 		
 		// Daniel's robot detector
 		$status = true;

@@ -217,7 +217,7 @@ label {
 /* sidebar */
 .sidebar{
     position: absolute;
-    width: 5%; 
+    width: 80px; 
     height: 100%;
     background-color: blue;
     margin-left: 0px;
@@ -228,7 +228,7 @@ label {
 .sidebar_item {
     
     background-color: ;
-    height: 10%;
+    height: 80px;
     width: 100%;
     z-index: 100;
 }
@@ -254,7 +254,7 @@ label {
     height: 10%;
     width: 100%;
     z-index: 100;
-    margin-top: 580%;
+   // margin-top: 580%;
 }
 
 
@@ -262,8 +262,8 @@ label {
     position: absolute;
     background-color: green;
     height: 100%;
-    width: 18%;
-    margin-left: 5%;
+    width: 250px;
+    margin-left: 80px;
     z-index: 100;
     display: none;
     overflow: auto;
@@ -278,12 +278,12 @@ label {
     list-style-type: none;
 }
 
-.sidebar_left_space {
+.sidebar_right_space {
     position: absolute;
     background-color: rgba(204, 204, 255, 0.75);
     height: 100%;
     width: 80%;
-    margin-left: 23%;
+    margin-left: 330px;
     display: none;
     z-index: 100;
 }
@@ -293,7 +293,7 @@ label {
     background-color: red;
     height: 2%;
     width: 15%;
-    margin-top: 65%;
+//    margin-top: 65%;
     margin-left: 80%;
     
     z-index: 110;
@@ -301,20 +301,25 @@ label {
 
 .scroll_item {
     background-color: rgb(204, 204, 255);
-    height: 10%;
     width: 100%;
-    margin-top: 165%;
     display: none;
     z-index: 100;
+    margin-top: 0%;
 }
 
 .temp_scroll_item {
     background-color: rgb(204, 204, 255);
-    height: 10%;
     width: 100%;
-    margin-top: 165%;
     display: block;
     z-index: 100;
+    margin-top: 0%;
+}
+
+.scroll_img {
+    width: 100%;
+    height: 80px;
+    z-index: 110;
+    position: absolute;
 }
 
 .cadegory {
