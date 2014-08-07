@@ -90,13 +90,6 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
         
 		<!-- количество продуктов в корзине -->
 		<div class="sidebar_num_products" >
-		    <?php $num_products = 0; ?>
-		    <?php if ($products || $vouchers) { ?>
-			<?php foreach ($products as $product) { ?>
-			    <?php $num_products += $product['quantity'];} ?>
-			<?php foreach ($vouchers as $voucher) { ?>
-			    <?php $num_products += $voucher['quantity'];} ?>
-		    <?php } ?>
 		    <?php echo $this->cart->countProducts(); ?>
 		</div> 
         

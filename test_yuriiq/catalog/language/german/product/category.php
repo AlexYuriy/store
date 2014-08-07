@@ -1,7 +1,7 @@
 <?php
 // Text
 $_['text_refine']       = 'Suche verfeinern';
-$_['text_product']      = 'Produkte'
+$_['text_product']      = 'Produkte';
 $_['text_all_products']	= 'Alle Produkte';
 $_['text_error']        = 'Kategorie nicht gefunden!';
 $_['text_empty']        = 'Keine Produkte in dieser Kategorie vorhanden.';

@@ -12,4 +12,5 @@ $_['text_blog']	   		  = 'Blog';
 $_['text_special']        = 'Specials';
 $_['text_latest']         = 'Latest';
 $_['text_brands']         = 'Brands';
+$_['text_categories'] 	  = 'Categories';
 ?>

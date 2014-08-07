@@ -130,7 +130,7 @@ function addToCart(product_id, quantity) {
 				
 				$('.success').fadeIn('slow');
 				
-				$('#cart-total').html(json['total']);
+				$('#s_num_prud').html(json['total']);
 				
 				$('html, body').animate({ scrollTop: 0 }, 'slow'); 
 			}	
@@ -183,10 +183,11 @@ function addToCompare(product_id) {
 	
 // обеспечивает работу бокового меню sidebar
 
-    var id_menu = new Array('sub_menu_1','sub_menu_2','sub_menu_3', 'account', 'categories', 'cart');
-    var id_sidebar_left_space = "id_sidebar_left_space";
-    var for_scroll = new Array('sidebar', 'sub_menu_1','sub_menu_2','sub_menu_3', id_sidebar_left_space, 'account', 'categories', 'cart');
+    var id_menu = new Array('other_links', 'categories', 'cart');
+    var id_sidebar_right_space = "id_sidebar_right_space";
+    var for_scroll = new Array('sidebar', 'other_links', id_sidebar_right_space, 'categories', 'cart');
     var y_coord; // сохроняет координат при перемотке вверх
+    var widthSidebarItem = 80;	// ширина элемента бокового меню
 
     // открыть элемент меню закрыв другие элементы
     function openMenu(id){
@@ -197,10 +198,10 @@ function addToCompare(product_id) {
 	    }
 	    if (document.getElementById(id).style.display == "block"){
 		    document.getElementById(id).style.display = "none";
-		    document.getElementById(id_sidebar_left_space).style.display = "none";
+		    document.getElementById(id_sidebar_right_space).style.display = "none";
 	    }else{
 		    document.getElementById(id).style.display = "block";
-		    document.getElementById(id_sidebar_left_space).style.display = "block";
+		    document.getElementById(id_sidebar_right_space).style.display = "block";
 	    }	
     }
 
@@ -208,7 +209,7 @@ function addToCompare(product_id) {
     function closeMenu(id){
         for (var i = 0; i < id_menu.length; i++){
             document.getElementById(id_menu[i]).style.display = "none";
-            document.getElementById(id_sidebar_left_space).style.display = "none";
+            document.getElementById(id_sidebar_right_space).style.display = "none";
         } 
     }
 
@@ -225,16 +226,41 @@ function addToCompare(product_id) {
     // перематывает вверх 
     function scrollToTop(){
         y_coord = window.pageYOffset || document.documentElement.scrollTop;
-        window.scrollTo(0, 0);
-        document.getElementById('scroll_to_top').style.display = "none";
-        document.getElementById('scroll_to_bottom').style.display = "block";
+	var y = y_coord;
+	
+	// обеспечивает плавную перемотку
+	var interval = setInterval(function(){
+	  window.scrollBy(0, -60);
+	  y -= 60;
+	  if (y < 60) {
+	    window.scrollTo(0, 0);
+	    
+	    document.getElementById('temp_scroll_item').style.display = "none";
+	    document.getElementById('scroll_to_top').style.display = "none";
+	    document.getElementById('scroll_to_bottom').style.display = "block";
+	    clearInterval(interval);}
+	}, 20);
+	
+        
     }
 
     // перематывает вниз после перемотки вверх
     function scrollToBottom(){
-        window.scrollTo(0, y_coord);
-        document.getElementById('scroll_to_bottom').style.display = "none";
-        document.getElementById('scroll_to_top').style.display = "block";
+      var y = 0;      
+     
+	// обеспечивает плавную перемотку
+        var interval = setInterval(function(){
+	  window.scrollBy(0, 60);
+	  y += 60;
+	  if (y > y_coord - 60) {
+	    window.scrollTo(0, y_coord);
+	    
+	    document.getElementById('temp_scroll_item').style.display = "none";
+	    document.getElementById('scroll_to_bottom').style.display = "none";
+	    document.getElementById('scroll_to_top').style.display = "block";
+	    clearInterval(interval);
+	  }
+	}, 20);        
     }
 
     // управляет элементом перемотки
@@ -256,6 +282,42 @@ function addToCompare(product_id) {
             }
         }
     }
+    
+    // рассчитывает размер бокового меню. Вызывать при открытии страницы и изменении размера окна
+    function calc_sidebar_meter(){
+	var windowHeight = window.innerHeight;
+	var heightScrollItem = Math.ceil(windowHeight - 4 * widthSidebarItem - 3);
+	var margin_top_img = Math.ceil(heightScrollItem / 2 - 40); // отступ изображения от верха полосы прокрутки
+	
+	if (heightScrollItem < 80) heightScrollItem = 80;
+	
+	document.getElementById('scroll_to_bottom').style.height = heightScrollItem + "px";
+        document.getElementById('scroll_to_top').style.height = heightScrollItem + "px";
+        document.getElementById('temp_scroll_item').style.height = heightScrollItem + "px";
+	
+	document.getElementById('temp_scroll_img').style.marginTop = margin_top_img + "px";
+	document.getElementById('scroll_to_bottom_img').style.marginTop = margin_top_img + "px";
+        document.getElementById('scroll_to_top_img').style.marginTop = margin_top_img + "px";
+    }
+    
+    // находит все элементы по имени класса
+    // функция тяжёлая, не увлекаться с использованием
+    function getElementByClassName (class_name){
+		// Получим коллекцию элементов тега body:
+		var elements = document.body.getElementsByTagName("*"),
+		    length   = elements.length,
+		    out = [], i;
+	
+		// Пройдёмся по ним... увы циклом:
+		for (i = 0; i < length; i += 1) {
+	
+		    // Поместим в результирующий массив элементы, содержащие требуемый класс:
+		    if (elements[i].className.indexOf(class_name) !== -1) {
+			out.push(elements[i]);
+		    }       
+		}        
+		return out;
+    };
     
 
 
