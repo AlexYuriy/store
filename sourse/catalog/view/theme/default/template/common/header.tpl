@@ -97,7 +97,7 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
 			<?php foreach ($vouchers as $voucher) { ?>
 			    <?php $num_products += $voucher['quantity'];} ?>
 		    <?php } ?>
-		    <?php echo $num_products; ?>
+		    <?php echo $this->cart->countProducts(); ?>
 		</div> 
         
 		<!-- корзина -->      
