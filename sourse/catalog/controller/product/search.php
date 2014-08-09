@@ -29,10 +29,10 @@ class ControllerProductSearch extends Controller {
 			$description = '';
 		} 
 				
-		if (isset($this->request->get['filter_category_id'])) {
-			$filter_category_id = $this->request->get['filter_category_id'];
+		if (isset($this->request->get['category_id'])) {
+			$category_id = $this->request->get['category_id'];
 		} else {
-			$filter_category_id = 0;
+			$category_id = 0;
 		} 
 		
 		if (isset($this->request->get['sub_category'])) {
@@ -95,8 +95,8 @@ class ControllerProductSearch extends Controller {
 			$url .= '&description=' . $this->request->get['description'];
 		}
 				
-		if (isset($this->request->get['filter_category_id'])) {
-			$url .= '&filter_category_id=' . $this->request->get['filter_category_id'];
+		if (isset($this->request->get['category_id'])) {
+			$url .= '&category_id=' . $this->request->get['category_id'];
 		}
 		
 		if (isset($this->request->get['sub_category'])) {
@@ -200,12 +200,12 @@ class ControllerProductSearch extends Controller {
 		
 		$this->data['products'] = array();
 		
-		if (isset($this->request->get['search']) || isset($this->request->get['tag'])) {
+		if (isset($this->request->get['search']) || isset($this->request->get['filter_tag'])) {
 			$data = array(
 				'filter_name'         => $search, 
 				'filter_tag'          => $tag, 
 				'filter_description'  => $description,
-				'filter_category_id'  => $filter_category_id, 
+				'filter_category_id'  => $category_id, 
 				'filter_sub_category' => $sub_category, 
 				'sort'                => $sort,
 				'order'               => $order,
@@ -213,10 +213,9 @@ class ControllerProductSearch extends Controller {
 				'limit'               => $limit
 			);
 					
+			$product_total = $this->model_catalog_product->getTotalProducts($data);
+								
 			$results = $this->model_catalog_product->getProducts($data);
-			//Вызов метода getFoundProducts должен проводится сразу же после getProducts
-			//только тогда он выдает правильное значения количества товаров
-			$product_total = $this->model_catalog_product->getFoundProducts(); 
 					
 			foreach ($results as $result) {
 				if ($result['image']) {
@@ -224,6 +223,16 @@ class ControllerProductSearch extends Controller {
 				} else {
 					$image = false;
 				}
+				
+				//this for swap image
+				
+				$images = $this->model_catalog_product->getProductImages($result['product_id']);
+
+            if(isset($images[0]['image']) && !empty($images[0]['image'])){
+                  $images =$images[0]['image'];
+               } 
+			   
+				//
 				
 				if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
 					$price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')));
@@ -253,13 +262,19 @@ class ControllerProductSearch extends Controller {
 					'product_id'  => $result['product_id'],
 					'thumb'       => $image,
 					'name'        => $result['name'],
-					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, 300) . '..',
+					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, 100) . '..',
 					'price'       => $price,
 					'special'     => $special,
 					'tax'         => $tax,
 					'rating'      => $result['rating'],
 					'reviews'     => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
-					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
+					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url),
+					// for swap image
+				'thumb_swap'  => $this->model_tool_image->resize($images, $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height')), 
+				//
+				// for saving percentage
+				'saving'	=> round((($result['price'] - $result['special'])/$result['price'])*100, 0),
+				//
 				);
 			}
 					
@@ -277,8 +292,8 @@ class ControllerProductSearch extends Controller {
 				$url .= '&description=' . $this->request->get['description'];
 			}
 			
-			if (isset($this->request->get['filter_category_id'])) {
-				$url .= '&filter_category_id=' . $this->request->get['filter_category_id'];
+			if (isset($this->request->get['category_id'])) {
+				$url .= '&category_id=' . $this->request->get['category_id'];
 			}
 			
 			if (isset($this->request->get['sub_category'])) {
@@ -361,8 +376,8 @@ class ControllerProductSearch extends Controller {
 				$url .= '&description=' . $this->request->get['description'];
 			}
 			
-			if (isset($this->request->get['filter_category_id'])) {
-				$url .= '&filter_category_id=' . $this->request->get['filter_category_id'];
+			if (isset($this->request->get['category_id'])) {
+				$url .= '&category_id=' . $this->request->get['category_id'];
 			}
 			
 			if (isset($this->request->get['sub_category'])) {
@@ -383,11 +398,11 @@ class ControllerProductSearch extends Controller {
 			
 			sort($limits);
 	
-			foreach($limits as $value){
+			foreach($limits as $limits){
 				$this->data['limits'][] = array(
-					'text'  => $value,
-					'value' => $value,
-					'href'  => $this->url->link('product/search', $url . '&limit=' . $value)
+					'text'  => $limits,
+					'value' => $limits,
+					'href'  => $this->url->link('product/search', $url . '&limit=' . $limits)
 				);
 			}
 					
@@ -398,15 +413,15 @@ class ControllerProductSearch extends Controller {
 			}
 			
 			if (isset($this->request->get['tag'])) {
-				$url .= '&tag=' . urlencode(html_entity_decode($this->request->get['tag'], ENT_QUOTES, 'UTF-8'));
+				$url .= '&tag=' . urlencode(html_entity_decode($this->request->get['filter_tag'], ENT_QUOTES, 'UTF-8'));
 			}
 					
 			if (isset($this->request->get['description'])) {
 				$url .= '&description=' . $this->request->get['description'];
 			}
 			
-			if (isset($this->request->get['filter_category_id'])) {
-				$url .= '&filter_category_id=' . $this->request->get['filter_category_id'];
+			if (isset($this->request->get['category_id'])) {
+				$url .= '&category_id=' . $this->request->get['category_id'];
 			}
 			
 			if (isset($this->request->get['sub_category'])) {
@@ -437,7 +452,7 @@ class ControllerProductSearch extends Controller {
 		
 		$this->data['search'] = $search;
 		$this->data['description'] = $description;
-		$this->data['filter_category_id'] = $filter_category_id;
+		$this->data['category_id'] = $category_id;
 		$this->data['sub_category'] = $sub_category;
 				
 		$this->data['sort'] = $sort;
@@ -461,5 +476,53 @@ class ControllerProductSearch extends Controller {
 				
 		$this->response->setOutput($this->render());
   	}
+	
+	
+	// search autofill
+	//<![CDATA[
+	public function ajax()
+	{
+		// Contains results
+		$data = array();
+		if( isset($this->request->get['keyword']) ) {
+			// Parse all keywords to lowercase
+			$keywords = strtolower( $this->request->get['keyword'] );
+			// Perform search only if we have some keywords
+			if( strlen($keywords) >= 2 ) {
+				$parts = explode( ' ', $keywords );
+				$add = '';
+				// Generating search
+				foreach( $parts as $part ) {
+					$add .= ' AND (LOWER(pd.name) LIKE "%' . $this->db->escape($part) . '%"';
+					$add .= ' OR LOWER(p.model) LIKE "%' . $this->db->escape($part) . '%")';
+				}
+				$add = substr( $add, 4 );
+				$sql  = 'SELECT pd.product_id, pd.name, p.model FROM ' . DB_PREFIX . 'product_description AS pd ';
+				$sql .= 'LEFT JOIN ' . DB_PREFIX . 'product AS p ON p.product_id = pd.product_id ';
+				$sql .= 'LEFT JOIN ' . DB_PREFIX . 'product_to_store AS p2s ON p2s.product_id = pd.product_id ';
+				$sql .= 'WHERE ' . $add . ' AND p.status = 1 ';
+				$sql .= 'AND pd.language_id = ' . (int)$this->config->get('config_language_id');
+				$sql .= ' AND p2s.store_id =  ' . (int)$this->config->get('config_store_id'); 
+				$sql .= ' ORDER BY p.sort_order ASC, LOWER(pd.name) ASC, LOWER(p.model) ASC';
+				$sql .= ' LIMIT 15';
+				$res = $this->db->query( $sql );
+				if( $res ) {
+					$data = ( isset($res->rows) ) ? $res->rows : $res->row;
+	
+					// For the seo url stuff
+					$basehref = 'product/product&keyword=' . $this->request->get['keyword'] . '&product_id=';
+					foreach( $data as $key => $values ) {
+						$data[$key] = array(
+							'name' => htmlspecialchars_decode($values['name'] . ' (' . $values['model'] . ')', ENT_QUOTES),
+							'href' => $this->url->link($basehref . $values['product_id'])
+						);
+					}
+				}
+			}
+		}
+		echo json_encode( $data );
+	}
+	//]]>
+	// end search auto fill
 }
 ?>
