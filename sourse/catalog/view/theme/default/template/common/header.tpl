@@ -120,50 +120,6 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
         </ul>
     </div>
     
-    <!-- Личный кабинет-->
-    <?php if ($logged) { ?>
-    
-        <div class="sidebar_item_body" id="account" onScroll="MoveCenterScreen('account');">
-            <div class="sidebar_content">
-              <h2><?php echo $text_my_account; ?></h2>    
-              
-                <ul>
-                  <li><a href="<?php echo $edit; ?>"><?php echo $text_edit; ?></a></li>
-                  <li><a href="<?php echo $password; ?>"><?php echo $text_password; ?></a></li>
-                  <li><a href="<?php echo $address; ?>"><?php echo $text_address; ?></a></li>
-                  <li><a href="<?php echo $wishlist; ?>"><?php echo $text_wishlist; ?></a></li>
-                </ul>
-              
-              <h2><?php echo $text_my_orders; ?></h2>
-              
-                <ul>
-                  <li><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a></li>
-                  <li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>
-                  <?php if ($reward) { ?>
-                  <li><a href="<?php echo $reward; ?>"><?php echo $text_reward; ?></a></li>
-                  <?php } ?>
-                  <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
-                  <li><a href="<?php echo $transaction; ?>"><?php echo $text_transaction; ?></a></li>
-                </ul>
-              
-              
-              <h2><?php echo $text_my_newsletter; ?></h2>
-              
-                <ul>
-                  <li><a href="<?php echo $newsletter; ?>"><?php echo $text_newsletter; ?></a></li>
-                </ul>
-            </div>
-        </div>
-    <?php } else { ?>
-        <div class="sidebar_item_body" id="account" onScroll="MoveCenterScreen('account');">
-            <div class="sidebar_content">
-                <h2><?php echo $text_my_account; ?></h2>
-                <p>
-                <?php echo $text_welcome; ?>    
-            </div>
-        </div>
-    <?php } ?>
-    
         <!-- категории товаров-->
         <div class="sidebar_item_body" id="categories" onScroll="MoveCenterScreen('categories');">  
             <div class="sidebar_content" id="category">
@@ -215,7 +171,7 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
   <?php } ?>
   <?php echo $language; ?>
   <?php echo $currency; ?>
-  <?php echo $cart; ?>
+<!--   <?php echo $cart; ?> -->
   <div id="search">
     <div class="button-search"></div>
     <input type="text" name="search" placeholder="<?php echo $text_search; ?>" value="<?php echo $search; ?>" />
