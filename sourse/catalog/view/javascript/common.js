@@ -319,5 +319,67 @@ function addToCompare(product_id) {
 		return out;
     };
     
-
+    // печать списка товаров
+    function print_cart(){
+	// элементы, которые необходимо распечатать
+	var forPrintClass = new Array('cart-info', 'cart-module', 'cart-total', 'warning', 'content');
+	var forPrintId = new Array('container', 'content');
+      
+	// Получим коллекцию элементов тега body:
+	var elements = document.body.getElementsByTagName("div");
+	var length   = elements.length;
+	var lengthForPrint = forPrintClass.length;
+	var out = [], i, j, k;
+	var notShow = new Array();
+	var print;	// печатать ли элемент
+	
+	// если этот элемент не подлежит печати - убираем со страницы
+	for (i = 0; i < length; i += 1) {
+	    print = false;
+	    
+	    // запоминаем элементы, которые не надо печатать
+	    if (elements[i].style.display == "none") {
+// 		alert(elements[i].className);
+		notShow[notShow.length] = elements[i];
+		continue;
+	    }
+	    
+	    // поиск по классу
+	    for (j = 0; j < lengthForPrint; j++){
+		 if (elements[i].className == forPrintClass[j]) {
+		    print = true;
+		    continue;
+		 }		 
+	    }
+	    
+	    // поиск по id
+	    for (j = 0; j < lengthForPrint; j++){
+		if (elements[i].id == forPrintId[j] || print){
+		    print = true;
+		    continue;
+		}
+	    }
+	    
+	    if (print) elements[i].style.display = "block";
+	    else elements[i].style.display = "none";
+	}
+	
+	alert(notShow.length);
+	// печать
+	window.print();
+	
+	// возвращаем элементы на страницу
+	
+	for (i = 0; i < elements.length; i++){
+	    print = true;
+	    for (j = 0; j < notShow.length; j++){
+		if (elements[i] == notShow[j])
+		   print = false;
+	    }
+	    if (print){
+	       elements[i].style.display = "block";
+	    }
+	}
+    };
+    
 

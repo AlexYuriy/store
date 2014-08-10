@@ -144,7 +144,8 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['button_shipping'] = $this->language->get('button_shipping');			
       		$this->data['button_shopping'] = $this->language->get('button_shopping');
       		$this->data['button_checkout'] = $this->language->get('button_checkout');
-			
+		$this->data['button_print'] = $this->language->get('button_print');
+		
 			if (isset($this->error['warning'])) {
 				$this->data['error_warning'] = $this->error['warning'];
 			} elseif (!$this->cart->hasStock() && (!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning'))) {
@@ -376,6 +377,8 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['continue'] = $this->url->link('common/home');
 						
 			$this->data['checkout'] = $this->url->link('checkout/checkout', '', 'SSL');
+			
+			$this->data['print'] = 'print_cart();';
 
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/cart.tpl')) {
 				$this->template = $this->config->get('config_template') . '/template/checkout/cart.tpl';

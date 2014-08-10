@@ -47,6 +47,7 @@ $_['button_voucher']        = 'Geschenkgutschein einlösen';
 $_['button_upload']         = 'Datei hochladen';
 $_['button_reward']         = 'Punkte vergeben';
 $_['button_quote']          = 'Berechne Fracht';
+$_['button_print']	     = 'Drucken';
 
 // Error
 $_['error_upload_1']        = 'Die Datei überschreitet die upload_max_filesize Definition in der php.ini!';
