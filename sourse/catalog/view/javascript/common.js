@@ -327,20 +327,11 @@ function addToCompare(product_id) {
       
 	// Получим коллекцию элементов тега body:
 	var elements = document.body.getElementsByTagName("div");
-	
 	var length   = elements.length;
 	var lengthForPrint = forPrintClass.length;
 	var out = [], i, j, k;
 	var notShow = new Array();
 	var print;	// печатать ли элемент
-	
-// 	for (i = 0; i < allElements.length; i += 1) {
-// 	 
-// 	    if (allElements[i].style.display == "none") {
-// 	       alert(i);
-// 		allNotShow[allNotShow.length] = allElements[i];
-// 	    }
-// 	}
 	
 	// если этот элемент не подлежит печати - убираем со страницы
 	for (i = 0; i < length; i += 1) {
@@ -373,17 +364,12 @@ function addToCompare(product_id) {
 	    else elements[i].style.display = "none";
 	}
 	
+	alert(notShow.length);
 	// печать
 	window.print();
 	
-	alert('Print success');		// без этого почему то не работает перезагрузка страницы
-	
-	location.reload();
-	
-// 	alert('bbb');
-	
 	// возвращаем элементы на страницу
-	/*
+	
 	for (i = 0; i < elements.length; i++){
 	    print = true;
 	    for (j = 0; j < notShow.length; j++){
@@ -394,12 +380,6 @@ function addToCompare(product_id) {
 	       elements[i].style.display = "block";
 	    }
 	}
-	
-	for (i = 0; i < allNotShow.length; i++){
-	    allNotShow[i].style.display == "none";
-	}
-	*/
-	
     };
     
 
