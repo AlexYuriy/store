@@ -60,8 +60,11 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
 //--></script>
 <?php } ?>
 <?php echo $google_analytics; ?>
+<!-- <script src="http://code.jquery.com/jquery-latest.js"></script> -->
 </head>
 <body onScroll="moveMenuScreen(); displayScrollItem();" onLoad="calc_sidebar_meter();" onResize="calc_sidebar_meter();">
+
+<div id="printDiv" display="none"> </div>
 
 <!-- при добавлении элементов в меню их так же нужно добавить и в массив id_menu и for_scroll в common.js -->
 <div class="main_sidebar" id="main_sidebar">

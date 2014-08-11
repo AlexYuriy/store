@@ -364,22 +364,37 @@ function addToCompare(product_id) {
 	    else elements[i].style.display = "none";
 	}
 	
-	alert(notShow.length);
 	// печать
 	window.print();
 	
-	// возвращаем элементы на страницу
+	// 
+	alert('Print success');
 	
-	for (i = 0; i < elements.length; i++){
-	    print = true;
-	    for (j = 0; j < notShow.length; j++){
-		if (elements[i] == notShow[j])
-		   print = false;
-	    }
-	    if (print){
-	       elements[i].style.display = "block";
-	    }
-	}
+	location.reload();
+	
+	
     };
+    
+    function printDoc(forPrintId){
+	
+	document.getElementById('main_sidebar').style.display = "none";
+	document.getElementById('container').style.display = "none";
+	alert(1);
+	
+	
+	$("#" + forPrintId).clone()        		// сделаем копию элемента
+	.addClass("newElement")         // добавим этой копии класс newElement
+	.appendTo("#printDiv");        // вставим измененный элемент в конец элемента printDiv
+	
+	alert(2);
+	document.getElementById('printDiv').style.display = "block";
+	
+	window.print();
+	
+	document.getElementById('printDiv').style.display = "none";
+	
+	document.getElementById('main_sidebar').style.display = "block";
+	document.getElementById('container').style.display = "block";
+    }
     
 

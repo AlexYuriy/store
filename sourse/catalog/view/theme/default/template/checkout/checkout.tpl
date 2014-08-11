@@ -38,7 +38,10 @@
     </div>
     <div id="confirm">
       <div class="checkout-heading"><?php echo $text_checkout_confirm; ?></div>
-      <div class="checkout-content"></div>
+      <div class="checkout-content" id="confirm-content"></div>
+      <div class="buttons">
+	 <div class="left"><a onclick="<?php echo $print; ?>" class="button"><?php echo $button_print; ?></a></div>
+      </div>
     </div>
   </div>
   <?php echo $content_bottom; ?></div>
