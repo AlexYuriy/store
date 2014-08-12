@@ -216,4 +216,39 @@ dell [166
 catalog\view\theme\default\stylesheet\stylesheet.css
 dell [123
        width: 110px;
-123]		
+123]	
+replace [341
+	background: url(../image/menu_back.png) 5px 0px repeat-x;
+341]
+replace [367
+	background: url(../image/menu_sep.png) center right no-repeat;
+367]
+replace [380, 387
+	background:url(../image/menu_act.png) center left repeat-x;
+380, 387]
+add [362
+	width: 25%;
+362]
+add [372
+	text-align: center;	
+372]
+add [406
+	width: 95%;
+406]
+add [381
+	color: white;
+381]
+****
+catalog\view\theme\default\template\checkout\cart.tpl	
+replace [89
+			<?php # if ($coupon_status || $voucher_status || $reward_status || $shipping_status) { ?>
+			<?php if (false) { ?> 
+89]
+****
+catalog\view\theme\default\template\checkout\checkout.tpl
+remove [26 29] to [30 33]
+<div id="shipping-address">
+****
+add file catalog\view\theme\default\image\menu_back.png
+add file catalog\view\theme\default\image\menu_act.png
+****
