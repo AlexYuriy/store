@@ -367,6 +367,11 @@ function addToCompare(product_id) {
 	    else elements[i].style.display = "none";
 	}
 	
+	// -----------------
+	// не тестированно
+	document.getElementById('logo').style.display = "block";
+	//------------------
+	
 	// печать
 	window.print();
 	
@@ -378,10 +383,21 @@ function addToCompare(product_id) {
 	
     };
     
+    // не до конца тестированно
     function printDoc(forPrintId){
+	var notPrint = new Array('container-footer','custom-footer-bg','custom-footer', 'main_sidebar', 'container', 'header-bg');
+	var length = notPrint.length;
 	
-	document.getElementById('main_sidebar').style.display = "none";
-	document.getElementById('container').style.display = "none";
+	for (i = 0; i < length; i++) {
+	  document.getElementById(notPrint[i]).style.display = "none";
+	}
+	
+	//--------------------
+	// не тестированно
+	$("#" + 'logo').clone()        		// сделаем копию элемента
+	.addClass("newElement")         // добавим этой копии класс newElement
+	.appendTo("#printDiv");        // вставим измененный элемент в конец элемента printDiv
+	//-------------------
 	
 	$("#" + forPrintId).clone()        		// сделаем копию элемента
 	.addClass("newElement")         // добавим этой копии класс newElement
@@ -393,6 +409,7 @@ function addToCompare(product_id) {
 	
 	document.getElementById('printDiv').style.display = "none";
 	
-	document.getElementById('main_sidebar').style.display = "block";
-	document.getElementById('container').style.display = "block";
+	for (i = 0; i < length; i++) {
+	  document.getElementById(notPrint[i]).style.display = "block";
+	}
     }
