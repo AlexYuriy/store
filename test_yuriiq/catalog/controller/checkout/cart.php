@@ -152,6 +152,8 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['button_checkout'] = $this->language->get('button_checkout');
 			$this->data['button_print'] = $this->language->get('button_print');
 			
+			$this->data['print'] = 'print_cart();';
+			
 			$this->data['text_trial'] = $this->language->get('text_trial');
 			$this->data['text_recurring'] = $this->language->get('text_recurring');
 			$this->data['text_length'] = $this->language->get('text_length');
