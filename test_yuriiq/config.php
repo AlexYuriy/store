@@ -1,27 +1,27 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://test.istochnik-spb.com/');
+define('HTTP_SERVER', 'http://osstore/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://test.istochnik-spb.com/');
+define('HTTPS_SERVER', 'http://osstore/');
 
 // DIR
-define('DIR_APPLICATION', '/home/host1245282/istochnik-spb.com/htdocs/test/catalog/');
-define('DIR_SYSTEM', '/home/host1245282/istochnik-spb.com/htdocs/test/system/');
-define('DIR_DATABASE', '/home/host1245282/istochnik-spb.com/htdocs/test/system/database/');
-define('DIR_LANGUAGE', '/home/host1245282/istochnik-spb.com/htdocs/test/catalog/language/');
-define('DIR_TEMPLATE', '/home/host1245282/istochnik-spb.com/htdocs/test/catalog/view/theme/');
-define('DIR_CONFIG', '/home/host1245282/istochnik-spb.com/htdocs/test/system/config/');
-define('DIR_IMAGE', '/home/host1245282/istochnik-spb.com/htdocs/test/image/');
-define('DIR_CACHE', '/home/host1245282/istochnik-spb.com/htdocs/test/system/cache/');
-define('DIR_DOWNLOAD', '/home/host1245282/istochnik-spb.com/htdocs/test/download/');
-define('DIR_LOGS', '/home/host1245282/istochnik-spb.com/htdocs/test/system/logs/');
+define('DIR_APPLICATION', '/home/kovalev/job/osStore/workspace/store/test_yuriiq/catalog/');
+define('DIR_SYSTEM', '/home/kovalev/job/osStore/workspace/store/test_yuriiq/system/');
+define('DIR_DATABASE', '/home/kovalev/job/osStore/workspace/store/test_yuriiq/system/database/');
+define('DIR_LANGUAGE', '/home/kovalev/job/osStore/workspace/store/test_yuriiq/catalog/language/');
+define('DIR_TEMPLATE', '/home/kovalev/job/osStore/workspace/store/test_yuriiq/catalog/view/theme/');
+define('DIR_CONFIG', '/home/kovalev/job/osStore/workspace/store/test_yuriiq/system/config/');
+define('DIR_IMAGE', '/home/kovalev/job/osStore/workspace/store/test_yuriiq/image/');
+define('DIR_CACHE', '/home/kovalev/job/osStore/workspace/store/test_yuriiq/system/cache/');
+define('DIR_DOWNLOAD', '/home/kovalev/job/osStore/workspace/store/test_yuriiq/download/');
+define('DIR_LOGS', '/home/kovalev/job/osStore/workspace/store/test_yuriiq/system/logs/');
 
 // DB
 define('DB_DRIVER', 'mysql');
 define('DB_HOSTNAME', 'localhost');
-define('DB_USERNAME', 'host1245282_test');
-define('DB_PASSWORD', 'test');
-define('DB_DATABASE', 'host1245282_test');
-define('DB_PREFIX', 'oc_prefix_');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', 'root');
+define('DB_DATABASE', 'osstore');
+define('DB_PREFIX', 'oc_');
 ?>
