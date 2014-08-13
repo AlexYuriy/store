@@ -39,7 +39,7 @@
 			<?php foreach ($vouchers as $voucher) { ?>
 			    <?php $num_products += $voucher['quantity'];} ?>
 		    <?php } ?>
-			<span id="s_num_prud"><?php echo $num_products; ?></span>
+			<span id="cart-total"><?php echo $num_products; ?></span>
 		</div> 
         
 		<!-- корзина -->      

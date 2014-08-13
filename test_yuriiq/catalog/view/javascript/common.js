@@ -130,7 +130,7 @@ function addToCart(product_id, quantity) {
 				
 				$('.success').fadeIn('slow');
 				
-				$('#s_num_prud').html(json['total']);
+				$('#cart-total').html(json['total']);
 				
 				$('html, body').animate({ scrollTop: 0 }, 'slow'); 
 			}	

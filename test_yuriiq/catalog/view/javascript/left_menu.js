@@ -1,12 +1,12 @@
-// обеспечивает работу бокового меню sidebar
+// РѕР±РµСЃРїРµС‡РёРІР°РµС‚ СЂР°Р±РѕС‚Сѓ Р±РѕРєРѕРІРѕРіРѕ РјРµРЅСЋ sidebar
 
     var id_menu = new Array('other_links', 'categories', 'cart');
     var id_sidebar_right_space = "id_sidebar_right_space";
     var for_scroll = new Array('sidebar', 'other_links', id_sidebar_right_space, 'categories', 'cart');
-    var y_coord; // сохроняет координат при перемотке вверх
-    var widthSidebarItem = 80;	// ширина элемента бокового меню
+    var y_coord; // СЃРѕС…СЂРѕРЅСЏРµС‚ РєРѕРѕСЂРґРёРЅР°С‚ РїСЂРё РїРµСЂРµРјРѕС‚РєРµ РІРІРµСЂС…
+    var widthSidebarItem = 80;	// С€РёСЂРёРЅР° СЌР»РµРјРµРЅС‚Р° Р±РѕРєРѕРІРѕРіРѕ РјРµРЅСЋ
 
-    // открыть элемент меню закрыв другие элементы
+    // РѕС‚РєСЂС‹С‚СЊ СЌР»РµРјРµРЅС‚ РјРµРЅСЋ Р·Р°РєСЂС‹РІ РґСЂСѓРіРёРµ СЌР»РµРјРµРЅС‚С‹
     function openMenu(id){
 	    for (i=0; i < id_menu.length; i++){
 		    if (id != id_menu[i]){
@@ -22,7 +22,7 @@
 	    }	
     }
 
-    // закрыть элемент меню
+    // Р·Р°РєСЂС‹С‚СЊ СЌР»РµРјРµРЅС‚ РјРµРЅСЋ
     function closeMenu(id){
         for (var i = 0; i < id_menu.length; i++){
             document.getElementById(id_menu[i]).style.display = "none";
@@ -30,7 +30,7 @@
         } 
     }
 
-    // меню всегда слева на весь экран
+    // РјРµРЅСЋ РІСЃРµРіРґР° СЃР»РµРІР° РЅР° РІРµСЃСЊ СЌРєСЂР°РЅ
     function moveMenuScreen(){  
         var scrollTop = window.pageYOffset || document.documentElement.scrollTop;    
      //   obj.style.left = (document.body.clientWidth / 2 - obj.clientWidth / 2 + document.body.scrollLeft) + 'px';  
@@ -40,12 +40,12 @@
         }
     }  
 
-    // перематывает вверх 
+    // РїРµСЂРµРјР°С‚С‹РІР°РµС‚ РІРІРµСЂС… 
     function scrollToTop(){
         y_coord = window.pageYOffset || document.documentElement.scrollTop;
 	var y = y_coord;
 	
-	// обеспечивает плавную перемотку
+	// РѕР±РµСЃРїРµС‡РёРІР°РµС‚ РїР»Р°РІРЅСѓСЋ РїРµСЂРµРјРѕС‚РєСѓ
 	var interval = setInterval(function(){
 	  window.scrollBy(0, -60);
 	  y -= 60;
@@ -61,11 +61,11 @@
         
     }
 
-    // перематывает вниз после перемотки вверх
+    // РїРµСЂРµРјР°С‚С‹РІР°РµС‚ РІРЅРёР· РїРѕСЃР»Рµ РїРµСЂРµРјРѕС‚РєРё РІРІРµСЂС…
     function scrollToBottom(){
       var y = 0;      
      
-	// обеспечивает плавную перемотку
+	// РѕР±РµСЃРїРµС‡РёРІР°РµС‚ РїР»Р°РІРЅСѓСЋ РїРµСЂРµРјРѕС‚РєСѓ
         var interval = setInterval(function(){
 	  window.scrollBy(0, 60);
 	  y += 60;
@@ -80,8 +80,8 @@
 	}, 20);        
     }
 
-    // управляет элементом перемотки
-    // отображает необходимый элемент при перемотки
+    // СѓРїСЂР°РІР»СЏРµС‚ СЌР»РµРјРµРЅС‚РѕРј РїРµСЂРµРјРѕС‚РєРё
+    // РѕС‚РѕР±СЂР°Р¶Р°РµС‚ РЅРµРѕР±С…РѕРґРёРјС‹Р№ СЌР»РµРјРµРЅС‚ РїСЂРё РїРµСЂРµРјРѕС‚РєРё
     function displayScrollItem(){
         var coord = window.pageYOffset || document.documentElement.scrollTop;
         
@@ -100,11 +100,11 @@
         }
     }
     
-    // рассчитывает размер бокового меню. Вызывать при открытии страницы и изменении размера окна
+    // СЂР°СЃСЃС‡РёС‚С‹РІР°РµС‚ СЂР°Р·РјРµСЂ Р±РѕРєРѕРІРѕРіРѕ РјРµРЅСЋ. Р’С‹Р·С‹РІР°С‚СЊ РїСЂРё РѕС‚РєСЂС‹С‚РёРё СЃС‚СЂР°РЅРёС†С‹ Рё РёР·РјРµРЅРµРЅРёРё СЂР°Р·РјРµСЂР° РѕРєРЅР°
     function calc_sidebar_meter(){
 	var windowHeight = window.innerHeight;
 	var heightScrollItem = Math.ceil(windowHeight - 4 * widthSidebarItem - 3);
-	var margin_top_img = Math.ceil(heightScrollItem / 2 - 40); // отступ изображения от верха полосы прокрутки
+	var margin_top_img = Math.ceil(heightScrollItem / 2 - 40); // РѕС‚СЃС‚СѓРї РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РѕС‚ РІРµСЂС…Р° РїРѕР»РѕСЃС‹ РїСЂРѕРєСЂСѓС‚РєРё
 	
 	if (heightScrollItem < 80) heightScrollItem = 80;
 	
@@ -117,18 +117,18 @@
         document.getElementById('scroll_to_top_img').style.marginTop = margin_top_img + "px";
     }
     
-    // находит все элементы по имени класса
-    // функция тяжёлая, не увлекаться с использованием
+    // РЅР°С…РѕРґРёС‚ РІСЃРµ СЌР»РµРјРµРЅС‚С‹ РїРѕ РёРјРµРЅРё РєР»Р°СЃСЃР°
+    // С„СѓРЅРєС†РёСЏ С‚СЏР¶С‘Р»Р°СЏ, РЅРµ СѓРІР»РµРєР°С‚СЊСЃСЏ СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј
     function getElementByClassName (class_name){
-		// Получим коллекцию элементов тега body:
+		// РџРѕР»СѓС‡РёРј РєРѕР»Р»РµРєС†РёСЋ СЌР»РµРјРµРЅС‚РѕРІ С‚РµРіР° body:
 		var elements = document.body.getElementsByTagName("*"),
 		    length   = elements.length,
 		    out = [], i;
 	
-		// Пройдёмся по ним... увы циклом:
+		// РџСЂРѕР№РґС‘РјСЃСЏ РїРѕ РЅРёРј... СѓРІС‹ С†РёРєР»РѕРј:
 		for (i = 0; i < length; i += 1) {
 	
-		    // Поместим в результирующий массив элементы, содержащие требуемый класс:
+		    // РџРѕРјРµСЃС‚РёРј РІ СЂРµР·СѓР»СЊС‚РёСЂСѓСЋС‰РёР№ РјР°СЃСЃРёРІ СЌР»РµРјРµРЅС‚С‹, СЃРѕРґРµСЂР¶Р°С‰РёРµ С‚СЂРµР±СѓРµРјС‹Р№ РєР»Р°СЃСЃ:
 		    if (elements[i].className.indexOf(class_name) !== -1) {
 			out.push(elements[i]);
 		    }       
@@ -136,32 +136,32 @@
 		return out;
     };
     
-    // печать списка товаров
+    // РїРµС‡Р°С‚СЊ СЃРїРёСЃРєР° С‚РѕРІР°СЂРѕРІ
     function print_cart(){
-	// элементы, которые необходимо распечатать
+	// СЌР»РµРјРµРЅС‚С‹, РєРѕС‚РѕСЂС‹Рµ РЅРµРѕР±С…РѕРґРёРјРѕ СЂР°СЃРїРµС‡Р°С‚Р°С‚СЊ
 	var forPrintClass = new Array('cart-info', 'cart-module', 'cart-total', 'warning', 'content');
 	var forPrintId = new Array('container', 'content');
       
-	// Получим коллекцию элементов тега body:
+	// РџРѕР»СѓС‡РёРј РєРѕР»Р»РµРєС†РёСЋ СЌР»РµРјРµРЅС‚РѕРІ С‚РµРіР° body:
 	var elements = document.body.getElementsByTagName("div");
 	var length   = elements.length;
 	var lengthForPrint = forPrintClass.length;
 	var out = [], i, j, k;
 	var notShow = new Array();
-	var print;	// печатать ли элемент
+	var print;	// РїРµС‡Р°С‚Р°С‚СЊ Р»Рё СЌР»РµРјРµРЅС‚
 	
-	// если этот элемент не подлежит печати - убираем со страницы
+	// РµСЃР»Рё СЌС‚РѕС‚ СЌР»РµРјРµРЅС‚ РЅРµ РїРѕРґР»РµР¶РёС‚ РїРµС‡Р°С‚Рё - СѓР±РёСЂР°РµРј СЃРѕ СЃС‚СЂР°РЅРёС†С‹
 	for (i = 0; i < length; i += 1) {
 	    print = false;
 	    
-	    // запоминаем элементы, которые не надо печатать
+	    // Р·Р°РїРѕРјРёРЅР°РµРј СЌР»РµРјРµРЅС‚С‹, РєРѕС‚РѕСЂС‹Рµ РЅРµ РЅР°РґРѕ РїРµС‡Р°С‚Р°С‚СЊ
 	    if (elements[i].style.display == "none") {
 // 		alert(elements[i].className);
 		notShow[notShow.length] = elements[i];
 		continue;
 	    }
 	    
-	    // поиск по классу
+	    // РїРѕРёСЃРє РїРѕ РєР»Р°СЃСЃСѓ
 	    for (j = 0; j < lengthForPrint; j++){
 		 if (elements[i].className == forPrintClass[j]) {
 		    print = true;
@@ -169,7 +169,7 @@
 		 }		 
 	    }
 	    
-	    // поиск по id
+	    // РїРѕРёСЃРє РїРѕ id
 	    for (j = 0; j < lengthForPrint; j++){
 		if (elements[i].id == forPrintId[j] || print){
 		    print = true;
@@ -181,7 +181,7 @@
 	    else elements[i].style.display = "none";
 	}
 	
-	// печать
+	// РїРµС‡Р°С‚СЊ
 	window.print();
 	
 	// 
@@ -199,9 +199,9 @@
 	alert(1);
 	
 	
-	$("#" + forPrintId).clone()        		// сделаем копию элемента
-	.addClass("newElement")         // добавим этой копии класс newElement
-	.appendTo("#printDiv");        // вставим измененный элемент в конец элемента printDiv
+	$("#" + forPrintId).clone()        		// СЃРґРµР»Р°РµРј РєРѕРїРёСЋ СЌР»РµРјРµРЅС‚Р°
+	.addClass("newElement")         // РґРѕР±Р°РІРёРј СЌС‚РѕР№ РєРѕРїРёРё РєР»Р°СЃСЃ newElement
+	.appendTo("#printDiv");        // РІСЃС‚Р°РІРёРј РёР·РјРµРЅРµРЅРЅС‹Р№ СЌР»РµРјРµРЅС‚ РІ РєРѕРЅРµС† СЌР»РµРјРµРЅС‚Р° printDiv
 	
 	alert(2);
 	document.getElementById('printDiv').style.display = "block";

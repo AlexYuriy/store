@@ -106,7 +106,7 @@ label {
 }
 #header {
 	height: 90px;
-	margin-bottom: 15px;
+	margin-bottom: 12px;
 	padding-bottom: 4px;
 	position: relative;
 	z-index: 99;
@@ -348,7 +348,7 @@ label {
 	-khtml-border-radius: 5px 5px 0px 0px;
 	border-radius: 5px 5px 0px 0px;
 	border: 1px solid #aaa;
-	padding: 0px 5px;
+	padding: 1px;
 }
 #menu ul {
 	list-style: none;
@@ -403,7 +403,7 @@ label {
 	background: #FFFFFF;
 	position: absolute;
 	z-index: 5;
-	padding: 0px;
+	padding: 10px 0px 0px 0px;
 	border: 1px solid #55BEFD;
 	border-top: 0px;
 	-webkit-border-radius: 0px 0px 5px 5px;
