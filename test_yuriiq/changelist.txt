@@ -238,6 +238,21 @@ add [406
 add [381
 	color: white;
 381]
+add [362
+padding: 5px 0px;
+362]
+add [428
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+431]
+replace [427
+	background:url(../image/menu_act.png) center left repeat-x;
+427]
+replace [401
+	border: 1px solid #aaa;
+401]
 ****
 catalog\view\theme\default\template\checkout\cart.tpl	
 replace [89

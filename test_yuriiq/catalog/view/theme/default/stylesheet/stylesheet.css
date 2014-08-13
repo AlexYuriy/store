@@ -359,6 +359,7 @@ label {
 	float: left;
 	z-index: 20;
 	width: 25%;
+	padding: 5px 0px;
 }
 #menu > ul > li:hover {
 }
@@ -397,7 +398,7 @@ label {
 	position: absolute;
 	z-index: 5;
 	padding: 5px;
-	border: 1px solid #000000;
+	border: 1px solid #aaa;
 	-webkit-border-radius: 0px 0px 3px 3px;
 	-moz-border-radius: 0px 0px 3px 3px;
 	-khtml-border-radius: 0px 0px 3px 3px;
@@ -423,7 +424,11 @@ label {
 	min-width: 120px;
 }
 #menu > ul > li ul > li > a:hover {
-	background: #009CBF;
+	background:url(../image/menu_act.png) center left repeat-x;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
 }
 #menu > ul > li > div > ul > li > a {
 	color: #FFFFFF;
