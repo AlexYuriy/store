@@ -1,4 +1,5 @@
-
+<!-- LeftMenu -->
+<link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/left_menu.css" />
 <!-- при добавлении элементов в меню их так же нужно добавить и в массив id_menu и for_scroll в common.js -->
 <div class="main_sidebar" id="main_sidebar">
     <div class="sidebar" id="sidebar" onScroll="MoveCenterScreen('main_sidebar');">
@@ -196,3 +197,4 @@
 
     <div class="sidebar_right_space" id="id_sidebar_right_space" onclick="closeMenu(); return(false)" onScroll="MoveCenterScreen('id_sidebar_right_space');"> </div>
 </div>
+<!-- /LeftMenu -->
