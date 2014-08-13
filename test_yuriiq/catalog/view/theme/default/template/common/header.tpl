@@ -62,6 +62,7 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
 <?php echo $google_analytics; ?>
 </head>
 <body onScroll="moveMenuScreen(); displayScrollItem();" onLoad="calc_sidebar_meter();" onResize="calc_sidebar_meter();">
+<div id="printDiv" display="none"> </div>
 <div id="header-bg"></div>
 <?php include "left_menu.tpl"; ?>
 <div id="container">

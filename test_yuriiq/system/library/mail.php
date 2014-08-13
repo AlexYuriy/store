@@ -90,8 +90,8 @@ class Mail {
 		}
 		
 		$header .= 'Date: ' . date('D, d M Y H:i:s O') . $this->newline;
-		$header .= 'From: ' . '=?UTF-8?B?' . base64_encode($this->sender) . '?=' . ' <' . $this->from . '>' . $this->newline;
-		$header .= 'Reply-To: ' . '=?UTF-8?B?' . base64_encode($this->sender) . '?=' . ' <' . $this->from . '>' . $this->newline;
+		$header .= 'From: ' . '=?UTF-8?B?' . base64_encode($this->sender) . '?=' . '<' . $this->from . '>' . $this->newline;
+		$header .= 'Reply-To: ' . '=?UTF-8?B?' . base64_encode($this->sender) . '?=' . '<' . $this->from . '>' . $this->newline;
 		$header .= 'Return-Path: ' . $this->from . $this->newline;
 		$header .= 'X-Mailer: PHP/' . phpversion() . $this->newline;
 		$header .= 'Content-Type: multipart/related; boundary="' . $boundary . '"' . $this->newline . $this->newline;
@@ -345,7 +345,7 @@ class Mail {
 					trigger_error('Error: DATA not accepted from server!');
 					exit();						
 				}
-
+            	
 				// According to rfc 821 we should not send more than 1000 including the CRLF
 				$message = str_replace("\r\n", "\n",  $header . $message);
 				$message = str_replace("\r", "\n", $message);

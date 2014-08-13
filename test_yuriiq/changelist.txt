@@ -1,10 +1,10 @@
 not finish
 ! by Vadim
-sourse/catalog/controller/common/header.php
-sourse/catalog/language/russian/common/header.php
-sourse/catalog/view/theme/rubber/template/common/header.tpl
-sourse/catalog/view/javascript/common.js 
-sourse/catalog/view/theme/default/stylesheet/stylesheet.css
+test_yuriiq/catalog/controller/common/header.php
+test_yuriiq/catalog/language/russian/common/header.php
+test_yuriiq/catalog/view/theme/rubber/template/common/header.tpl
+test_yuriiq/catalog/view/javascript/common.js 
+test_yuriiq/catalog/view/theme/default/stylesheet/stylesheet.css
 !
 
 from http://test.istochnik-spb.com/

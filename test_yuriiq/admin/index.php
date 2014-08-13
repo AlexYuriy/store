@@ -1,11 +1,11 @@
 <?php
 // Version
-define('VERSION', '1.5.6.3.1');
+define('VERSION', '1.5.5.1.2');
 
 // Configuration
 if (file_exists('config.php')) {
 	require_once('config.php');
-}
+}  
 
 // Install
 if (!defined('DIR_APPLICATION')) {
@@ -13,18 +13,15 @@ if (!defined('DIR_APPLICATION')) {
 	exit;
 }
 
-//VirtualQMOD
-require_once('../vqmod/vqmod.php');
-VQMod::bootup();
-
-// VQMODDED Startup
-require_once(VQMod::modCheck(DIR_SYSTEM . 'startup.php'));
+// Startup
+require_once(DIR_SYSTEM . 'startup.php');
 
 // Application Classes
-require_once(VQMod::modCheck(DIR_SYSTEM . 'library/currency.php'));
-require_once(VQMod::modCheck(DIR_SYSTEM . 'library/user.php'));
-require_once(VQMod::modCheck(DIR_SYSTEM . 'library/weight.php'));
-require_once(VQMod::modCheck(DIR_SYSTEM . 'library/length.php'));
+require_once(DIR_SYSTEM . 'library/currency.php');
+require_once(DIR_SYSTEM . 'library/user.php');
+require_once(DIR_SYSTEM . 'library/weight.php');
+require_once(DIR_SYSTEM . 'library/length.php');
+require_once(DIR_SYSTEM . 'library/ocstore.php');
 
 // Registry
 $registry = new Registry();
@@ -40,10 +37,10 @@ $registry->set('config', $config);
 // Database
 $db = new DB(DB_DRIVER, DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 $registry->set('db', $db);
-
+		
 // Settings
 $query = $db->query("SELECT * FROM " . DB_PREFIX . "setting WHERE store_id = '0'");
-
+ 
 foreach ($query->rows as $setting) {
 	if (!$setting['serialized']) {
 		$config->set($setting['key'], $setting['value']);
@@ -55,8 +52,8 @@ foreach ($query->rows as $setting) {
 // Url
 $url = new Url(HTTP_SERVER, $config->get('config_secure') ? HTTPS_SERVER : HTTP_SERVER);	
 $registry->set('url', $url);
-
-// Log
+		
+// Log 
 $log = new Log($config->get('config_error_filename'));
 $registry->set('log', $log);
 
@@ -94,7 +91,7 @@ function error_handler($errno, $errstr, $errfile, $errline) {
 
 // Error Handler
 set_error_handler('error_handler');
-
+		
 // Request
 $request = new Request();
 $registry->set('request', $request);
@@ -115,6 +112,9 @@ $registry->set('session', $session);
 // Language
 $languages = array();
 
+// ocStore features
+$registry->set('ocstore', new ocStore($registry));
+
 $query = $db->query("SELECT * FROM `" . DB_PREFIX . "language`"); 
 
 foreach ($query->rows as $result) {
@@ -130,10 +130,10 @@ $registry->set('language', $language);
 
 // Document
 $registry->set('document', new Document()); 		
-
+		
 // Currency
 $registry->set('currency', new Currency($registry));		
-
+		
 // Weight
 $registry->set('weight', new Weight($registry));
 
@@ -142,7 +142,7 @@ $registry->set('length', new Length($registry));
 
 // User
 $registry->set('user', new User($registry));
-
+						
 // Front Controller
 $controller = new Front($registry);
 

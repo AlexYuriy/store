@@ -36,6 +36,10 @@
 <?php foreach ($scripts as $script) { ?>
 <script type="text/javascript" src="<?php echo $script; ?>"></script>
 <?php } ?>
+<!-- Autofill search -->
+<link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/livesearch.css" />
+<script src="catalog/view/javascript/jquery/livesearch.js"></script>
+<!-- Autofill search END-->
 <!--[if IE 7]> 
 <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/ie7.css" />
 <![endif]-->
@@ -56,95 +60,66 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
 //--></script>
 <?php } ?>
 <?php echo $google_analytics; ?>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
-<body onScroll="moveMenuScreen(); displayScrollItem();">
+<body onScroll="moveMenuScreen(); displayScrollItem();" onLoad="calc_sidebar_meter();" onResize="calc_sidebar_meter();">
+
+<div id="printDiv" display="none"> </div>
 
 <!-- при добавлении элементов в меню их так же нужно добавить и в массив id_menu и for_scroll в common.js -->
 <div class="main_sidebar" id="main_sidebar">
     <div class="sidebar" id="sidebar" onScroll="MoveCenterScreen('main_sidebar');">
     
-        <!-- категории товаров -->
-		<div class="sidebar_item" onclick="openMenu('categories');return(false)">
-		    <img class="sidebar_item_img" src="categories.jpg">
-		</div>
-		 
-		<!-- Q/A -->
+		<!-- Главная страница -->
 		<div class="sidebar_item">
-		    <a href="#"> <img class="sidebar_item_img" src="q_and_a.jpg"> </a>
+		    <a href="<?php echo home ?>"> <img class="sidebar_item_img" src="main_page.jpg"> </a>
 		</div>
 		
-		<!-- blog -->
-		<div class="sidebar_item">
-		    <a href="#"> <img class="sidebar_item_img" src="blog.jpg"> </a>
-		</div>
-		
-		<!-- news -->
-		<div class="sidebar_item">
-		    <a href="#"> <img class="sidebar_item_img" src="news.jpg"> </a>
-		</div>
-		
-		<!-- stocks -->
-		<div class="sidebar_item">
-		    <a href="#"> <img class="sidebar_item_img" src="stocks.jpg"> </a>
+		<!-- ссылки на важные страницы, такие как блог, новости, вопрос/ответ, акции, категории товаров -->
+		<div class="sidebar_item" onclick="openMenu('other_links'); return('false');">
+		    <img class="sidebar_item_img" src="other_lincks_img.jpg">
 		</div>
 		
 		<!-- пустой элемент для перемотки -->
 		<div class="temp_scroll_item" id="temp_scroll_item">
-		    <img class="sidebar_item_img" src="temp_scroll_item.jpg">
+		    <img class="scroll_img" alt="temp" id="temp_scroll_img" src="temp_scroll_item.jpg">
 		</div>
 		
 		<!-- перемотка наверх -->
 		<div class="scroll_item" id="scroll_to_top" onclick="scrollToTop();"> 
-	        <img class="sidebar_item_img" src="scroll_to_top.jpg"> 
-	    </div>
+		  <img class="scroll_img" alt="top" id="scroll_to_top_img src="scroll_to_top.jpg"> 
+		</div>
 		
 		<!-- перемотка обратно -->
-	    <div class="scroll_item" id="scroll_to_bottom" onclick="scrollToBottom();">
-	        <img class="sidebar_item_img" src="scroll_to_bottom.jpg"> 
-        </div>  
+		<div class="scroll_item" id="scroll_to_bottom" onclick="scrollToBottom();">
+		  <img class="scroll_img" alt="bottom" id="scroll_to_bottom_img" src="scroll_to_bottom.jpg"> 
+		</div>  
         
-        <!-- количество продуктов в корзине -->
-	    <div class="sidebar_num_products" >
-	        <?php $num_products = 0; ?>
-	        <?php if ($products || $vouchers) { ?>
-	            <?php foreach ($products as $product) { ?>
-	                <?php $num_products += $product['quantity'];} ?>
-	            <?php foreach ($vouchers as $voucher) { ?>
-	                <?php $num_products += $voucher['quantity'];} ?>
-	        <?php } ?>
-	        <?php echo $num_products; ?>
-	    </div> 
+		<!-- количество продуктов в корзине -->
+		<div class="sidebar_num_products" >
+		    <?php echo $this->cart->countProducts(); ?>
+		</div> 
         
-        <!-- корзина -->      
+		<!-- корзина -->      
 		<div class="sidebar_item" onclick="openMenu('cart');return(false)">
 		    <img class="sidebar_item_img" src="cart.jpg">
 		</div>
         
-        <!-- Личный кабинет" -->
-		<div class="sidebar_account" onclick="openMenu('account');return(false);">
-		    <img class="sidebar_item_img" src="account.jpg"> 
-		</div>   		
-				
+		<!-- Личный кабинет" -->
+		<div class="sidebar_item">
+		    <a href="<?php echo $account; ?>" >  <img class="sidebar_item_img" src="account.jpg"> </a>
+		</div>   				
     </div>
     
-    <div class="sidebar_item_body" id="sub_menu_1" onScroll="MoveCenterScreen('sub_menu_1');">
+    <!-- ссылки на важные страницы, такие как блог, новости, вопрос/ответ, акции, категории товаров -->
+    <div class="sidebar_item_body" id="other_links" onScroll="MoveCenterScreen('other_links');">
         <ul >
-	        <li><a href="#">Подпункт №1</a></li>
-        </ul>
-    </div>
-
-    <div class="sidebar_item_body" id="sub_menu_2" onScroll="MoveCenterScreen('sub_menu_2');">
-        <ul >
-	        <li><a href="#">Подпункт №1</a></li>
-	        <li><a href="#">Подпункт №2</a></li>
-        </ul>
-    </div>
-
-    <div class="sidebar_item_body" id="sub_menu_3" onScroll="MoveCenterScreen('sub_menu_3');">
-        <ul >:
-        	<li><a href="#">Подпункт №1</a></li>
-        	<li><a href="#">Подпункт №2</a></li>
-        	<li><a href="#">Подпункт №3</a></li>
+        	<li><a href="<?php echo $categories; ?>" onclick="openMenu('categories');return(false)"><?php echo $text_categories; ?></a></li>
+        	<li><a href="<?php echo $blog; ?>"><?php echo $text_blog; ?></a></li>
+        	<li><a href="<?php echo $news; ?>"><?php echo $text_news; ?></a></li>
+        	<li><a href="<?php echo $q_and_a; ?>"><?php echo $text_q_and_a; ?></a></li>
+        	<!-- stocks - это акции -->
+        	<li><a href="<?php echo $stocks; ?>"><?php echo $text_stocks; ?></a></li>
         </ul>
     </div>
     
@@ -221,65 +196,12 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
         
     <!-- корзина -->
     <div class="sidebar_item_body" id="cart" onScroll="MoveCenterScreen('cart');">  
-        <div class="sidebar_content">
-            <h2> <?php echo $text_cart; ?></h2>
-            <div class="content">
-                <?php if ($products || $vouchers) { ?>
-                <!-- перечисляются товары с описанием -->
-                <div class="mini-cart-info">
-                  <table>
-                    <?php foreach ($products as $product) { ?>
-                    <tr>
-                      <td class="image"><?php if ($product['thumb']) { ?>
-                        <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" /></a>
-                        <?php } ?></td>
-                      <td class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
-                        <div>
-                          <?php foreach ($product['option'] as $option) { ?>
-                          - <small><?php echo $option['name']; ?> <?php echo $option['value']; ?></small><br />
-                          <?php } ?>
-                        </div></td>
-                      <td class="quantity">x&nbsp;<?php echo $product['quantity']; ?></td>
-                      <td class="total"><?php echo $product['total']; ?></td>
-                      <td class="remove"><img src="catalog/view/theme/default/image/remove-small.png" alt="<?php echo $button_remove; ?>" title="<?php echo $button_remove; ?>" onclick="(getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') ? location = 'index.php?route=checkout/cart&remove=<?php echo $product['key']; ?>' : $('#cart').load('index.php?route=module/cart&remove=<?php echo $product['key']; ?>' + ' #cart > *');" /></td>
-                    </tr>
-                    <?php } ?>
-                    <?php foreach ($vouchers as $voucher) { ?>
-                    <tr>
-                      <td class="image"></td>
-                      <td class="name"><?php echo $voucher['description']; ?></td>
-                      <td class="quantity">x&nbsp;1 </td>
-                      <td class="total"><?php echo $voucher['amount']; ?></td>
-                      <td class="remove"><img src="catalog/view/theme/default/image/remove-small.png" alt="<?php echo $button_remove; ?>" title="<?php echo $button_remove; ?>" onclick="(getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') ? location = 'index.php?route=checkout/cart&remove=<?php echo $voucher['key']; ?>' : $('#cart').load('index.php?route=module/cart&remove=<?php echo $voucher['key']; ?>' + ' #cart > *');" /></td>
-                    </tr>
-                    <?php } ?>
-                  </table>
-                </div>
-                <!-- нижняя строка корзины -->
-                <div class="mini-cart-total">
-                  <table>
-                    <?php foreach ($totals as $total) { ?>
-                    <tr>
-                      <td class="right"><b><?php echo $total['title']; ?>:</b></td>
-                      <td class="right"><?php echo $total['text']; ?></td>
-                    </tr>
-                    <?php } ?>
-                  </table>
-                </div>
-                <div class="checkout"><a href="<?php echo $shopping_cart; ?>"?>"><?php echo $text_cart; ?>ddddddd</a> | <a href="<?php echo $checkout; ?>"><?php echo $text_checkout; ?></a> | <a href="<?php echo $order; ?>"><?php echo $text_order; ?></a> </div>
-                <?php } else { ?>
-                <div class="empty"><?php echo $text_empty; ?>
-                    <p><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a>
-                </div>
-                <?php } ?>
-                
-              </div>
-        </div>
+        <?php echo $cart; ?>
     </div>
     
 </div>
 
-    <div class="sidebar_left_space" id="id_sidebar_left_space" onclick="closeMenu(); return(false)" onScroll="MoveCenterScreen('id_sidebar_left_space');"> </div>
+    <div class="sidebar_right_space" id="id_sidebar_right_space" onclick="closeMenu(); return(false)" onScroll="MoveCenterScreen('id_sidebar_right_space');"> </div>
 </div>
 <div id="container">
 <div id="header">

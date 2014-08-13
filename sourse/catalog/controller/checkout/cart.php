@@ -378,7 +378,7 @@ class ControllerCheckoutCart extends Controller {
 						
 			$this->data['checkout'] = $this->url->link('checkout/checkout', '', 'SSL');
 			
-			$this->data['print'] = 'printDoc();';
+			$this->data['print'] = 'print_cart();';
 
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/cart.tpl')) {
 				$this->template = $this->config->get('config_template') . '/template/checkout/cart.tpl';
