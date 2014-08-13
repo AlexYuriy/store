@@ -220,15 +220,15 @@ dell [123
 replace [341
 	background: url(../image/menu_back.png) 5px 0px repeat-x;
 341]
-replace [367
+add [367
 	background: url(../image/menu_sep.png) center right no-repeat;
 367]
-replace [380, 387
+replace [378, 385
 	background:url(../image/menu_act.png) center left repeat-x;
-380, 387]
-add [362
+380, 385]
+replace [361
 	width: 25%;
-362]
+361]
 add [372
 	text-align: center;	
 372]
@@ -251,4 +251,5 @@ remove [26 29] to [30 33]
 ****
 add file catalog\view\theme\default\image\menu_back.png
 add file catalog\view\theme\default\image\menu_act.png
+add file catalog\view\theme\default\image\menu_sep.png
 ****

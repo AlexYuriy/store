@@ -338,7 +338,7 @@ label {
 }
 /* menu */
 #menu {
-	background: #EDEDED;
+	background: url(../image/menu_back.png) 5px 0px repeat-x;
 	height: 37px;
 	margin-bottom: 15px;
 	position: relative;
@@ -358,15 +358,17 @@ label {
 	position: relative;
 	float: left;
 	z-index: 20;
-	padding: 6px 3% 5px 3%;
+	width: 25%;
 }
 #menu > ul > li:hover {
 }
 #menu > ul > li > a {
 	font-size: 13px;
+	background: url(../image/menu_sep.png) center right no-repeat;
 	color: #424449;
 	line-height: 14px;
 	text-decoration: none;
+	text-align: center;	
 	display: block;
 	padding: 6px 10px 6px 10px;
 	margin-bottom: 6px;
@@ -374,14 +376,15 @@ label {
 	position: relative;
 }
 #menu > ul > li:hover > a {
-	background: #00A9C9;
+	background:url(../image/menu_act.png) center left repeat-x;
+	color: white;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
 }
 #menu > ul > li > a.active {
-	background: #00A9C9;
+	background:url(../image/menu_act.png) center left repeat-x;
 	color: #fff;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -400,6 +403,7 @@ label {
 	-khtml-border-radius: 0px 0px 3px 3px;
 	border-radius: 0px 0px 3px 3px;
 	background: url('../image/menu.png');
+	width: 95%;
 }
 #menu > ul > li:hover > div {
 	display: table;
@@ -2042,7 +2046,7 @@ ul.box-filter > li ul {
 	font-size: 13px;
 	padding: 2px 5px 3px;
     margin-top: 65%;
-    margin-left: 75%;
+    margin-left: 70%;
     z-index: 110;
 }
 

@@ -23,12 +23,12 @@
     </div>
     <?php } ?>
     <?php if ($shipping_required) { ?>
-    <div id="shipping-address">
-      <div class="checkout-heading"><?php echo $text_checkout_shipping_address; ?></div>
-      <div class="checkout-content"></div>
-    </div>
     <div id="shipping-method">
       <div class="checkout-heading"><?php echo $text_checkout_shipping_method; ?></div>
+      <div class="checkout-content"></div>
+    </div>
+    <div id="shipping-address">
+      <div class="checkout-heading"><?php echo $text_checkout_shipping_address; ?></div>
       <div class="checkout-content"></div>
     </div>
     <?php } ?>

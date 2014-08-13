@@ -76,18 +76,18 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
     <div class="button-search"><i class="fa fa-search"></i></div>
     <input type="text" name="search" placeholder="<?php echo $text_search; ?>" value="<?php echo $search; ?>" />
   </div>
-  <div id="welcome">
-    <?php if (!$logged) { ?>
-    <?php echo $text_welcome; ?>
-    <?php } else { ?>
-    <?php echo $text_logged; ?>
-    <?php } ?>
-  </div>
-  <div class="links"><a href="<?php echo $home; ?>"><i class="fa fa-home"></i><?php echo $text_home; ?></a><a href="<?php echo $wishlist; ?>" id="wishlist-total"><i class="fa fa-heart"></i><?php echo $text_wishlist; ?></a><a href="<?php echo $account; ?>"><i class="fa fa-user"></i><?php echo $text_account; ?></a><a href="<?php echo $shopping_cart; ?>"><i class="fa fa-shopping-cart"></i><?php echo $text_shopping_cart; ?></a><a href="<?php echo $checkout; ?>"><i class="fa fa-mail-forward"></i><?php echo $text_checkout; ?></a></div>
+  <!--div id="welcome">
+    <!--?php if (!$logged) { ?>
+    <!?php echo $text_welcome; ?>
+    <!?php } else { ?>
+    <!?php echo $text_logged; ?>
+    <!?php } ?>
+  </div-->
+  <!--div class="links"><a href="<!?php echo $home; ?>"><i class="fa fa-home"></i><!?php echo $text_home; ?></a><a href="<!?php echo $wishlist; ?>" id="wishlist-total"><i class="fa fa-heart"></i><!?php echo $text_wishlist; ?></a><a href="<!?php echo $account; ?>"><i class="fa fa-user"></i><!?php echo $text_account; ?></a><a href="<!?php echo $shopping_cart; ?>"><i class="fa fa-shopping-cart"></i><!?php echo $text_shopping_cart; ?></a><a href="<!?php echo $checkout; ?>"><i class="fa fa-mail-forward"></i><!?php echo $text_checkout; ?></a></div-->
 </div>
 <?php if ($categories) { ?>
 <div id="menu">
-  <ul><li>|</li>
+  <ul>
     <?php foreach ($categories as $category) { ?>
     <li><?php if ($category['active']) { ?>
 	<a href="<?php echo $category['href']; ?>" class="active"><?php echo $category['name']; ?></a>
@@ -114,7 +114,7 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
         <?php } ?>
       </div>
       <?php } ?>
-    </li><li>|</li>
+    </li>
     <?php } ?>
 	<?php if ($this->config->get('config_menu_special')) { ?>
 	<li><a href="<?php echo $special; ?>"><?php echo $text_special; ?></a></li>
