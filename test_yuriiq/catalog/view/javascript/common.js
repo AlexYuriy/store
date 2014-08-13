@@ -181,6 +181,7 @@ function addToCompare(product_id) {
 	});
 }
 	
+
 // обеспечивает работу бокового меню sidebar
 
     var id_menu = new Array('other_links', 'categories', 'cart');

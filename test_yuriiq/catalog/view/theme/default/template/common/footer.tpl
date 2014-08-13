@@ -15,9 +15,8 @@
 		<?php if ($fax) { ?><li><i class="fa fa-phone"></i> <?php echo $fax; ?></li><?php } ?>
 		<li><i class="fa fa-envelope"></i> <?php echo $email; ?></li>
 		<li class="footer-address"><i class="fa fa-home"></i> <?php echo $address; ?></li>
-		<li class="footer-time"><i class="fa fa-clock-o fa-lg"></i></li>
-		<li><?php echo $time; ?></li>
-		<li><i class="fa fa-share"></i> <a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
+		<li class="footer-time"><i class="fa fa-clock-o fa-lg"></i><?php echo $time; ?></li>
+		<li class="fa fa-share"><i></i> <a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
 	</ul>
 </div>
 <div class="column-maps">
