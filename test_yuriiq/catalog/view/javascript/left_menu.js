@@ -103,6 +103,7 @@
     // рассчитывает размер бокового меню. Вызывать при открытии страницы и изменении размера окна
     function calc_sidebar_meter(){
 	var windowHeight = window.innerHeight;
+	var windowWidth = window.innerWidth;
 	var heightScrollItem = Math.ceil(windowHeight - 4 * widthSidebarItem - 3);
 	var margin_top_img = Math.ceil(heightScrollItem / 2 - 40); // отступ изображения от верха полосы прокрутки
 	
@@ -115,7 +116,12 @@
 	document.getElementById('temp_scroll_img').style.marginTop = margin_top_img + "px";
 	document.getElementById('scroll_to_bottom_img').style.marginTop = margin_top_img + "px";
         document.getElementById('scroll_to_top_img').style.marginTop = margin_top_img + "px";
+	
+	// считаем размер пустого пространства справа
+	var rigthSpaceWidth = windowWidth - 250 - 80 - 18;
+	document.getElementById('id_sidebar_right_space').style.width = rigthSpaceWidth + "px";
     }
+    
     
     // находит все элементы по имени класса
     // функция тяжёлая, не увлекаться с использованием
