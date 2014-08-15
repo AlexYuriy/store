@@ -140,7 +140,7 @@ $('#button-login').live('click', function() {
 		type: 'post',
 		data: $('#checkout #login :input'),
 		dataType: 'json',
-		beforeSend: function() {con
+		beforeSend: function() {
 			$('#button-login').attr('disabled', true);
 			$('#button-login').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
 		},	
