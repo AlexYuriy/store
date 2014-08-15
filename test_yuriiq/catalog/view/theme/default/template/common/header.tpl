@@ -40,6 +40,10 @@
 <?php foreach ($scripts as $script) { ?>
 <script type="text/javascript" src="<?php echo $script; ?>"></script>
 <?php } ?>
+<!-- Autofill search -->
+<link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/livesearch.css" />
+<script src="catalog/view/javascript/jquery/livesearch.js"></script>
+<!-- Autofill search END-->
 <!--[if IE 7]> 
 <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/ie7.css" />
 <![endif]-->
@@ -59,10 +63,10 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
 });
 //--></script>
 <?php } ?>
+
 <?php echo $google_analytics; ?>
 </head>
 <body onScroll="moveMenuScreen(); displayScrollItem();" onLoad="calc_sidebar_meter();" onResize="calc_sidebar_meter();">
-<div id="printDiv" display="none"> </div>
 <div id="header-bg"></div>
 <?php include "left_menu.tpl"; ?>
 <div id="container">
@@ -74,10 +78,10 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
   <?php echo $currency; ?>
   <?php echo $cart; ?>
   <div id="search">
-    <div class="button-search"><i class="fa fa-search"></i></div>
+    <div class="button-search"></div>
     <input type="text" name="search" placeholder="<?php echo $text_search; ?>" value="<?php echo $search; ?>" />
   </div>
- <!--div id="welcome">
+  <!--div id="welcome">
     <!--?php if (!$logged) { ?>
     <!?php echo $text_welcome; ?>
     <!?php } else { ?>
