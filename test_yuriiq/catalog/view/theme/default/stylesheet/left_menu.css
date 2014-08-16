@@ -85,7 +85,7 @@
     padding-left: 5%;
 }
 
-#sidebar_content ul {
+.sidebar_content ul {
     list-style-type: none;
 }
 
@@ -135,15 +135,11 @@
     position: absolute;
 }
 
-.cadegory {
-    display: none;
-}
-
-#category ul {
+.category ul {
     list-style: none;
     display: none;
 }
 
-#category li:hover ul {
+.category li:hover ul {
     display: block;
 }

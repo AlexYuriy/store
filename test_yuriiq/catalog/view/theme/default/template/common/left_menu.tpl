@@ -4,32 +4,26 @@
 <!-- при добавлении элементов в меню их так же нужно добавить и в массив id_menu и for_scroll в common.js -->
 <div class="main_sidebar" id="main_sidebar">
     <div class="sidebar" id="sidebar" onScroll="MoveCenterScreen('main_sidebar');">
-    
 		<!-- Главная страница -->
 		<div class="sidebar_item">
 		    <a href="<?php echo $home ?>"> <img class="sidebar_item_img" src="image/left_menu/main_page.png"> </a>
 		</div>
-		
 		<!-- ссылки на важные страницы, такие как блог, новости, вопрос/ответ, акции, категории товаров -->
 		<div class="sidebar_item test_item" onclick="openMenu('other_links'); return('false');">
 		    <img class="sidebar_item_img" src="image/left_menu/other_lincks_img.png">
 		</div>
-		
 		<!-- пустой элемент для перемотки -->
 		<div class="temp_scroll_item" id="temp_scroll_item">
 		    <img class="scroll_img" alt="temp" id="temp_scroll_img" src="image/left_menu/temp_scroll_item.png">
 		</div>
-		
 		<!-- перемотка наверх -->
 		<div class="scroll_item" id="scroll_to_top" onclick="scrollToTop();"> 
 		  <img class="scroll_img" alt="top" id="scroll_to_top_img" src="image/left_menu/scroll_to_top.png"> 
 		</div>
-		
 		<!-- перемотка обратно -->
 		<div class="scroll_item" id="scroll_to_bottom" onclick="scrollToBottom();">
 		  <img class="scroll_img" alt="bottom" id="scroll_to_bottom_img" src="image/left_menu/scroll_to_bottom.png"> 
 		</div>  
-        
 		<!-- количество продуктов в корзине -->
 		<div class="sidebar_num_products" >
 			<?php $num_products = 0; ?>
@@ -41,18 +35,15 @@
 		    <?php } ?>
 			<span id="cart-total"><?php echo $num_products; ?></span>
 		</div> 
-        
 		<!-- корзина -->      
 		<div class="sidebar_item" onclick="openMenu('cart');return(false)">
 		    <img class="sidebar_item_img" src="image/left_menu/cart.png">
 		</div>
-        
 		<!-- Личный кабинет" -->
 		<div class="sidebar_item">
 		    <a href="<?php echo $account; ?>" >  <img class="sidebar_item_img" src="image/left_menu/account.png"> </a>
 		</div>   				
     </div>
-    
     <!-- ссылки на важные страницы, такие как блог, новости, вопрос/ответ, акции, категории товаров -->
     <div class="sidebar_item_body" id="other_links" onScroll="MoveCenterScreen('other_links');">
         <ul >
@@ -64,23 +55,18 @@
         	<li><a href="<?php echo $stocks; ?>"><?php echo $text_stocks; ?></a></li>
         </ul>
     </div>
-    
     <!-- Личный кабинет-->
     <?php if ($logged) { ?>
-    
         <div class="sidebar_item_body" id="account" onScroll="MoveCenterScreen('account');">
             <div class="sidebar_content">
               <h2><?php echo $text_my_account; ?></h2>    
-              
                 <ul>
                   <li><a href="<?php echo $edit; ?>"><?php echo $text_edit; ?></a></li>
                   <li><a href="<?php echo $password; ?>"><?php echo $text_password; ?></a></li>
                   <li><a href="<?php echo $address; ?>"><?php echo $text_address; ?></a></li>
                   <li><a href="<?php echo $wishlist; ?>"><?php echo $text_wishlist; ?></a></li>
                 </ul>
-              
               <h2><?php echo $text_my_orders; ?></h2>
-              
                 <ul>
                   <li><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a></li>
                   <li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>
@@ -90,10 +76,7 @@
                   <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
                   <li><a href="<?php echo $transaction; ?>"><?php echo $text_transaction; ?></a></li>
                 </ul>
-              
-              
               <h2><?php echo $text_my_newsletter; ?></h2>
-              
                 <ul>
                   <li><a href="<?php echo $newsletter; ?>"><?php echo $text_newsletter; ?></a></li>
                 </ul>
@@ -107,18 +90,16 @@
                 <?php echo $text_welcome; ?>    
             </div>
         </div>
-    <?php } ?>
-    
+    <?php } ?>    
         <!-- категории товаров-->
         <div class="sidebar_item_body" id="categories" onScroll="MoveCenterScreen('categories');">  
-            <div class="sidebar_content" id="category">
+            <div class="sidebar_content">
                 <h2> <?php echo $text_categories; ?></h2>
                 <?php $item_id = 0; ?>
                 <!-- берём категорию и выводим все её подкатегории -->
-                 <?php foreach ($categories as $category) { ?>
+                <ul class="category"><?php foreach ($categories as $category) { ?>
                     <li>
-	                    <a class="category" onfocus="expandItem(<?php echo $item_id++; ?>) href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>                
-	
+	                    <a onfocus="expandItem(<?php echo $item_id++; ?>) href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>                	
                         <?php if ($category['children']) { ?>
                             <?php for ($i = 0; $i < count($category['children']);) { ?>
                             <ul>
@@ -132,7 +113,7 @@
                             <?php } ?>
                         <?php } ?>
                     </li>
-                <?php } ?>  
+                <?php } ?></ul>  
             </div>
         </div>
         
