@@ -106,7 +106,11 @@
                                 <?php $j = $i + ceil(count($category['children']) / $category['column']); ?>
                                 <?php for (; $i < $j; $i++) { ?>
                                 <?php if (isset($category['children'][$i])) { ?>
-                                <li><a href="<?php echo $category['children'][$i]['href']; ?>"><?php echo $category['children'][$i]['name']; ?></a></li>
+                                <li><a href="<?php echo $category['children'][$i]['href']; ?>"><?php 
+									$image_menu = $category['children'][$i]['image_menu'];
+									$name = $category['children'][$i]['name'];
+									if ($image_menu) { ?><img src="<?php echo $image_menu; ?>" alt="<?php echo $name; ?>" /><?php }
+									echo $name; ?></a></li>
                                 <?php } ?>
                                 <?php } ?>
                             </ul>
