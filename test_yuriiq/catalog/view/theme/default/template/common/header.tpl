@@ -108,8 +108,12 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
         <ul>
           <?php $j = $i + ceil(count($category['children']) / $category['column']); ?>
           <?php for (; $i < $j; $i++) { ?>
-          <?php if (isset($category['children'][$i])) { ?>
-          <li><a href="<?php echo $category['children'][$i]['href']; ?>"><?php echo $category['children'][$i]['name']; ?></a>
+          <?php if (isset($category['children'][$i])) { 
+		  		$thumb = $category['children'][$i]['thumb'];
+				$name = $category['children'][$i]['name'];?>
+          <li><a href="<?php echo $category['children'][$i]['href']; ?>">
+		  <?php if ($thumb) { ?><img src="<?php echo $thumb; ?>" alt="<?php echo $name; ?>" /><?php }
+			    echo $name; ?></a>
           <?php if($category['children'][$i]['subchildren']) { ?>
           <?php foreach ($category['children'][$i]['subchildren'] as $child) { ?>
           <li><a href="<?php echo $child['href']; ?>"> &raquo; <?php echo $child['name']; ?></a></li>
