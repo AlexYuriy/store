@@ -227,6 +227,7 @@ class ControllerSettingStore extends Controller {
 		$this->data['entry_ajax_cart'] = $this->language->get('entry_ajax_cart');
 		$this->data['entry_logo'] = $this->language->get('entry_logo');
 		$this->data['entry_icon'] = $this->language->get('entry_icon');
+		$this->data['entry_image_menu_category'] = $this->language->get('entry_image_menu_category');
 		$this->data['entry_image_category'] = $this->language->get('entry_image_category');
 		$this->data['entry_image_thumb'] = $this->language->get('entry_image_thumb');
 		$this->data['entry_image_popup'] = $this->language->get('entry_image_popup');

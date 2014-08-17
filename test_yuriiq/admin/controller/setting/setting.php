@@ -104,7 +104,8 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_return'] = $this->language->get('entry_return');
 		$this->data['entry_return_status'] = $this->language->get('entry_return_status');
 		$this->data['entry_logo'] = $this->language->get('entry_logo');
-		$this->data['entry_icon'] = $this->language->get('entry_icon');
+		$this->data['entry_icon'] = $this->language->get('entry_icon');		
+		$this->data['entry_image_menu_category'] = $this->language->get('entry_image_menu_category');
 		$this->data['entry_image_category'] = $this->language->get('entry_image_category');
 		$this->data['entry_image_thumb'] = $this->language->get('entry_image_thumb');
 		$this->data['entry_image_popup'] = $this->language->get('entry_image_popup');
@@ -249,6 +250,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['error_ftp_password'] = '';
 		}
 
+		if (isset($this->error['image_menu_category'])) {
+			$this->data['error_image_menu_category'] = $this->error['image_menu_category'];
+		} else {
+			$this->data['error_image_menu_category'] = '';
+		}
+		
 		if (isset($this->error['image_category'])) {
 			$this->data['error_image_category'] = $this->error['image_category'];
 		} else {
@@ -809,8 +816,20 @@ class ControllerSettingSetting extends Controller {
 
 		$this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
 
-		if (isset($this->request->post['config_image_category_width'])) {
-			$this->data['config_image_category_width'] = $this->request->post['config_image_category_width'];
+		if (isset($this->request->post['config_image_menu_category_width'])) {
+			$this->data['config_image_menu_category_width'] = $this->request->post['config_image_menu_category_width'];
+		} else {
+			$this->data['config_image_menu_category_width'] = $this->config->get('config_image_menu_category_width');
+		}
+
+		if (isset($this->request->post['config_image_menu_category_height'])) {
+			$this->data['config_image_menu_category_height'] = $this->request->post['config_image_menu_category_height'];
+		} else {
+			$this->data['config_image_menu_category_height'] = $this->config->get('config_image_menu_category_height');
+		}
+		
+		if (isset($this->request->post['config_image_categoreey_width'])) {
+			$this->data['config_image_category_width'] = $this->requemmst->post['config_image_category_width'];
 		} else {
 			$this->data['config_image_category_width'] = $this->config->get('config_image_category_width');
 		}
@@ -1202,6 +1221,10 @@ class ControllerSettingSetting extends Controller {
 		if (!$this->request->post['config_voucher_max']) {
 			$this->error['voucher_max'] = $this->language->get('error_voucher_max');
 		}	
+
+		if (!$this->request->post['config_image_menu_category_width'] || !$this->request->post['config_image_menu_category_height']) {
+			$this->error['image_menu_category'] = $this->language->get('error_image_menu_category');
+		} 
 
 		if (!$this->request->post['config_image_category_width'] || !$this->request->post['config_image_category_height']) {
 			$this->error['image_category'] = $this->language->get('error_image_category');

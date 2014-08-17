@@ -154,12 +154,11 @@ class ControllerCommonHeader extends Controller {
 						$product_total = $this->model_catalog_product->getTotalProducts($data);
 					}
 					if ($child['image']) {
-						$thumb = $this->model_tool_image->resize($child['image'], 
-												$this->config->get('config_image_category_width'), 
-												$this->config->get('config_image_category_height'));
-						//$this->document->setOgImage($this->data['thumb']);
+						$image_menu = $this->model_tool_image->resize($child['image'], 
+												$this->config->get('config_image_menu_category_width'), 
+												$this->config->get('config_image_menu_category_height'));
 					} else {
-						$thumb = '';
+						$image_menu = '';
 					}
 
 					//Level 3
@@ -185,7 +184,7 @@ class ControllerCommonHeader extends Controller {
 						'name'  => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $product_total . ')' : ''),
 						'href'  => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id']),					
 						'subchildren' => $subchildren_data,
-						'thumb' => $thumb,
+						'image_menu' => $image_menu,
 					);						
 				}				
 					//Level	3			
