@@ -239,10 +239,19 @@ class ControllerProductCategory extends Controller {
 				);
 
 				$product_total = $this->model_catalog_product->getTotalProducts($data);				
+				
+				if ($result['image']) {
+						$image = $this->model_tool_image->resize($result['image'], 
+												$this->config->get('config_image_menu_category_width'), 
+												$this->config->get('config_image_menu_category_height'));
+					} else {
+						$image = '';
+					}				
 
 				$this->data['categories'][] = array(
 					'name'  => $result['name'] . ($this->config->get('config_product_count') ? ' (' . $product_total . ')' : ''),
 					'count' => $product_total,
+					'image' => $image,
 					'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '_' . $result['category_id'] . $url)
 				);
 			}

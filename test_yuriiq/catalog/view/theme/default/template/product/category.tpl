@@ -21,25 +21,14 @@
   <?php if ($categories) { ?>
   <h2><?php echo $text_refine; ?></h2>
   <div class="category-list">
-    <?php if (count($categories) <= 5) { ?>
-    <ul>
-      <?php foreach ($categories as $category) { ?>
-      <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></li>
-      <?php } ?>
+    <ul><?php foreach ($categories as $category) { 
+			$image = $category['image']; $name = $category['name']; $href = $category['href'];?>
+		<li><a href="<?php echo $href; ?>"><?php 
+			if ($image) { ?> <img src="<?php echo $image ?>" alt="<?php echo $name ?>" /> <?php } 
+			echo $name; ?></a></li>
+		<?php } ?>
     </ul>
-    <?php } else { ?>
-    <?php for ($i = 0; $i < count($categories);) { ?>
-    <ul>
-      <?php $j = $i + ceil(count($categories) / 4); ?>
-      <?php for (; $i < $j; $i++) { ?>
-      <?php if (isset($categories[$i])) { ?>
-      <li><a href="<?php echo $categories[$i]['href']; ?>"><?php echo $categories[$i]['name']; ?></a></li>
-      <?php } ?>
-      <?php } ?>
-    </ul>
-    <?php } ?>
-    <?php } ?>
-  </div>
+  </div>	
   <?php } ?>
   <?php if ($products) { ?>
   <div class="product-filter">

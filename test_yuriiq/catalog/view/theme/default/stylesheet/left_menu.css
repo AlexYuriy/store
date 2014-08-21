@@ -1,4 +1,3 @@
-
 /* sidebar LeftMenu */
 .sidebar{
     position: absolute;
@@ -7,15 +6,12 @@
     margin-left: 0px;
     z-index: 100;
 }
-
-
 .sidebar_item {
     background-color: #F8F8F8;
     height: 80px;
     width: 100%;
     z-index: 100;
 }
-
 .sidebar_item_img {
 	cursor: pointer;
     background-color: #F8F8F8;
@@ -23,7 +19,6 @@
     width: 100%;
     z-index: 100;
 }
-
 .sidebar_account {
     position: absolute;
     height: 10%;
@@ -31,7 +26,6 @@
     z-index: 100;
     margin-top: 0%;
 }
-
 .sidebar_cart {
     position: absolute;
     height: 10%;
@@ -39,8 +33,6 @@
     z-index: 100;
    // margin-top: 580%;
 }
-
-
 .sidebar_item_body {
     position: absolute;
     background-color: #ebe9e9;
@@ -56,13 +48,11 @@
 	padding: 0px;
 	margin: 0px;
 }
-
 .sidebar_item_body  ul > li{
 	list-style: none;
 	padding: 10px 10px;
 	margin: 0px;
 }
-
 .sidebar_item_body  ul > li> a{
 	text-decoration: none;
 	line-height: 14px;
@@ -70,7 +60,6 @@
 	padding: 10px 4px;
 	display: block;
 }
-
 .sidebar_item_body  ul > li> a:hover{
 	background:url(../image/menu_act.png) center left repeat-x;
 	color: #fff;
@@ -79,16 +68,17 @@
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
 }
-
+.sidebar_item_body  img {
+	float: left;
+	padding-right: 1px;
+}
 .sidebar_content {
     padding-top: 5%;
     padding-left: 5%;
 }
-
 .sidebar_content ul {
     list-style-type: none;
 }
-
 .sidebar_right_space {
     position: absolute;
     background-color: rgba(49, 49, 61, 0.75);
@@ -98,7 +88,6 @@
     display: none;
     z-index: 100;
 }
-
 .sidebar_num_products {
     position: absolute;
     background: #e61e6e;
@@ -111,7 +100,6 @@
     margin-left: 70%;
     z-index: 110;
 }
-
 .scroll_item {
     background-color: #F8F8F8;
     width: 100%;
@@ -119,7 +107,6 @@
     z-index: 100;
     margin-top: 0%;
 }
-
 .temp_scroll_item {
     background-color:	#F8F8F8;
     width: 100%;
@@ -127,19 +114,16 @@
     z-index: 100;
     margin-top: 0%;
 }
-
 .scroll_img {
     width: 100%;
     height: 80px;
     z-index: 110;
     position: absolute;
 }
-
 .category ul {
     list-style: none;
     display: none;
 }
-
 .category li:hover ul {
     display: block;
 }
