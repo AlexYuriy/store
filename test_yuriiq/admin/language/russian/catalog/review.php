@@ -13,6 +13,11 @@ $_['column_status']     = 'Статус';
 $_['column_date_added'] = 'Добавлено';
 $_['column_action']     = 'Действие';
 
+// Answer
+$_['answer_edit']       = 'Изменить ответ';
+$_['answer_add']        = 'Добавить ответ';
+
+
 // Entry
 $_['entry_product']     = 'Товар:<br/><span class="help">(Автодополнение)</span>';
 $_['entry_author']      = 'Автор:';

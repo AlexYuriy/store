@@ -178,7 +178,17 @@ class ControllerCatalogReview extends Controller {
 
 		foreach ($results as $result) {
 			$action = array();
-
+			if (isset($result['answer_id'])) {
+				$action[] = array(
+					'text' => $this->language->get('answer_edit'),
+					'href' => $this->url->link('catalog/review/update', 'token=' . $this->session->data['token'] . '&review_id=' . $result['answer_id'] . $url, 'SSL')
+				);
+			} else {
+				$action[] = array(
+					'text' => $this->language->get('answer_add'),
+					'href' => $this->url->link('catalog/review/insert', 'token=' . $this->session->data['token'] . '&answer_id=' . $result['review_id'] . $url, 'SSL')
+				);
+			}
 			$action[] = array(
 				'text' => $this->language->get('text_edit'),
 				'href' => $this->url->link('catalog/review/update', 'token=' . $this->session->data['token'] . '&review_id=' . $result['review_id'] . $url, 'SSL')
@@ -186,6 +196,7 @@ class ControllerCatalogReview extends Controller {
 
 			$this->data['reviews'][] = array(
 				'review_id'  => $result['review_id'],
+			//	'answer_id'  => $result['answer_id'],
 				'name'       => $result['name'],
 				'author'     => $result['author'],
 				'rating'     => $result['rating'],
@@ -369,6 +380,14 @@ class ControllerCatalogReview extends Controller {
 
 		$this->load->model('catalog/product');
 
+		if (isset($this->request->post['answer_id'])) {
+			$this->data['answer_id'] = $this->request->post['answer_id'];
+		} elseif (!empty($review_info)) {
+			$this->data['answer_id'] = $review_info['answer_id'];
+		} else {
+			$this->data['answer_id'] = '';
+		}
+		
 		if (isset($this->request->post['product_id'])) {
 			$this->data['product_id'] = $this->request->post['product_id'];
 		} elseif (!empty($review_info)) {

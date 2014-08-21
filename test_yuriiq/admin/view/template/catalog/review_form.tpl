@@ -27,6 +27,7 @@
             <td><?php echo $entry_product; ?></td>
             <td><input type="text" name="product" value="<?php echo $product; ?>" />
               <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
+			  <input type="hidden" name="answer_id" value="<?php echo $answer_id; ?>" />
               <?php if ($error_product) { ?>
               <span class="error"><?php echo $error_product; ?></span>
               <?php } ?></td>
