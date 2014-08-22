@@ -39,3 +39,4 @@ $db->query("UPDATE " . DB_PREFIX . "currency SET value = '" . $result . "', date
 
 ?>
 
+
