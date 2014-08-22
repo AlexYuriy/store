@@ -19,7 +19,7 @@ $_['text_reviews']      = '%s Beurteilungen.';
 $_['text_write']        = 'Neue Beurteilung';
 $_['text_no_reviews']   = 'Für dieses Produkt gibt es noch keine Beurteilungen.';
 $_['text_on']           = ' auf ';
-$_['text_note']         = '<span style="color: #FF0000;">Bitte beachten:</span> HTML ist nicht verfügbar!';
+$_['text_note']         = '<span style="color: #FF0000;">Bitte beachten:</span> Bewertungen sind ohne Pre-Moderation veröffentlicht. Seien Sie höflich, bitte!';
 $_['text_share']        = 'Share';
 $_['text_success']      = 'Danke für Ihre Beurteilung. Sie wurde dem Webmaster zur Überprüfung übermittelt.';
 $_['text_upload']       = 'Datei erfolgreich geladen!';
