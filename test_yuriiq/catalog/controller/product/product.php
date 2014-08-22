@@ -649,6 +649,7 @@ class ControllerProductProduct extends Controller {
 
 		$this->load->model('catalog/review');
 
+		$this->data['admin_answer'] = $this->language->get('admin_answer');
 		$this->data['text_on'] = $this->language->get('text_on');
 		$this->data['text_no_reviews'] = $this->language->get('text_no_reviews');
 
@@ -668,6 +669,7 @@ class ControllerProductProduct extends Controller {
 			$this->data['reviews'][] = array(
 				'author'     => $result['author'],
 				'text'       => $result['text'],
+				'text_answer'=> $result['text_answer'],
 				'rating'     => (int)$result['rating'],
 				'reviews'    => sprintf($this->language->get('text_reviews'), (int)$review_total),
 				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added']))

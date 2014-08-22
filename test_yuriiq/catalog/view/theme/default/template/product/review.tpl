@@ -12,6 +12,10 @@
                 <?php } ?>
               </div>
   <div class="text"><?php echo $review['text']; ?></div>
+  <?php if ($review['text_answer']) { ?>
+  <div class="admin_author"><b><?php echo $admin_answer; ?></b> </div>
+  <div class="text_answer"><?php echo $review['text_answer']; ?></div>
+  <?php } ?>
 </div>
 <?php } ?>
 <div class="pagination"><?php echo $pagination; ?></div>

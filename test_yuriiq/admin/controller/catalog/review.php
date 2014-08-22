@@ -178,17 +178,13 @@ class ControllerCatalogReview extends Controller {
 
 		foreach ($results as $result) {
 			$action = array();
-			if (isset($result['answer_id'])) {
-				$action[] = array(
-					'text' => $this->language->get('answer_edit'),
-					'href' => $this->url->link('catalog/review/update', 'token=' . $this->session->data['token'] . '&review_id=' . $result['answer_id'] . $url, 'SSL')
-				);
-			} else {
+
+			if (!$result['text_answer']) {
 				$action[] = array(
 					'text' => $this->language->get('answer_add'),
-					'href' => $this->url->link('catalog/review/insert', 'token=' . $this->session->data['token'] . '&answer_id=' . $result['review_id'] . $url, 'SSL')
-				);
-			}
+					'href' => $this->url->link('catalog/review/update', 'token=' . $this->session->data['token'] . '&review_id=' . $result['review_id'] . $url, 'SSL')
+				); }
+			
 			$action[] = array(
 				'text' => $this->language->get('text_edit'),
 				'href' => $this->url->link('catalog/review/update', 'token=' . $this->session->data['token'] . '&review_id=' . $result['review_id'] . $url, 'SSL')
@@ -196,7 +192,6 @@ class ControllerCatalogReview extends Controller {
 
 			$this->data['reviews'][] = array(
 				'review_id'  => $result['review_id'],
-			//	'answer_id'  => $result['answer_id'],
 				'name'       => $result['name'],
 				'author'     => $result['author'],
 				'rating'     => $result['rating'],
@@ -296,12 +291,13 @@ class ControllerCatalogReview extends Controller {
 		$this->data['text_select'] = $this->language->get('text_select');
 
 		$this->data['entry_product'] = $this->language->get('entry_product');
-		$this->data['entry_author'] = $this->language->get('entry_author');
-		$this->data['entry_rating'] = $this->language->get('entry_rating');
-		$this->data['entry_status'] = $this->language->get('entry_status');
-		$this->data['entry_text'] = $this->language->get('entry_text');
-		$this->data['entry_good'] = $this->language->get('entry_good');
-		$this->data['entry_bad'] = $this->language->get('entry_bad');
+		$this->data['entry_author']  = $this->language->get('entry_author');
+		$this->data['entry_rating']  = $this->language->get('entry_rating');
+		$this->data['entry_status']  = $this->language->get('entry_status');
+		$this->data['entry_text']    = $this->language->get('entry_text');
+		$this->data['entry_answer']  = $this->language->get('entry_answer');
+		$this->data['entry_good']    = $this->language->get('entry_good');
+		$this->data['entry_bad']     = $this->language->get('entry_bad');
 
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
@@ -380,14 +376,6 @@ class ControllerCatalogReview extends Controller {
 
 		$this->load->model('catalog/product');
 
-		if (isset($this->request->post['answer_id'])) {
-			$this->data['answer_id'] = $this->request->post['answer_id'];
-		} elseif (!empty($review_info)) {
-			$this->data['answer_id'] = $review_info['answer_id'];
-		} else {
-			$this->data['answer_id'] = '';
-		}
-		
 		if (isset($this->request->post['product_id'])) {
 			$this->data['product_id'] = $this->request->post['product_id'];
 		} elseif (!empty($review_info)) {
@@ -418,6 +406,13 @@ class ControllerCatalogReview extends Controller {
 			$this->data['text'] = $review_info['text'];
 		} else {
 			$this->data['text'] = '';
+		}
+		if (isset($this->request->post['text_answer'])) {
+			$this->data['text_answer'] = $this->request->post['text_answer'];
+		} elseif (!empty($review_info)) {
+			$this->data['text_answer'] = $review_info['text_answer'];
+		} else {
+			$this->data['text_answer'] = '';
 		}
 
 		if (isset($this->request->post['rating'])) {

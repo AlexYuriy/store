@@ -27,7 +27,6 @@
             <td><?php echo $entry_product; ?></td>
             <td><input type="text" name="product" value="<?php echo $product; ?>" />
               <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
-			  <input type="hidden" name="answer_id" value="<?php echo $answer_id; ?>" />
               <?php if ($error_product) { ?>
               <span class="error"><?php echo $error_product; ?></span>
               <?php } ?></td>
@@ -38,6 +37,10 @@
               <?php if ($error_text) { ?>
               <span class="error"><?php echo $error_text; ?></span>
               <?php } ?></td>
+          </tr>
+          <tr>
+            <td> <?php echo $entry_answer; ?></td>
+            <td><textarea name="text_answer" cols="60" rows="8"><?php echo $text_answer; ?></textarea></td>
           </tr>
           <tr>
             <td><?php echo $entry_rating; ?></td>
