@@ -343,12 +343,9 @@ class ControllerCommonHeader extends Controller {
 		}
 		$this->data['text_page'] = $this->language->get('text_page');
 		$this->data['text_q_and_a'] = $this->language->get('text_q_and_a');
-		$this->data['text_stocks'] = $this->language->get('text_stocks'); // акции
 		$this->data['text_news'] = $this->language->get('text_news');	
 		// ссылки для других страниц надо вставить, когда эти страницы будут разработанны
-		$this->data['blog'] = $this->url->link('common/home');
 		$this->data['q_and_a'] = $this->url->link('common/home');
-		$this->data['stocks'] = $this->url->link('common/home');
 		$this->data['news'] = $this->url->link('common/home');
 # /LeftMenu
 		$this->render();

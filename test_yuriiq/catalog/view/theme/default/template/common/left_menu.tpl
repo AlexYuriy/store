@@ -48,11 +48,26 @@
     <div class="sidebar_item_body" id="other_links" onScroll="MoveCenterScreen('other_links');">
         <ul >
         	<li><a href="<?php echo $categories; ?>" onclick="openMenu('categories');return(false)"><?php echo $text_categories; ?></a></li>
-        	<li><a href="<?php echo $blog; ?>"><?php echo $text_blog; ?></a></li>
+			<?php if ($this->config->get('config_menu_special')) { ?>
+				<li><a href="<?php echo $special; ?>"><?php echo $text_special; ?></a></li>
+			<?php } ?>
+			<?php if ($this->config->get('config_menu_latest')) { ?>
+				<li><a href="<?php echo $latest; ?>"><?php echo $text_latest; ?></a></li>
+			<?php } ?>
+			<?php if ($this->config->get('config_menu_brands')) { ?>
+				<li><a href="<?php echo $brands; ?>"><?php echo $text_brands; ?></a>
+				<div><ul>
+						<?php foreach($manufacturer as $manufacturers){ ?>
+							<li><a href="<?php echo $manufacturers['href']; ?>"><?php echo $manufacturers['name']; ?></a></li>
+						<? } ?>
+				</ul></div>
+				</li>
+			<?php } ?>
+			<?php if ($this->config->get('config_blog_header_menu')) { ?>
+				<li><a href="<?php echo $blog; ?>"><i class="fa fa-book"></i> <?php echo $text_blog; ?></a></li>
+			<?php } ?>
         	<li><a href="<?php echo $news; ?>"><?php echo $text_news; ?></a></li>
         	<li><a href="<?php echo $q_and_a; ?>"><?php echo $text_q_and_a; ?></a></li>
-        	<!-- stocks - это акции -->
-        	<li><a href="<?php echo $stocks; ?>"><?php echo $text_stocks; ?></a></li>
         </ul>
     </div>
     <!-- Личный кабинет-->
