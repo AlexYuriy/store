@@ -39,6 +39,10 @@
               <?php } ?></td>
           </tr>
           <tr>
+            <td><?php echo $entry_answer; ?></td>
+            <td><textarea name="text_answer" cols="60" rows="8"><?php echo $text_answer; ?></textarea></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_rating; ?></td>
             <td><b class="rating"><?php echo $entry_bad; ?></b>&nbsp;
               <?php if ($rating == 1) { ?>

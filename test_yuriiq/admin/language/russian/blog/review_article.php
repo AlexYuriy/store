@@ -19,9 +19,11 @@ $_['entry_author']      = 'Автор:';
 $_['entry_rating']      = 'Рейтинг:';
 $_['entry_status']      = 'Статус:';
 $_['entry_text']        = 'Текст:';
+$_['entry_answer']      = 'Ответ:';
 $_['entry_good']        = 'Хорошо';
 $_['entry_bad']         = 'Плохо';
-
+// Answer 
+$_['answer_add']         = 'Добавить ответ';
 // Error
 $_['error_permission']  = 'У Вас нет прав для изменения отзывов!';
 $_['error_article']     = 'Требуется выбрать статью!';
