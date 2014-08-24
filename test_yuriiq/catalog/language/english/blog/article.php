@@ -3,11 +3,13 @@
 $_['text_write']        = 'Write a review';
 $_['text_no_reviews']   = 'There are no reviews for this article.';
 $_['text_on']           = ' on ';
-$_['text_note']         = '<span style="color: #FF0000;">Note:</span> HTML is not translated!';
+$_['text_note']         = '<span style="color: #FF0000;">Note:</span> Reviews are published without pre-moderation. Be polite, please!';
 $_['text_success']      = 'Thank you for your review. It has been submitted to the webmaster for approval.';
 $_['text_wait']         = 'Please Wait!';
 $_['text_reviews']      = '%s reviews'; 
 $_['text_error']        = 'Article not found!';
+
+$_['admin_author']    = 'Management response';
 
 // Entry
 $_['entry_name']        = 'Your Name:';

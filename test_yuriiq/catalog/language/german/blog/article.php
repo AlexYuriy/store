@@ -3,11 +3,13 @@
 $_['text_write']        = 'Schreiben Sie eine Rezension';
 $_['text_no_reviews']   = 'Es gibt keine Bewertung für diesen Artikel.';
 $_['text_on']           = ' auf ';
-$_['text_note']         = '<span style="color: #FF0000;">Hinweis:</span> HTML ist nicht verfügbar!';
+$_['text_note']         = '<span style="color: #FF0000;">Hinweis:</span> Bewertungen sind ohne Pre-Moderation veröffentlicht. Seien Sie höflich, bitte!';
 $_['text_success']      = 'Vielen Dank für Ihre Bewertung. Es wurde dem Webmaster zur Genehmigung vorgelegt worden.';
 $_['text_wait']         = 'Warten Sie mal!';
 $_['text_reviews']      = '%s Bewertungen'; 
 $_['text_error']        = 'Artikel nicht gefunden!';
+
+$_['admin_author']    = 'Management-Antwort';
 
 // Entry
 $_['entry_name']        = 'Ihren Namen:';

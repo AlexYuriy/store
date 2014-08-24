@@ -37,6 +37,8 @@ $_['text_semi_month'] = 'half-month';
 $_['text_month'] = 'month';
 $_['text_year'] = 'year';
 
+$_['admin_author']    = 'Management response';
+
 // Entry
 $_['entry_name']        = 'Your Name:';
 $_['entry_review']      = 'Your Review:';

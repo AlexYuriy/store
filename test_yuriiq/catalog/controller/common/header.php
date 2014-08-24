@@ -215,6 +215,7 @@ class ControllerCommonHeader extends Controller {
 	    // cart
 	    $this->language->load('module/cart');
 	    $this->load->model('setting/extension');
+		$this->load->model('tool/image');
 		$total_data = array();					
 		$total = 0;
 		$taxes = $this->cart->getTaxes();
