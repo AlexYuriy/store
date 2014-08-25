@@ -586,6 +586,18 @@ class ModelCatalogProduct extends Model {
 		return $product_data;
 	}
 	
+	public function getProductToDownload($product_id) {
+		$product_data = array();
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_download WHERE product_id = '" . (int)$product_id . "' ORDER BY sort_order ASC");
+
+		foreach ($query->rows as $result) { 
+			$product_data[$result['related_id']] = $this->getProduct($result['related_id']);
+		}
+
+		return $product_data;
+	}
+	
 	public function getProductRelated2($product_id) {
 		$product_data = array();
 
@@ -913,7 +925,22 @@ class ModelCatalogProduct extends Model {
 		}
 		return $product_data;
 	}
+	
+	public function getDownloads($product_id) {
 
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_download pd LEFT JOIN " . DB_PREFIX . "download d ON(pd.download_id=d.download_id) LEFT JOIN " . DB_PREFIX . "download_description dd ON(pd.download_id=dd.download_id) WHERE product_id = '" . (int)$product_id . "' AND dd.language_id = '" . (int)$this->config->get('config_language_id')."'");
+
+		return $query->rows;
+	}
+
+	public function getDownload($product_id, $download_id) {
+	$download="";
+	if($download_id!=0)$download=" AND d.download_id=".(int)$download_id;
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_download pd LEFT JOIN " . DB_PREFIX . "download d ON(pd.download_id=d.download_id) LEFT JOIN " . DB_PREFIX . "download_description dd ON(pd.download_id=dd.download_id) WHERE product_id = '" . (int)$product_id . "' ".$download." AND dd.language_id = '" . (int)$this->config->get('config_language_id')."'");
+
+		return $query->row;
+	}
+	
 	public function getTotalProductSpecials() {
 		if ($this->customer->isLogged()) {
 			$customer_group_id = $this->customer->getCustomerGroupId();

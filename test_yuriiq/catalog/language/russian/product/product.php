@@ -39,9 +39,10 @@ $_['entry_captcha']     = 'Введите код, указанный на кар
 $_['tab_description']   = 'Описание';
 $_['tab_attribute']     = 'Характеристики';
 $_['tab_review']        = 'Отзывы (%s)';
-$_['tab_related']       = 'Похожие';
-$_['tab_related2']      = 'Рекомендуемые';
+$_['tab_related']       = 'Рекомендуемые';
+$_['tab_related2']      = 'Похожие';
 $_['tab_blog_related']  = 'Статьи';
+$_['tab_downloads']		= 'Загрузки';
 
 // Buttons
 $_['button_edit_product']    = 'Редактировать товар';

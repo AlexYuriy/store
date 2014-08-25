@@ -11,7 +11,7 @@ $_['text_reward']            = 'Erfolg: Ihre Bonuspunkte Rabatt angewendet wurde
 $_['text_shipping']          = 'Erfolg: Ihre Versand Schätzung angewandt wurde!';
 $_['text_login']             = 'Achtung: Sie müssen <a href="%s">Login</a> oder <a href="%s">ein Konto erstellent</a> Um Preise sehen!';
 $_['text_points']            = 'Reward Points: %s**';
-$_['text_items']             = '%s item(s) - %s';
+$_['text_items']             = '%s';
 $_['text_next']              = 'Was würden Sie als nächstes tun?**';
 $_['text_next_choice']       = 'Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.';
 $_['text_use_coupon']        = 'Use Coupon Code**';

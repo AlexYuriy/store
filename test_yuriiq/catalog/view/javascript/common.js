@@ -180,4 +180,3 @@ function addToCompare(product_id) {
 		}
 	});
 }
-	

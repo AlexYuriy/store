@@ -264,6 +264,9 @@
 	<?php if ($articles) { ?>
     <a href="#tab-articles"><?php echo $tab_blog_related; ?> (<?php echo count($articles); ?>)</a>
     <?php } ?>
+	<?php if ($downloads) { ?>
+    <a href="#tab-downloads"><?php echo $tab_downloads; ?></a>
+    <?php } ?>
   </div>
   <div id="tab-description" class="tab-content">
   <?php echo $description; ?>
@@ -416,6 +419,15 @@
         <div class="name"><a href="<?php echo $article['href']; ?>"><?php echo $article['name']; ?></a></div>
 		<div class="description-article"><?php echo $article['description']; ?> <a href="<?php echo $article['href']; ?>">...&raquo;</a></div>
         </div>
+      <?php } ?>
+    </div>
+  </div>
+  <?php } ?>
+   <?php if ($downloads) { ?>
+  <div id="tab-downloads" class="tab-content">
+    <div class="box-product box-article">
+      <?php foreach($downloads as $download){ ?>
+      <a href="<?php echo $download['href']; ?>" title=""><?php echo $download['name']; ?><?php echo " (". $download['size'] .")";?></a><br>
       <?php } ?>
     </div>
   </div>
