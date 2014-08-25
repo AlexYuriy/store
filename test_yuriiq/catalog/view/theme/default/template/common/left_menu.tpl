@@ -2,14 +2,14 @@
 <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/left_menu.css" />
 <script type="text/javascript" src="catalog/view/javascript/left_menu.js"></script>
 <!-- при добавлении элементов в меню их так же нужно добавить и в массив id_menu и for_scroll в common.js -->
-<div class="main_sidebar" id="main_sidebar">
-    <div class="sidebar" id="sidebar" onScroll="MoveCenterScreen('main_sidebar');">
+<div class="main_sidebar" id="main_sidebar" >
+    <div class="sidebar" id="sidebar" >
 		<!-- Главная страница -->
-		<div class="sidebar_item">
+		<div class="sidebar_home">
 		    <a href="<?php echo $home ?>"> <img class="sidebar_item_img" src="image/left_menu/main_page.png"> </a>
 		</div>
 		<!-- ссылки на важные страницы, такие как блог, новости, вопрос/ответ, акции, категории товаров -->
-		<div class="sidebar_item test_item" onclick="openMenu('other_links'); return('false');">
+		<div class="sidebar_links test_item" onclick="openMenu('other_links'); return('false');">
 		    <img class="sidebar_item_img" src="image/left_menu/other_lincks_img.png">
 		</div>
 		<!-- пустой элемент для перемотки -->
@@ -36,16 +36,16 @@
 			<span id="cart-total"><?php echo $num_products; ?></span>
 		</div> 
 		<!-- корзина -->      
-		<div class="sidebar_item" onclick="openMenu('cart');return(false)">
+		<div class="sidebar_cart" onclick="openMenu('cart');return(false)">
 		    <img class="sidebar_item_img" src="image/left_menu/cart.png">
 		</div>
 		<!-- Личный кабинет" -->
-		<div class="sidebar_item">
+		<div class="sidebar_account">
 		    <a href="<?php echo $account; ?>" >  <img class="sidebar_item_img" src="image/left_menu/account.png"> </a>
 		</div>   				
     </div>
     <!-- ссылки на важные страницы, такие как блог, новости, вопрос/ответ, акции, категории товаров -->
-    <div class="sidebar_item_body" id="other_links" onScroll="MoveCenterScreen('other_links');">
+    <div class="sidebar_item_body" id="other_links" >
         <ul >
         	<li><a href="<?php echo $categories; ?>" onclick="openMenu('categories');return(false)"><?php echo $text_categories; ?></a></li>
 			<?php if ($this->config->get('config_menu_special')) { ?>
@@ -72,7 +72,7 @@
     </div>
     <!-- Личный кабинет-->
     <?php if ($logged) { ?>
-        <div class="sidebar_item_body" id="account" onScroll="MoveCenterScreen('account');">
+        <div class="sidebar_item_body" id="account" >
             <div class="sidebar_content">
               <h2><?php echo $text_my_account; ?></h2>    
                 <ul>
@@ -98,7 +98,7 @@
             </div>
         </div>
     <?php } else { ?>
-        <div class="sidebar_item_body" id="account" onScroll="MoveCenterScreen('account');">
+        <div class="sidebar_item_body" id="account" >
             <div class="sidebar_content">
                 <h2><?php echo $text_my_account; ?></h2>
                 <p>
@@ -107,7 +107,7 @@
         </div>
     <?php } ?>    
         <!-- категории товаров-->
-        <div class="sidebar_item_body" id="categories" onScroll="MoveCenterScreen('categories');">  
+        <div class="sidebar_item_body" id="categories" >  
             <div class="sidebar_content">
                 <h2> <?php echo $text_categories; ?></h2>
                 <?php $item_id = 0; ?>
@@ -137,7 +137,7 @@
         </div>
         
     <!-- корзина -->
-    <div class="sidebar_item_body" id="cart" onScroll="MoveCenterScreen('cart');">  
+    <div class="sidebar_item_body" id="cart" >  
         <div class="sidebar_content">
             <h2> <?php echo $text_cart; ?></h2>
             <div class="content">
@@ -196,6 +196,6 @@
     
 </div>
 
-    <div class="sidebar_right_space" id="id_sidebar_right_space" onclick="closeMenu(); return(false)" onScroll="MoveCenterScreen('id_sidebar_right_space');"> </div>
+    <div class="sidebar_right_space" id="id_sidebar_right_space" onclick="closeMenu(); return(false)" > </div>
 </div>
 <!-- /LeftMenu -->
