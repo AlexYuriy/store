@@ -259,6 +259,8 @@ class ControllerProductProduct extends Controller {
 			$this->data['text_share'] = $this->language->get('text_share');
 			$this->data['text_wait'] = $this->language->get('text_wait');
 			$this->data['text_tags'] = $this->language->get('text_tags');
+			$this->data['text_weight'] = $this->language->get('text_weight');
+            $this->data['text_dimension'] = $this->language->get('text_dimension');
 
 			$this->data['entry_name'] = $this->language->get('entry_name');
 			$this->data['entry_review'] = $this->language->get('entry_review');
@@ -290,6 +292,10 @@ class ControllerProductProduct extends Controller {
 			$this->data['model'] = $product_info['model'];
 			$this->data['reward'] = $product_info['reward'];
 			$this->data['points'] = $product_info['points'];
+			$this->data['weight'] = $this->weight->format($product_info['weight'], $product_info['weight_class_id']);
+            $this->data['length'] = $this->length->format($product_info['length'], $product_info['length_class_id']);
+            $this->data['width']  = $this->length->format($product_info['width'], $product_info['length_class_id']);
+            $this->data['height'] = $this->length->format($product_info['height'], $product_info['length_class_id']);
 
 			if ($product_info['quantity'] <= 0) {
 				$this->data['stock'] = $product_info['stock_status'];
@@ -407,6 +413,7 @@ class ControllerProductProduct extends Controller {
 
 			$this->data['review_status'] = $this->config->get('config_review_status');
 			$this->data['reviews'] = sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']);
+			$this->data['reviews_login'] = $this->language->get('reviews_login');
 			$this->data['rating'] = (int)$product_info['rating'];
 			$this->data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
 			$this->data['attribute_groups'] = $this->model_catalog_product->getProductAttributes($this->request->get['product_id']);

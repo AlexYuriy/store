@@ -30,7 +30,14 @@
         <?php if ($reward) { ?>
         <span><?php echo $text_reward; ?></span> <?php echo $reward; ?><br />
         <?php } ?>
-        <span><?php echo $text_stock; ?></span> <?php echo $stock; ?></div>
+        <span><?php echo $text_stock; ?></span> <?php echo $stock; ?><br />
+        <?php if ($length > 0) { ?>
+        <span><?php echo $text_dimension; ?></span> <?php echo $length; if(!empty($length)) echo " x "; echo $width; if(!empty($width)) echo " x "; echo $height; ?><br />
+        <?php } ?>
+        <?php if ($weight > 0) { ?>
+        <span><?php echo $text_weight; ?></span> <?php echo $weight; ?><br />
+        <?php } ?></div>
+		
       <?php if ($price) { ?>
       <div class="price"><?php echo $text_price; ?>
         <?php if (!$special) { ?>
@@ -302,6 +309,7 @@
   <?php if ($review_status) { ?>
   <div id="tab-review" class="tab-content">
     <div id="review"></div>
+	<?php if ($this->customer->isLogged()) { ?>
     <h2 id="review-title"><?php echo $text_write; ?></h2>
     <b><?php echo $entry_name; ?></b><br />
     <input type="text" name="name" value="" />
@@ -330,7 +338,8 @@
     <br />
     <div class="buttons">
       <div class="right"><a id="button-review" class="button"><?php echo $button_continue; ?></a></div>
-    </div>
+	</div>
+	<?php } else { echo $reviews_login; } ?>
   </div>
   <?php } ?>
   <?php if ($products) { ?>
