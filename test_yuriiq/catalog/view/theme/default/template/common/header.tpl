@@ -66,7 +66,7 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
 
 <?php echo $google_analytics; ?>
 </head>
-<body onScroll="displayScrollItem();" >
+<body>
 <div id="header-bg"></div>
 <?php include "left_menu.tpl"; ?>
 <div id="container">

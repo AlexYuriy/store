@@ -1,31 +1,28 @@
 <!-- LeftMenu -->
 <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/left_menu.css" />
 <script type="text/javascript" src="catalog/view/javascript/left_menu.js"></script>
-<!-- при добавлении элементов в меню их так же нужно добавить и в массив id_menu и for_scroll в common.js -->
-<div class="main_sidebar" id="main_sidebar" >
-    <div class="sidebar" id="sidebar" >
+<div id="sidebar_right_space" onclick="closeMenu(); return(false)" > </div>
+<div id="main_sidebar" >
+    <div id="sidebar" >
 		<!-- Главная страница -->
-		<div class="sidebar_home">
+		<div id="sidebar_home">
 		    <a href="<?php echo $home ?>"> <img class="sidebar_item_img" src="image/left_menu/main_page.png"> </a>
 		</div>
 		<!-- ссылки на важные страницы, такие как блог, новости, вопрос/ответ, акции, категории товаров -->
-		<div class="sidebar_links test_item" onclick="openMenu('other_links'); return('false');">
+		<div id="sidebar_links" onclick="openMenu('other_links'); return('false');">
 		    <img class="sidebar_item_img" src="image/left_menu/other_lincks_img.png">
 		</div>
-		<!-- пустой элемент для перемотки -->
-		<div class="temp_scroll_item" id="temp_scroll_item">
-		    <img class="scroll_img" alt="temp" id="temp_scroll_img" src="image/left_menu/temp_scroll_item.png">
-		</div>
 		<!-- перемотка наверх -->
-		<div class="scroll_item" id="scroll_to_top" onclick="scrollToTop();"> 
+		<div id="scroll_to_top" onclick="scrollToTop();"> 
 		  <img class="scroll_img" alt="top" id="scroll_to_top_img" src="image/left_menu/scroll_to_top.png"> 
 		</div>
 		<!-- перемотка обратно -->
-		<div class="scroll_item" id="scroll_to_bottom" onclick="scrollToBottom();">
+		<div id="scroll_to_bottom" onclick="scrollToBottom();">
 		  <img class="scroll_img" alt="bottom" id="scroll_to_bottom_img" src="image/left_menu/scroll_to_bottom.png"> 
 		</div>  
-		<!-- количество продуктов в корзине -->
-		<div class="sidebar_num_products" >
+		<!-- корзина -->      
+		<div id="sidebar_cart" onclick="openMenu('cart');return(false)">
+		    <img class="sidebar_item_img" src="image/left_menu/cart.png">
 			<?php $num_products = 0; ?>
 		    <?php if ($products || $vouchers) { ?>
 			<?php foreach ($products as $product) { ?>
@@ -33,21 +30,40 @@
 			<?php foreach ($vouchers as $voucher) { ?>
 			    <?php $num_products += $voucher['quantity'];} ?>
 		    <?php } ?>
-			<span id="cart-total"><?php echo $num_products; ?></span>
-		</div> 
-		<!-- корзина -->      
-		<div class="sidebar_cart" onclick="openMenu('cart');return(false)">
-		    <img class="sidebar_item_img" src="image/left_menu/cart.png">
+			<span id="cart-total"><?php echo $num_products; ?></span>			
 		</div>
 		<!-- Личный кабинет" -->
-		<div class="sidebar_account">
-		    <a href="<?php echo $account; ?>" >  <img class="sidebar_item_img" src="image/left_menu/account.png"> </a>
+		<div id="sidebar_account">
+		    <a onclick="openMenu('sidebar_account_panel');return(false)">  <img class="sidebar_item_img" src="image/left_menu/account.png"> </a>
 		</div>   				
     </div>
     <!-- ссылки на важные страницы, такие как блог, новости, вопрос/ответ, акции, категории товаров -->
-    <div class="sidebar_item_body" id="other_links" >
+    <div id="other_links" >
         <ul >
-        	<li><a href="<?php echo $categories; ?>" onclick="openMenu('categories');return(false)"><?php echo $text_categories; ?></a></li>
+        	<li><a ><?php echo $text_categories; ?></a>
+                <!-- берём категорию и выводим все её подкатегории -->
+                <ul id="sidebar_category"><?php foreach ($categories as $category) { ?>
+                    <li>
+	                    <a  href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>                	
+                        <?php if ($category['children']) { ?>
+                            <?php for ($i = 0; $i < count($category['children']);) { ?>
+                            <ul>
+                                <?php $j = $i + ceil(count($category['children']) / $category['column']); ?>
+                                <?php for (; $i < $j; $i++) { ?>
+                                <?php if (isset($category['children'][$i])) { ?>
+                                <li><a href="<?php echo $category['children'][$i]['href']; ?>"><?php 
+									$image_menu = $category['children'][$i]['image_menu'];
+									$name = $category['children'][$i]['name'];
+									if ($image_menu) { ?><img src="<?php echo $image_menu; ?>" alt="<?php echo $name; ?>" /><?php }
+									echo $name; ?></a></li>
+                                <?php } ?>
+                                <?php } ?>
+                            </ul>
+                            <?php } ?>
+                        <?php } ?>
+                    </li>
+                <?php } ?></ul>
+			</li>
 			<?php if ($this->config->get('config_menu_special')) { ?>
 				<li><a href="<?php echo $special; ?>"><?php echo $text_special; ?></a></li>
 			<?php } ?>
@@ -72,8 +88,7 @@
     </div>
     <!-- Личный кабинет-->
     <?php if ($logged) { ?>
-        <div class="sidebar_item_body" id="account" >
-            <div class="sidebar_content">
+            <div id="sidebar_account_panel">
               <h2><?php echo $text_my_account; ?></h2>    
                 <ul>
                   <li><a href="<?php echo $edit; ?>"><?php echo $text_edit; ?></a></li>
@@ -96,48 +111,15 @@
                   <li><a href="<?php echo $newsletter; ?>"><?php echo $text_newsletter; ?></a></li>
                 </ul>
             </div>
-        </div>
     <?php } else { ?>
-        <div class="sidebar_item_body" id="account" >
-            <div class="sidebar_content">
+        <div id="sidebar_account_panel">
                 <h2><?php echo $text_my_account; ?></h2>
                 <p>
                 <?php echo $text_welcome; ?>    
-            </div>
         </div>
-    <?php } ?>    
-        <!-- категории товаров-->
-        <div class="sidebar_item_body" id="categories" >  
-            <div class="sidebar_content">
-                <h2> <?php echo $text_categories; ?></h2>
-                <?php $item_id = 0; ?>
-                <!-- берём категорию и выводим все её подкатегории -->
-                <ul class="category"><?php foreach ($categories as $category) { ?>
-                    <li>
-	                    <a onfocus="expandItem(<?php echo $item_id++; ?>) href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>                	
-                        <?php if ($category['children']) { ?>
-                            <?php for ($i = 0; $i < count($category['children']);) { ?>
-                            <ul>
-                                <?php $j = $i + ceil(count($category['children']) / $category['column']); ?>
-                                <?php for (; $i < $j; $i++) { ?>
-                                <?php if (isset($category['children'][$i])) { ?>
-                                <li><a href="<?php echo $category['children'][$i]['href']; ?>"><?php 
-									$image_menu = $category['children'][$i]['image_menu'];
-									$name = $category['children'][$i]['name'];
-									if ($image_menu) { ?><img src="<?php echo $image_menu; ?>" alt="<?php echo $name; ?>" /><?php }
-									echo $name; ?></a></li>
-                                <?php } ?>
-                                <?php } ?>
-                            </ul>
-                            <?php } ?>
-                        <?php } ?>
-                    </li>
-                <?php } ?></ul>  
-            </div>
-        </div>
-        
+    <?php } ?>            
     <!-- корзина -->
-    <div class="sidebar_item_body" id="cart" >  
+    <div id="cart" >  
         <div class="sidebar_content">
             <h2> <?php echo $text_cart; ?></h2>
             <div class="content">
@@ -194,8 +176,5 @@
         </div>
     </div>
     
-</div>
-
-    <div class="sidebar_right_space" id="id_sidebar_right_space" onclick="closeMenu(); return(false)" > </div>
 </div>
 <!-- /LeftMenu -->
