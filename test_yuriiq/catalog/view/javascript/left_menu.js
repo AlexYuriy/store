@@ -21,17 +21,12 @@
 	    }	
     }
 	//
-	function closeMenu(id) {
-		
-		if (!id) {
-			for (i=0; i < id_open.length; ++i) {
-				id_open[i].style.display = "none";
-			}
-			id_open.length = 0;
-			document.getElementById('sidebar_right_space').style.display = "none";
-		} else {
-			elem.style.display = "none";
+	function closeMenu() {
+		for (i=0; i < id_open.length; ++i) {
+			id_open[i].style.display = "none";
 		}
+		id_open.length = 0;
+		document.getElementById('sidebar_right_space').style.display = "none";
 	}
     // перематывает вверх 
     function scrollToTop(){

@@ -58,47 +58,16 @@
 	margin-top: -30px;
     position: absolute;	
 }
-.sidebar_item_img {
-	cursor: pointer;
-    background-color: #F8F8F8;
-    height: 100%;
-    width: 100%;
-}
-#sidebar_cart_panel, #categories, #sidebar_account_panel, #other_links {
-    position: fixed;
-    background-color: #ebe9e9;
-    height: 100%;
-    width: 260px;
-    margin-left: 60px;
-    display: none;
-    overflow: auto;
-	top: 0px;
-}
-#other_links  ul{
+#other_links  ul, #sidebar_account_panel ul {
 	list-style: none;
 	padding: 0px;
 	margin: 0px;
 }
-#other_links  ul > li{
+#other_links  ul > li {
 	list-style: none;
 	padding: 6px 6px;
 	margin: 0px;
 	white-space: nowrap;
-}
-#other_links  ul > li> a{
-	text-decoration: none;
-	line-height: 14px;
-	font-size: 20px;
-	padding: 10px 4px;
-	display: block;
-}
-#other_links  ul > li> a:hover{
-	background:url(../image/menu_act.png) center left repeat-x;
-	color: #fff;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
 }
 #other_links  img {
 	float: left;
@@ -107,8 +76,55 @@
 #sidebar_category  {
     display: none;
 }
-
-#main_sidebar:active #sidebar_right_space {
+#sidebar_account_panel h2 {
+	margin:5px;
+	font-size: 20px;
+}
+#sidebar_account_panel ul > li > a {
+	text-decoration: none;
+	font-size: 16px;
 	display: block;
 }
-
+#sidebar_cart_panel h2 {
+	margin:5px;
+	font-size: 20px;
+}
+#sidebar_cart_panel table {
+	width: 100%;
+	margin-bottom:5px;
+}
+#sidebar_cart_panel table .right {
+	text-align: right;
+}
+#sidebar_cart_panel table .nowrap {
+	white-space: nowrap;
+}
+#sidebar_cart_panel table > tbody > tr > td{
+	font-size: 15px;
+}
+.sidebar_panel  {
+    position: fixed;
+    background-color: #ebe9e9;
+    height: 100%;
+    width: 260px;
+    margin-left: 60px;
+    display: none;
+    overflow: auto;
+	top: 0px;
+	padding: 5px;
+}
+.sidebar_panel a {
+	text-decoration: none;
+	line-height: 14px;
+	font-size: 20px;
+	padding: 10px 4px;
+	display: block;
+}
+.sidebar_panel a:hover{
+	background:url(../image/menu_act.png) center left repeat-x;
+	color: #fff;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+}

@@ -3,25 +3,25 @@
 <script type="text/javascript" src="catalog/view/javascript/left_menu.js"></script>
 <div id="sidebar_right_space" onclick="closeMenu(); return(false)" > </div>
 <div id="main_sidebar" >
-    <div id="sidebar" >
+    <div id="sidebar">
 		<!-- Главная страница -->
-		<div id="sidebar_home">
-		    <a href="<?php echo $home ?>"> <img class="sidebar_item_img" src="image/left_menu/main_page.png"> </a>
-		</div>
+	    <a href="<?php echo $home ?>"> 
+			<img src="image/left_menu/main_page.png"> 
+		</a>
 		<!-- ссылки на важные страницы, такие как блог, новости, вопрос/ответ, акции, категории товаров -->
-		<div id="sidebar_links" onclick="openMenu('other_links', true); return('false');">
-		    <img class="sidebar_item_img" src="image/left_menu/other_lincks_img.png">
-		</div>
+		<a onclick="openMenu('other_links', true); return('false');">
+		    <img src="image/left_menu/other_lincks_img.png">
+		</a>
 		<!-- перемотка наверх -->
-		<div id="scroll_to_top" onclick="scrollToTop();"> 
-		  <img alt="top" id="scroll_to_top_img" src="image/left_menu/scroll_to_top.png"> 
-		</div>
+		<a id="scroll_to_top" onclick="scrollToTop();"> 
+		  <img alt="top" src="image/left_menu/scroll_to_top.png"> 
+		</a>
 		<!-- перемотка обратно -->
-		<div id="scroll_to_bottom" onclick="scrollToBottom();">
-		  <img alt="bottom" id="scroll_to_bottom_img" src="image/left_menu/scroll_to_bottom.png"> 
-		</div>  
+		<a id="scroll_to_bottom" onclick="scrollToBottom();">
+		  <img alt="bottom" src="image/left_menu/scroll_to_bottom.png"> 
+		</a>  
 		<!-- корзина -->      
-		<div id="sidebar_cart" onclick="openMenu('sidebar_cart_panel', true); return(false)">
+		<a id="sidebar_cart" onclick="openMenu('sidebar_cart_panel', true); return(false)">
 		    <img class="sidebar_item_img" src="image/left_menu/cart.png">
 			<?php $num_products = 0; ?>
 		    <?php if ($products || $vouchers) { ?>
@@ -31,20 +31,20 @@
 			    <?php $num_products += $voucher['quantity'];} ?>
 		    <?php } ?>
 			<span id="cart-total"><?php echo $num_products; ?></span>			
-		</div>
+		</a>
 		<!-- Личный кабинет" -->
-		<div id="sidebar_account">
-		    <a onclick="openMenu('sidebar_account_panel', true);return(false)">  <img class="sidebar_item_img" src="image/left_menu/account.png"> </a>
-		</div>   				
+		<a id="sidebar_account" onclick="openMenu('sidebar_account_panel', true);return(false)">  
+		<img class="sidebar_item_img" src="image/left_menu/account.png"> 
+		</a>  				
     </div>
     <!-- ссылки на важные страницы, такие как блог, новости, вопрос/ответ, акции, категории товаров -->
-    <div id="other_links" >
-        <ul >
+    <div id="other_links" class="sidebar_panel">
+        <ul>
         	<li><a onclick="openMenu('sidebar_category', false);return(false)"><?php echo $text_categories; ?></a>
                 <!-- берём категорию и выводим все её подкатегории -->
                 <ul id="sidebar_category"><?php foreach ($categories as $category) { ?>
                     <li>
-	                    <a  href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>                	
+	                    <a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>                	
                     </li>
                 <?php } ?></ul>
 			</li>
@@ -71,14 +71,16 @@
         </ul>
     </div>
     <!-- Личный кабинет-->
+    <div id="sidebar_account_panel" class="sidebar_panel">	
     <?php if ($logged) { ?>
-            <div id="sidebar_account_panel">
               <h2><?php echo $text_my_account; ?></h2>    
                 <ul>
+				  <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a></li>				
                   <li><a href="<?php echo $edit; ?>"><?php echo $text_edit; ?></a></li>
                   <li><a href="<?php echo $password; ?>"><?php echo $text_password; ?></a></li>
                   <li><a href="<?php echo $address; ?>"><?php echo $text_address; ?></a></li>
                   <li><a href="<?php echo $wishlist; ?>"><?php echo $text_wishlist; ?></a></li>
+			      <li><a href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a></li>				  
                 </ul>
               <h2><?php echo $text_my_orders; ?></h2>
                 <ul>
@@ -94,70 +96,52 @@
                 <ul>
                   <li><a href="<?php echo $newsletter; ?>"><?php echo $text_newsletter; ?></a></li>
                 </ul>
-            </div>
     <?php } else { ?>
-        <div id="sidebar_account_panel">
                 <h2><?php echo $text_my_account; ?></h2>
-                <p>
                 <?php echo $text_welcome; ?>    
-        </div>
-    <?php } ?>            
+    <?php } ?>
+    </div>
     <!-- корзина -->
-    <div id="sidebar_cart_panel" >  
+    <div id="sidebar_cart_panel" class="sidebar_panel">  
             <h2> <?php echo $text_cart; ?></h2>
-            <div class="content">
                 <?php if ($products || $vouchers) { ?>
                 <!-- перечисляются товары с описанием -->
-                <div class="mini-cart-info">
-                  <table>
                     <?php foreach ($products as $product) { ?>
-                    <tr>
-                      <td class="image"><?php if ($product['thumb']) { ?>
-                        <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" /></a>
-                        <?php } ?></td>
-                      <td class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
-                        <div>
+                    <a href="<?php echo $product['href']; ?>">
+					<table><tr>
+						<td><?php echo $product['name']; ?>
                           <?php foreach ($product['option'] as $option) { ?>
                           - <small><?php echo $option['name']; ?> <?php echo $option['value']; ?></small><br />
                           <?php } ?>
-                        </div></td>
-                      <td class="quantity">x&nbsp;<?php echo $product['quantity']; ?></td>
-                      <td class="total"><?php echo $product['total']; ?></td>
-                      <td class="remove"><img src="catalog/view/theme/default/image/remove-small.png" alt="<?php echo $button_remove; ?>" title="<?php echo $button_remove; ?>" onclick="(getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') ? location = 'index.php?route=checkout/cart&remove=<?php echo $product['key']; ?>' : $('#cart').load('index.php?route=module/cart&remove=<?php echo $product['key']; ?>' + ' #cart > *');" /></td>
-                    </tr>
+						</td>
+                      <td><?php echo $product['quantity']; ?>&nbsp;x</td>
+                      <td class="nowrap"><?php echo $product['total']; ?></td>
+                    </tr></table></a>
                     <?php } ?>
                     <?php foreach ($vouchers as $voucher) { ?>
-                    <tr>
-                      <td class="image"></td>
-                      <td class="name"><?php echo $voucher['description']; ?></td>
-                      <td class="quantity">x&nbsp;1 </td>
-                      <td class="total"><?php echo $voucher['amount']; ?></td>
-                      <td class="remove"><img src="catalog/view/theme/default/image/remove-small.png" alt="<?php echo $button_remove; ?>" title="<?php echo $button_remove; ?>" onclick="(getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') ? location = 'index.php?route=checkout/cart&remove=<?php echo $voucher['key']; ?>' : $('#cart').load('index.php?route=module/cart&remove=<?php echo $voucher['key']; ?>' + ' #cart > *');" /></td>
-                    </tr>
+                    <table><tr>
+                      <td><?php echo $voucher['description']; ?></td>
+                      <td>1&nbsp;x </td>
+                      <td><?php echo $voucher['amount']; ?></td>
+                    </tr></table>
                     <?php } ?>
-                  </table>
-                </div>
                 <!-- нижняя строка корзины -->
-                <div class="mini-cart-total">
                   <table>
                     <?php foreach ($totals as $total) { ?>
                     <tr>
-                      <td class="right"><b><?php echo $total['title']; ?>:</b></td>
+                      <td><b><?php echo $total['title']; ?>:</b></td>
                       <td class="right"><?php echo $total['text']; ?></td>
                     </tr>
                     <?php } ?>
                   </table>
-                </div>
-                <div class="checkout"><a href="<?php echo $shopping_cart; ?>"><?php echo $text_cart; ?></a> | <a href="<?php echo $checkout; ?>"><?php echo $text_checkout; ?></a> | <a href="<?php echo $order; ?>"><?php echo $text_order; ?></a> </div>
+				  <br>
+						<a href="<?php echo $shopping_cart; ?>"><?php echo $text_cart; ?></a> 
+						<a href="<?php echo $checkout; ?>"><?php echo $text_checkout; ?></a> 
+						<a href="<?php echo $order; ?>"><?php echo $text_order; ?></a> 
                 <?php } else { ?>
-                <div class="empty"><?php echo $text_empty; ?>
-                    <p><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a>
-                </div>
+                <?php echo $text_empty; ?>
+                    <a href="<?php echo $order; ?>"><?php echo $text_order; ?></a>
                 <?php } ?>
-                
-              </div>
         </div>
-    </div>
-    
 </div>
 <!-- /LeftMenu -->
