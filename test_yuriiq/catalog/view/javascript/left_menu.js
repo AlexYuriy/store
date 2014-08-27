@@ -1,57 +1,57 @@
 // обеспечивает работу бокового меню sidebar
-
-    var id_menu = new Array('other_links', 'cart');
     var y_coord; // сохроняет координат при перемотке вверх
-    var widthSidebarItem = 80;	// ширина элемента бокового меню
-
+	var id_open = new Array(); // Массив открытых элементов
     // открыть элемент меню закрыв другие элементы
-    function openMenu(id){
-	    for (i=0; i < id_menu.length; i++){
-		    if (id != id_menu[i]){
-			    document.getElementById(id_menu[i]).style.display = "none";
-		    }
-	    }
-	    if (document.getElementById(id).style.display == "block"){
-		    document.getElementById(id).style.display = "none";
-		    document.getElementById('sidebar_right_space').style.display = "none";
-	    }else{
-		    document.getElementById(id).style.display = "block";
-		    document.getElementById('sidebar_right_space').style.display = "block";
+    function openMenu(id, close){
+		var elem = document.getElementById(id);
+	    if (elem.style.display == "block") {
+			if (close) {
+				closeMenu();
+			}
+			else {
+				elem.style.display = "none";
+				for (i=0; i < id_open.length; ++i) 	
+					if (id_open[i] == elem)  id_open.splice(i,1);			
+			}
+	    } else {
+		    if (close) closeMenu();
+		    elem.style.display = "block";    
+			document.getElementById('sidebar_right_space').style.display = "block";
+			id_open.push (elem);
 	    }	
     }
-
-    // закрыть элемент меню
-    function closeMenu(id){
-        for (var i = 0; i < id_menu.length; i++){
-            document.getElementById(id_menu[i]).style.display = "none";
-            document.getElementById('sidebar_right_space').style.display = "none";
-        } 
-    }
-
+	//
+	function closeMenu(id) {
+		
+		if (!id) {
+			for (i=0; i < id_open.length; ++i) {
+				id_open[i].style.display = "none";
+			}
+			id_open.length = 0;
+			document.getElementById('sidebar_right_space').style.display = "none";
+		} else {
+			elem.style.display = "none";
+		}
+	}
     // перематывает вверх 
     function scrollToTop(){
         y_coord = window.pageYOffset || document.documentElement.scrollTop;
 	var y = y_coord;
-	
 	// обеспечивает плавную перемотку
 	var interval = setInterval(function(){
 	  window.scrollBy(0, -60);
 	  y -= 60;
 	  if (y < 60) {
 	    window.scrollTo(0, 0);
-	    
 	    document.getElementById('scroll_to_top').style.display = "none";
 	    document.getElementById('scroll_to_bottom').style.display = "block";
-	    clearInterval(interval);}
-	}, 20);
-	
-        
+	    clearInterval(interval);
+		}
+	}, 20);  
     }
-
     // перематывает вниз после перемотки вверх
     function scrollToBottom(){
-      var y = 0;      
-     
+      var y = 0; 
 	// обеспечивает плавную перемотку
         var interval = setInterval(function(){
 	  window.scrollBy(0, 60);

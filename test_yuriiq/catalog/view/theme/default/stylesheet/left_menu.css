@@ -64,7 +64,7 @@
     height: 100%;
     width: 100%;
 }
-#cart, #categories, #sidebar_account_panel, #other_links {
+#sidebar_cart_panel, #categories, #sidebar_account_panel, #other_links {
     position: fixed;
     background-color: #ebe9e9;
     height: 100%;
@@ -104,17 +104,11 @@
 	float: left;
 	padding-right: 1px;
 }
-#other_links ul > li:hover  #sidebar_category  {
-    display: block;
-}
 #sidebar_category  {
     display: none;
 }
 
-#sidebar_category  li > ul{
-    list-style: none;
-    display: none;
+#main_sidebar:active #sidebar_right_space {
+	display: block;
 }
-#sidebar_category li:hover ul {
-    display: block;
-}
+

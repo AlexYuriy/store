@@ -9,19 +9,19 @@
 		    <a href="<?php echo $home ?>"> <img class="sidebar_item_img" src="image/left_menu/main_page.png"> </a>
 		</div>
 		<!-- ссылки на важные страницы, такие как блог, новости, вопрос/ответ, акции, категории товаров -->
-		<div id="sidebar_links" onclick="openMenu('other_links'); return('false');">
+		<div id="sidebar_links" onclick="openMenu('other_links', true); return('false');">
 		    <img class="sidebar_item_img" src="image/left_menu/other_lincks_img.png">
 		</div>
 		<!-- перемотка наверх -->
 		<div id="scroll_to_top" onclick="scrollToTop();"> 
-		  <img class="scroll_img" alt="top" id="scroll_to_top_img" src="image/left_menu/scroll_to_top.png"> 
+		  <img alt="top" id="scroll_to_top_img" src="image/left_menu/scroll_to_top.png"> 
 		</div>
 		<!-- перемотка обратно -->
 		<div id="scroll_to_bottom" onclick="scrollToBottom();">
-		  <img class="scroll_img" alt="bottom" id="scroll_to_bottom_img" src="image/left_menu/scroll_to_bottom.png"> 
+		  <img alt="bottom" id="scroll_to_bottom_img" src="image/left_menu/scroll_to_bottom.png"> 
 		</div>  
 		<!-- корзина -->      
-		<div id="sidebar_cart" onclick="openMenu('cart');return(false)">
+		<div id="sidebar_cart" onclick="openMenu('sidebar_cart_panel', true); return(false)">
 		    <img class="sidebar_item_img" src="image/left_menu/cart.png">
 			<?php $num_products = 0; ?>
 		    <?php if ($products || $vouchers) { ?>
@@ -34,33 +34,17 @@
 		</div>
 		<!-- Личный кабинет" -->
 		<div id="sidebar_account">
-		    <a onclick="openMenu('sidebar_account_panel');return(false)">  <img class="sidebar_item_img" src="image/left_menu/account.png"> </a>
+		    <a onclick="openMenu('sidebar_account_panel', true);return(false)">  <img class="sidebar_item_img" src="image/left_menu/account.png"> </a>
 		</div>   				
     </div>
     <!-- ссылки на важные страницы, такие как блог, новости, вопрос/ответ, акции, категории товаров -->
     <div id="other_links" >
         <ul >
-        	<li><a ><?php echo $text_categories; ?></a>
+        	<li><a onclick="openMenu('sidebar_category', false);return(false)"><?php echo $text_categories; ?></a>
                 <!-- берём категорию и выводим все её подкатегории -->
                 <ul id="sidebar_category"><?php foreach ($categories as $category) { ?>
                     <li>
 	                    <a  href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>                	
-                        <?php if ($category['children']) { ?>
-                            <?php for ($i = 0; $i < count($category['children']);) { ?>
-                            <ul>
-                                <?php $j = $i + ceil(count($category['children']) / $category['column']); ?>
-                                <?php for (; $i < $j; $i++) { ?>
-                                <?php if (isset($category['children'][$i])) { ?>
-                                <li><a href="<?php echo $category['children'][$i]['href']; ?>"><?php 
-									$image_menu = $category['children'][$i]['image_menu'];
-									$name = $category['children'][$i]['name'];
-									if ($image_menu) { ?><img src="<?php echo $image_menu; ?>" alt="<?php echo $name; ?>" /><?php }
-									echo $name; ?></a></li>
-                                <?php } ?>
-                                <?php } ?>
-                            </ul>
-                            <?php } ?>
-                        <?php } ?>
                     </li>
                 <?php } ?></ul>
 			</li>
@@ -119,8 +103,7 @@
         </div>
     <?php } ?>            
     <!-- корзина -->
-    <div id="cart" >  
-        <div class="sidebar_content">
+    <div id="sidebar_cart_panel" >  
             <h2> <?php echo $text_cart; ?></h2>
             <div class="content">
                 <?php if ($products || $vouchers) { ?>
