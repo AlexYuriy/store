@@ -114,11 +114,6 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
           <li><a href="<?php echo $category['children'][$i]['href']; ?>">
 		  <?php if ($image_menu) { ?><img src="<?php echo $image_menu; ?>" alt="<?php echo $name; ?>" /><?php }
 			    echo $name; ?></a>
-          <?php if($category['children'][$i]['subchildren']) { ?>
-          <?php foreach ($category['children'][$i]['subchildren'] as $child) { ?>
-          <li><a href="<?php echo $child['href']; ?>"> &raquo; <?php echo $child['name']; ?></a></li>
-          <?php } ?>
-          <?php } ?>
           </li>
           <?php } ?>
           <?php } ?>
