@@ -21,7 +21,7 @@
 		  <img alt="bottom" src="image/left_menu/scroll_to_bottom.png"> 
 		</a>  
 		<!-- корзина -->      
-		<a id="sidebar_cart" onclick="openMenu('sidebar_cart_panel', true); return(false)">
+		<a id="sidebar_cart" href="<?php echo $shopping_cart; ?>">
 		    <img class="sidebar_item_img" src="image/left_menu/cart.png">
 			<?php $num_products = 0; ?>
 		    <?php if ($products || $vouchers) { ?>
@@ -73,37 +73,25 @@
     <!-- Личный кабинет-->
     <div id="sidebar_account_panel" class="sidebar_panel">	
     <?php if ($logged) { ?>
-              <h2><?php echo $text_my_account; ?></h2>    
+              <h2><?php echo $text_logged; ?></h2>    
                 <ul>
 				  <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a></li>				
                   <li><a href="<?php echo $edit; ?>"><?php echo $text_edit; ?></a></li>
                   <li><a href="<?php echo $password; ?>"><?php echo $text_password; ?></a></li>
                   <li><a href="<?php echo $address; ?>"><?php echo $text_address; ?></a></li>
                   <li><a href="<?php echo $wishlist; ?>"><?php echo $text_wishlist; ?></a></li>
-			      <li><a href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a></li>				  
-                </ul>
-              <h2><?php echo $text_my_orders; ?></h2>
-                <ul>
                   <li><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a></li>
-                  <li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>
-                  <?php if ($reward) { ?>
-                  <li><a href="<?php echo $reward; ?>"><?php echo $text_reward; ?></a></li>
-                  <?php } ?>
-                  <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
-                  <li><a href="<?php echo $transaction; ?>"><?php echo $text_transaction; ?></a></li>
-                </ul>
-              <h2><?php echo $text_my_newsletter; ?></h2>
-                <ul>
-                  <li><a href="<?php echo $newsletter; ?>"><?php echo $text_newsletter; ?></a></li>
-                </ul>
+                  <li><a href="<?php echo $newsletter; ?>"><?php echo $text_newsletter; ?></a></li>				  
+			      <li><a href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a></li>				  				
+				</ul>
     <?php } else { ?>
                 <h2><?php echo $text_my_account; ?></h2>
                 <?php echo $text_welcome; ?>    
     <?php } ?>
-    </div>
-    <!-- корзина -->
+    </div> 
+    <?php /* <!-- корзина -->
     <div id="sidebar_cart_panel" class="sidebar_panel">  
-            <h2> <?php echo $text_cart; ?></h2>
+            <h2><i class="fa fa-shopping-cart fa-lg"></i> <?php echo $text_cart; ?></h2>
                 <?php if ($products || $vouchers) { ?>
                 <!-- перечисляются товары с описанием -->
                     <?php foreach ($products as $product) { ?>
@@ -139,9 +127,8 @@
 						<a href="<?php echo $checkout; ?>"><?php echo $text_checkout; ?></a> 
 						<a href="<?php echo $order; ?>"><?php echo $text_order; ?></a> 
                 <?php } else { ?>
-                <?php echo $text_empty; ?>
-                    <a href="<?php echo $order; ?>"><?php echo $text_order; ?></a>
+          <p><?php echo $text_empty; ?></p>
                 <?php } ?>
-        </div>
+        </div> */ ?>
 </div>
 <!-- /LeftMenu -->

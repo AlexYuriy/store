@@ -27,14 +27,8 @@ $(document).ready(function() {
 	});
 	
 	/* Ajax Cart */
-	$('#cart > .heading a').live('click', function() {
-		$('#cart').addClass('active');
-		
-		$('#cart').load('index.php?route=module/cart #cart > *');
-		
-		$('#cart').live('mouseleave', function() {
-			$(this).removeClass('active');
-		});
+	$('#sidebar_cart').live('click', function() {
+		$('#sidebar_cart_panel').load('index.php?route=module/cart #sidebar_cart_panel > *');
 	});
 	
 	/* Mega Menu */
