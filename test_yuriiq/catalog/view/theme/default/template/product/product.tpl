@@ -31,12 +31,7 @@
         <span><?php echo $text_reward; ?></span> <?php echo $reward; ?><br />
         <?php } ?>
         <span><?php echo $text_stock; ?></span> <?php echo $stock; ?><br />
-        <?php if ($length > 0) { ?>
-        <span><?php echo $text_dimension; ?></span> <?php echo $length; if(!empty($length)) echo " x "; echo $width; if(!empty($width)) echo " x "; echo $height; ?><br />
-        <?php } ?>
-        <?php if ($weight > 0) { ?>
-        <span><?php echo $text_weight; ?></span> <?php echo $weight; ?><br />
-        <?php } ?></div>
+		</div>
 		
       <?php if ($price) { ?>
       <div class="price"><?php echo $text_price; ?>
@@ -256,20 +251,20 @@
     </div>
   </div>
   <div id="tabs" class="htabs"><a href="#tab-description"><?php echo $tab_description; ?></a>
-    <?php if ($attribute_groups) { ?>
+    <?php if ($attribute_groups||($length > 0)||($weight > 0)){ ?>
     <a href="#tab-attribute"><?php echo $tab_attribute; ?></a>
     <?php } ?>
     <?php if ($review_status) { ?>
     <a href="#tab-review"><?php echo $tab_review; ?></a>
     <?php } ?>
     <?php if ($products) { ?>
-    <a href="#tab-related"><?php echo $tab_related; ?> (<?php echo count($products); ?>)</a>
+    <a href="#tab-related"><?php echo $tab_related; ?></a>
     <?php } ?>
 	<?php if ($products2) { ?>
-    <a href="#tab-related2"><?php echo $tab_related2; ?> (<?php echo count($products2); ?>)</a>
+    <a href="#tab-related2"><?php echo $tab_related2; ?></a>
     <?php } ?>
 	<?php if ($articles) { ?>
-    <a href="#tab-articles"><?php echo $tab_blog_related; ?> (<?php echo count($articles); ?>)</a>
+    <a href="#tab-articles"><?php echo $tab_blog_related; ?></a>
     <?php } ?>
 	<?php if ($downloads) { ?>
     <a href="#tab-downloads"><?php echo $tab_downloads; ?></a>
@@ -285,9 +280,30 @@
   </div>
   <?php } ?>
   </div>
-  <?php if ($attribute_groups) { ?>
+  <?php if ($attribute_groups||($length > 0)||($weight > 0)) { ?>
   <div id="tab-attribute" class="tab-content">
     <table class="attribute">
+	<?php if (($length > 0)||($weight > 0)) {?>
+	<thead>
+        <tr>
+			<td colspan="2"><?php echo $basic_attribute; ?></td>
+		<tr>
+	</thead>
+		<tbody>
+		<?php if ($length > 0) { ?>
+		<tr>
+			<td><?php echo $text_dimension; ?></td> 
+			<td><?php echo $length; if(!empty($length)) echo " x "; echo $width; if(!empty($width)) echo " x "; echo $height; ?></td>
+        </tr>
+		<?php } ?>
+        <?php if ($weight > 0) { ?>
+        <tr>
+			<td><?php echo $text_weight; ?></td> 
+			<td><?php echo $weight; ?></td>
+        </tr>
+		</tbody>
+      <?php } ?>
+	  <?php } ?>
       <?php foreach ($attribute_groups as $attribute_group) { ?>
       <thead>
         <tr>

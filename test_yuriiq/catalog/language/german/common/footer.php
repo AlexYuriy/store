@@ -15,5 +15,5 @@ $_['text_account']      = 'mein Konto';
 $_['text_order']        = 'Auftragshistorie';
 $_['text_wishlist']     = 'Wunschzettel';
 $_['text_newsletter']   = 'Newsletter';
-$_['text_powered']      = 'Powered By <a href="">MLP TEAM</a><br /> %s &copy; %s';
+$_['text_powered']      = ' %s &copy; %s';
 ?>

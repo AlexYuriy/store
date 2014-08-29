@@ -280,7 +280,7 @@ class ControllerProductProduct extends Controller {
 
 			$this->data['tab_description'] = $this->language->get('tab_description');
 			$this->data['tab_attribute'] = $this->language->get('tab_attribute');
-			$this->data['tab_review'] = sprintf($this->language->get('tab_review'), $product_info['reviews']);
+			$this->data['tab_review'] = $this->language->get('tab_review');
 			$this->data['tab_related'] = $this->language->get('tab_related');
 			$this->data['tab_related2'] = $this->language->get('tab_related2');
 			$this->data['tab_blog_related'] = $this->language->get('tab_blog_related');
@@ -410,9 +410,9 @@ class ControllerProductProduct extends Controller {
 			} else {
 				$this->data['minimum'] = 1;
 			}
-
+			$this->data['basic_attribute'] = $this->language->get('basic_attribute');
 			$this->data['review_status'] = $this->config->get('config_review_status');
-			$this->data['reviews'] = sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']);
+			$this->data['reviews'] = $this->language->get('text_reviews');
 			$this->data['reviews_login'] = $this->language->get('reviews_login');
 			$this->data['rating'] = (int)$product_info['rating'];
 			$this->data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');

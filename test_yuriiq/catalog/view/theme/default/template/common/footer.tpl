@@ -26,45 +26,18 @@
 </div>
 </div>
 </div>
-<!--
+
 <div id="footer">
   <?php if ($informations) { ?>
-  <div class="column">
-    <h3><?php echo $text_information; ?></h3>
-    <ul>
+  <div class="line">
       <?php foreach ($informations as $information) { ?>
-      <li><a href="<?php echo $information['href']; ?>"><?php echo $information['title']; ?></a></li>
+      <a href="<?php echo $information['href']; ?>"><?php echo $information['title']; ?></a>
       <?php } ?>
+	  <a href="<?php echo $sitemap; ?>"><?php echo $text_sitemap; ?></a>
+	  <a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a>
     </ul>
   </div>
   <?php } ?>
-  <div class="column">
-    <h3><?php echo $text_service; ?></h3>
-    <ul>
-      <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
-	  <li><a href="<?php echo $affiliate; ?>"><?php echo $text_affiliate; ?></a></li>
-      <li><a href="<?php echo $sitemap; ?>"><?php echo $text_sitemap; ?></a></li>
-    </ul>
-  </div>
-  <div class="column">
-    <h3><?php echo $text_extra; ?></h3>
-    <ul>
-      <li><a href="<?php echo $manufacturer; ?>"><?php echo $text_manufacturer; ?></a></li>
-      <li><a href="<?php echo $voucher; ?>"><?php echo $text_voucher; ?></a></li>
-      <li><a href="<?php echo $special; ?>"><?php echo $text_special; ?></a></li>
-	  <li><a href="<?php echo $latest; ?>"><?php echo $text_latest; ?></a></li>
-    </ul>
-  </div>
-  <div class="column-last">
-    <h3><?php echo $text_account; ?></h3>
-    <ul>
-	  <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a></li>
-      <li><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a></li>
-      <li><a href="<?php echo $wishlist; ?>"><?php echo $text_wishlist; ?></a></li>
-      <li><a href="<?php echo $newsletter; ?>"><?php echo $text_newsletter; ?></a></li>
-    </ul>
-  </div>
-  <hr>
 <div id="powered"><?php echo $powered; ?></div>
 <div id="social">
 	   <a target="_blank" href="<?php echo $vk; ?>"><i class="fa fa-vk"></i></a>
@@ -75,5 +48,4 @@
 </div>
 </div>
 </div>
--->
 </body></html>

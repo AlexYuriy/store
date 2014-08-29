@@ -1831,21 +1831,18 @@ ul.box-filter > li ul {
 	clear: both;
 	overflow: auto;
 	min-height: 100px;
-	background: #303030;
-    color: #E2E2E2;
+	background: #F8F8F8;
     margin-top: 30px;
 	min-width: 980px;
 } 
 #custom-footer-bg {
 	border-top: 1px solid #DBDEE1;
-	border-bottom: 1px solid #DDDDDD;
 	background: #F8F8F8;
 }
 #custom-footer {
   height: 220px;
   margin-left: auto;
   margin-right: auto;
-  padding-bottom: 20px;
   padding-top: 20px;
   text-align: left;
   position: relative;
@@ -1908,7 +1905,6 @@ ul.box-filter > li ul {
 	margin-left: auto;
     margin-right: auto;
     text-align: left;
-	padding-top: 20px;
     width: 980px;
 }
 #footer h3 {
@@ -1922,6 +1918,10 @@ ul.box-filter > li ul {
 	float: left;
 	width: 28%;
 	min-height: 100px;
+}
+#footer .line {
+	float:center;
+	text-align:center;
 }
 #footer .column-last {
 	width: 15%;
@@ -1937,20 +1937,19 @@ ul.box-filter > li ul {
 #footer .column ul li {
 	margin-bottom: 3px;
 }
+#footer .line a,
 #footer .column-last a,
 #footer .column a {
 	text-decoration: none;
-	color: #ccc;
 }
+#footer .line a:hover,
 #footer .column-last a:hover, 
 #footer .column a:hover {
 	color: #38B0E3;
 }
 #powered {
-	float: left;
-	text-align: left;
+	text-align: center;
 	clear: both;
-	padding-bottom: 20px;
 }
 #powered a{
 	color: #ccc;
@@ -1962,7 +1961,6 @@ ul.box-filter > li ul {
 #social {
 	float: right;
 	font-size: 19px;
-    padding-top: 5px;
 	padding-bottom: 20px;
 }
 #social a {

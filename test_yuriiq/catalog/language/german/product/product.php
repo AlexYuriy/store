@@ -15,7 +15,7 @@ $_['text_option']       = 'Verfügbare Optionen';
 $_['text_qty']          = 'Menge:';
 $_['text_minimum']      = '(Mindestbestellmenge %s Stück)';
 $_['text_or']           = '- ODER -';
-$_['text_reviews']      = '%s Beurteilungen.';
+$_['text_reviews']      = 'Beurteilungen.';
 $_['text_write']        = 'Neue Beurteilung';
 $_['text_no_reviews']   = 'Für dieses Produkt gibt es noch keine Beurteilungen.';
 $_['text_on']           = ' auf ';
@@ -27,6 +27,8 @@ $_['text_wait']         = 'Bitte warten!';
 $_['text_tags']         = 'Tags:';
 $_['text_error']        = 'Produkt nicht gefunden!';
 $_['text_payment_profile'] = 'Zahlungs Profile';
+$_['basic_attribute']   = 'Grundparameter';
+
 
 $_['text_trial_description'] = '%s every %d %s(s) for %d payment(s) then';
 $_['text_payment_description'] = '%s every %d %s(s) for %d payment(s)';
