@@ -1843,6 +1843,7 @@ ul.box-filter > li ul {
   height: 220px;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 10px;
   padding-top: 20px;
   text-align: left;
   position: relative;
@@ -1967,7 +1968,7 @@ ul.box-filter > li ul {
 	font-size: 19px;
 }
 #social a:hover {
-	color: #ccc;
+	color: #2F96B4;
 }
 #social .fa {
 	padding-right: 10px;
