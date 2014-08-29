@@ -78,8 +78,8 @@
     // печать списка товаров
     function print_cart(){
 	// элементы, которые необходимо распечатать
-	var forPrintClass = new Array('cart-info', 'cart-module', 'cart-total', 'warning', 'content');
-	var forPrintId = new Array('container', 'content');
+	var forPrintClass = new Array('cart-info', 'cart-module', 'cart-total', 'warning', 'content', 'footer-logo', 'column-welcome', 'column-contacts');
+	var forPrintId = new Array('container', 'content', 'custom-footer-bg', 'container-footer', 'container-footer', 'custom-footer');
       
 	// Получим коллекцию элементов тега body:
 	var elements = document.body.getElementsByTagName("div");
@@ -124,9 +124,8 @@
 	window.print();
 	
 	// 
-	alert('Print success');
 	
-	location.reload();
+	window.onfocus=function(){ location.reload();}
 	
 	
     };
