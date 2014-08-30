@@ -50,6 +50,7 @@ $_['button_voucher']        = 'Bewerben Gutschein';
 $_['button_upload']         = 'Upload File';
 $_['button_reward']         = 'Bewerben Punkte';
 $_['button_quote']          = 'Börsen';
+$_['button_print']	    = 'Drucken';
 
 // Error
 $_['error_upload_1']        = 'Die Datei überschreitet die upload_max_filesize Definition in der php.ini!';

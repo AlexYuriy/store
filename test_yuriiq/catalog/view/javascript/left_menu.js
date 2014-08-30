@@ -101,7 +101,7 @@
 	    }
 	    
 	    // поиск по классу
-	    for (j = 0; j < lengthForPrint; j++){
+	    for (j = 0; j < lengthForPrint; j++) {
 		 if (elements[i].className == forPrintClass[j]) {
 		    print = true;
 		    continue;
@@ -122,11 +122,8 @@
 	
 	// печать
 	window.print();
-	
-	// 
-	
 	window.onfocus=function(){ location.reload();}
-	
+	location.reload();
 	
     };
     
