@@ -14,4 +14,9 @@ $_['text_special']        = 'Specials';
 $_['text_latest']         = 'Latest';
 $_['text_brands']         = 'Brands';
 $_['text_categories'] 	  = 'Categories';
+
+// LeftMenu
+$_['text_q_and_a']  	  = 'FAQ';
+$_['text_news']           = 'News';
+// /LeftMenu
 ?>

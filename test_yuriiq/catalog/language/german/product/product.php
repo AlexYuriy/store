@@ -52,8 +52,11 @@ $_['entry_captcha']     = 'Bitte den unten dargestellten Code einfügen:';
 // Tabs
 $_['tab_description']   = 'Beschreibung';
 $_['tab_attribute']     = 'Spezifikation';
-$_['tab_review']        = 'Beurteilungen (%s)';
-$_['tab_related']       = 'Ähnliche Produkte';
+$_['tab_review']        = 'Beurteilungen';
+$_['tab_related']       = 'Ähnliche';
+$_['tab_related2']      = 'Empfehlen';
+$_['tab_blog_related']  = 'Blog';
+$_['tab_downloads']		= 'Downloads';
 
 // Buttons
 $_['button_edit_product']    = 'Produkt bearbeiten';

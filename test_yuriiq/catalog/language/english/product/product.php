@@ -51,8 +51,11 @@ $_['entry_captcha']     = 'Enter the code in the box below:';
 // Tabs
 $_['tab_description']   = 'Description';
 $_['tab_attribute']     = 'Specification';
-$_['tab_review']        = 'Reviews (%s)';
+$_['tab_review']        = 'Reviews';
 $_['tab_related']       = 'Related Products'; 
+$_['tab_related2']      = 'Similar';
+$_['tab_blog_related']  = 'Blog';
+$_['tab_downloads']		= 'Downloads';
 
 // Buttons
 $_['button_edit_product']    = 'Edit product';

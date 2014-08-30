@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']     = 'neueste';
+$_['heading_title']     = 'Neueste';
 
 // Text
 $_['text_empty']        = 'Keine Produkte in dieser Kategorie vorhanden.';
@@ -25,5 +25,8 @@ $_['text_rating_asc']   = 'Bewertung (Niedrig)';
 $_['text_rating_desc']  = 'Bewertung (Hoch)';
 $_['text_model_asc']    = 'Modell (A - Z)';
 $_['text_model_desc']   = 'Modell (Z - A)';
+$_['text_date_asc']     = 'Datum (Aufsteigend)';
+$_['text_date_desc']    = 'Datum (absteigend)';
 $_['text_limit']        = 'Anzeige:';
+
 ?>

@@ -11,7 +11,12 @@ $_['text_logout']     	 = 'Abmelden';
 $_['text_checkout']      = 'Kasse';
 $_['text_blog']	   	     = 'Blog';
 $_['text_special']       = 'Specials';
-$_['text_latest']        = 'neueste';
+$_['text_latest']        = 'Neueste';
 $_['text_brands']        = 'Marken';
 $_['text_categories'] 	 = 'Categories';
+
+// LeftMenu
+$_['text_q_and_a']  	  = 'FAQ';
+$_['text_news']           = 'Nachricht';
+// /LeftMenu
 ?>

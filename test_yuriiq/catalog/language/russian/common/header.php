@@ -17,8 +17,7 @@ $_['text_page']           = 'страница';
 $_['text_categories']     = 'Категории товаров';
 
 // LeftMenu
-$_['text_cart']           = 'Корзина';
 $_['text_q_and_a']  	  = 'ЧАВО';
-$_['text_stocks']         = 'Акции';
 $_['text_news']           = 'Новости';
+// /LeftMenu
 ?>

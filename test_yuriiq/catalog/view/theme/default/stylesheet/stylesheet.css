@@ -1080,7 +1080,7 @@ ul.box-filter > li ul {
 	font-weight: bold;
 }
 .product-list > div {
-	overflow: auto;
+	overflow: hidden;
 	margin-bottom: 15px;
 }
 .product-list .right {
