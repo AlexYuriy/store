@@ -417,7 +417,7 @@ class ControllerProductProduct extends Controller {
 			$this->data['rating'] = (int)$product_info['rating'];
 			$this->data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
 			$this->data['attribute_groups'] = $this->model_catalog_product->getProductAttributes($this->request->get['product_id']);
-
+			$this->data['is_logged'] = $this->customer->isLogged();
 			$this->data['products'] = array();
 
 			$results = $this->model_catalog_product->getProductRelated($this->request->get['product_id']);
@@ -692,7 +692,7 @@ class ControllerProductProduct extends Controller {
 
 		$this->load->model('catalog/review');
 
-		$this->data['admin_answer'] = $this->language->get('admin_answer');
+		$this->data['admin_author'] = $this->language->get('admin_author');
 		$this->data['text_on'] = $this->language->get('text_on');
 		$this->data['text_no_reviews'] = $this->language->get('text_no_reviews');
 

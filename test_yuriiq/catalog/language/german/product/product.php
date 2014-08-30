@@ -28,8 +28,7 @@ $_['text_tags']         = 'Tags:';
 $_['text_error']        = 'Produkt nicht gefunden!';
 $_['text_payment_profile'] = 'Zahlungs Profile';
 $_['basic_attribute']   = 'Grundparameter';
-
-
+$_['reviews_login']     = 'Sie müssen registriert sein, um kommentieren.';
 $_['text_trial_description'] = '%s every %d %s(s) for %d payment(s) then';
 $_['text_payment_description'] = '%s every %d %s(s) for %d payment(s)';
 $_['text_payment_until_canceled_description'] = '%s every %d %s(s) until canceled';
@@ -39,7 +38,7 @@ $_['text_semi_month'] = 'Halb Monat';
 $_['text_month'] = 'Monat';
 $_['text_year'] = 'Jahr';
 
-$_['admin_answer']    = 'Management-Antwort';
+$_['admin_author']    = 'Management-Antwort';
 
 // Entry
 $_['entry_name']        = 'Mein Name:';

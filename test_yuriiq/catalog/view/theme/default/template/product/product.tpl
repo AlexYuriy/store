@@ -325,7 +325,7 @@
   <?php if ($review_status) { ?>
   <div id="tab-review" class="tab-content">
     <div id="review"></div>
-	<?php if ($this->customer->isLogged()) { ?>
+	<?php if ($is_logged) { ?>
     <h2 id="review-title"><?php echo $text_write; ?></h2>
     <b><?php echo $entry_name; ?></b><br />
     <input type="text" name="name" value="" />

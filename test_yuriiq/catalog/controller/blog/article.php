@@ -182,6 +182,7 @@ class ControllerBlogArticle extends Controller {
 			
 			$this->data['review_status'] = $this->config->get('config_blog_review_status');
 			$this->data['article_review'] = (int)$article_info['article_review'];
+			$this->data['is_logged'] = $this->customer->isLogged();			
 			$this->data['reviews'] = sprintf($this->language->get('text_reviews'), (int)$article_info['reviews']);
 			$this->data['rating'] = (int)$article_info['rating'];
 			$this->data['gstatus'] = (int)$article_info['gstatus'];

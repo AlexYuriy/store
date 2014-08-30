@@ -14,7 +14,7 @@
   <div class="text"><?php echo $review['text']; ?></div>
   <?php if ($review['text_answer']) { ?><br>
     <div class="box">
-		<div class="box-heading"><?php echo $admin_answer; ?></div>
+		<div class="box-heading"><?php echo $admin_author; ?></div>
 		<div class="box-content"><?php echo $review['text_answer']; ?></div>
 	</div>
   <?php } ?>

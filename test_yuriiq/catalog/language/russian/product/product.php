@@ -29,7 +29,7 @@ $_['text_error']        = 'Товар не найден!';
 $_['text_weight']       = 'Вес:';
 $_['text_dimension'] 	= 'Размеры (Д*Ш*В):';
 $_['reviews_login']     = 'Для комментирования - зарегистрируйтесь.';
-$_['basic_attribute']     = 'Базовые параметры';
+$_['basic_attribute']   = 'Базовые параметры';
 // Entry
 $_['entry_name']        = 'Ваше имя:';
 $_['entry_review']      = 'Ваш отзыв:';
@@ -38,6 +38,7 @@ $_['entry_good']        = 'Хорошо';
 $_['entry_bad']         = 'Плохо';
 $_['entry_captcha']     = 'Введите код, указанный на картинке:';
 
+$_['admin_author']      = 'Ответ администрации';
 // Tabs
 $_['tab_description']   = 'Описание';
 $_['tab_attribute']     = 'Характеристики';
@@ -48,9 +49,7 @@ $_['tab_blog_related']  = 'Статьи';
 $_['tab_downloads']		= 'Загрузки';
 
 // Buttons
-$_['button_edit_product']    = 'Редактировать товар';
-
-$_['admin_answer']    = 'Ответ администрации';
+$_['button_edit_product'] = 'Редактировать товар';
 
 // Error
 $_['error_name']        = 'Имя должно быть от 3 до 25 символов!';

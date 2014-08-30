@@ -117,6 +117,7 @@
   <?php if ($article_review) { ?>
   <div class="blog-review">
      <div id="review"></div>
+	<?php if ($is_logged) { ?>
     <div id="rev" class="prev"><a class="button"><?php echo $text_write; ?></a></div>
 	<div id="rev_add" class="visible">
     <b><?php echo $entry_name; ?></b><br />
@@ -148,6 +149,7 @@
       <div class="right"><a id="button-review" class="button"><?php echo $button_continue; ?></a></div>
     </div>
 	</div>
+  <?php } ?>
   </div>
   <?php } ?>
   <?php } ?>

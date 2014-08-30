@@ -28,7 +28,7 @@ $_['text_tags']         = 'Tags:';
 $_['text_error']        = 'Product not found!';
 $_['text_payment_profile'] = 'Payment Profiles';
 $_['basic_attribute']   = 'Basic parameters';
-
+$_['reviews_login']     = 'You must be registered to comment.';
 $_['text_trial_description'] = '%s every %d %s(s) for %d payment(s) then';
 $_['text_payment_description'] = '%s every %d %s(s) for %d payment(s)';
 $_['text_payment_until_canceled_description'] = '%s every %d %s(s) until canceled';
