@@ -133,6 +133,12 @@ class ControllerAccountRegister extends Controller {
 			$this->data['error_confirm'] = '';
 		}
 
+		if (isset($this->error['company'])) {
+			$this->data['error_company'] = $this->error['company'];
+		} else {
+			$this->data['error_company'] = '';
+		}
+		
 		if (isset($this->error['company_id'])) {
 			$this->data['error_company_id'] = $this->error['company_id'];
 		} else {
@@ -253,12 +259,6 @@ class ControllerAccountRegister extends Controller {
 			$this->data['address_1'] = '';
 		}
 
-		if (isset($this->request->post['address_2'])) {
-			$this->data['address_2'] = $this->request->post['address_2'];
-		} else {
-			$this->data['address_2'] = '';
-		}
-
 		if (isset($this->request->post['postcode'])) {
 			$this->data['postcode'] = $this->request->post['postcode'];
 		} elseif (isset($this->session->data['shipping_postcode'])) {
@@ -354,20 +354,12 @@ class ControllerAccountRegister extends Controller {
 			$this->error['firstname'] = $this->language->get('error_firstname');
 		}
 
-		if ((utf8_strlen($this->request->post['lastname']) < 1) || (utf8_strlen($this->request->post['lastname']) > 32)) {
-			$this->error['lastname'] = $this->language->get('error_lastname');
-		}
-
 		if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $this->request->post['email'])) {
 			$this->error['email'] = $this->language->get('error_email');
 		}
 
 		if ($this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
 			$this->error['warning'] = $this->language->get('error_exists');
-		}
-
-		if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
-			$this->error['telephone'] = $this->language->get('error_telephone');
 		}
 
 		// Customer Group
@@ -382,23 +374,19 @@ class ControllerAccountRegister extends Controller {
 		$customer_group = $this->model_account_customer_group->getCustomerGroup($customer_group_id);
 
 		if ($customer_group) {	
+			// Company 
+			if ($customer_group['company_display'] && empty($this->request->post['company'])) {
+				$this->error['company'] = $this->language->get('error_company');
+			}
+			
 			// Company ID
-			if ($customer_group['company_id_display'] && $customer_group['company_id_required'] && empty($this->request->post['company_id'])) {
+			if ($customer_group['company_id_display'] && empty($this->request->post['company_id'])) {
 				$this->error['company_id'] = $this->language->get('error_company_id');
 			}
-
 			// Tax ID 
-			if ($customer_group['tax_id_display'] && $customer_group['tax_id_required'] && empty($this->request->post['tax_id'])) {
+			if ($customer_group['tax_id_display'] && empty($this->request->post['tax_id'])) {
 				$this->error['tax_id'] = $this->language->get('error_tax_id');
 			}						
-		}
-
-		if ((utf8_strlen($this->request->post['address_1']) < 3) || (utf8_strlen($this->request->post['address_1']) > 128)) {
-			$this->error['address_1'] = $this->language->get('error_address_1');
-		}
-
-		if ((utf8_strlen($this->request->post['city']) < 2) || (utf8_strlen($this->request->post['city']) > 128)) {
-			$this->error['city'] = $this->language->get('error_city');
 		}
 
 		$this->load->model('localisation/country');

@@ -23,7 +23,7 @@
             <?php } ?></td>
         </tr>
         <tr>
-          <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
+          <td><?php echo $entry_lastname; ?></td>
           <td><input type="text" name="lastname" value="<?php echo $lastname; ?>" />
             <?php if ($error_lastname) { ?>
             <span class="error"><?php echo $error_lastname; ?></span>
@@ -37,7 +37,7 @@
             <?php } ?></td>
         </tr>
         <tr>
-          <td><span class="required">*</span> <?php echo $entry_telephone; ?></td>
+          <td> <?php echo $entry_telephone; ?></td>
           <td><input type="text" name="telephone" value="<?php echo $telephone; ?>" />
             <?php if ($error_telephone) { ?>
             <span class="error"><?php echo $error_telephone; ?></span>
@@ -51,11 +51,7 @@
     </div>
     <h2><?php echo $text_your_address; ?></h2>
     <div class="content">
-      <table class="form">
-        <tr>
-          <td><?php echo $entry_company; ?></td>
-          <td><input type="text" name="company" value="<?php echo $company; ?>" /></td>
-        </tr>        
+      <table class="form">        
         <tr style="display: <?php echo (count($customer_groups) > 1 ? 'table-row' : 'none'); ?>;">
           <td><?php echo $entry_customer_group; ?></td>
           <td><?php foreach ($customer_groups as $customer_group) { ?>
@@ -69,44 +65,26 @@
             <br />
             <?php } ?>
             <?php } ?></td>
-        </tr>      
+        </tr>
+        <tr id="company-display">
+          <td><span class="required">*</span> <?php echo $entry_company; ?></td>
+          <td><input type="text" name="company" value="<?php echo $company; ?>" />
+		  <?php if ($error_company) { ?>
+            <span class="error"><?php echo $error_company; ?></span>
+            <?php } ?></td>
+        </tr>		
         <tr id="company-id-display">
-          <td><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?></td>
+          <td><span class="required">*</span> <?php echo $entry_company_id; ?></td>
           <td><input type="text" name="company_id" value="<?php echo $company_id; ?>" />
             <?php if ($error_company_id) { ?>
             <span class="error"><?php echo $error_company_id; ?></span>
             <?php } ?></td>
         </tr>
         <tr id="tax-id-display">
-          <td><span id="tax-id-required" class="required">*</span> <?php echo $entry_tax_id; ?></td>
+          <td><span class="required">*</span> <?php echo $entry_tax_id; ?></td>
           <td><input type="text" name="tax_id" value="<?php echo $tax_id; ?>" />
             <?php if ($error_tax_id) { ?>
             <span class="error"><?php echo $error_tax_id; ?></span>
-            <?php } ?></td>
-        </tr>
-        <tr>
-          <td><span class="required">*</span> <?php echo $entry_address_1; ?></td>
-          <td><input type="text" name="address_1" value="<?php echo $address_1; ?>" />
-            <?php if ($error_address_1) { ?>
-            <span class="error"><?php echo $error_address_1; ?></span>
-            <?php } ?></td>
-        </tr>
-        <tr>
-          <td><?php echo $entry_address_2; ?></td>
-          <td><input type="text" name="address_2" value="<?php echo $address_2; ?>" /></td>
-        </tr>
-        <tr>
-          <td><span class="required">*</span> <?php echo $entry_city; ?></td>
-          <td><input type="text" name="city" value="<?php echo $city; ?>" />
-            <?php if ($error_city) { ?>
-            <span class="error"><?php echo $error_city; ?></span>
-            <?php } ?></td>
-        </tr>
-        <tr>
-          <td><span id="postcode-required" class="required">*</span> <?php echo $entry_postcode; ?></td>
-          <td><input type="text" name="postcode" value="<?php echo $postcode; ?>" />
-            <?php if ($error_postcode) { ?>
-            <span class="error"><?php echo $error_postcode; ?></span>
             <?php } ?></td>
         </tr>
         <tr>
@@ -131,6 +109,27 @@
             </select>
             <?php if ($error_zone) { ?>
             <span class="error"><?php echo $error_zone; ?></span>
+            <?php } ?></td>
+        </tr>
+		<tr>
+          <td> <?php echo $entry_city; ?></td>
+          <td><input type="text" name="city" value="<?php echo $city; ?>" />
+            <?php if ($error_city) { ?>
+            <span class="error"><?php echo $error_city; ?></span>
+            <?php } ?></td>
+        </tr>
+		<tr>
+          <td><span id="postcode-required" class="required">*</span> <?php echo $entry_postcode; ?></td>
+          <td><input type="text" name="postcode" value="<?php echo $postcode; ?>" />
+            <?php if ($error_postcode) { ?>
+            <span class="error"><?php echo $error_postcode; ?></span>
+            <?php } ?></td>
+        </tr>
+		<tr>
+          <td><?php echo $entry_address_1; ?></td>
+          <td><input type="text" name="address_1" value="<?php echo $address_1; ?>" />
+            <?php if ($error_address_1) { ?>
+            <span class="error"><?php echo $error_address_1; ?></span>
             <?php } ?></td>
         </tr>
       </table>
@@ -199,35 +198,28 @@ $('input[name=\'customer_group_id\']:checked').live('change', function() {
 	
 <?php foreach ($customer_groups as $customer_group) { ?>
 	customer_group[<?php echo $customer_group['customer_group_id']; ?>] = [];
+	customer_group[<?php echo $customer_group['customer_group_id']; ?>]['company_display'] = '<?php echo $customer_group['company_display']; ?>';
 	customer_group[<?php echo $customer_group['customer_group_id']; ?>]['company_id_display'] = '<?php echo $customer_group['company_id_display']; ?>';
-	customer_group[<?php echo $customer_group['customer_group_id']; ?>]['company_id_required'] = '<?php echo $customer_group['company_id_required']; ?>';
 	customer_group[<?php echo $customer_group['customer_group_id']; ?>]['tax_id_display'] = '<?php echo $customer_group['tax_id_display']; ?>';
-	customer_group[<?php echo $customer_group['customer_group_id']; ?>]['tax_id_required'] = '<?php echo $customer_group['tax_id_required']; ?>';
 <?php } ?>	
 
 	if (customer_group[this.value]) {
+		if (customer_group[this.value]['company_display'] == '1') {
+			$('#company-display').show();
+		} else {
+			$('#company-display').hide();
+		}
+
 		if (customer_group[this.value]['company_id_display'] == '1') {
 			$('#company-id-display').show();
 		} else {
 			$('#company-id-display').hide();
 		}
-		
-		if (customer_group[this.value]['company_id_required'] == '1') {
-			$('#company-id-required').show();
-		} else {
-			$('#company-id-required').hide();
-		}
-		
+				
 		if (customer_group[this.value]['tax_id_display'] == '1') {
 			$('#tax-id-display').show();
 		} else {
 			$('#tax-id-display').hide();
-		}
-		
-		if (customer_group[this.value]['tax_id_required'] == '1') {
-			$('#tax-id-required').show();
-		} else {
-			$('#tax-id-required').hide();
 		}	
 	}
 });

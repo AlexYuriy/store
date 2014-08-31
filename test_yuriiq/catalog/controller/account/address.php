@@ -307,6 +307,12 @@ class ControllerAccountAddress extends Controller {
 			$this->data['error_lastname'] = '';
 		}
 
+		if (isset($this->error['company'])) {
+			$this->data['error_company'] = $this->error['company'];
+		} else {
+			$this->data['error_company'] = '';
+		}
+		
 		if (isset($this->error['company_id'])) {
 			$this->data['error_company_id'] = $this->error['company_id'];
 		} else {
@@ -403,6 +409,12 @@ class ControllerAccountAddress extends Controller {
 
 		$customer_group_info = $this->model_account_customer_group->getCustomerGroup($this->customer->getCustomerGroupId());
 
+		if ($customer_group_info) {
+			$this->data['company_display'] = $customer_group_info['company_display'];
+		} else {
+			$this->data['company_display'] = '';
+		}
+		
 		if ($customer_group_info) {
 			$this->data['company_id_display'] = $customer_group_info['company_id_display'];
 		} else {
@@ -512,6 +524,25 @@ class ControllerAccountAddress extends Controller {
 			$this->error['city'] = $this->language->get('error_city');
 		}
 
+			// Customer Group
+		$this->load->model('account/customer_group');
+		$customer_group_info = $this->model_account_customer_group->getCustomerGroup($this->customer->getCustomerGroupId());
+		if ($customer_group_info) {	
+			// Company 
+			if ($customer_group_info['company_display'] && empty($this->request->post['company'])) {
+				$this->error['company'] = $this->language->get('error_company');
+			}
+			
+			// Company ID
+			if ($customer_group_info['company_id_display'] && empty($this->request->post['company_id'])) {
+				$this->error['company_id'] = $this->language->get('error_company_id');
+			}
+			// Tax ID 
+			if ($customer_group_info['tax_id_display'] && empty($this->request->post['tax_id'])) {
+				$this->error['tax_id'] = $this->language->get('error_tax_id');
+			}						
+		}
+		
 		$this->load->model('localisation/country');
 
 		$country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
