@@ -19,7 +19,6 @@ class ControllerCheckoutRegister extends Controller {
 		$this->data['entry_company_id'] = $this->language->get('entry_company_id');
 		$this->data['entry_tax_id'] = $this->language->get('entry_tax_id');		
 		$this->data['entry_address_1'] = $this->language->get('entry_address_1');
-		$this->data['entry_address_2'] = $this->language->get('entry_address_2');
 		$this->data['entry_postcode'] = $this->language->get('entry_postcode');
 		$this->data['entry_city'] = $this->language->get('entry_city');
 		$this->data['entry_country'] = $this->language->get('entry_country');
@@ -28,16 +27,12 @@ class ControllerCheckoutRegister extends Controller {
 		$this->data['entry_password'] = $this->language->get('entry_password');
 		$this->data['entry_confirm'] = $this->language->get('entry_confirm');
 		$this->data['entry_shipping'] = $this->language->get('entry_shipping');
-
 		$this->data['button_continue'] = $this->language->get('button_continue');
-
 		$this->data['customer_groups'] = array();
 
 		if (is_array($this->config->get('config_customer_group_display'))) {
 			$this->load->model('account/customer_group');
-
 			$customer_groups = $this->model_account_customer_group->getCustomerGroups();
-
 			foreach ($customer_groups  as $customer_group) {
 				if (in_array($customer_group['customer_group_id'], $this->config->get('config_customer_group_display'))) {
 					$this->data['customer_groups'][] = $customer_group;
@@ -46,7 +41,6 @@ class ControllerCheckoutRegister extends Controller {
 		}
 
 		$this->data['customer_group_id'] = $this->config->get('config_customer_group_id');
-
 		if (isset($this->session->data['shipping_postcode'])) {
 			$this->data['postcode'] = $this->session->data['shipping_postcode'];		
 		} else {
@@ -96,11 +90,8 @@ class ControllerCheckoutRegister extends Controller {
 
 	public function validate() {
 		$this->language->load('checkout/checkout');
-
 		$this->load->model('account/customer');
-
 		$json = array();
-
 		// Validate if customer is already logged out.
 		if ($this->customer->isLogged()) {
 			$json['redirect'] = $this->url->link('checkout/checkout', '', 'SSL');			
@@ -163,13 +154,17 @@ class ControllerCheckoutRegister extends Controller {
 			$customer_group = $this->model_account_customer_group->getCustomerGroup($customer_group_id);
 
 			if ($customer_group) {	
-				// Company ID
-				if ($customer_group['company_id_display'] && $customer_group['company_id_required'] && empty($this->request->post['company_id'])) {
+			// Company 
+				if ($customer_group['company_display'] && empty($this->request->post['company'])) {
+					$json['error']['company'] = $this->language->get('error_company');
+				}
+			
+			// Company ID
+				if ($customer_group['company_id_display'] && empty($this->request->post['company_id'])) {
 					$json['error']['company_id'] = $this->language->get('error_company_id');
 				}
-
-				// Tax ID
-				if ($customer_group['tax_id_display'] && $customer_group['tax_id_required'] && empty($this->request->post['tax_id'])) {
+			// Tax ID 
+				if ($customer_group['tax_id_display'] && empty($this->request->post['tax_id'])) {
 					$json['error']['tax_id'] = $this->language->get('error_tax_id');
 				}						
 			}

@@ -1,27 +1,12 @@
 <div class="left">
   <h2><?php echo $text_new_customer; ?></h2>
-  <p><?php echo $text_checkout; ?></p>
-  <label for="register">
-    <?php if ($account == 'register') { ?>
-    <input type="radio" name="account" value="register" id="register" checked="checked" />
-    <?php } else { ?>
-    <input type="radio" name="account" value="register" id="register" />
-    <?php } ?>
-    <b><?php echo $text_register; ?></b></label>
-  <br />
-  <?php if ($guest_checkout) { ?>
-  <label for="guest">
-    <?php if ($account == 'guest') { ?>
-    <input type="radio" name="account" value="guest" id="guest" checked="checked" />
-    <?php } else { ?>
-    <input type="radio" name="account" value="guest" id="guest" />
-    <?php } ?>
-    <b><?php echo $text_guest; ?></b></label>
-  <br />
-  <?php } ?>
-  <br />
   <p><?php echo $text_register_account; ?></p>
-  <input type="button" value="<?php echo $button_continue; ?>" id="button-account" class="button" />
+  <label for="register">
+	<input type="button" value="<?php echo $text_register; ?>" id="button-register" class="button" />
+  </label>
+  <br />
+  <br />  
+  <input type="button" value="<?php echo $text_guest; ?>" id="button-account" class="button" />
   <br />
   <br />
 </div>

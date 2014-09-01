@@ -23,10 +23,6 @@
 </div>
 <div class="right">
   <h2><?php echo $text_your_address; ?></h2>
-  <?php echo $entry_company; ?><br />
-  <input type="text" name="company" value="<?php echo $company; ?>" class="large-field" />
-  <br />
-  <br />
   <div style="display: <?php echo (count($customer_groups) > 1 ? 'table-row' : 'none'); ?>;"> <?php echo $entry_customer_group; ?><br />
     <?php foreach ($customer_groups as $customer_group) { ?>
     <?php if ($customer_group['customer_group_id'] == $customer_group_id) { ?>
@@ -41,22 +37,23 @@
     <?php } ?>
     <br />
   </div>
-  <div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
+  <div id="company-display"><span class="required">*</span> <?php echo $entry_company; ?><br />
+    <input type="text" name="company" value="<?php echo $company; ?>" class="large-field" />
+    <br />
+    <br />
+  </div>
+  <div id="company-id-display"><span class="required">*</span> <?php echo $entry_company_id; ?><br />
     <input type="text" name="company_id" value="<?php echo $company_id; ?>" class="large-field" />
     <br />
     <br />
   </div>
-  <div id="tax-id-display"><span id="tax-id-required" class="required">*</span> <?php echo $entry_tax_id; ?><br />
+  <div id="tax-id-display"><span class="required">*</span> <?php echo $entry_tax_id; ?><br />
     <input type="text" name="tax_id" value="<?php echo $tax_id; ?>" class="large-field" />
     <br />
     <br />
   </div>
   <span class="required">*</span> <?php echo $entry_address_1; ?><br />
   <input type="text" name="address_1" value="<?php echo $address_1; ?>" class="large-field" />
-  <br />
-  <br />
-  <?php echo $entry_address_2; ?><br />
-  <input type="text" name="address_2" value="<?php echo $address_2; ?>" class="large-field" />
   <br />
   <br />
   <span class="required">*</span> <?php echo $entry_city; ?><br />
@@ -111,35 +108,28 @@ $('#payment-address input[name=\'customer_group_id\']:checked').live('change', f
 	
 <?php foreach ($customer_groups as $customer_group) { ?>
 	customer_group[<?php echo $customer_group['customer_group_id']; ?>] = [];
+	customer_group[<?php echo $customer_group['customer_group_id']; ?>]['company_display'] = '<?php echo $customer_group['company_display']; ?>';
 	customer_group[<?php echo $customer_group['customer_group_id']; ?>]['company_id_display'] = '<?php echo $customer_group['company_id_display']; ?>';
-	customer_group[<?php echo $customer_group['customer_group_id']; ?>]['company_id_required'] = '<?php echo $customer_group['company_id_required']; ?>';
 	customer_group[<?php echo $customer_group['customer_group_id']; ?>]['tax_id_display'] = '<?php echo $customer_group['tax_id_display']; ?>';
-	customer_group[<?php echo $customer_group['customer_group_id']; ?>]['tax_id_required'] = '<?php echo $customer_group['tax_id_required']; ?>';
 <?php } ?>	
 
 	if (customer_group[this.value]) {
+		if (customer_group[this.value]['company_display'] == '1') {
+			$('#company-display').show();
+		} else {
+			$('#company-display').hide();
+		}
+
 		if (customer_group[this.value]['company_id_display'] == '1') {
 			$('#company-id-display').show();
 		} else {
 			$('#company-id-display').hide();
 		}
-		
-		if (customer_group[this.value]['company_id_required'] == '1') {
-			$('#company-id-required').show();
-		} else {
-			$('#company-id-required').hide();
-		}
-		
+				
 		if (customer_group[this.value]['tax_id_display'] == '1') {
 			$('#tax-id-display').show();
 		} else {
 			$('#tax-id-display').hide();
-		}
-		
-		if (customer_group[this.value]['tax_id_required'] == '1') {
-			$('#tax-id-required').show();
-		} else {
-			$('#tax-id-required').hide();
 		}	
 	}
 });

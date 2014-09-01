@@ -145,7 +145,6 @@ class ControllerCheckoutConfirm extends Controller {
 			$data['payment_company_id'] = $payment_address['company_id'];	
 			$data['payment_tax_id'] = $payment_address['tax_id'];	
 			$data['payment_address_1'] = $payment_address['address_1'];
-			$data['payment_address_2'] = $payment_address['address_2'];
 			$data['payment_city'] = $payment_address['city'];
 			$data['payment_postcode'] = $payment_address['postcode'];
 			$data['payment_zone'] = $payment_address['zone'];
@@ -179,7 +178,6 @@ class ControllerCheckoutConfirm extends Controller {
 				$data['shipping_lastname'] = $shipping_address['lastname'];	
 				$data['shipping_company'] = $shipping_address['company'];	
 				$data['shipping_address_1'] = $shipping_address['address_1'];
-				$data['shipping_address_2'] = $shipping_address['address_2'];
 				$data['shipping_city'] = $shipping_address['city'];
 				$data['shipping_postcode'] = $shipping_address['postcode'];
 				$data['shipping_zone'] = $shipping_address['zone'];
@@ -204,7 +202,6 @@ class ControllerCheckoutConfirm extends Controller {
 				$data['shipping_lastname'] = '';	
 				$data['shipping_company'] = '';	
 				$data['shipping_address_1'] = '';
-				$data['shipping_address_2'] = '';
 				$data['shipping_city'] = '';
 				$data['shipping_postcode'] = '';
 				$data['shipping_zone'] = '';
