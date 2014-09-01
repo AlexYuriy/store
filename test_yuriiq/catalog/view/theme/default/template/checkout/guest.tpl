@@ -84,19 +84,7 @@
   <br />
   <br />
 </div>
-<?php if ($shipping_required) { ?>
-<div style="clear: both; padding-top: 15px; border-top: 1px solid #DDDDDD;">
-  <?php if ($shipping_address) { ?>
-  <input type="checkbox" name="shipping_address" value="1" id="shipping" checked="checked" />
-  <?php } else { ?>
-  <input type="checkbox" name="shipping_address" value="1" id="shipping" />
-  <?php } ?>
-  <label for="shipping"><?php echo $entry_shipping; ?></label>
-  <br />
-  <br />
-  <br />
-</div>
-<?php } ?>
+
 <div class="buttons">
   <div class="right">
     <input type="button" value="<?php echo $button_continue; ?>" id="button-guest" class="button" />

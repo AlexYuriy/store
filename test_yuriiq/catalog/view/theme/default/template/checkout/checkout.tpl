@@ -11,17 +11,12 @@
       <div class="checkout-heading"><?php echo $text_checkout_option; ?></div>
       <div class="checkout-content"></div>
     </div>
-    <?php if (!$logged) { ?>
     <div id="payment-address">
-      <div class="checkout-heading"><span><?php echo $text_checkout_account; ?></span></div>
+      <div class="checkout-heading">
+		<span><?php if (!$logged) echo $text_checkout_account; else echo $text_checkout_payment_address; ?>	</span>
+	  </div>
       <div class="checkout-content"></div>
     </div>
-    <?php } else { ?>
-    <div id="payment-address">
-      <div class="checkout-heading"><span><?php echo $text_checkout_payment_address; ?></span></div>
-      <div class="checkout-content"></div>
-    </div>
-    <?php } ?>
     <?php if ($shipping_required) { ?>
     <div id="shipping-method">
       <div class="checkout-heading"><?php echo $text_checkout_shipping_method; ?></div>
@@ -708,13 +703,9 @@ $('#button-payment-method').live('click', function() {
 					dataType: 'html',
 					success: function(html) {
 						$('#confirm .checkout-content').html(html);
-						
 						$('#payment-method .checkout-content').slideUp('slow');
-						
 						$('#confirm .checkout-content').slideDown('slow');
-						
 						$('#payment-method .checkout-heading a').remove();
-						
 						$('#payment-method .checkout-heading').append('<a><?php echo $text_modify; ?></a>');	
 					},
 					error: function(xhr, ajaxOptions, thrownError) {
