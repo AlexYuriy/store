@@ -352,7 +352,10 @@ class ControllerCheckoutGuest extends Controller {
 			unset($this->session->data['payment_method']);
 			unset($this->session->data['payment_methods']);
 		}
-
+		if (empty($this->session->data['guest']['shipping'])) 
+		{
+			$this->session->data['guest']['shipping'] = $this->session->data['guest']['payment'] ;
+		}
 		$this->response->setOutput(json_encode($json));	
 	}
 
@@ -376,6 +379,7 @@ class ControllerCheckoutGuest extends Controller {
 		if (!$results) {
 			$output .= '<option value="0">' . $this->language->get('text_none') . '</option>';
 		}
+
 
 		$this->response->setOutput($output);
 	}
