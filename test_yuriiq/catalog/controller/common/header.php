@@ -298,6 +298,7 @@ class ControllerCommonHeader extends Controller {
     	$this->data['text_address'] = $this->language->get('text_address');
 		$this->data['text_logout'] = $this->language->get('text_logout');		
 		$this->data['text_wishlist'] = $this->language->get('text_wishlist');
+		$this->data['text_carts'] = $this->language->get('text_carts');
     	$this->data['text_order'] = $this->language->get('text_order');
     	$this->data['text_download'] = $this->language->get('text_download');
 		$this->data['text_reward'] = $this->language->get('text_reward');
@@ -313,6 +314,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['address'] = $this->url->link('account/address', '', 'SSL');
 		$this->data['logout'] = $this->url->link('account/logout', '', 'SSL');				
 		$this->data['wishlist'] = $this->url->link('account/wishlist');
+		$this->data['carts'] = $this->url->link('account/carts');
     	$this->data['order'] = $this->url->link('account/order', '', 'SSL');
     	$this->data['view_shopping_list'] = $this->url->link('account/view_shopping_list', '', 'SSL');
     	$this->data['download'] = $this->url->link('account/download', '', 'SSL');

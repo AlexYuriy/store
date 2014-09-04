@@ -19,5 +19,7 @@ $_['text_categories']     = 'Категории товаров';
 // LeftMenu
 $_['text_q_and_a']  	  = 'ЧАВО';
 $_['text_news']           = 'Новости';
+$_['text_carts']          = 'Сохранённые корзины';
+
 // /LeftMenu
 ?>

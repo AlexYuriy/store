@@ -331,6 +331,19 @@ label {
 #header #welcome .fa, #header .links .fa {
     margin-right: 4px;
 }
+
+/* FAQ */
+.question {
+      margin-top: 10px;
+      margin-left: 20px;
+  }
+
+.answer {
+    margin-top: 10px;
+    margin-left: 40px;
+    display: none;
+}
+
 /* menu */
 #menu {
 	background: #fff;
@@ -1564,10 +1577,44 @@ ul.box-filter > li ul {
 .order-list .order-info {
 	text-align: right;
 }
+.order-info a{
+	text-decoration: none;
+}
 .order-detail {
 	background: #EFEFEF;
 	font-weight: bold;
 }
+/* carts */
+.cart-list {
+	margin-bottom: 10px;
+}
+.cart-list .cart-id {
+	float: left;
+	margin-bottom: 2px;
+}
+
+.cart-list .cart-content {
+	padding: 10px 0px;
+	display: inline-block;
+	width: 100%;
+	margin-bottom: 20px;
+	border-top: 1px solid #EEEEEE;
+	border-bottom: 1px solid #EEEEEE;
+}
+.cart-list .cart-content div {
+	float: left;
+	width: 33.3%;
+}
+.cart-list .cart-content div h2{
+	font-size:20px;
+}
+.cart-list .cart-info {
+	text-align: right;
+}
+.cart-info a{
+	text-decoration: none;
+}
+
 /* returns */
 .return-list {
 	margin-bottom: 10px;
