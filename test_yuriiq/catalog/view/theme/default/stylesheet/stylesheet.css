@@ -1585,6 +1585,34 @@ ul.box-filter > li ul {
 	font-weight: bold;
 }
 /* carts */
+#edit-cart-name {
+    /*    display: none;*/
+        
+        font: 48px;
+}
+#cart-header{
+        width: 50%;
+        display: inline;
+        display: none;
+        
+}
+#save-list{
+        width: 30%;
+        display: inline;
+}
+#clear-list{
+    width: 30%;
+    display: inline;
+}
+.button-cart{
+    width: 16px;
+    height: 16px;
+    display: inline;
+    float: right;
+    margin: 5px;
+}
+
+
 .cart-list {
 	margin-bottom: 10px;
 }
@@ -1614,7 +1642,9 @@ ul.box-filter > li ul {
 .cart-info a{
 	text-decoration: none;
 }
-
+#currect_cart div{
+	background-color:red;
+}
 /* returns */
 .return-list {
 	margin-bottom: 10px;

@@ -8,6 +8,8 @@ class ControllerCheckoutCart extends Controller {
 		if (!isset($this->session->data['vouchers'])) {
 			$this->session->data['vouchers'] = array();
 		}
+		
+		$this->load->model('checkout/cart');
 
 		// Update
 		if (!empty($this->request->post['quantity'])) {
@@ -96,7 +98,26 @@ class ControllerCheckoutCart extends Controller {
 			'text'      => $this->language->get('heading_title'),
 			'separator' => $this->language->get('text_separator')
 		);
+		
+/*		// собираю списки сохранённых товаров
+//		$results_list = $this->model_account_order->getLists($customer_id);
+		
+		foreach ($results_list as $list){
+			$product_total = $this->model_account_order->getTotalListProductsByListId($list['product_list_id']);
+			$product_count = $this->model_account_order->getTotalListProductsCountByListId($result['product_list_id']);
+			
+			$this->data['lists'][] = array(
+				'order_id'   => $list['order_id'],
+//				'date_added' => list['create'],
+				'products'   => $product_total,
+				'products_count'   => $product_count,
+				'total'      => $this->currency->format($result['total'], $result['currency_code'], $result['currency_value']),
+				'href'       => $this->url->link('account/order/info', 'order_id=' . $result['order_id'], 'SSL'),
+				'reorder'    => $this->url->link('account/order', 'order_id=' . $result['order_id'], 'SSL')
+			);
+		}*/
 
+		// работа с корзиной
 		if ($this->cart->hasProducts() || !empty($this->session->data['vouchers'])) {
 			$points = $this->customer->getRewardPoints();
 
@@ -109,7 +130,8 @@ class ControllerCheckoutCart extends Controller {
 			}		
 
 			$this->data['heading_title'] = $this->language->get('heading_title');
-
+			
+			$this->data['text_success_save_list'] = $this->language->get('text_success_save_list');
 			$this->data['text_next'] = $this->language->get('text_next');
 			$this->data['text_next_choice'] = $this->language->get('text_next_choice');
 			$this->data['text_use_coupon'] = $this->language->get('text_use_coupon');
@@ -126,6 +148,7 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['text_freq_month'] = $this->language->get('text_freq_month');
 			$this->data['text_freq_bi_month'] = $this->language->get('text_freq_bi_month');
 			$this->data['text_freq_year'] = $this->language->get('text_freq_year');
+			$this->data['text_default_cart_name'] = $this->language->get('text_default_cart_name');
 
 			$this->data['column_image'] = $this->language->get('column_image');
 			$this->data['column_name'] = $this->language->get('column_name');
@@ -151,22 +174,29 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['button_shopping'] = $this->language->get('button_shopping');
 			$this->data['button_checkout'] = $this->language->get('button_checkout');
 			$this->data['button_print'] = $this->language->get('button_print');
+	//		$this->data['button_save_list'] = $this->language->get('button_save_list');
+			$this->data['button_save_list'] = $this->language->get('button_save');			
+			$this->data['text_button_clear'] = $this->language->get('text_button_clear');
 			
 			$this->data['print'] = 'print_cart();';
+			$this->data['text_cart_name'] = $this->model_checkout_cart->getCurrentCartName();
+			
+			$this->data['save_cart'] = $this->url->link('account/carts', '', 'SSL');
+			$this->data['clear_cart'] = $this->url->link('checkout/cart/clearCurrentCart', '', 'SSL');
 			
 			$this->data['text_trial'] = $this->language->get('text_trial');
 			$this->data['text_recurring'] = $this->language->get('text_recurring');
 			$this->data['text_length'] = $this->language->get('text_length');
 			$this->data['text_recurring_item'] = $this->language->get('text_recurring_item');
 			$this->data['text_payment_profile'] = $this->language->get('text_payment_profile');
-
-			if (isset($this->error['warning'])) {
+			
+			/*if (isset($this->error['warning'])) {
 				$this->data['error_warning'] = $this->error['warning'];
-			} elseif (!$this->cart->hasStock() && (!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning'))) {
+			}elseif (!$this->cart->hasStock() && (!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning'))) {
 				$this->data['error_warning'] = $this->language->get('error_stock');
-			} else {
+			} else {*/
 				$this->data['error_warning'] = '';
-			}
+			//}
 
 			if ($this->config->get('config_customer_price') && !$this->customer->isLogged()) {
 				$this->data['attention'] = sprintf($this->language->get('text_login'), $this->url->link('account/login'), $this->url->link('account/register'));
@@ -809,6 +839,68 @@ class ControllerCheckoutCart extends Controller {
 		}
 
 		$this->response->setOutput(json_encode($json));
+	}
+	
+	// сохраняет содержимое корзины в БД в виде списка (сохранение опций товаров не предусмотренно)
+	public function saveList(){
+	    // отладка
+// 	    $f = fopen(".debug.log", "a");    
+// 	    fwrite($f, "Start: \n"); 
+	    
+	    
+	
+		$user_id = $this->customer->getId();	
+		// получаю данные о новом списке
+		
+	//	$list_name = $this->request->post['list_name'];		
+	//	$list_description = $this->request->post['list_description'];
+				
+		// создаю новый список 
+		$this->db->query("INSERT INTO `list` (`name`, `description`, `user_id`) VALUES ( '$list_name' , '$list_description' , '$user_id' )");
+		
+		// получаю его id. 
+		$list_id_query = $this->db->query("SELECT `product_list_id` FROM `list` WHERE `user_id` = $user_id ORDER BY `product_list_id` LIMIT 1");
+// 		$f = fopen(".debug.log", "a");    
+// 		fwrite($f, "Ok  \n"); 
+// 		fclose($f);
+		$product_list_id = $list_id_query->row['product_list_id'];
+		$list_name = $product_list_id;
+		
+		
+		// добавляю товары в список
+		// в оригинальном движке у продуктов есть опции, которые тоже надо бы добавлять, но в данной реализации сохранение опций не предусмотренно
+		foreach ($this->session->data['cart'] as $key => $quantity) {
+			$product = explode(':', $key);
+			$product_id = $product[0];
+			$stock = true;
+			$this->db->query("INSERT INTO `product_list` (`product_id`, `product_list_id`, `quantity`) VALUES ( $product_id, $product_list_id, $quantity )");
+		}
+	}
+	
+	// изменяет имя текущей корзины. В данный момент не используется. Ковалев
+	public function editCurrentCartName(){
+	    $this->load->model('checkout/cart');
+	
+        $new_name = $this->request->post['new_name'];
+        
+        $this->model_checkout_cart->editCurrentCartName($new_name);
+	}
+	
+	// очищает текущую корзину, перенаправляет на список корзин
+	public function clearCurrentCart(){
+	    $f = fopen(".debug.log", "a");
+    
+        // Записать строку текста
+	    fwrite($f, "PHP is fun!"); 
+        
+	    // Закрыть текстовый файл
+	    fclose($f);
+	    $this->load->model('checkout/cart');
+	
+	    $this->cart->clear();
+	    
+	    $this->model_checkout_cart->clearCurrentCart();
+	    $this->redirect($this->url->link('account/carts', '', 'SSL'));
 	}
 }
 ?>

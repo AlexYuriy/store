@@ -18,7 +18,7 @@
   <h1><?php echo $heading_title; ?></h1>
   <?php if ($carts) { ?>
   <?php foreach ($carts as $cart) { ?>
-  <div class="cart-list">
+  <div class="cart-list" <?php if ($cart['cart_id'] == $current_cart_id) {?> id="currect_cart" <?php } ?>>
     <div class="cart-id"><b><?php echo $text_cart_id; ?></b> #<?php echo $cart['cart_id']; ?></div>
     <div class="cart-content">
       <div><h2> <?php echo $cart['name']; ?> </h2></div>
@@ -39,12 +39,5 @@
   <?php } else { ?>
   <div class="content"><?php echo $text_empty; ?></div>
   <?php } ?>
-  <form action="<?php echo $save_cart; ?>" method="post" enctype="multipart/form-data">  
-	<div class="buttons">
-        <?php echo $text_cart_name; ?>
-        <input type="text" name="save" value="" />
-		<div class="right"><input type="submit" value="<?php echo $button_save; ?>" class="button" /></div>
-	</div>
-  </form>
   <?php echo $content_bottom; ?></div>
 <?php echo $footer; ?>

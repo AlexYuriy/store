@@ -21,5 +21,6 @@ $_['remove_cart_success'] = 'Корзина успешно удалена';
 $_['remove_cart_error']   = 'Ошибка при удалении корзины';
 $_['load_cart_success']   = 'Корзина успешно загружена';
 $_['load_cart_error']     = 'Ошибка при загрузке корзины';
-
+// Other
+$_['text_defoult_cart']     = 'Корзина';
 ?>

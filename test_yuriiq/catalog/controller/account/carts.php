@@ -76,8 +76,9 @@ class ControllerAccountCarts extends Controller {
 				$this->data['error_warning'] = $this->language->get('empty_cart_id');
 			} else {
 				$ok = $this->model_account_carts->loadCart($cart_id);
-				if ($ok) $this->data['success'] = $this->language->get('load_cart_success');
-				else $this->data['error_warning'] = $this->language->get('load_cart_error');
+				if ($ok) $this->session->data['success'] = $this->language->get('load_cart_success');
+				else $this->error['warning'] = $this->language->get('load_cart_error');
+				$this->redirect($this->url->link('checkout/cart', '', 'SSL'));
 			}
 		}
 		$this->data['heading_title'] = $this->language->get('heading_title');
@@ -89,6 +90,7 @@ class ControllerAccountCarts extends Controller {
 		$this->data['button_load'] = $this->language->get('button_load');
 		$this->data['button_remove'] = $this->language->get('button_remove');
 		$this->data['button_save'] = $this->language->get('button_save');
+		$this->data['current_cart_id'] = $this->model_account_carts->getCurrentCartId();
 		$this->data['carts'] = array();
 		$carts_total = $this->model_account_carts->getTotalCarts();
 		$this->data['carts'] = $this->model_account_carts->getCarts();
