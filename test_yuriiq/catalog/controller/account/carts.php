@@ -4,7 +4,6 @@ class ControllerAccountCarts extends Controller {
 	public function index() {
 		if (!$this->customer->isLogged()) {
 			$this->session->data['redirect'] = $this->url->link('account/order', '', 'SSL');
-
 			$this->redirect($this->url->link('account/login', '', 'SSL'));
 		}
 		$this->language->load('account/carts');
@@ -30,6 +29,57 @@ class ControllerAccountCarts extends Controller {
 			'href'      => $this->url->link('account/carts', $url, 'SSL'),        	
 			'separator' => $this->language->get('text_separator')
 		);
+		if (isset($this->request->get['page'])) {
+			$page = $this->request->get['page'];
+		} else {
+			$page = 1;
+		}
+		if (isset($this->error['warning'])) {
+			$this->data['error_warning'] = $this->error['warning'];
+		} else {
+			$this->data['error_warning'] = '';
+		}
+		if (false) {
+			$this->data['attention'] = '';
+		} else {
+			$this->data['attention'] = '';
+		}
+		if (isset($this->session->data['success'])) {
+			$this->data['success'] = $this->session->data['success'];
+			unset($this->session->data['success']);
+		} else {
+			$this->data['success'] = '';
+		}
+		if (isset($this->request->post['save'])) {
+			$cart_name = $this->request->post['save'];
+			if (empty($cart_name)) {
+				$this->data['error_warning'] = $this->language->get('empty_cart_name');
+			} else { 
+				$ok = $this->model_account_carts->saveCart($cart_name);
+				if ($ok) $this->data['success'] = $this->language->get('save_cart_success');
+				else $this->data['error_warning'] = $this->language->get('save_cart_error');
+			}
+		}
+		if (isset($this->request->get['remove'])) {
+			$cart_id = $this->request->get['remove'];
+			if (empty($cart_id)) {
+				$this->data['error_warning'] = $this->language->get('empty_cart_id');
+			} else {
+				$ok = $this->model_account_carts->removeCart($cart_id);
+				if ($ok) $this->data['success'] = $this->language->get('remove_cart_success');
+				else $this->data['error_warning'] = $this->language->get('remove_cart_error');
+			}
+		}
+		if (isset($this->request->get['load'])) {
+			$cart_id = $this->request->get['load'];
+			if (empty($cart_id)) {
+				$this->data['error_warning'] = $this->language->get('empty_cart_id');
+			} else {
+				$ok = $this->model_account_carts->loadCart($cart_id);
+				if ($ok) $this->data['success'] = $this->language->get('load_cart_success');
+				else $this->data['error_warning'] = $this->language->get('load_cart_error');
+			}
+		}
 		$this->data['heading_title'] = $this->language->get('heading_title');
 		$this->data['text_date_added'] = $this->language->get('text_date_added');
 		$this->data['text_empty'] = $this->language->get('text_empty');
@@ -39,23 +89,6 @@ class ControllerAccountCarts extends Controller {
 		$this->data['button_load'] = $this->language->get('button_load');
 		$this->data['button_remove'] = $this->language->get('button_remove');
 		$this->data['button_save'] = $this->language->get('button_save');
-		if (isset($this->request->get['page'])) {
-			$page = $this->request->get['page'];
-		} else {
-			$page = 1;
-		}
-		if (isset($this->request->post['save_cart_name'])) {
-			$cart_name = $this->request->post['cart_name'];
-			if (empty($cart_name)) {
-				
-			} else $this->model_account_carts->saveCart($cart_name);
-		}
-		if (isset($this->request->get['remove_cart_id'])) {
-			$cart_id = $this->request->get['remove_cart_id'];
-			if (empty($cart_id)) {
-				
-			} else $this->model_account_carts->removeCart($cart_id);
-		}
 		$this->data['carts'] = array();
 		$carts_total = $this->model_account_carts->getTotalCarts();
 		$this->data['carts'] = $this->model_account_carts->getCarts();
@@ -66,7 +99,9 @@ class ControllerAccountCarts extends Controller {
 		$pagination->text = $this->language->get('text_pagination');
 		$pagination->url = $this->url->link('account/carts', 'page={page}', 'SSL');
 		$this->data['pagination'] = $pagination->render();
-		$this->data['save_cart'] = $this->url->link('account/carts/saveCart', '', 'SSL');
+		$this->data['save_cart']  = $this->url->link('account/carts/', '', 'SSL');
+		$this->data['load_cart']  = $this->url->link('account/carts&load=', '', 'SSL');
+		$this->data['remove_cart']= $this->url->link('account/carts&remove=', '', 'SSL');
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/carts.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/account/carts.tpl';
 		} else {
@@ -81,26 +116,6 @@ class ControllerAccountCarts extends Controller {
 			'common/header'	
 		);
 		$this->response->setOutput($this->render());				
-	}
-	public function saveCart() {
-		$this->load->model('account/carts');
-		$name = $this->request->post['cart_name'];
-		$this->model_account_carts->saveCart($name);
-		$this->redirect($this->url->link('account/carts', '', 'SSL'));
-	}
-	public function loadCart() {
-		$this->load->model('account/carts');
-		if (isset($this->request->get['cart_id'])) {
-			$this->model_account_carts->loadCart($this->request->get['cart_id']);
-		}
-		$this->redirect($this->url->link('checkout/cart', '', 'SSL'));
-	}
-	public function removeCart() {
-		$this->load->model('account/carts');
-		if (isset($this->request->get['cart_id'])) {
-			$this->model_account_carts->removeCart($this->request->get['cart_id']);
-		}
-		$this->redirect($this->url->link('account/carts', '', 'SSL'));
 	}	
 }
 ?>

@@ -1,4 +1,14 @@
-<?php echo $header; ?><?php echo $column_left; ?><?php echo $column_right; ?>
+<?php echo $header; ?>
+<?php if ($attention) { ?>
+<div class="attention"><?php echo $attention; ?><img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>
+<?php } ?>
+<?php if ($success) { ?>
+<div class="success"><?php echo $success; ?><img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>
+<?php } ?>
+<?php if ($error_warning) { ?>
+<div class="warning"><?php echo $error_warning; ?><img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>
+<?php } ?>
+<?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content"><?php echo $content_top; ?>
   <div class="breadcrumb">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
@@ -15,10 +25,10 @@
 	  <div><b> <?php echo $text_products; ?> </b> <?php echo $cart['count']; ?> </div>
       <div class="cart-info">
 	    <b><?php echo $text_date_added; ?></b> <?php echo $cart['date_added']; ?> &nbsp;&nbsp; 
-	    <a href="index.php?route=account/carts/loadCart&cart_id=<?php echo $cart['cart_id']; ?>">
+	    <a href="<?php echo $load_cart . $cart['cart_id'];?>">
 		  <img src="catalog/view/theme/default/image/reorder.png" alt="<?php echo $button_load; ?>" title="<?php echo $button_load; ?>" />
 		</a> &nbsp;&nbsp; 
-		<a href="index.php?route=account/carts/removeCart&cart_id=<?php echo $cart['cart_id']; ?>">
+		<a href="<?php echo $remove_cart . $cart['cart_id']; ?>">
 		  <img src="catalog/view/theme/default/image/remove.png" alt="<?php echo $button_remove; ?>" title="<?php echo $button_remove; ?>" />
 		</a>
 	  </div>
@@ -32,7 +42,7 @@
   <form action="<?php echo $save_cart; ?>" method="post" enctype="multipart/form-data">  
 	<div class="buttons">
         <?php echo $text_cart_name; ?>
-        <input type="text" name="cart_name" value="" />
+        <input type="text" name="save" value="" />
 		<div class="right"><input type="submit" value="<?php echo $button_save; ?>" class="button" /></div>
 	</div>
   </form>
