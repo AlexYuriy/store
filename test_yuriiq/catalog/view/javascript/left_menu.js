@@ -78,9 +78,9 @@
     // печать списка товаров
     function print_cart(){
 	// элементы, которые необходимо распечатать
-	var forPrintClass = new Array('cart-info', 'cart-module', 'cart-total', 'warning', 'content', 'footer-logo', 'column-welcome', 'column-contacts');
-	var forPrintId = new Array('container', 'content', 'custom-footer-bg', 'container-footer', 'container-footer', 'custom-footer');
-      
+	var forPrintClass = new Array('cart-info', 'cart-module', 'cart-total', 'warning', 'content', 'footer-logo', 'column-welcome', 'column-contacts', 'column-maps');
+	var forPrintId = new Array('container', 'content', 'custom-footer-bg', 'container-footer', 'container-footer', 'custom-footer', 'header', 'logo');      
+
 	// Получим коллекцию элементов тега body:
 	var elements = document.body.getElementsByTagName("div");
 	var length   = elements.length;
@@ -119,9 +119,11 @@
 	    if (print) elements[i].style.display = "block";
 	    else elements[i].style.display = "none";
 	}
-	
+	document.getElementById('map-img').style.display = "block";
+
 	// печать
 	window.print();
+	document.getElementById('map-img').style.display = "none";
 	window.onfocus=function(){ location.reload();}
 	location.reload();
 	

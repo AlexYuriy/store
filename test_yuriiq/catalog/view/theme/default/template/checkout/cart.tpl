@@ -15,11 +15,31 @@
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
     <?php } ?>
   </div>
+   <?php if ($this->customer->isLogged()) { ?>
+      <div class="buttons-cart">
+                <form action="<?php echo $save_cart; ?>" method="post" enctype="multipart/form-data">
+                    <h1 id="cart-header" onclick="switchToRename();"><?php echo $text_cart_name; ?></h1>
+                    <input type="text" name="save" maxlength="55" id="edit-cart-name" value="<?php echo $text_cart_name; ?>" />
+                    
+                    <img id="save-name" title="<?php echo $button_save_name; ?>" src="catalog/view/theme/default/image/save_name.png" />
+                    <input type="image"  title="<?php echo $button_save_list; ?>" src="catalog/view/theme/default/image/save.png" class="button-cart" />
+                </form> 
+                
+                <img title="<?php echo $button_create; ?>" src="catalog/view/theme/default/image/create.png" class="button-cart" onclick=" createEmptyCart();" />
+                
+                <img title="<?php echo $button_print; ?>" src="catalog/view/theme/default/image/print.png" class="button-cart" onclick="<?php echo $print; ?>" /> 
+                               
+                
+                
+            <a href="<?php echo $clear_cart ?>"><img title="<?php echo $text_button_clear; ?>" src="catalog/view/theme/default/image/clear.png" class="button-cart" /></a> 
+      </div>
+   <?php } else {?>
   <h1><?php echo $heading_title; ?>
     <?php if ($weight) { ?>
     &nbsp;(<?php echo $weight; ?>)
     <?php } ?>
   </h1>
+  <?php } ?>
   <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
     <div class="cart-info">
       <table>
@@ -203,8 +223,7 @@
     </table>
   </div>
   <div class="buttons">
-    <div class="left"><a onclick="<?php echo $print; ?>" class="button"><?php echo $button_print; ?></a></div>
-    <div class="right"><a href="<?php echo $checkout; ?>" class="button"><?php echo $button_checkout; ?></a></div>
+    <div class="left"><a href="<?php echo $checkout; ?>" class="button"><?php echo $button_checkout; ?></a></div>
     <div class="center"><a href="<?php echo $continue; ?>" class="button"><?php echo $button_shopping; ?></a></div>
   </div>
   <?php echo $content_bottom; ?></div>
@@ -215,6 +234,65 @@ $('input[name=\'next\']').bind('change', function() {
 	$('#' + this.value).show();
 });
 //--></script>
+
+<script type="text/javascript">
+// сохранение имени и оповещение об этом пользователя
+$('#button-save-list').live('click', function() {
+  val cartName = document.getElementById("edit-cart-name").value;
+  
+  // если поле не пустое
+  if (cartName.length > 0){
+      $.ajax({
+        url : 'index.php?route=checkout/cart/editCurrentCartName' ,
+        method : 'POST' ,
+        type: 'post',
+        data : 'new_name=' + cartName,
+        success : function(){
+		    $('#notification').html('<div class="success" style="display: none;">' + '<?php echo $text_success_save_name; ?>' + '<img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>');
+				
+		    $('.success').fadeIn('slow');
+			$('#edit-cart-name').attr('display', none);	
+		    $('html, body').animate({ scrollTop: 0 }, 'slow');
+		    $('html, body').animate({alert("q");});
+		    
+		    $('html, body').animate({document.getElementById("cart-header").value = cartName;});
+            document.getElementById('edit-cart-name').style.display = "none";
+            document.getElementById('save-name').style.display = "none";
+            document.getElementById('cart-header').style.display = "block";
+            document.getElementById('cart-header').style.display = "inline";
+        }
+      });
+   }
+   
+   else {
+        $('#notification').html('<div class="error" style="display: none;">' + '<?php echo $text_error_save_name; ?>' + '<img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>');
+				
+		    $('.success').fadeIn('slow');
+				
+		    $('html, body').animate({ scrollTop: 0 }, 'slow'); 	
+   }
+});
+</script>
+
+<script type="text/javascript">
+// сохранение списка и оповещение об этом пользователя
+$('#save-name').live('click', function() {
+  $.ajax({
+    url : 'index.php?route=checkout/cart/saveList' ,
+    method : 'POST' ,
+    type: 'post',
+    data : 'list_name=' + $('').val(),
+    success : function(){
+		$('#notification').html('<div class="success" style="display: none;">' + '<?php echo $text_success_save_list; ?>' + '<img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>');
+				
+		$('.success').fadeIn('slow');
+				
+		$('html, body').animate({ scrollTop: 0 }, 'slow'); 	
+    }
+  });
+});
+</script>
+
 <?php if ($shipping_status) { ?>
 <script type="text/javascript"><!--
 $('#button-quote').live('click', function() {

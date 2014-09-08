@@ -21,7 +21,8 @@
 </div>
 <div class="column-maps">
 	<ul>
-		<li><?php echo $maps; ?></li>
+		<li id="map"><?php echo $maps; ?></li>
+		<img id="map-img" src="image/data/map.png" />
 	</ul>
 </div>
 </div>

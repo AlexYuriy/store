@@ -20,7 +20,21 @@ $_['text_use_reward']        = 'Использовать бонусные бал
 $_['text_shipping_estimate'] = 'Оценка стоимости доставки и налоговых сборов';
 $_['text_shipping_detail']   = 'Укажите ваш регион для оценки слоимости доставки.';
 $_['text_shipping_method']   = 'Выберите удобный способ доставки этого заказа.';
-$_['text_empty']      = 'Ваша корзина пуста!';
+$_['text_empty']      		 = 'Ваша корзина пуста!';
+$_['text_success_save_list'] = 'Ваш список успешно сохранён!';
+$_['text_default_cart_name'] = 'Корзина';
+$_['button_save'] 	         = 'Сохранить корзину';
+$_['text_button_clear']      = 'Очистить корзину';
+$_['text_success_clear_cart']= 'Ваша корзина очищенна';
+$_['save_cart_success']      = 'Корзина успешно сохранена';
+$_['save_cart_error']        = 'Ошибка при сохранении корзины';
+$_['button_create']          = 'Создать пустую корзину';
+$_['text_rewrite']           = '';
+$_['text_save']              = '';    
+$_['text_error_save_name']   = 'Поле не может быть пустым!';
+$_['text_success_save_name'] = 'Имя успешно сохранено';
+$_['button_save_name']       = 'Сохранить имя';
+
 
 // Column
 $_['column_image']    = 'Фото';

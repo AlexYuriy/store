@@ -168,5 +168,23 @@ class ModelAccountOrder extends Model {
 
 		return $query->row['total'];
 	}
+	
+	public function getLists($user_id){
+		$query = $this->db->query("SELECT * FROM `list` WHERE user_id = '" . (int)$user_id . "' ORDER BY `create`");
+				
+		return $query->rows;
+	}
+	
+	public function getTotalListProductsByListId($list_id){
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM `product_list` WHERE list_id = '" . (int)$list_id . "'");
+		
+		return $query->row['total'];
+	}
+	
+	public function getTotalListProductsCountByListId($list_id){
+		$query = $this->db->query("SELECT SUM(`price`) as total_count FROM `product_list` as pl , `" . DB_PREFIX . "product` as p WHERE pl.product_list_id = " . $list_id . " AND pl.product_id = p.product_id");
+	
+		return $query->row['total_price'];
+	}
 }
 ?>

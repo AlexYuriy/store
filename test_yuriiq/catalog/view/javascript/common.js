@@ -174,3 +174,25 @@ function addToCompare(product_id) {
 		}
 	});
 }
+
+function switchToRename() {
+    document.getElementById('cart-header').style.display = "none";
+    document.getElementById('edit-cart-name').style.display = "block";
+    document.getElementById('edit-cart-name').style.display = "inline";
+    document.getElementById('save-name').style.display = "block";
+    document.getElementById('save-name').style.display = "inline";
+}
+
+// создание пустой корзины вместе с выводом сообщений-уточнений
+/*
+function createEmptyCart() {
+
+    $.ajax({
+		url: 'index.php?route=checkout/cart',
+		type: 'post',
+		data: 'create=' 1,
+		success: function() {
+		
+		}
+	});
+}*/
