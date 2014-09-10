@@ -115,6 +115,13 @@ label {
 /*	top: 22px;*/
 	left: 5px;
 }
+#header #cellfone
+{
+	position: absolute;
+	right:80px;
+	top:40px;
+	font-size: 26px;
+}
 #language {
 	position: absolute;
 	top: 20px;

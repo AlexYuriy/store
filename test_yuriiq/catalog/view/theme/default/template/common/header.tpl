@@ -43,17 +43,6 @@
 <!-- Autofill search -->
 <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/livesearch.css" />
 <script src="catalog/view/javascript/jquery/livesearch.js"></script>
-<!-- Autofill search END-->
-<!--[if IE 7]> 
-<link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/ie7.css" />
-<![endif]-->
-<!--[if lt IE 7]>
-<link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/ie6.css" />
-<script type="text/javascript" src="catalog/view/javascript/DD_belatedPNG_0.0.8a-min.js"></script>s
-<script type="text/javascript">
-DD_belatedPNG.fix('#logo img');
-</script>
-<![endif]-->
 <?php if ($stores) { ?>
 <script type="text/javascript"><!--
 $(document).ready(function() {
@@ -80,15 +69,8 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
     <div class="button-search"><i class="fa fa-search"></i></div>
     <input type="text" name="search" placeholder="<?php echo $text_search; ?>" value="<?php echo $search; ?>" />
   </div>
-  <!--div id="welcome">
-    <!--?php if (!$logged) { ?>
-    <!?php echo $text_welcome; ?>
-    <!?php } else { ?>
-    <!?php echo $text_logged; ?>
-    <!?php } ?>
-  </div-->
-  <!--div class="links"><a href="<!?php echo $home; ?>"><i class="fa fa-home"></i><!?php echo $text_home; ?></a><a href="<!?php echo $wishlist; ?>" id="wishlist-total"><i class="fa fa-heart"></i><!?php echo $text_wishlist; ?></a><a href="<!?php echo $account; ?>"><i class="fa fa-user"></i><!?php echo $text_account; ?></a><a href="<!?php echo $shopping_cart; ?>"><i class="fa fa-shopping-cart"></i><!?php echo $text_shopping_cart; ?></a><a href="<!?php echo $checkout; ?>"><i class="fa fa-mail-forward"></i><!?php echo $text_checkout; ?></a></div-->
-</div>
+  <div id="cellfone"> <i class="fa fa-phone"> </i><?php echo $telephone; ?> </div>
+ </div>
 <?php if ($categories) { ?>
 <div id="menu">
   <ul>
