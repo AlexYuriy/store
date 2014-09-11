@@ -17,21 +17,15 @@
   </div>
    <?php if ($this->customer->isLogged()) { ?>
       <div class="buttons-cart">
-                <form action="<?php echo $save_cart; ?>" method="post" enctype="multipart/form-data">
-                    <h1 id="cart-header" onclick="switchToRename();"><?php echo $text_cart_name; ?></h1>
-                    <input type="text" name="save" maxlength="55" id="edit-cart-name" value="<?php echo $text_cart_name; ?>" />
-                    
-                    <img id="save-name" title="<?php echo $button_save_name; ?>" src="catalog/view/theme/default/image/save_name.png" />
-                    <input type="image"  title="<?php echo $button_save_list; ?>" src="catalog/view/theme/default/image/save.png" class="button-cart" />
-                </form> 
-                
-                <img title="<?php echo $button_create; ?>" src="catalog/view/theme/default/image/create.png" class="button-cart" onclick=" createEmptyCart();" />
-                
-                <img title="<?php echo $button_print; ?>" src="catalog/view/theme/default/image/print.png" class="button-cart" onclick="<?php echo $print; ?>" /> 
-                               
-                
-                
-            <a href="<?php echo $clear_cart ?>"><img title="<?php echo $text_button_clear; ?>" src="catalog/view/theme/default/image/clear.png" class="button-cart" /></a> 
+            <form action="<?php echo $url_save_cart; ?>" method="post" enctype="multipart/form-data">
+                <h1 id="cart-header" onclick="switchToRename();"><?php echo $text_cart_name; ?></h1>
+                <input type="text" name="save" maxlength="55" id="edit-cart-name" value="<?php echo $text_cart_name; ?>" />
+                <img id="save-name" onclick='save_cart_name(getElementById("edit-cart-name").value);' title="<?php echo $button_save_name; ?>" src="catalog/view/theme/default/image/tick.png" /> 
+                <a href="<?php echo $url_clear_cart ?>"><img title="<?php echo $text_button_clear; ?>" src="catalog/view/theme/default/image/clear.png" class="button-cart" /></a> 
+                <a onclick="print_cart();"> <img title="<?php echo $button_print; ?>" src="catalog/view/theme/default/image/print.png" class="button-cart" /> </a>
+                <input type="image"  title="<?php echo $button_save_list; ?>" src="catalog/view/theme/default/image/save.png" id="save_cart" class="button-cart" />
+				<a> <img title="<?php echo $button_create; ?>" src="catalog/view/theme/default/image/create.png" id="new_cart" class="button-cart" /> </a>
+            </form> 
       </div>
    <?php } else {?>
   <h1><?php echo $heading_title; ?>
@@ -227,56 +221,27 @@
     <div class="center"><a href="<?php echo $continue; ?>" class="button"><?php echo $button_shopping; ?></a></div>
   </div>
   <?php echo $content_bottom; ?></div>
+  
+<script type='text/javascript' src='catalog/view/javascript/print_cart.js'></script>
 <script type="text/javascript"><!--
 $('input[name=\'next\']').bind('change', function() {
 	$('.cart-module > div').hide();
 	
 	$('#' + this.value).show();
 });
-//--></script>
 
-<script type="text/javascript">
 // сохранение имени и оповещение об этом пользователя
-$('#button-save-list').live('click', function() {
-  val cartName = document.getElementById("edit-cart-name").value;
-  
-  // если поле не пустое
-  if (cartName.length > 0){
-      $.ajax({
-        url : 'index.php?route=checkout/cart/editCurrentCartName' ,
-        method : 'POST' ,
-        type: 'post',
-        data : 'new_name=' + cartName,
-        success : function(){
-		    $('#notification').html('<div class="success" style="display: none;">' + '<?php echo $text_success_save_name; ?>' + '<img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>');
-				
-		    $('.success').fadeIn('slow');
-			$('#edit-cart-name').attr('display', none);	
-		    $('html, body').animate({ scrollTop: 0 }, 'slow');
-		    $('html, body').animate({alert("q");});
-		    
-		    $('html, body').animate({document.getElementById("cart-header").value = cartName;});
-            document.getElementById('edit-cart-name').style.display = "none";
-            document.getElementById('save-name').style.display = "none";
-            document.getElementById('cart-header').style.display = "block";
-            document.getElementById('cart-header').style.display = "inline";
-        }
-      });
-   }
-   
-   else {
-        $('#notification').html('<div class="error" style="display: none;">' + '<?php echo $text_error_save_name; ?>' + '<img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>');
-				
-		    $('.success').fadeIn('slow');
-				
-		    $('html, body').animate({ scrollTop: 0 }, 'slow'); 	
-   }
-});
-</script>
+function save_cart_name(name) {
+window.location.href = '<?php echo $url_save_cart_name ?>'+ name; 
+$('#edit-cart-name').val();
 
+}
+ //--> 
+</script>
+<!--
 <script type="text/javascript">
 // сохранение списка и оповещение об этом пользователя
-$('#save-name').live('click', function() {
+$('#button-save-list').live('click', function() {
   $.ajax({
     url : 'index.php?route=checkout/cart/saveList' ,
     method : 'POST' ,
@@ -291,6 +256,99 @@ $('#save-name').live('click', function() {
     }
   });
 });
+</script>
+-->
+<div id='confirm'>
+	<div class='header'><span>Confirm</span></div>
+	<div class='message'></div>
+	<div class='buttons'>
+		<div class='cancel simplemodal-close'>Cancel</div><div class='no'>No</div><div class='yes'>Yes</div>
+	</div>
+</div>
+<link type='text/css' href='catalog/view/theme/default/stylesheet/confirm.css' rel='stylesheet' media='screen' />
+<script type='text/javascript' src='catalog/view/javascript/confirm/jquery.js'></script>
+<script type='text/javascript' src='catalog/view/javascript/confirm/jquery.simplemodal.js'></script>
+<script type='text/javascript'>
+<!--
+
+function save_cart() {
+	window.location.href = '<?php echo $url_save_cart; ?>';
+}
+function clear_cart(){
+	window.location.href = '<?php echo $url_clear_cart; ?>';
+}
+
+function rewrite_cart() {
+	window.location.href = '<?php echo $rewrite_cart; ?>';
+}
+/*
+ * SimpleModal Confirm Modal Dialog
+ * http://www.ericmmartin.com/projects/simplemodal/
+ * http://code.google.com/p/simplemodal/
+ *
+ * Copyright (c) 2010 Eric Martin - http://ericmmartin.com
+ *
+ * Licensed under the MIT license:
+ *   http://www.opensource.org/licenses/mit-license.php
+ *
+ * Revision: $Id: confirm.js 254 2010-07-23 05:14:44Z emartin24 $
+ */
+
+jQuery(function ($) {
+	$('#new_cart').click(function (e) {
+		e.preventDefault();
+
+		// example of calling the confirm function
+		// you must use a callback function to perform the "yes" action
+		confirm("<?php echo $text_save; ?>", 
+				function() { window.location.href = '<?php echo $url_create_cart; ?>1';}, 
+				function() { window.location.href = '<?php echo $url_create_cart; ?>0';});
+	});
+});
+
+jQuery(function ($) {
+	$('#save_cart').click(function (e) {
+		e.preventDefault();
+
+		// example of calling the confirm function
+		// you must use a callback function to perform the "yes" action
+		confirm("<?php echo $text_rewrite; ?>", 
+				function() { window.location.href = '<?php echo $_cart; ?>1';}, 
+				function() { window.location.href = '<?php echo $_cart; ?>0';});
+	});
+});
+
+function confirm(message, callback_yes, callback_no) {
+	$('#confirm').modal({
+		closeHTML: "<a href='#' title='Close' class='modal-close'>x</a>",
+		position: ["20%",],
+		overlayId: 'confirm-overlay',
+		containerId: 'confirm-container', 
+		onShow: function (dialog) {
+			var modal = this;
+			$('.message', dialog.data[0]).append(message);
+			// if the user clicks "yes"
+			$('.yes', dialog.data[0]).click(function () {
+				// call the callback
+				if ($.isFunction(callback_yes)) {
+					callback_yes.apply();
+				}
+				// close the dialog
+				modal.close(); // or $.modal.close();
+			});
+			// if the user clicks "no"
+			$('.no', dialog.data[0]).click(function () {
+				// call the callback
+				if ($.isFunction(callback_no)) {
+					callback_no.apply();
+				}
+				// close the dialog
+				modal.close(); // or $.modal.close();
+			});
+		}
+	});
+}
+//-->
 </script>
 
 <?php if ($shipping_status) { ?>
@@ -438,5 +496,7 @@ $('select[name=\'country_id\']').bind('change', function() {
 
 $('select[name=\'country_id\']').trigger('change');
 //--></script>
+
+
 <?php } ?>
 <?php echo $footer; ?>

@@ -1,16 +1,16 @@
 <?php
 class ModelAccountCarts extends Model {
-	public function getCarts() {
+	public function getCarts($page, $limit) {
 		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "carts` WHERE customer_id = '" . (int)$this->customer->getId() . "' ORDER BY `date_added` DESC");
-		return $query->rows;
+		return array_slice ($query->rows, ($page-1)*$limit, $limit);
 	}
 	public function getCurrentCartId() {
-		if (isset($this->session->data['current_cart_id'])) {
-			$cart_id = $this->session->data['current_cart_id'];
-		} else {
+		//if (isset($this->session->data['current_cart_id'])) {
+		//	$cart_id = $this->session->data['current_cart_id'];
+		//} else {
 			$query_cart_id = $this->db->query("SELECT current_cart_id FROM `" . DB_PREFIX . "customer` WHERE customer_id = " . (int)$this->customer->getId() );
 			$cart_id = $query_cart_id->row['current_cart_id'];
-		}
+		//}
 		return $cart_id;
 	}
 	public function getTotalCarts() {

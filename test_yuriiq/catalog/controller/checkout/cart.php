@@ -4,45 +4,61 @@ class ControllerCheckoutCart extends Controller {
 
 	public function index() {
 		$this->language->load('checkout/cart');
-
 		if (!isset($this->session->data['vouchers'])) {
 			$this->session->data['vouchers'] = array();
 		}
-		
 		$this->load->model('checkout/cart');
-
 		// Update
 		if (!empty($this->request->post['quantity'])) {
 			foreach ($this->request->post['quantity'] as $key => $value) {
 				$this->cart->update($key, $value);
 			}
-
 			unset($this->session->data['shipping_method']);
 			unset($this->session->data['shipping_methods']);
 			unset($this->session->data['payment_method']);
 			unset($this->session->data['payment_methods']); 
 			unset($this->session->data['reward']);
-
 			$this->redirect($this->url->link('checkout/cart'));  			
 		}
-
+        // save
+        if (isset($this->request->post['save'])) {
+			$cart_name = $this->request->post['save'];
+			if (empty($cart_name)) {
+				$this->session->data['error_warning'] = $this->language->get('empty_cart_name');
+			} else { 
+				$ok = $this->model_checkout_cart->saveCart($cart_name);
+				if ($ok) $this->session->data['success'] = $this->language->get('save_cart_success');
+				else $this->session->data['error_warning'] = $this->language->get('save_cart_error');
+				$this->redirect($this->url->link('account/carts', '', 'SSL'));
+			}
+		}
+		// create new cart
+    	if (isset($this->request->get['create'])) {
+		    // если здесь не 0 - сохраняет, иначе не сохраняет
+		    $save_cart_flag = $this->request->get['create'];
+		    if ($save_cart_flag){
+		        $this->model_checkout_cart->rewriteCart();
+		    }
+		    $this->cart->clear();
+		    $ok = $this->model_checkout_cart->setCurrentCartIDToNull();
+		    if ($ok) $this->session->data['success'] = $this->language->get('save_cart_success');
+		}
+		// Rewrite 
+    	if (isset($this->request->get['rewrite'])) {
+			$this->model_checkout_cart->rewriteCart();
+		}		
 		// Remove
 		if (isset($this->request->get['remove'])) {
 			$this->cart->remove($this->request->get['remove']);
-
 			unset($this->session->data['vouchers'][$this->request->get['remove']]);
-
 			$this->session->data['success'] = $this->language->get('text_remove');
-
 			unset($this->session->data['shipping_method']);
 			unset($this->session->data['shipping_methods']);
 			unset($this->session->data['payment_method']);
 			unset($this->session->data['payment_methods']); 
 			unset($this->session->data['reward']);  
-
 			$this->redirect($this->url->link('checkout/cart'));
 		}
-
 		// Coupon    
 		if (isset($this->request->post['coupon']) && $this->validateCoupon()) { 
 			$this->session->data['coupon'] = $this->request->post['coupon'];
@@ -98,25 +114,6 @@ class ControllerCheckoutCart extends Controller {
 			'text'      => $this->language->get('heading_title'),
 			'separator' => $this->language->get('text_separator')
 		);
-		
-/*		// собираю списки сохранённых товаров
-//		$results_list = $this->model_account_order->getLists($customer_id);
-		
-		foreach ($results_list as $list){
-			$product_total = $this->model_account_order->getTotalListProductsByListId($list['product_list_id']);
-			$product_count = $this->model_account_order->getTotalListProductsCountByListId($result['product_list_id']);
-			
-			$this->data['lists'][] = array(
-				'order_id'   => $list['order_id'],
-//				'date_added' => list['create'],
-				'products'   => $product_total,
-				'products_count'   => $product_count,
-				'total'      => $this->currency->format($result['total'], $result['currency_code'], $result['currency_value']),
-				'href'       => $this->url->link('account/order/info', 'order_id=' . $result['order_id'], 'SSL'),
-				'reorder'    => $this->url->link('account/order', 'order_id=' . $result['order_id'], 'SSL')
-			);
-		}*/
-
 		// работа с корзиной
 		if ($this->cart->hasProducts() || !empty($this->session->data['vouchers'])) {
 			$points = $this->customer->getRewardPoints();
@@ -149,6 +146,8 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['text_freq_bi_month'] = $this->language->get('text_freq_bi_month');
 			$this->data['text_freq_year'] = $this->language->get('text_freq_year');
 			$this->data['text_default_cart_name'] = $this->language->get('text_default_cart_name');
+			$this->data['text_rewrite'] = $this->language->get('text_rewrite');
+			$this->data['text_save'] = $this->language->get('text_save');
 
 			$this->data['column_image'] = $this->language->get('column_image');
 			$this->data['column_name'] = $this->language->get('column_name');
@@ -177,43 +176,42 @@ class ControllerCheckoutCart extends Controller {
 	//		$this->data['button_save_list'] = $this->language->get('button_save_list');
 			$this->data['button_save_list'] = $this->language->get('button_save');			
 			$this->data['text_button_clear'] = $this->language->get('text_button_clear');
+			$this->data['button_create'] = $this->language->get('button_create');
+			$this->data['button_save_name'] = $this->language->get('button_save_name');
 			
-			$this->data['print'] = 'print_cart();';
 			$this->data['text_cart_name'] = $this->model_checkout_cart->getCurrentCartName();
-			
-			$this->data['save_cart'] = $this->url->link('account/carts', '', 'SSL');
-			$this->data['clear_cart'] = $this->url->link('checkout/cart/clearCurrentCart', '', 'SSL');
+			$this->data['url_save_cart']   = $this->url->link('checkout/cart', '', 'SSL');
+			$this->data['url_clear_cart']  = $this->url->link('checkout/cart/clearCurrentCart', '', 'SSL');
+			$this->data['url_create_cart'] = $this->url->link('checkout/cart&create=', '', 'SSL');
+			$this->data['url_save_cart_name'] = $this->url->link('checkout/cart/editCurrentCartName&new_name=', '', 'SSL') ;
 			
 			$this->data['text_trial'] = $this->language->get('text_trial');
 			$this->data['text_recurring'] = $this->language->get('text_recurring');
 			$this->data['text_length'] = $this->language->get('text_length');
 			$this->data['text_recurring_item'] = $this->language->get('text_recurring_item');
 			$this->data['text_payment_profile'] = $this->language->get('text_payment_profile');
+			$this->data['text_error_save_name'] = $this->language->get('text_error_save_name');
 			
-			/*if (isset($this->error['warning'])) {
+			if (isset($this->error['warning'])) {
 				$this->data['error_warning'] = $this->error['warning'];
-			}elseif (!$this->cart->hasStock() && (!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning'))) {
-				$this->data['error_warning'] = $this->language->get('error_stock');
-			} else {*/
-				$this->data['error_warning'] = '';
-			//}
-
-			if ($this->config->get('config_customer_price') && !$this->customer->isLogged()) {
-				$this->data['attention'] = sprintf($this->language->get('text_login'), $this->url->link('account/login'), $this->url->link('account/register'));
+			//}elseif (!$this->cart->hasStock() && (!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning'))) {
+			//	$this->data['error_warning'] = $this->language->get('error_stock');
 			} else {
-				$this->data['attention'] = '';
+				$this->data['error_warning'] = '';
 			}
 
+			/*if ($this->config->get('config_customer_price') && !$this->customer->isLogged()) {
+				$this->data['attention'] = sprintf($this->language->get('text_login'), $this->url->link('account/login'), $this->url->link('account/register'));
+			} else {*/
+				$this->data['attention'] = '';
+			//}
 			if (isset($this->session->data['success'])) {
 				$this->data['success'] = $this->session->data['success'];
-
 				unset($this->session->data['success']);
 			} else {
 				$this->data['success'] = '';
 			}
-
 			$this->data['action'] = $this->url->link('checkout/cart');   
-
 			if ($this->config->get('config_cart_weight')) {
 				$this->data['weight'] = $this->weight->format($this->cart->getWeight(), $this->config->get('config_weight_class_id'), $this->language->get('decimal_point'), $this->language->get('thousand_point'));
 			} else {
@@ -840,67 +838,35 @@ class ControllerCheckoutCart extends Controller {
 
 		$this->response->setOutput(json_encode($json));
 	}
-	
-	// сохраняет содержимое корзины в БД в виде списка (сохранение опций товаров не предусмотренно)
-	public function saveList(){
-	    // отладка
-// 	    $f = fopen(".debug.log", "a");    
-// 	    fwrite($f, "Start: \n"); 
-	    
-	    
-	
-		$user_id = $this->customer->getId();	
-		// получаю данные о новом списке
 		
-	//	$list_name = $this->request->post['list_name'];		
-	//	$list_description = $this->request->post['list_description'];
-				
-		// создаю новый список 
-		$this->db->query("INSERT INTO `list` (`name`, `description`, `user_id`) VALUES ( '$list_name' , '$list_description' , '$user_id' )");
-		
-		// получаю его id. 
-		$list_id_query = $this->db->query("SELECT `product_list_id` FROM `list` WHERE `user_id` = $user_id ORDER BY `product_list_id` LIMIT 1");
-// 		$f = fopen(".debug.log", "a");    
-// 		fwrite($f, "Ok  \n"); 
-// 		fclose($f);
-		$product_list_id = $list_id_query->row['product_list_id'];
-		$list_name = $product_list_id;
-		
-		
-		// добавляю товары в список
-		// в оригинальном движке у продуктов есть опции, которые тоже надо бы добавлять, но в данной реализации сохранение опций не предусмотренно
-		foreach ($this->session->data['cart'] as $key => $quantity) {
-			$product = explode(':', $key);
-			$product_id = $product[0];
-			$stock = true;
-			$this->db->query("INSERT INTO `product_list` (`product_id`, `product_list_id`, `quantity`) VALUES ( $product_id, $product_list_id, $quantity )");
-		}
-	}
-	
-	// изменяет имя текущей корзины. В данный момент не используется. Ковалев
+	// изменяет имя текущей корзины. 
 	public function editCurrentCartName(){
 	    $this->load->model('checkout/cart');
-	
-        $new_name = $this->request->post['new_name'];
-        
+		$this->language->load('checkout/cart');
+        $new_name = $this->request->get['new_name'];
         $this->model_checkout_cart->editCurrentCartName($new_name);
+		$this->session->data['success'] = $this->language->get('text_success_save_name');
+		$this->redirect($this->url->link('checkout/cart', '', 'SSL') );
 	}
 	
 	// очищает текущую корзину, перенаправляет на список корзин
 	public function clearCurrentCart(){
-	    $f = fopen(".debug.log", "a");
+	/*    $f = fopen(".debug.log", "a");
     
         // Записать строку текста
-	    fwrite($f, "PHP is fun!"); 
+	    fwrite($f, $this->url->link('checkout/cart', '', 'SSL')); 
         
 	    // Закрыть текстовый файл
-	    fclose($f);
+	    fclose($f);*/
 	    $this->load->model('checkout/cart');
-	
+	    $this->language->load('checkout/cart');
+	    
 	    $this->cart->clear();
 	    
 	    $this->model_checkout_cart->clearCurrentCart();
-	    $this->redirect($this->url->link('account/carts', '', 'SSL'));
+	    // код 10 - корзина очищенна успешно
+	//    $.post($this->url->link('checkout/cart', '', 'SSL'), { success: $this->language->get('text_success_clear_cart')});
+	    $this->redirect($this->url->link('checkout/cart', '', 'SSL') . "&success=10");
 	}
 }
 ?>
