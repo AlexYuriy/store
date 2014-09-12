@@ -1630,12 +1630,8 @@ ul.box-filter > li ul {
     margin: 5px;
 }
 
-#save-name{
-    width: 16px;
-    height: 16px;
+#name-cancel, #name-ok{
     display: none;
-    float: left;
-    margin: 5px;
 }
 .cart-list {
 	margin-bottom: 10px;

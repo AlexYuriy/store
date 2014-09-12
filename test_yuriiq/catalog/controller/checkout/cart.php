@@ -21,8 +21,8 @@ class ControllerCheckoutCart extends Controller {
 			$this->redirect($this->url->link('checkout/cart'));  			
 		}
         // save
-        if (isset($this->request->post['save'])) {
-			$cart_name = $this->request->post['save'];
+        if (isset($this->request->get['save'])) {
+			$cart_name = $this->request->get['save'];
 			if (empty($cart_name)) {
 				$this->session->data['error_warning'] = $this->language->get('empty_cart_name');
 			} else { 
@@ -31,6 +31,18 @@ class ControllerCheckoutCart extends Controller {
 				else $this->session->data['error_warning'] = $this->language->get('save_cart_error');
 				$this->redirect($this->url->link('account/carts', '', 'SSL'));
 			}
+		}
+        // rewrite
+        if (isset($this->request->get['rewrite'])) {
+			$cart_name = $this->request->get['rewrite'];
+			if (empty($cart_name)) {
+				$this->session->data['error_warning'] = $this->language->get('empty_cart_name');
+			} else { 
+				$ok = $this->model_checkout_cart->rewriteCart() ;
+				if ($ok) $this->session->data['success'] = $this->language->get('save_cart_success');
+				else $this->session->data['error_warning'] = $this->language->get('save_cart_error');
+				$this->redirect($this->url->link('account/carts', '', 'SSL'));
+				}
 		}
 		// create new cart
     	if (isset($this->request->get['create'])) {
@@ -179,8 +191,9 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['button_create'] = $this->language->get('button_create');
 			$this->data['button_save_name'] = $this->language->get('button_save_name');
 			
-			$this->data['text_cart_name'] = $this->model_checkout_cart->getCurrentCartName();
-			$this->data['url_save_cart']   = $this->url->link('checkout/cart', '', 'SSL');
+			$this->data['text_cart_name']  = $this->model_checkout_cart->getCurrentCartName();
+			$this->data['url_save_cart']   = $this->url->link('checkout/cart&save=', '', 'SSL');
+			$this->data['url_rewrite_cart']= $this->url->link('checkout/cart&rewrite=', '', 'SSL');
 			$this->data['url_clear_cart']  = $this->url->link('checkout/cart/clearCurrentCart', '', 'SSL');
 			$this->data['url_create_cart'] = $this->url->link('checkout/cart&create=', '', 'SSL');
 			$this->data['url_save_cart_name'] = $this->url->link('checkout/cart/editCurrentCartName&new_name=', '', 'SSL') ;
@@ -849,24 +862,6 @@ class ControllerCheckoutCart extends Controller {
 		$this->redirect($this->url->link('checkout/cart', '', 'SSL') );
 	}
 	
-	// очищает текущую корзину, перенаправляет на список корзин
-	public function clearCurrentCart(){
-	/*    $f = fopen(".debug.log", "a");
-    
-        // Записать строку текста
-	    fwrite($f, $this->url->link('checkout/cart', '', 'SSL')); 
-        
-	    // Закрыть текстовый файл
-	    fclose($f);*/
-	    $this->load->model('checkout/cart');
-	    $this->language->load('checkout/cart');
-	    
-	    $this->cart->clear();
-	    
-	    $this->model_checkout_cart->clearCurrentCart();
-	    // код 10 - корзина очищенна успешно
-	//    $.post($this->url->link('checkout/cart', '', 'SSL'), { success: $this->language->get('text_success_clear_cart')});
-	    $this->redirect($this->url->link('checkout/cart', '', 'SSL') . "&success=10");
-	}
+
 }
 ?>

@@ -17,15 +17,14 @@
   </div>
    <?php if ($this->customer->isLogged()) { ?>
       <div class="buttons-cart">
-            <form action="<?php echo $url_save_cart; ?>" method="post" enctype="multipart/form-data">
                 <h1 id="cart-header" onclick="switchToRename();"><?php echo $text_cart_name; ?></h1>
                 <input type="text" name="save" maxlength="55" id="edit-cart-name" value="<?php echo $text_cart_name; ?>" />
-                <img id="save-name" onclick='save_cart_name(getElementById("edit-cart-name").value);' title="<?php echo $button_save_name; ?>" src="catalog/view/theme/default/image/tick.png" /> 
-                <a href="<?php echo $url_clear_cart ?>"><img title="<?php echo $text_button_clear; ?>" src="catalog/view/theme/default/image/clear.png" class="button-cart" /></a> 
-                <a onclick="print_cart();"> <img title="<?php echo $button_print; ?>" src="catalog/view/theme/default/image/print.png" class="button-cart" /> </a>
+                <img id="name-ok" onclick='save_cart_name(getElementById("edit-cart-name").value);' title="<?php echo $button_save_name; ?>" src="catalog/view/theme/default/image/success.png" /> 
+                <img id="name-cancel" onclick='switchApToRename();' title="<?php echo $button_save_name; ?>" src="catalog/view/theme/default/image/remove.png" /> 
+				<a onclick="print_cart();"> <img title="<?php echo $button_print; ?>" src="catalog/view/theme/default/image/print.png" class="button-cart" /> </a>
+                <a><img title="<?php echo $text_button_clear; ?>" src="catalog/view/theme/default/image/clear.png" id="clear_cart" class="button-cart" /></a> 
                 <input type="image"  title="<?php echo $button_save_list; ?>" src="catalog/view/theme/default/image/save.png" id="save_cart" class="button-cart" />
-				<a> <img title="<?php echo $button_create; ?>" src="catalog/view/theme/default/image/create.png" id="new_cart" class="button-cart" /> </a>
-            </form> 
+				<a> <img title="<?php echo $button_create; ?>" src="catalog/view/theme/default/image/create.png" id="new_cart" class="button-cart" /> </a> 
       </div>
    <?php } else {?>
   <h1><?php echo $heading_title; ?>
@@ -233,8 +232,6 @@ $('input[name=\'next\']').bind('change', function() {
 // сохранение имени и оповещение об этом пользователя
 function save_cart_name(name) {
 window.location.href = '<?php echo $url_save_cart_name ?>'+ name; 
-$('#edit-cart-name').val();
-
 }
  //--> 
 </script>
@@ -271,16 +268,35 @@ $('#button-save-list').live('click', function() {
 <script type='text/javascript'>
 <!--
 
-function save_cart() {
-	window.location.href = '<?php echo $url_save_cart; ?>';
-}
-function clear_cart(){
-	window.location.href = '<?php echo $url_clear_cart; ?>';
+function switchToRename() {
+    document.getElementById('cart-header').style.display = "none";
+    document.getElementById('edit-cart-name').style.display = "inline";
+    document.getElementById('name-ok').style.display = "inline";
+    document.getElementById('name-cancel').style.display = "inline";
 }
 
-function rewrite_cart() {
-	window.location.href = '<?php echo $rewrite_cart; ?>';
+function switchApToRename() {
+    document.getElementById('cart-header').style.display = "inline";
+    document.getElementById('edit-cart-name').style.display = "none";
+    document.getElementById('name-ok').style.display = "none";
+    document.getElementById('name-cancel').style.display = "none";
 }
+
+// создание пустой корзины вместе с выводом сообщений-уточнений
+/*
+function createEmptyCart() {
+
+    $.ajax({
+		url: 'index.php?route=checkout/cart',
+		type: 'post',
+		data: 'create=' 1,
+		success: function() {
+		
+		}
+	});
+}*/
+
+
 /*
  * SimpleModal Confirm Modal Dialog
  * http://www.ericmmartin.com/projects/simplemodal/
@@ -307,14 +323,30 @@ jQuery(function ($) {
 });
 
 jQuery(function ($) {
+	$('#clear_cart').click(function (e) {
+		e.preventDefault();
+
+		// example of calling the confirm function
+		// you must use a callback function to perform the "yes" action
+		confirm("<?php echo $text_save; ?>", 
+				function() { window.location.href = '<?php echo $url_create_cart; ?>1';}, 
+				function() { window.location.href = '<?php echo $url_create_cart; ?>0';});
+	});
+});
+
+jQuery(function ($) {
 	$('#save_cart').click(function (e) {
 		e.preventDefault();
 
 		// example of calling the confirm function
 		// you must use a callback function to perform the "yes" action
 		confirm("<?php echo $text_rewrite; ?>", 
-				function() { window.location.href = '<?php echo $_cart; ?>1';}, 
-				function() { window.location.href = '<?php echo $_cart; ?>0';});
+				function() { 
+				var name = document.getElementById("edit-cart-name").value;
+				window.location.href = '<?php echo $url_rewrite_cart; ?>'+name;}, 
+				function() { 
+				var name = document.getElementById("edit-cart-name").value;
+				window.location.href = '<?php echo $url_save_cart; ?>'+name;});
 	});
 });
 

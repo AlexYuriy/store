@@ -30,7 +30,9 @@
 			<?php foreach ($vouchers as $voucher) { ?>
 			    <?php $num_products += $voucher['quantity'];} ?>
 		    <?php } ?>
-			<span id="cart-total"><?php echo $num_products; ?></span>			
+			<?php if ($num_products) {?>
+				<span id="cart-total"><?php echo $num_products; ?></span>			
+			<?php } ?>
 		</a>
 		<!-- Личный кабинет" -->
 		<a id="sidebar_account" onclick="openMenu('sidebar_account_panel', true);return(false)">  

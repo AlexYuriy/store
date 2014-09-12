@@ -18,14 +18,21 @@ class ModelCheckoutCart extends Model {
 	public function editCurrentCartName($new_name){
 	    $user_id = $this->customer->getId();
 	    
-	    $this->db->query("UPDATE `" . DB_PREFIX . "carts` SET `name` = " + $new_name + " WHERE `cart_id` =  ( SELECT`current_cart_id` FROM `" . DB_PREFIX . "customer` WHERE `customer_id` = " . $user_id . " ) "); 
+	    $this->db->query("UPDATE `" . DB_PREFIX . "carts` SET `name` = '" . $new_name . "' WHERE `cart_id` =  ( SELECT `current_cart_id` FROM `" . DB_PREFIX . "customer` WHERE `customer_id` = " . $user_id . " ) "); 
 	}
-	
-	// очищает текущую корзину в БД
-	public function clearCurrentCart(){
-	    $user_id = $this->customer->getId();
-	    
-	    $this->db->query("UPDATE `" . DB_PREFIX . "carts` SET `cart` = NULL, count = 0 WHERE `cart_id` =  ( SELECT`current_cart_id` FROM `" . DB_PREFIX . "customer` WHERE `customer_id` = " . $user_id . " ) "); 
+		
+	public function rewriteCart() {
+	    $cart = $this->db->escape(isset($this->session->data['cart']) ? serialize($this->session->data['cart']) : '');
+			$count = $this->cart->countProducts();
+			$user_id = $this->customer->getId();
+			
+			if (empty($cart)) return false; else {
+				$query = $this->db->query("UPDATE " . DB_PREFIX . "carts SET cart = '".$cart."', count = '".$count."' WHERE `cart_id` =  ( SELECT `current_cart_id` FROM `" . DB_PREFIX . "customer` WHERE `customer_id` = " . $user_id . " ) ");
+				// Возможно, действительно имеет смысл хранить это в сессии
+				//$this->session->data['current_cart_id'] = $cart->row['cart_id'];
+				
+				return true;
+			}
 	}
 	
 	// сохраняет корзину с новым именем
