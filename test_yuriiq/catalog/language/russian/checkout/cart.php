@@ -33,9 +33,15 @@ $_['text_rewrite']           = 'Перезаписать?';
 $_['text_save']              = 'Сохранить?';    
 $_['text_error_save_name']   = 'Поле не может быть пустым!';
 $_['text_success_save_name'] = 'Имя успешно сохранено';
+$_['text_change_cart']       = '[Изменить?]';
 $_['button_save_name']       = 'Сохранить имя';
 
-
+// Confirm 
+$_['confirm_header'] = 'Подтвердите';
+$_['confirm_cancel'] = 'Отмена';
+$_['confirm_no']     = 'Нет';
+$_['confirm_yes']    = 'Да';
+	
 // Column
 $_['column_image']    = 'Фото';
 $_['column_name']     = 'Название товара';

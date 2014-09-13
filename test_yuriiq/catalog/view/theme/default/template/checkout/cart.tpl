@@ -18,13 +18,14 @@
    <?php if ($this->customer->isLogged()) { ?>
       <div class="buttons-cart">
                 <h1 id="cart-header" onclick="switchToRename();"><?php echo $text_cart_name; ?></h1>
+                <span class="title-message" id="text-change-cart" onclick="switchToRename();"> <?php echo $text_change_cart; ?> </span>
                 <input type="text" name="save" maxlength="55" id="edit-cart-name" value="<?php echo $text_cart_name; ?>" />
                 <img id="name-ok" onclick='save_cart_name(getElementById("edit-cart-name").value);' title="<?php echo $button_save_name; ?>" src="catalog/view/theme/default/image/success.png" /> 
                 <img id="name-cancel" onclick='switchApToRename();' title="<?php echo $button_save_name; ?>" src="catalog/view/theme/default/image/remove.png" /> 
-				<a onclick="print_cart();"> <img title="<?php echo $button_print; ?>" src="catalog/view/theme/default/image/print.png" class="button-cart" /> </a>
-                <a><img title="<?php echo $text_button_clear; ?>" src="catalog/view/theme/default/image/clear.png" id="clear_cart" class="button-cart" /></a> 
-                <input type="image"  title="<?php echo $button_save_list; ?>" src="catalog/view/theme/default/image/save.png" id="save_cart" class="button-cart" />
-				<a> <img title="<?php echo $button_create; ?>" src="catalog/view/theme/default/image/create.png" id="new_cart" class="button-cart" /> </a> 
+				<img onclick="print_cart();" title="<?php echo $button_print; ?>" src="catalog/view/theme/default/image/print.png" class="button-cart" /> 
+                <img title="<?php echo $text_button_clear; ?>" src="catalog/view/theme/default/image/clear.png" id="clear_cart" class="button-cart" /> 
+                <img title="<?php echo $button_save_list; ?>" src="catalog/view/theme/default/image/save.png" id="save_cart" class="button-cart" />
+				<img title="<?php echo $button_create; ?>" src="catalog/view/theme/default/image/create.png" id="new_cart" class="button-cart" /> 
       </div>
    <?php } else {?>
   <h1><?php echo $heading_title; ?>
@@ -256,10 +257,10 @@ $('#button-save-list').live('click', function() {
 </script>
 -->
 <div id='confirm'>
-	<div class='header'><span>Confirm</span></div>
+	<div class='header'><span><?php echo $confirm_header; ?></span></div>
 	<div class='message'></div>
 	<div class='buttons'>
-		<div class='cancel simplemodal-close'>Cancel</div><div class='no'>No</div><div class='yes'>Yes</div>
+		<div class='cancel simplemodal-close'><?php echo $confirm_cancel; ?></div><div class='no'><?php echo $confirm_no; ?></div><div class='yes'><?php echo $confirm_yes; ?></div>
 	</div>
 </div>
 <link type='text/css' href='catalog/view/theme/default/stylesheet/confirm.css' rel='stylesheet' media='screen' />
@@ -270,6 +271,7 @@ $('#button-save-list').live('click', function() {
 
 function switchToRename() {
     document.getElementById('cart-header').style.display = "none";
+    document.getElementById('text-change-cart').style.display = "none";
     document.getElementById('edit-cart-name').style.display = "inline";
     document.getElementById('name-ok').style.display = "inline";
     document.getElementById('name-cancel').style.display = "inline";
@@ -280,6 +282,11 @@ function switchApToRename() {
     document.getElementById('edit-cart-name').style.display = "none";
     document.getElementById('name-ok').style.display = "none";
     document.getElementById('name-cancel').style.display = "none";
+    document.getElementById('text-change-cart').style.display = "block";
+    document.getElementById('text-change-cart').style.display = "inline";
+    
+    // не сохраняет вариант, котороый пользователь хотел отменить
+    $("#edit-cart-name").val($("#cart-header").text());
 }
 
 // создание пустой корзины вместе с выводом сообщений-уточнений

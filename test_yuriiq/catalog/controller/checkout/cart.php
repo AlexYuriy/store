@@ -160,6 +160,7 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['text_default_cart_name'] = $this->language->get('text_default_cart_name');
 			$this->data['text_rewrite'] = $this->language->get('text_rewrite');
 			$this->data['text_save'] = $this->language->get('text_save');
+			$this->data['text_change_cart'] = $this->language->get('text_change_cart');
 
 			$this->data['column_image'] = $this->language->get('column_image');
 			$this->data['column_name'] = $this->language->get('column_name');
@@ -190,6 +191,11 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['text_button_clear'] = $this->language->get('text_button_clear');
 			$this->data['button_create'] = $this->language->get('button_create');
 			$this->data['button_save_name'] = $this->language->get('button_save_name');
+			
+			$this->data['confirm_header'] = $this->language->get('confirm_header');
+			$this->data['confirm_cancel'] = $this->language->get('confirm_cancel');
+			$this->data['confirm_no'] = $this->language->get('confirm_no');
+			$this->data['confirm_yes'] = $this->language->get('confirm_yes');
 			
 			$this->data['text_cart_name']  = $this->model_checkout_cart->getCurrentCartName();
 			$this->data['url_save_cart']   = $this->url->link('checkout/cart&save=', '', 'SSL');
