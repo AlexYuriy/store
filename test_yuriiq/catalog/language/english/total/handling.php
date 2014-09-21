@@ -1,3 +1,5 @@
 <?php
-$_['text_handling'] = 'Handling Fee';
+
+// text
+$_['text_handling']	= 'Handling Fee';
 ?>

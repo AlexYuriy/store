@@ -1,4 +1,5 @@
 <?php
-// Text
-$_['text_title'] = 'Free Checkout';
+
+// text
+$_['text_title']	= 'Free Checkout';
 ?>

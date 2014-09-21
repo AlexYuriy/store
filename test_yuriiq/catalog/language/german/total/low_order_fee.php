@@ -1,3 +1,5 @@
 <?php
-$_['text_low_order_fee'] = 'Mindermengenzuschlag';
+
+// text
+$_['text_low_order_fee']	= 'Mindermengenzuschlag';
 ?>

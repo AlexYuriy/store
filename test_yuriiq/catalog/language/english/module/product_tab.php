@@ -1,12 +1,14 @@
 <?php
-// Heading 
-$_['heading_title'] = 'Our Products';
 
-$_['tab_latest'] = 'Latest';
-$_['tab_bestseller'] = 'Bestseller';
-$_['tab_featured'] = 'Featured';
-$_['tab_special'] = 'Special';
+// text
+$_['text_reviews']	= 'Based on %s reviews.';
 
-// Text
-$_['text_reviews']  = 'Based on %s reviews.'; 
+// tab
+$_['tab_special']	= 'Special';
+$_['tab_bestseller']	= 'Bestseller';
+$_['tab_featured']	= 'Featured';
+$_['tab_latest']	= 'Latest';
+
+// heading
+$_['heading_title']	= 'Our Products';
 ?>

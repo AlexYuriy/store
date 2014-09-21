@@ -1,4 +1,5 @@
 <?php
-// Text
-$_['text_all_reviews']  = 'Alle Bewertungen lesen'; 
+
+// text
+$_['text_all_reviews']	= 'Alle Bewertungen lesen';
 ?>

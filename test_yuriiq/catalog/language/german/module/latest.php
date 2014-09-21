@@ -1,6 +1,8 @@
 <?php
-// Heading
-$_['heading_title']  = 'Neuigkeiten';
-// Text
-$_['text_reviews']   = '%s Beurteilungen.';
+
+// text
+$_['text_reviews']	= '%s Beurteilungen.';
+
+// heading
+$_['heading_title']	= 'Neuigkeiten';
 ?>

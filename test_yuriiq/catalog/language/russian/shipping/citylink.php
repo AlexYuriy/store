@@ -1,5 +1,6 @@
 <?php
-// Text
-$_['text_title']  = 'Доставка по городу';
-$_['text_weight'] = 'Вес:';
+
+// text
+$_['text_weight']	= 'Вес:';
+$_['text_title']	= 'Доставка по городу';
 ?>

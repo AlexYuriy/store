@@ -117,10 +117,8 @@ label {
 }
 #header #cellfone
 {
-	position: absolute;
-	right:80px;
-	top:40px;
-	font-size: 26px;
+	font-size: 20px;
+	margin-left: 10px;
 }
 #language {
 	position: absolute;
@@ -278,10 +276,11 @@ label {
 	text-align: center;
 }
 #header #search {
+	
 	position: absolute;
 	top: 40px;
-	right: 330px;
-	width: 298px;
+	right: 230px;
+	display: inline-flex;
 }
 #header .button-search {
 	position: absolute;

@@ -1,8 +1,9 @@
 <?php
-// Heading
-$_['heading_title'] = 'Letzte Artikel';
-$_['text_views'] 	= 'Bewertungen:';
 
-// Text
-$_['text_reviews']  = 'beyogen auf %s rezension.';
+// text
+$_['text_reviews']	= 'beyogen auf %s rezension.';
+$_['text_views']	= 'Bewertungen:';
+
+// heading
+$_['heading_title']	= 'Letzte Artikel';
 ?>

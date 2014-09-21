@@ -1,3 +1,5 @@
 <?php
-$_['heading_title'] = 'Welcome to %s';
+
+// heading
+$_['heading_title']	= 'Welcome to %s';
 ?>

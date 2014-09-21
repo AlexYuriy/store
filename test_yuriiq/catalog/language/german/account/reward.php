@@ -1,15 +1,16 @@
 <?php
-// Heading 
-$_['heading_title']      = 'Ihre Belohnungspunkte';
 
-// Column
-$_['column_date_added']  = 'Hinzugefügt am';
-$_['column_description'] = 'Beschreibung';
-$_['column_points']      = 'Punkte';
+// text
+$_['text_account']	= 'Konto';
+$_['text_empty']	= 'Keine Belohnungspunkte vorhanden!';
+$_['text_reward']	= 'Belohnungspunkte';
+$_['text_total']	= 'Summe Belohnungspunkte:';
 
-// Text
-$_['text_account']       = 'Konto';
-$_['text_reward']        = 'Belohnungspunkte';
-$_['text_total']         = 'Summe Belohnungspunkte:';
-$_['text_empty']         = 'Keine Belohnungspunkte vorhanden!';
+// column
+$_['column_points']	= 'Punkte';
+$_['column_date_added']	= 'Hinzugefügt am';
+$_['column_description']	= 'Beschreibung';
+
+// heading
+$_['heading_title']	= 'Ihre Belohnungspunkte';
 ?>

@@ -1,8 +1,9 @@
 <?php
-// Heading
-$_['heading_title'] = 'Last Articles';
-$_['text_views'] 	= 'Reviews:';
 
-// Text
-$_['text_reviews']  = 'Based on %s reviews.';
+// text
+$_['text_reviews']	= 'Based on %s reviews.';
+$_['text_views']	= 'Reviews:';
+
+// heading
+$_['heading_title']	= 'Last Articles';
 ?>

@@ -1,15 +1,16 @@
 <?php
-// Heading
-$_['heading_title']      = 'История финансовых операций';
 
-// Column
-$_['column_date_added']  = 'Добавлено';
-$_['column_description'] = 'Описание';
-$_['column_amount']      = 'Сумма (%s)';
+// text
+$_['text_account']	= 'Личный Кабинет';
+$_['text_empty']	= 'Не было финансовых операций!';
+$_['text_transaction']	= 'Финансовые операции';
+$_['text_total']	= 'Ваш текущий баланс:';
 
-// Text
-$_['text_account']       = 'Личный Кабинет';
-$_['text_transaction']   = 'Финансовые операции';
-$_['text_total']         = 'Ваш текущий баланс:';
-$_['text_empty']         = 'Не было финансовых операций!';
+// column
+$_['column_date_added']	= 'Добавлено';
+$_['column_amount']	= 'Сумма (%s)';
+$_['column_description']	= 'Описание';
+
+// heading
+$_['heading_title']	= 'История финансовых операций';
 ?>

@@ -1,4 +1,5 @@
 <?php
-// Heading
-$_['heading_title'] = 'Suche verfeinern';
+
+// heading
+$_['heading_title']	= 'Suche verfeinern';
 ?>

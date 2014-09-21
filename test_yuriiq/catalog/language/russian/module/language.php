@@ -1,4 +1,5 @@
 <?php
-// Text
-$_['text_language'] = 'Язык';
+
+// text
+$_['text_language']	= 'Язык';
 ?>

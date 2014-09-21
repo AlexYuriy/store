@@ -1,3 +1,5 @@
 <?php
-$_['text_total'] = 'Summe';
+
+// text
+$_['text_total']	= 'Summe';
 ?>

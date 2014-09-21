@@ -1,4 +1,5 @@
 <?php
-// Heading
-$_['heading_title'] = 'Kategorien';
+
+// heading
+$_['heading_title']	= 'Kategorien';
 ?>

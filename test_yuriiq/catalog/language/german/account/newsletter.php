@@ -1,12 +1,13 @@
 <?php
-// Heading
-$_['heading_title']    = 'Newsletterabonnement';
 
-// Text
-$_['text_account']     = 'Konto';
-$_['text_newsletter']  = 'Newsletter';
-$_['text_success']     = 'Das Abonnement zum Newsletter wurde eingetragen.';
+// text
+$_['text_account']	= 'Konto';
+$_['text_success']	= 'Das Abonnement zum Newsletter wurde eingetragen.';
+$_['text_newsletter']	= 'Newsletter';
 
-// Entry
-$_['entry_newsletter'] = 'Anmelden:';
+// entry
+$_['entry_newsletter']	= 'Anmelden:';
+
+// heading
+$_['heading_title']	= 'Newsletterabonnement';
 ?>

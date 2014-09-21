@@ -1,8 +1,9 @@
 <?php
-// Heading 
-$_['heading_title'] = 'Рекомендуем';
-$_['text_views'] 	= 'Просмотров:';
 
-// Text
-$_['text_reviews']  = 'На основании %s отзывов.'; 
+// text
+$_['text_reviews']	= 'На основании %s отзывов.';
+$_['text_views']	= 'Просмотров:';
+
+// heading
+$_['heading_title']	= 'Рекомендуем';
 ?>

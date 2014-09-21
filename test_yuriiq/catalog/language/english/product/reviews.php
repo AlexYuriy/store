@@ -1,7 +1,8 @@
 <?php
-// Heading
-$_['heading_title'] = 'Customer Reviews';
 
-// Text
-$_['text_empty'] = 'No Any Reviews!';
+// text
+$_['text_empty']	= 'No Any Reviews!';
+
+// heading
+$_['heading_title']	= 'Customer Reviews';
 ?>

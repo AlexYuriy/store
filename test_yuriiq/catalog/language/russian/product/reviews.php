@@ -1,7 +1,8 @@
 <?php
-// Heading
-$_['heading_title'] = 'Отзывы покупателей';
 
-// Text
-$_['text_empty'] = 'Нет ниодного отзыва!';
+// text
+$_['text_empty']	= 'Нет ниодного отзыва!';
+
+// heading
+$_['heading_title']	= 'Отзывы покупателей';
 ?>

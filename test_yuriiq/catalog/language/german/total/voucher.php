@@ -1,4 +1,5 @@
 <?php
-// Text
-$_['text_voucher'] = 'Gutschein (%s)**';
+
+// text
+$_['text_voucher']	= 'Gutschein (%s)**';
 ?>

@@ -1,4 +1,5 @@
 <?php
-// Text
-$_['text_title'] = 'Webmoney WMU';
+
+// text
+$_['text_title']	= 'Webmoney WMU';
 ?>

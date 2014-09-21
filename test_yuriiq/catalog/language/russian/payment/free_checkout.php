@@ -1,4 +1,5 @@
 <?php
-// Text
-$_['text_title'] = 'Бесплатно';
+
+// text
+$_['text_title']	= 'Бесплатно';
 ?>

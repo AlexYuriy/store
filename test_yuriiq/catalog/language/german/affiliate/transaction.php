@@ -1,15 +1,16 @@
 <?php
-// Heading 
-$_['heading_title']      = 'Ihre Buchungen';
 
-// Column
-$_['column_date_added']  = 'Hinzugefügt am';
-$_['column_description'] = 'Beschreibung';
-$_['column_amount']      = 'Betrag (%s)';
+// text
+$_['text_balance']	= 'Saldo:';
+$_['text_account']	= 'Konto';
+$_['text_empty']	= 'Keine Buchungen vorhanden.';
+$_['text_transaction']	= 'Buchungen';
 
-// Text
-$_['text_account']       = 'Konto';
-$_['text_transaction']   = 'Buchungen';
-$_['text_balance']       = 'Saldo:';
-$_['text_empty']         = 'Keine Buchungen vorhanden.';
+// column
+$_['column_date_added']	= 'Hinzugefügt am';
+$_['column_amount']	= 'Betrag (%s)';
+$_['column_description']	= 'Beschreibung';
+
+// heading
+$_['heading_title']	= 'Ihre Buchungen';
 ?>
