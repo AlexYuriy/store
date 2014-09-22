@@ -125,6 +125,8 @@ function addToCart(product_id, quantity) {
 				$('.success').fadeIn('slow');
 				
 				$('#cart-total').html(json['total']);
+				if (json['total']) $('#cart-total').css('display', 'block');
+					else $('#cart-total').css('display', 'none');
 				
 				$('html, body').animate({ scrollTop: 0 }, 'slow'); 
 			}	

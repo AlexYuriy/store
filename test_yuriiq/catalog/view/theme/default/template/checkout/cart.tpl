@@ -217,7 +217,7 @@
     </table>
   </div>
   <div class="buttons">
-    <div class="left"><a href="<?php echo $checkout; ?>" class="button"><?php echo $button_checkout; ?></a></div>
+    <div class="right"><a href="<?php echo $checkout; ?>" class="button"><?php echo $button_checkout; ?></a></div>
     <div class="center"><a href="<?php echo $continue; ?>" class="button"><?php echo $button_shopping; ?></a></div>
   </div>
   <?php echo $content_bottom; ?></div>

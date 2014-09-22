@@ -759,14 +759,14 @@ input[type="submit"].button.button-mini {
 .buttons-cart {
 	background: #FFFFFF;
 	/*border: 1px solid #EEEEEE;*/
-	overflow: auto;
+	overflow: hidden;
 	padding: 6px;
 	margin-bottom: 20px;
 }
 .buttons {
 	background: #FFFFFF;
 	border: 1px solid #EEEEEE;
-	overflow: auto;
+	overflow: hidden;
 	padding: 6px;
 	margin-bottom: 20px;
 }
@@ -814,7 +814,7 @@ input[type="submit"].button.button-mini {
 	border-bottom: 1px solid #DDDDDD;
 	padding: 10px;
 	margin-bottom: 20px;
-	overflow: auto;
+	overflow: hidden;
 }
 /* box */
 .box {
@@ -856,7 +856,7 @@ input[type="submit"].button.button-mini {
 /* box products */
 .box-product {
 	width: 100%;
-	overflow: auto;
+	overflow: hidden;
 }
 .box-product > div {
     display: inline-block;
@@ -875,6 +875,9 @@ input[type="submit"].button.button-mini {
 .box-product .image img {
 	padding: 3px;
 	border: 1px solid #E7E7E7;
+}
+.tab-content .box-product .name {
+	height:60px;
 }
 .box-product .name a {
 	color: #1f2226;
@@ -969,7 +972,7 @@ ul.box-filter > li ul {
 /* content */
 #content .content {
 	padding: 10px;
-	overflow: auto;
+	overflow: hidden;
 	margin-bottom: 20px;
 	border: 1px solid #EEEEEE;
 }
@@ -987,7 +990,7 @@ ul.box-filter > li ul {
     margin-right: 10px;
 }
 .category-info {
-	overflow: auto;
+	overflow: hidden;
 	margin-bottom: 20px;
 }
 .category-info .image {
@@ -1042,7 +1045,7 @@ ul.box-filter > li ul {
 .manufacturer-list {
 	border: 1px solid #DBDEE1;
 	padding: 5px;
-	overflow: auto;
+	overflow: hidden;
 	margin-bottom: 20px;
 }
 .manufacturer-heading {
@@ -1069,7 +1072,7 @@ ul.box-filter > li ul {
 	border: 1px solid #DBDEE1;
 	border-radius: 3px;
 	margin-bottom: 25px;
-	overflow: auto;
+	overflow: hidden;
 	padding: 5px;
 	-webkit-border-radius: 3px 3px 3px 3px;
 	-moz-border-radius: 3px 3px 3px 3px;
@@ -1099,7 +1102,7 @@ ul.box-filter > li ul {
 	font-weight: bold;
 	padding-top: 4px;
 	width: 200px;
-	margin-left: 80px;
+	margin-left: 70px;
 }
 .product-compare a {
 	text-decoration: none;
@@ -1176,7 +1179,7 @@ ul.box-filter > li ul {
 }
 .product-grid {
 	width: 100%;
-	overflow: auto;
+	overflow: hidden;
 	border-left: 1px solid #DBDEE1;
 	border-top: 1px solid #DBDEE1;
 }
@@ -1185,7 +1188,7 @@ ul.box-filter > li ul {
 	border-top: 1px solid #DBDEE1;
 	border-bottom: 1px solid #DBDEE1;
 	float: left;
-	height: 285px;
+	height: 300px;
 	vertical-align: top;
 	padding: 10px;
 	margin-top: -1px;
@@ -1200,7 +1203,7 @@ ul.box-filter > li ul {
 	text-align: center;
 }
 .product-grid .name {
-	height: 35px;
+	height: 45px;
     overflow: hidden;
 }
 .product-grid .name a {
@@ -1236,12 +1239,12 @@ ul.box-filter > li ul {
 	display: none;
 }
 .product-grid .cart {
-	margin-bottom: 15px;
+	margin-bottom: 5px;
 	text-align: right;
 }
 .product-grid .wishlist, .product-grid .compare {
 	margin-bottom: 3px;
-	margin-top: 10px;
+	margin-top: 5px;
 }
 .product-grid .wishlist {
 	float: left;
@@ -1265,7 +1268,7 @@ ul.box-filter > li ul {
 }
 /* Product */
 .product-info {
-	overflow: auto;
+	overflow: hidden;
 	margin-bottom: 20px;
 }
 .product-info > .left {
@@ -1313,7 +1316,7 @@ ul.box-filter > li ul {
 	text-decoration: none;
 }
 .product-info .price {
-	overflow: auto;
+	overflow: hidden;
 	border-bottom: 1px solid #E7E7E7;
 	padding: 0px 5px 10px 5px;
 	margin-bottom: 10px;
@@ -1406,7 +1409,7 @@ ul.box-filter > li ul {
 	width: 1.1em;
 }
 .product-info .review .share {
-	overflow: auto;
+	overflow: hidden;
 	line-height: normal;
 }
 .product-info .review .share a {
@@ -1414,7 +1417,7 @@ ul.box-filter > li ul {
 }
 .review-list {
 	padding: 10px;
-	overflow: auto;
+	overflow: hidden;
 	margin-bottom: 20px;
 	border: 1px solid #EEEEEE;
 }
@@ -1547,7 +1550,7 @@ ul.box-filter > li ul {
 }
 .login-content {
 	margin-bottom: 20px;
-	overflow: auto;
+	overflow: hidden;
 }
 .login-content .left {
 	float: left;
@@ -1702,7 +1705,7 @@ ul.box-filter > li ul {
 	text-align: right;
 }
 .return-product {
-	overflow: auto;
+	overflow: hidden;
 	margin-bottom: 20px;
 }
 .return-name {
@@ -1720,7 +1723,7 @@ ul.box-filter > li ul {
 	width: 31%;
 }
 .return-detail {
-	overflow: auto;
+	overflow: hidden;
 	margin-bottom: 20px;
 }
 .return-reason {
@@ -1826,7 +1829,7 @@ ul.box-filter > li ul {
 }
 .cart-total {
 	border-top: 1px solid #DDDDDD;
-	overflow: auto;
+	overflow: hidden;
 	padding-top: 8px;
 	margin-bottom: 15px;
 }
@@ -1856,7 +1859,7 @@ ul.box-filter > li ul {
 .checkout-content {
 	padding: 0px 0px 15px 0px;
 	display: none;
-	overflow: auto;
+	overflow: hidden;
 }
 .checkout-content .left {
 	float: left;
@@ -1907,7 +1910,7 @@ ul.box-filter > li ul {
 	border-bottom: 1px solid #DDDDDD;
 }
 .contact-info {
-	overflow: auto;
+	overflow: hidden;
 }
 .contact-info .left {
 	float: left;
@@ -1918,7 +1921,7 @@ ul.box-filter > li ul {
 	width: 48%;
 }
 .sitemap-info {
-	overflow: auto;
+	overflow: hidden;
 	margin-bottom: 40px;
 }
 .sitemap-info .left {
@@ -1932,7 +1935,7 @@ ul.box-filter > li ul {
 /* footer */
 #container-footer {
 	clear: both;
-	overflow: auto;
+	overflow: hidden;
 	min-height: 100px;
 	background: #F8F8F8;
     margin-top: 30px;
