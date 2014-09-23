@@ -76,7 +76,7 @@
 		<?php echo $product['description_mini']; ?>
       <?php } ?>
 	  </div> 
-      <?php if ($product['price']) { ?>
+      <?php if (($product['price']!=0) || ($product['special'])) { ?>
       <div class="price">
         <?php if (!$product['special']) { ?>
         <?php echo $product['price']; ?>
