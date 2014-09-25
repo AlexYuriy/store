@@ -116,7 +116,8 @@
           <td><input type="text" name="city" value="<?php echo $city; ?>" />
             <?php if ($error_city) { ?>
             <span class="error"><?php echo $error_city; ?></span>
-            <?php } ?></td>
+            <?php } ?>
+			<div><ul name="city_id"></ul></div></td>
         </tr>
 		<tr>
           <td><span id="postcode-required" class="required">*</span> <?php echo $entry_postcode; ?></td>
@@ -270,6 +271,45 @@ $('select[name=\'country_id\']').bind('change', function() {
 
 $('select[name=\'country_id\']').trigger('change');
 //--></script> 
+
+<script type="text/javascript"><!--
+$('select[name=\'zone_id\']').bind('change', function() {
+	$.ajax({
+		url: 'index.php?route=account/register/zone&zone_id=' + this.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('select[name=\'zone_id\']').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
+		},
+		complete: function() {
+			$('.wait').remove();
+		},			
+		success: function(json) {
+			if (json['postcode_required'] == '1') {
+				$('#postcode-required').show();
+			} else {
+				$('#postcode-required').hide();
+			}
+			
+			html = '<li name=""><?php echo $text_select; ?></li>';
+			
+			if (json['city'] != '') {
+				for (i = 0; i < json['city'].length; i++) {
+        			html += '<li name="' + json['city'][i]['city_id'] + '"';	
+	    			html += '>' + json['city'][i]['name'] + '</li>';
+				}
+			} else html += '<li>none</li>';
+			$('ul[name=\'city_id\']').html(html);
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+
+$('select[name=\'zone_id\']').trigger('change');
+//--></script> 
+
+
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$('.colorbox').colorbox({
