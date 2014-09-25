@@ -93,6 +93,7 @@ $_['text_voucher_theme']               = 'Тематика';
 $_['text_weight_class']                = 'Единицы веса';
 $_['text_length_class']                = 'Единицы измерения';
 $_['text_zone']                        = 'Регионы';
+$_['text_city']                        = 'Города';
 $_['text_openbay_extension']           = 'OpenBay Pro';
 $_['text_openbay_dashboard']           = 'Панель управления';
 $_['text_openbay_orders']              = 'Проверка обновлений';
