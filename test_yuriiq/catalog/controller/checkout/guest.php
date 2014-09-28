@@ -344,17 +344,15 @@ class ControllerCheckoutGuest extends Controller {
 				$this->session->data['shipping_zone_id'] = $this->request->post['zone_id'];
 				$this->session->data['shipping_postcode'] = $this->request->post['postcode'];
 			}
-
+			if (empty($this->session->data['guest']['shipping'])) 
+			{
+				$this->session->data['guest']['shipping'] = $this->session->data['guest']['payment'] ;
+			}
 			$this->session->data['account'] = 'guest';
-
 			unset($this->session->data['shipping_method']);
 			unset($this->session->data['shipping_methods']);
 			unset($this->session->data['payment_method']);
 			unset($this->session->data['payment_methods']);
-		}
-		if (empty($this->session->data['guest']['shipping'])) 
-		{
-			$this->session->data['guest']['shipping'] = $this->session->data['guest']['payment'] ;
 		}
 		$this->response->setOutput(json_encode($json));	
 	}

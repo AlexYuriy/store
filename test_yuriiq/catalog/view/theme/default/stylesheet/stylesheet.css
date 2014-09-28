@@ -533,7 +533,7 @@ table.form > * > * > td {
 table.form td {
 	padding: 4px;
 }
-input.large-field, select.large-field {
+input.large-field, select.large-field, div.large-field {
 	width: 300px;
 }
 table.list {
@@ -2126,7 +2126,6 @@ ul.box-filter > li ul {
 #city_id {
 	position:absolute;
 	background-color: whitesmoke;
-	width: 206px;
 }
 #city_id ul {
 	list-style: none outside none;
