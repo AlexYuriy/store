@@ -117,7 +117,7 @@
             <?php if ($error_city) { ?>
             <span class="error"><?php echo $error_city; ?></span>
             <?php } ?>
-			<div><ul name="city_id"></ul></div></td>
+			<div id="city_id"></div></td>
         </tr>
 		<tr>
           <td><span id="postcode-required" class="required">*</span> <?php echo $entry_postcode; ?></td>
@@ -273,6 +273,7 @@ $('select[name=\'country_id\']').trigger('change');
 //--></script> 
 
 <script type="text/javascript"><!--
+var city = new Array();
 $('select[name=\'zone_id\']').bind('change', function() {
 	$.ajax({
 		url: 'index.php?route=account/register/zone&zone_id=' + this.value,
@@ -289,16 +290,12 @@ $('select[name=\'zone_id\']').bind('change', function() {
 			} else {
 				$('#postcode-required').hide();
 			}
-			
-			html = '<li name=""><?php echo $text_select; ?></li>';
-			
 			if (json['city'] != '') {
+				city.length = json['city'].length;
 				for (i = 0; i < json['city'].length; i++) {
-        			html += '<li name="' + json['city'][i]['city_id'] + '"';	
-	    			html += '>' + json['city'][i]['name'] + '</li>';
+					city[i] = json['city'][i]['name'];
 				}
-			} else html += '<li>none</li>';
-			$('ul[name=\'city_id\']').html(html);
+			} 
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -307,9 +304,34 @@ $('select[name=\'zone_id\']').bind('change', function() {
 });
 
 $('select[name=\'zone_id\']').trigger('change');
+
+function selectCity(name) {
+	$('input[name=\'city\']').val( name);
+	$('#city_id').html('');
+}
 //--></script> 
 
-
+<script type="text/javascript"><!--
+$('input[name=\'city\']').bind('input', function() {
+	$('#city_id').html('');
+	var value = $('input[name=\'city\']').val().toUpperCase();
+	if (value.length > 0) {
+		var html = '<ul>';
+		var n = 0;
+		for (i = 0; i < city.length; i++) {
+			var str1 = city[i].toUpperCase();
+			if (str1.indexOf(value) >=0 ) {
+				html += '<li><a onclick="selectCity(\''+city[i]+'\')" >';	
+				html += city[i] + '</a></li>';
+				++n;
+			}
+			if (n > 10) break;
+		} 
+		html +='</ul>';
+		$('#city_id').html(html);
+	}
+});
+//--></script> 
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$('.colorbox').colorbox({

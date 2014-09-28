@@ -465,7 +465,7 @@ class ControllerAccountRegister extends Controller {
 	}
 
 	public function zone() {
-		$json = array();
+		$json = array('zone_id'=>'', 'name'=>'', 'city'=>'', 'status'=>'' );
 		$this->load->model('localisation/zone');
 		$zone_info = $this->model_localisation_zone->getZone($this->request->get['zone_id']);
 		if ($zone_info) {

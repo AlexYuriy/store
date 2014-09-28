@@ -55,11 +55,13 @@ input[type='text'], input[type='password'], textarea {
 	padding: 3px;
 	margin-left: 0px;
 	margin-right: 0px;
+	width: 200px;
 }
 select {
 	background: #F8F8F8;
 	border: 1px solid #CCCCCC;
 	padding: 2px;
+	width:208px;
 }
 label {
 	cursor: pointer;
@@ -266,6 +268,9 @@ label {
 .mini-cart-total td {
 	color: #000;
 	padding: 4px;
+}
+.quantity  input {
+	width: auto;
 }
 #header #cart .checkout {
 	text-align: right;
@@ -756,6 +761,7 @@ input[type="submit"].button.button-mini {
   *padding-top: 1px;
   *padding-bottom: 1px;
 }
+
 .buttons-cart {
 	background: #FFFFFF;
 	/*border: 1px solid #EEEEEE;*/
@@ -1097,6 +1103,9 @@ ul.box-filter > li ul {
 	float: right;
 	color: #333;
 }
+.limit  select {
+	width: auto;
+}
 .product-compare {
 	float: left;
 	font-weight: bold;
@@ -1382,6 +1391,9 @@ ul.box-filter > li ul {
 	padding-top: 5px;
 	font-size: 11px;
 	color: #999;
+}
+.cart input {
+	width: auto;
 }
 .product-info .review {
 	color: #4D4D4D;
@@ -2110,4 +2122,24 @@ ul.box-filter > li ul {
 .box-article .rating {
 	text-align: center;
 }
-
+/* registration */
+#city_id {
+	position:absolute;
+	background-color: whitesmoke;
+	width: 206px;
+}
+#city_id ul {
+	list-style: none outside none;
+	margin: 0;
+    padding: 0;
+}
+#city_id ul > li {
+	padding: 5px;
+}
+#city_id ul > li:hover{
+	background-color: white;
+}
+#city_id ul > li > a{
+	text-decoration: none;
+	display: block;
+}
