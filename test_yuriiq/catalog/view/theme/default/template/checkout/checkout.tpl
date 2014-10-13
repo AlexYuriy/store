@@ -195,6 +195,10 @@ $('#button-payment-address').live('click', function() {
 				if (json['error']['telephone']) {
 					$('#payment-address input[name=\'telephone\']').after('<span class="error">' + json['error']['telephone'] + '</span>');
 				}		
+
+				if (json['error']['company']) {
+					$('#payment-address input[name=\'company\']').after('<span class="error">' + json['error']['company'] + '</span>');
+				}
 				
 				if (json['error']['company_id']) {
 					$('#payment-address input[name=\'company_id\']').after('<span class="error">' + json['error']['company_id'] + '</span>');
