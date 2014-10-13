@@ -533,8 +533,11 @@ table.form > * > * > td {
 table.form td {
 	padding: 4px;
 }
-input.large-field, select.large-field, div.large-field {
+input.large-field, div.large-field {
 	width: 300px;
+}
+select.large-field {
+	width: 308px;
 }
 table.list {
 	border-collapse: collapse;

@@ -1,25 +1,5 @@
 <div class="left">
-  <h2><?php echo $text_your_details; ?></h2>
-  <span class="required">*</span> <?php echo $entry_firstname; ?><br />
-  <input type="text" name="firstname" value="<?php echo $firstname; ?>" class="large-field" />
-  <br />
-  <br />
-  <span class="required">*</span> <?php echo $entry_lastname; ?><br />
-  <input type="text" name="lastname" value="<?php echo $lastname; ?>" class="large-field" />
-  <br />
-  <br />
-  <span class="required">*</span> <?php echo $entry_email; ?><br />
-  <input type="text" name="email" value="<?php echo $email; ?>" class="large-field" />
-  <br />
-  <br />
-  <span class="required">*</span> <?php echo $entry_telephone; ?><br />
-  <input type="text" name="telephone" value="<?php echo $telephone; ?>" class="large-field" />
-  <br />
-  <br />
-  <?php echo $entry_fax; ?><br />
-  <input type="text" name="fax" value="<?php echo $fax; ?>" class="large-field" />
-  <br />
-  <br />
+<?php include ("only_details_form.tpl") ;?>
 </div>
 <div class="right">
 <?php include ("only_address_form.tpl") ;?>
