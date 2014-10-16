@@ -24,9 +24,8 @@ class ControllerModuleCategory extends Controller {
 		}
 
 		$this->load->model('catalog/category');
-
 		$this->load->model('catalog/product');
-
+		$this->load->model('tool/image');
 		$this->data['categories'] = array();
 
 		$categories = $this->model_catalog_category->getCategories(0);
@@ -43,22 +42,34 @@ class ControllerModuleCategory extends Controller {
 					'filter_category_id'  => $child['category_id'],
 					'filter_sub_category' => true
 				);
-
 				$product_total = $this->model_catalog_product->getTotalProducts($data);
-
 				$total += $product_total;
-
+				if ($child['image']) {	
+					$child_image = $this->model_tool_image->resize( $child['image'], 
+								$this->config->get('config_image_menu_category_width'), 
+								$this->config->get('config_image_menu_category_height'));
+				} else {
+					$child_image = '';
+				}
 				$children_data[] = array(
 					'category_id' => $child['category_id'],
 					'name'        => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $product_total . ')' : ''),
+					'image'		  => $child_image,
 					'href'        => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id'])	
 				);		
 			}
-
+			if ($category['image']) {	
+				$image = $this->model_tool_image->resize($category['image'], 
+								$this->config->get('config_image_menu_category_width'), 
+								$this->config->get('config_image_menu_category_height'));
+			} else {
+				$image = '';
+			}
 			$this->data['categories'][] = array(
 				'category_id' => $category['category_id'],
 				'name'        => $category['name'] . ($this->config->get('config_product_count') ? ' (' . $total . ')' : ''),
 				'children'    => $children_data,
+				'image'  => $image,
 				'href'        => $this->url->link('product/category', 'path=' . $category['category_id'])
 			);	
 		}
