@@ -962,6 +962,10 @@ ul.box-category > li ul > li > a {
 ul.box-category > li ul > li > a.active {
 	font-weight: bold;
 }
+.box-category  img {
+	float: left;
+	padding-right: 1px;
+}
 /* box filter */
 ul.box-filter, ul.box-filter ul {
 	list-style: none;
