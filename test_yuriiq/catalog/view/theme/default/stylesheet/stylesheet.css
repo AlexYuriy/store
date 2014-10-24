@@ -371,7 +371,7 @@ label {
 	z-index:9;
 }
 #menu img {
-	float: left;
+	vertical-align: top;
 	padding-right: 1px;
 }
 #menu ul {
