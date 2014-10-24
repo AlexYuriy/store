@@ -240,7 +240,7 @@ class ControllerProductCategory extends Controller {
 
 				$product_total = $this->model_catalog_product->getTotalProducts($data);				
 				
-				if ($result['image']) {
+				if (($result['image']) && ($result['image']!= 'no_image.jpg')) {
 						$image = $this->model_tool_image->resize($result['image'], 
 												$this->config->get('config_image_menu_category_width'), 
 												$this->config->get('config_image_menu_category_height'));

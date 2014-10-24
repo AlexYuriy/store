@@ -149,7 +149,7 @@ class ControllerCommonHeader extends Controller {
 						
 						$product_total = $this->model_catalog_product->getTotalProducts($data);
 					}
-					if ($child['image']) {												
+					if (($child['image']) && ($child['image']!= 'no_image.jpg')) {	
 						$image_menu = $this->model_tool_image->resize($child['image'], 
 												$this->config->get('config_image_menu_category_width'), 
 												$this->config->get('config_image_menu_category_height'));
