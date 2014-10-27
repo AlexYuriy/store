@@ -220,8 +220,12 @@ class ControllerProductSearch extends Controller {
 			foreach ($results as $result) {
 				if ($result['image']) {
 					$image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
+					$imagewidth = $this->config->get('config_image_product_width');
+					$imageheight = $this->config->get('config_image_product_height');
 				} else {
 					$image = false;
+					$imagewidth = '';
+					$imageheight = '';
 				}
 				
 				//this for swap image
@@ -257,8 +261,24 @@ class ControllerProductSearch extends Controller {
 				} else {
 					$rating = false;
 				}
-			
+				
 				$this->data['products'][] = array(
+					'product_id'  => $result['product_id'],
+					'thumb'       => $image,
+					'thumbwidth'  => $imagewidth,
+					'thumbheight' => $imageheight,
+					'name'        => $result['name'],
+					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, 300) . '..',
+					'description_mini' => html_entity_decode ($result['description_mini']),
+					'price'       => $price,
+					'special'     => $special,
+					'rating'      => $result['rating'],
+					'tax'         => $tax,
+					'reviews'     => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
+					'thumb_swap'  => $this->model_tool_image->resize($images, $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height')), 
+					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url),
+				);
+				/*$this->data['products'][] = array(
 					'product_id'  => $result['product_id'],
 					'thumb'       => $image,
 					'name'        => $result['name'],
@@ -273,9 +293,11 @@ class ControllerProductSearch extends Controller {
 				'thumb_swap'  => $this->model_tool_image->resize($images, $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height')), 
 				//
 				// for saving percentage
-				'saving'	=> round((($result['price'] - $result['special'])/$result['price'])*100, 0),
+			
+			//	'saving'	=> round((($result['price'] - $result['special'])/$result['price'])*100, 0),
+
 				//
-				);
+				);*/
 			}
 					
 			$url = '';

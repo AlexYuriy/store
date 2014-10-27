@@ -11,6 +11,28 @@
 </div>
 <script type="text/javascript"><!--
 $(document).ready(function() {
-	$('#slideshow<?php echo $module; ?>').nivoSlider();
+	$('#slideshow<?php echo $module; ?>').nivoSlider({
+
+effect: 'random',
+
+slices: 15,
+
+animSpeed: 500,
+
+pauseTime: 3000,
+
+startSlide: 0,
+
+directionNav: true,
+
+directionNavHide: true,
+
+controlNav: true,
+
+keyboardNav: true,
+
+pauseOnHover: true
+
+});
 });
 --></script>

@@ -46,9 +46,10 @@ class ModelToolExchange1c extends Model {
 					,'ХозОперация' => 'Заказ товара'
 					,'Роль'        => 'Продавец'
 					,'Сумма'       => $order['total']
-					,'Комментарий' => $order['comment']
+					,'Комментарий' => $order['comment'].' Метод доставки:'.$order['shipping_method']
+					,'АдресДоставки' => $order['comment']
+					,'ДополнениеКАдресуДоставки' => $order['comment']
 				);
-
 				$document['Документ' . $document_counter]['Контрагенты']['Контрагент'] = array(
 					 'Ид'                 => $order['customer_id'] . '#' . $order['email']
 					,'Наименование'		    => $order['payment_lastname'] . ' ' . $order['payment_firstname']
@@ -70,7 +71,6 @@ class ModelToolExchange1c extends Model {
 						)
 					)
 				);
-
 				// Товары
 				$products = $this->model_sale_order->getOrderProducts($orders_data['order_id']);
 
@@ -85,7 +85,7 @@ class ModelToolExchange1c extends Model {
 						,'Количество'     => $product['quantity']
 						,'Сумма'          => $product['total']
 					);
-					
+										
 					if ($this->config->get('exchange1c_relatedoptions')) {
 						$this->load->model('module/related_options');
 						if ($this->model_module_related_options->get_product_related_options_use($product['product_id'])) {
@@ -608,7 +608,7 @@ class ModelToolExchange1c extends Model {
 			,'parent_id'      => $parent
 			,'category_store' => isset($data['category_store']) ? $data['category_store'] : array(0)
 			,'keyword'        => isset($data['keyword']) ? $data['keyword'] : ''
-			,'image'          => (isset($category->Картинка)) ? (string)$category->Картинка : ((isset($data['image'])) ? $data['image'] : '')
+			,'image'          => (isset($category->Картинка)) ? (string)$category->Картинка : ((isset($data['image'])) ? $data['image'] : 'no_image.jpg')
 			,'sort_order'     => (isset($category->Сортировка)) ? (int)$category->Сортировка : ((isset($data['sort_order'])) ? $data['sort_order'] : 0)
 			,'column'         => 1
 		);
@@ -840,7 +840,7 @@ class ModelToolExchange1c extends Model {
 			,'stock_status_id'  => $this->config->get('config_stock_status_id')
 			,'shipping'         => (isset($product['shipping'])) ? $product['shipping'] : (isset($data['shipping']) ? $data['shipping']: 1)
 			,'keyword'          => (isset($product['keyword'])) ? $product['keyword'] : (isset($data['keyword']) ? $data['keyword']: '')
-			,'image'            => (isset($product['image'])) ? $product['image'] : (isset($data['image']) ? $data['image']: '')
+			,'image'            => (isset($product['image'])) ? $product['image'] : (isset($data['image']) ? $data['image']:'no_image.jpg')
 			,'date_available'   => date('Y-m-d', time() - 86400)
 			,'length'           => (isset($product['length'])) ? $product['length'] : (isset($data['length']) ? $data['length']: '')
 			,'width'            => (isset($product['width'])) ? $product['width'] : (isset($data['width']) ? $data['width']: '')
