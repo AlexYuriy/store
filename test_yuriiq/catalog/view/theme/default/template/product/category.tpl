@@ -215,4 +215,5 @@ if (view) {
 	display('list');
 }
 //--></script> 
+
 <?php echo $footer; ?>
