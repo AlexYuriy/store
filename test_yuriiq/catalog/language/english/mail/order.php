@@ -34,5 +34,5 @@ $_['text_update_subject']	= '%s - Order Update %s';
 $_['text_new_download']	= 'Once your payment has been confirmed you can click on the link below to access your downloadable products:';
 $_['text_new_shipping_address']	= 'Shipping Address';
 $_['text_new_order_detail']	= 'Order Details';
-$_['text_new_powered']	= 'Powered By <a href="http://ocshop.net/">OCSHOP.CMS</a>.';
+$_['text_new_powered']	= '';
 ?>

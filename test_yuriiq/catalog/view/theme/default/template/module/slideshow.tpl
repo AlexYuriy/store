@@ -13,13 +13,13 @@
 $(document).ready(function() {
 	$('#slideshow<?php echo $module; ?>').nivoSlider({
 
-effect: 'random',
+effect: 'fade',
 
 slices: 15,
 
 animSpeed: 500,
 
-pauseTime: 3000,
+pauseTime: 6000,
 
 startSlide: 0,
 

@@ -61,7 +61,23 @@ class ModelCatalogCategory extends Model {
 			return false;
 		}
 	}
-		public function getCategoryDocLinks($category_id) {
+		public function getCategoryDocLinks($path_string) {
+		$tmp=explode("path=",$path_string);
+		if(isset($tmp[1])) {
+			$temp_id=explode("_",$tmp[1]);
+			for($i=0;isset($temp_id[$i]);$i++){
+				$category_id=$temp_id[$i];
+			}
+		} 
+		else {
+			$temp_id=explode("/",$path_string);
+			for($i=1;isset($temp_id[$i]);$i++){
+				$category_id_string=$temp_id[$i-1];
+			}
+			$subquery=$this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE keyword like '" . $category_id_string .  "'");
+			$tmp=explode("category_id=",$subquery->row['query']);
+			$category_id=$tmp[1];
+		}
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category_description WHERE category_id = '" . (int)$category_id .  "'");
 		
 		if ($query->num_rows) {

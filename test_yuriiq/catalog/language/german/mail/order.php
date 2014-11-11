@@ -35,5 +35,5 @@ $_['text_update_subject']	= '%s - Aktualisierung Auftrag %s';
 $_['text_new_download']	= 'Sobald Ihre Zahlung eingegangen ist können Sie auf den Link unten klicken, um Ihr Produkt zu laden:';
 $_['text_new_shipping_address']	= 'Lieferadresse';
 $_['text_new_order_detail']	= 'Auftragsdaten';
-$_['text_new_powered']	= 'Powered By <a href="http://www.opencart.com">OpenCart</a>.';
+$_['text_new_powered']	= '';
 ?>

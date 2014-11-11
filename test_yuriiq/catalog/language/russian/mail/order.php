@@ -34,5 +34,5 @@ $_['text_update_subject']	= '%s - Заказ изменен %s';
 $_['text_new_download']	= 'После подтверждения оплаты, чтобы скачать товар, перейдите по ссылке:';
 $_['text_new_shipping_address']	= 'Адрес доставки';
 $_['text_new_order_detail']	= 'Детализация заказа';
-$_['text_new_powered']	= 'Работает на: <a href="http://ocshop.net/">OCSHOP.CMS</a>.';
+$_['text_new_powered']	= '';
 ?>
