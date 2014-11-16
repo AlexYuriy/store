@@ -59,6 +59,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_latest'] = $this->language->get('text_latest');
 		$this->data['text_brands'] = $this->language->get('text_brands');
 		$this->data['telephone'] = $this->config->get('config_telephone');
+		$this->data['sub_telephone'] = $this->config->get('config_fax');
 		$this->data['home'] = $this->url->link('common/home');
 		$this->data['wishlist'] = $this->url->link('account/wishlist', '', 'SSL');
 		$this->data['logged'] = $this->customer->isLogged();

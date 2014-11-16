@@ -79,8 +79,9 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
   <div id="search">
     <div class="button-search"><i class="fa fa-search"></i></div>
     <input type="text" name="search" placeholder="<?php echo $text_search; ?>" value="<?php echo $search; ?>" />
+ </div>
 	<div id="cellfone"> <i class="fa fa-phone"> </i><?php echo $telephone; ?>  </div>
-    </div>
+	<div id="sub_cellfone"> <i class="fa fa-phone"> </i><?php echo $sub_telephone; ?>  </div>
   
   <?php /*<!--div id="welcome">
     <!--?php if (!$logged) { ?>

@@ -67,8 +67,8 @@ $_['entry_captcha']	= 'Введите код, указанный на карти
 
 // tab
 $_['tab_blog_related']	= 'Статьи';
-$_['tab_downloads']	= 'Загрузки';
-$_['tab_related']	= 'Рекомендуемые';
+$_['tab_downloads']	= 'Тех.информация';
+$_['tab_related']	= 'Сопутствующие товары';
 $_['tab_review']	= 'Отзывы';
 $_['tab_description']	= 'Описание';
 $_['tab_related2']	= 'Похожие';

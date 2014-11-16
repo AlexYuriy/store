@@ -119,8 +119,19 @@ label {
 }
 #header #cellfone
 {
-	font-size: 20px;
+	position: absolute;
+	font-size: 30px;
 	margin-left: 10px;
+	top: 40px;
+	right: 180px;
+}
+#header #sub_cellfone
+{
+	position: absolute;
+	font-size: 12px;
+	margin-left: 10px;
+	top: 75px;
+	right: 200px;
 }
 #language {
 	position: absolute;
@@ -281,10 +292,9 @@ label {
 	text-align: center;
 }
 #header #search {
-	
 	position: absolute;
-	top: 40px;
-	right: 230px;
+	top: 53px;
+	right: 380px;
 	display: inline-flex;
 }
 #header .button-search {
@@ -798,6 +808,7 @@ input[type="submit"].button.button-mini {
 	border-bottom: 1px solid #DDDDDD;
 }
 .htabs a {
+	border-radius: 5px 5px 0 0;
 	border-top: 1px solid #DDDDDD;
 	border-left: 1px solid #DDDDDD;
 	border-right: 1px solid #DDDDDD;
@@ -818,6 +829,7 @@ input[type="submit"].button.button-mini {
 	background: #FFFFFF;
 }
 .tab-content {
+	border-radius: 0 0 5px 5px;
 	border-left: 1px solid #DDDDDD;
 	border-right: 1px solid #DDDDDD;
 	border-bottom: 1px solid #DDDDDD;
