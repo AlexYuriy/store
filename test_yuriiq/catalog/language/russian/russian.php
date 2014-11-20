@@ -57,6 +57,7 @@ $_['button_reorder']	= 'Дополнительный заказ';
 $_['button_filter']	= 'Уточнение поиска';
 $_['button_add_address']	= 'Добавить адрес';
 $_['button_new_address']	= 'Новый адрес';
+$_['text_zero']	 		= 'Под заказ';
 
 // direction
 $_['direction']	= 'ltr';

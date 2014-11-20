@@ -1,5 +1,5 @@
 </div>
-<div id="container-footer">
+<footer id="container-footer">
 <div id="custom-footer-bg">
 <div id="custom-footer">
 <div class="footer-logo"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></div>
@@ -27,7 +27,7 @@
 </div>
 </div>
 </div>
-
+<br>
 <div id="footer">
   <?php if ($informations) { ?>
   <div class="line">
@@ -48,5 +48,5 @@
 	   <a target="_blank" href="<?php echo $twitter; ?>"><i class="fa fa-twitter"></i></a>
 </div>
 </div>
-</div>
+</footer>
 </body></html>

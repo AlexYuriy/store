@@ -72,13 +72,13 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
 <div id="container">
 <div id="header">
   <?php if ($logo) { ?>
-  <div id="logo"><a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a></div>
+  <figure id="logo"><a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a></figure>
   <?php } ?>
   <?php echo $language; ?>
   <?php echo $currency; ?>
   <div id="search">
     <div class="button-search"><i class="fa fa-search"></i></div>
-    <input type="text" name="search" placeholder="<?php echo $text_search; ?>" value="<?php echo $search; ?>" />
+    <input type="search" name="search" placeholder="<?php echo $text_search; ?>" value="<?php echo $search; ?>" />
  </div>
 	<div id="cellfone"> <i class="fa fa-phone"> </i><?php echo $telephone; ?>  </div>
 	<div id="sub_cellfone"> <i class="fa fa-phone"> </i><?php echo $sub_telephone; ?>  </div>

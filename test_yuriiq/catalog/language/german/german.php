@@ -56,6 +56,7 @@ $_['button_reorder']	= 'Nachbestellung';
 $_['button_filter']	= 'Suche verfeinern';
 $_['button_add_address']	= 'Neue Adresse';
 $_['button_new_address']	= 'Neue Adresse';
+$_['text_zero']	 		= 'Mit Beschluss';
 
 // direction
 $_['direction']	= 'ltr';

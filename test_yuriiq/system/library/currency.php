@@ -71,6 +71,9 @@ class Currency {
       		$value = $number;
     	}
 
+		if ($format && (int)$value == 0) {
+		return $this->language->get('text_zero');
+}
     	$string = '';
 
     	if (($symbol_left) && ($format)) {

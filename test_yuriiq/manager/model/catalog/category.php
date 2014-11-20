@@ -276,6 +276,7 @@ class ModelCatalogCategory extends Model {
 				'seo_title'        => $result['seo_title'],
 				'seo_h1'           => $result['seo_h1'],
 				'meta_keyword'     => $result['meta_keyword'],
+				'doc_links'		   => $result['doc_links'],
 				'meta_description' => $result['meta_description'],
 				'description'      => $result['description']
 			);

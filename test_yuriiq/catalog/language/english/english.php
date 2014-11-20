@@ -56,6 +56,7 @@ $_['button_reorder']	= 'Reorder';
 $_['button_filter']	= 'Refine Search';
 $_['button_add_address']	= 'Add Address';
 $_['button_new_address']	= 'New Address';
+$_['text_zero']	 		= 'By order';
 
 // direction
 $_['direction']	= 'ltr';

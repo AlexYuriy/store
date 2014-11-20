@@ -49,7 +49,7 @@ form {
 	margin: 0;
 	display: inline;
 }
-input[type='text'], input[type='password'], textarea {
+input[type='text'], input[type='password'], input[type='search'], textarea {
 	background: #F8F8F8;
 	border: 1px solid #CCCCCC;
 	padding: 3px;
@@ -113,9 +113,13 @@ label {
 	position: relative;
 }
 #header #logo {
+	margin:0;
 	position: absolute;
-/*	top: 22px;*/
+	top: 32px;
 	left: 5px;
+}
+#header #logo img{
+	width: 270px;
 }
 #header #cellfone
 {
@@ -310,8 +314,8 @@ label {
 #header #search input {
 	background: #ffffff;
 	padding: 1px 1px 1px 33px;
-	width: 262px;
-	height: 21px;
+	width: 293px;
+	height: 25px;
 	border: 1px solid #CCCCCC;
 	-webkit-border-radius: 3px 3px 3px 3px;
 	-moz-border-radius: 3px 3px 3px 3px;

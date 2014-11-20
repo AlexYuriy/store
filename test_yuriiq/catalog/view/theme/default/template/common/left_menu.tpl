@@ -6,15 +6,15 @@
     <div id="sidebar">
 		<!-- Главная страница -->
 	    <a href="<?php echo $home ?>"> 
-			<img src="image/left_menu/main_page.png"> 
+			<img src="image/left_menu/main_page.png" title="На главную"> 
 		</a>
 		<!-- ссылки на важные страницы, такие как блог, новости, вопрос/ответ, акции, категории товаров -->
 		<a onclick="openMenu('other_links', true); return('false');">
-		    <img src="image/left_menu/other_lincks_img.png">
+		    <img src="image/left_menu/other_lincks_img.png" title="Основное меню" >
 		</a>
 		<!-- перемотка наверх -->
 		<a id="scroll_to_top" onclick="scrollToTop();"> 
-		  <img alt="top" src="image/left_menu/scroll_to_top.png"> 
+		  <img alt="top" src="image/left_menu/scroll_to_top.png" title="Наверх"> 
 		</a>
 		<!-- перемотка обратно -->
 		<a id="scroll_to_bottom" onclick="scrollToBottom();">
@@ -22,7 +22,7 @@
 		</a>  
 		<!-- корзина -->      
 		<a id="sidebar_cart" href="<?php echo $shopping_cart; ?>">
-		    <img class="sidebar_item_img" src="image/left_menu/cart.png">
+		    <img class="sidebar_item_img" src="image/left_menu/cart.png" title="Корзина">
 			<?php $num_products = 0; ?>
 		    <?php if ($products || $vouchers) { ?>
 			<?php foreach ($products as $product) { ?>
@@ -34,7 +34,7 @@
 		</a>
 		<!-- Личный кабинет" -->
 		<a id="sidebar_account" onclick="openMenu('sidebar_account_panel', true);return(false)">  
-		<img class="sidebar_item_img" src="image/left_menu/account.png"> 
+		<img class="sidebar_item_img" src="image/left_menu/account.png" title="Аккаунт"> 
 		</a>  				
     </div>
     <!-- ссылки на важные страницы, такие как блог, новости, вопрос/ответ, акции, категории товаров -->

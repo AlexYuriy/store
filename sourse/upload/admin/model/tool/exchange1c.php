@@ -617,6 +617,7 @@ class ModelToolExchange1c extends Model {
 			1 => array(
 				 'name'             => (string)$category->Наименование
 				,'meta_keyword'     => (isset($data['category_description'][$language_id]['meta_keyword'])) ? $data['category_description'][$language_id]['meta_keyword'] : ''
+				,'doc_links'		=>	(isset($data['category_description'][$language_id]['doc_links'])) ? $data['category_description'][$language_id]['doc_links'] : ''
 				,'meta_description'	=> (isset($data['category_description'][$language_id]['meta_description'])) ? $data['category_description'][$language_id]['meta_description'] : ''
 				,'description'		  => (isset($category->Описание)) ? (string)$category->Описание : ((isset($data['category_description'][$language_id]['description'])) ? $data['category_description'][$language_id]['description'] : '')
 				,'seo_title'        => (isset($data['category_description'][$language_id]['seo_title'])) ? $data['category_description'][$language_id]['seo_title'] : (string)$category->Наименование
@@ -625,6 +626,7 @@ class ModelToolExchange1c extends Model {
 			2 => array(
 				 'name'             => (string)$category->Наименование
 				,'meta_keyword'     => (isset($data['category_description'][$language_id]['meta_keyword'])) ? $data['category_description'][$language_id]['meta_keyword'] : ''
+				,'doc_links'		=>	(isset($data['category_description'][$language_id]['doc_links'])) ? $data['category_description'][$language_id]['doc_links'] : ''
 				,'meta_description'	=> (isset($data['category_description'][$language_id]['meta_description'])) ? $data['category_description'][$language_id]['meta_description'] : ''
 				,'description'		  => (isset($category->Описание)) ? (string)$category->Описание : ((isset($data['category_description'][$language_id]['description'])) ? $data['category_description'][$language_id]['description'] : '')
 				,'seo_title'        => (isset($data['category_description'][$language_id]['seo_title'])) ? $data['category_description'][$language_id]['seo_title'] : (string)$category->Наименование
@@ -633,6 +635,7 @@ class ModelToolExchange1c extends Model {
 			3 => array(
 				 'name'             => (string)$category->Наименование
 				,'meta_keyword'     => (isset($data['category_description'][$language_id]['meta_keyword'])) ? $data['category_description'][$language_id]['meta_keyword'] : ''
+				,'doc_links'		=>	(isset($data['category_description'][$language_id]['doc_links'])) ? $data['category_description'][$language_id]['doc_links'] : ''
 				,'meta_description'	=> (isset($data['category_description'][$language_id]['meta_description'])) ? $data['category_description'][$language_id]['meta_description'] : ''
 				,'description'		  => (isset($category->Описание)) ? (string)$category->Описание : ((isset($data['category_description'][$language_id]['description'])) ? $data['category_description'][$language_id]['description'] : '')
 				,'seo_title'        => (isset($data['category_description'][$language_id]['seo_title'])) ? $data['category_description'][$language_id]['seo_title'] : (string)$category->Наименование
