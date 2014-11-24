@@ -64,8 +64,8 @@
 	<?php if ($callme_setting['showfieldtime']==1) { ?>
 	<?php echo $entry_time; ?>
 	<br />
-    <input type="time" name="time1" class="idle" value="<?php echo $time1; ?>" onblur="this.className='idle'" onfocus="this.className='activeField'" /> --
-	<input type="time" name="time2" class="idle" value="<?php echo $time2; ?>" onblur="this.className='idle'" onfocus="this.className='activeField'" />
+    <input type="text" name="time1" class="idle" value="<?php echo $time1; ?>" onblur="this.className='idle'" onfocus="this.className='activeField'" /> --
+	<input type="text" name="time2" class="idle" value="<?php echo $time2; ?>" onblur="this.className='idle'" onfocus="this.className='activeField'" />
 	<?php } ?>
 	
 	<?php echo $entry_enquiry; ?><br />
