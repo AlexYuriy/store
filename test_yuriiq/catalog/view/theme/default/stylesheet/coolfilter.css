@@ -5,6 +5,7 @@
 	
 .coolfilter-item ul li a {
 	font-weight:500;
+	text-decoration: none;
 }
 
 .coolfilter-item b {
@@ -76,6 +77,10 @@
 
 .coolfilter-item-slider .coolfilter-item-slider-body {
 	margin:8px 0 18px 0;
+}
+
+.coolfilter-item-slider-body  input{
+	width: auto;
 }
 
 .coolfilter-item-slider .slider-range { 
