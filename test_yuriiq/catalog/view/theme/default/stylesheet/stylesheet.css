@@ -445,6 +445,24 @@ label {
 #menu > ul > li:hover > div {
 	display: table;
 }
+
+#menu > ul > li > div.hidden {
+	display: none;
+	text-align: center;
+	margin-top: -40px;
+	font-size: 16px;    line-height: 14px;
+	padding: 10px;  
+	margin-left: 6px;
+	width: 80%;
+	border: none;
+	box-shadow: none;
+	background: #00ABCB url(../image/menu_act.png) center left repeat-x;  color: #fff;  -webkit-border-radius: 5px;  -moz-border-radius: 5px;  -khtml-border-radius: 5px;  border-radius: 5px;
+}
+
+#menu > ul > li:hover > div.hidden {
+	display: table;
+}
+
 #menu > ul > li > div > ul {
 	display: table-cell;
 }

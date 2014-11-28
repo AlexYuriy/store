@@ -170,6 +170,7 @@ class ControllerCommonHeader extends Controller {
 				// Level 1
 				$this->data['categories'][] = array(
 					'name'     => $category['name'],
+					'name2'    => $category['seo_h1'],
 					'children' => $children_data,
 					'active'   => in_array($category['category_id'], $parts),
 					'column'   => $category['column'] ? $category['column'] : 1,

@@ -104,6 +104,7 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
 	<?php } else { ?>
 	<a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>
 	<?php } ?>
+	<div class="hidden"><?php echo $category['name2']; ?></div>
       <?php if ($category['children']) { ?>
       <div>
         <?php for ($i = 0; $i < count($category['children']);) { ?>
