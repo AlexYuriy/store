@@ -426,6 +426,16 @@ label {
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
 }
+
+#menu > ul > li > a.hidden {
+	display: none;
+	margin-top: -40px;
+}
+
+#menu > ul > li:hover > a.hidden {
+	display: block;
+}
+
 #menu > ul > li > div {
 	display: none;
 	background: #FFFFFF;
@@ -443,23 +453,6 @@ label {
 	box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.22);
 }
 #menu > ul > li:hover > div {
-	display: table;
-}
-
-#menu > ul > li > div.hidden {
-	display: none;
-	text-align: center;
-	margin-top: -40px;
-	font-size: 16px;    line-height: 14px;
-	padding: 10px;  
-	margin-left: 6px;
-	width: 80%;
-	border: none;
-	box-shadow: none;
-	background: #00ABCB url(../image/menu_act.png) center left repeat-x;  color: #fff;  -webkit-border-radius: 5px;  -moz-border-radius: 5px;  -khtml-border-radius: 5px;  border-radius: 5px;
-}
-
-#menu > ul > li:hover > div.hidden {
 	display: table;
 }
 

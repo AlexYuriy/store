@@ -99,12 +99,8 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
 	foreach ($categories as $category) { ?>
     <li <?php --$n; 
 	if (!$n) echo ' id="last" '; ?> >
-	<?php if ($category['active']) { ?>
-	<a href="<?php echo $category['href']; ?>" class="active"><?php echo $category['name']; ?></a>
-	<?php } else { ?>
-	<a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>
-	<?php } ?>
-	<div class="hidden"><?php echo $category['name2']; ?></div>
+	<a href="<?php echo $category['href']; ?>" <?php if ($category['active']) echo 'class="active"'; ?> ><?php echo $category['name']; ?></a>
+	<a class="hidden" href="<?php echo $category['href']; ?>"><?php echo $category['name2']; ?></a>
       <?php if ($category['children']) { ?>
       <div>
         <?php for ($i = 0; $i < count($category['children']);) { ?>
