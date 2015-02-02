@@ -16,17 +16,19 @@
     <?php } ?>
   </div>
    <?php if ($this->customer->isLogged()) { ?>
-      <div class="buttons-cart">
+      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+		<div class="buttons-cart">
                 <h1 id="cart-header" onclick="switchToRename();"><?php echo $text_cart_name; ?></h1>
                 <span class="title-message" id="text-change-cart" onclick="switchToRename();"> <?php echo $text_change_cart; ?> </span>
                 <input type="text" name="save" maxlength="55" id="edit-cart-name" value="<?php echo $text_cart_name; ?>" />
-                <img id="name-ok" onclick='save_cart_name(getElementById("edit-cart-name").value);' title="<?php echo $button_save_name; ?>" src="catalog/view/theme/default/image/success.png" /> 
+                <input type="image" name="rename" value="yes" id="name-ok" title="<?php echo $button_save_name; ?>" src="catalog/view/theme/default/image/success.png" /> 
                 <img id="name-cancel" onclick='switchApToRename();' title="<?php echo $button_save_name; ?>" src="catalog/view/theme/default/image/remove.png" /> 
 				<img onclick="print_cart();" title="<?php echo $button_print; ?>" src="catalog/view/theme/default/image/print.png" class="button-cart" /> 
                 <img title="<?php echo $text_button_clear; ?>" src="catalog/view/theme/default/image/clear.png" id="clear_cart" class="button-cart" /> 
                 <img title="<?php echo $button_save_list; ?>" src="catalog/view/theme/default/image/save.png" id="save_cart" class="button-cart" />
 				<img title="<?php echo $button_create; ?>" src="catalog/view/theme/default/image/create.png" id="new_cart" class="button-cart" /> 
-      </div>
+		</div>
+	  </form>
    <?php } else {?>
   <h1><?php echo $heading_title; ?>
     <?php if ($weight) { ?>
@@ -231,9 +233,11 @@ $('input[name=\'next\']').bind('change', function() {
 });
 
 // сохранение имени и оповещение об этом пользователя
-function save_cart_name(name) {
-window.location.href = '<?php echo $url_save_cart_name ?>'+ name; 
-}
+//function save_cart_name(name) {
+// Проблема с &amp;
+//window.location.href = '<?php echo $url_save_cart_name ?>'+ name; 
+//};
+
  //--> 
 </script>
 <!--

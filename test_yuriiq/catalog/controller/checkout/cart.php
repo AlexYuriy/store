@@ -20,9 +20,17 @@ class ControllerCheckoutCart extends Controller {
 			unset($this->session->data['reward']);
 			$this->redirect($this->url->link('checkout/cart'));  			
 		}
+		// Rename 
+		if (isset($this->request->post['rename']) 
+			&& ($this->request->post['rename'] == 'yes')) {
+			$new_name = $this->request->post['save'];
+			$this->model_checkout_cart->editCurrentCartName($new_name);
+			$this->session->data['success'] = $this->language->get('text_success_save_name');
+			$this->redirect($this->url->link('checkout/cart') );
+		}
         // save
-        if (isset($this->request->get['save'])) {
-			$cart_name = $this->request->get['save'];
+        if (isset($this->request->post['save'])) {
+			$cart_name = $this->request->post['save'];
 			if (empty($cart_name)) {
 				$this->session->data['error_warning'] = $this->language->get('empty_cart_name');
 			} else { 
@@ -54,10 +62,6 @@ class ControllerCheckoutCart extends Controller {
 		    $this->cart->clear();
 		    $ok = $this->model_checkout_cart->setCurrentCartIDToNull();
 		    if ($ok) $this->session->data['success'] = $this->language->get('save_cart_success');
-		}
-		// Rewrite 
-    	if (isset($this->request->get['rewrite'])) {
-			$this->model_checkout_cart->rewriteCart();
 		}		
 		// Remove
 		if (isset($this->request->get['remove'])) {
