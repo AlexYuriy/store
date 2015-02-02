@@ -190,7 +190,8 @@ class ControllerCheckoutPaymentAddress extends Controller {
 			}		
 		}
 		if (empty($this->session->data['shipping_address_id'])) {
-			$this->session->data['shipping_address_id'] = $this->session->data['payment_address_id'];
+			if (!empty($this->session->data['payment_address_id']))
+				$this->session->data['shipping_address_id'] = $this->session->data['payment_address_id'];
 		}
 		$this->response->setOutput(json_encode($json));
 	}
