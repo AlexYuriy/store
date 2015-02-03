@@ -9,6 +9,7 @@ class Customer {
 	private $newsletter;
 	private $customer_group_id;
 	private $address_id;
+	private $discount;
 	
   	public function __construct($registry) {
 		$this->config = $registry->get('config');
@@ -29,6 +30,7 @@ class Customer {
 				$this->newsletter = $customer_query->row['newsletter'];
 				$this->customer_group_id = $customer_query->row['customer_group_id'];
 				$this->address_id = $customer_query->row['address_id'];
+				$this->discount = $customer_query->row['discount'];
 							
       			$this->db->query("UPDATE " . DB_PREFIX . "customer SET cart = '" . $this->db->escape(isset($this->session->data['cart']) ? serialize($this->session->data['cart']) : '') . "', wishlist = '" . $this->db->escape(isset($this->session->data['wishlist']) ? serialize($this->session->data['wishlist']) : '') . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
 			
@@ -88,7 +90,7 @@ class Customer {
 			$this->newsletter = $customer_query->row['newsletter'];
 			$this->customer_group_id = $customer_query->row['customer_group_id'];
 			$this->address_id = $customer_query->row['address_id'];
-          	
+          	$this->discount = $customer_query->row['discount'];
 			$this->db->query("UPDATE " . DB_PREFIX . "customer SET ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
 			
 	  		return true;
@@ -111,6 +113,7 @@ class Customer {
 		$this->newsletter = '';
 		$this->customer_group_id = '';
 		$this->address_id = '';
+		$this->discount = '';
   	}
   
   	public function isLogged() {
@@ -141,6 +144,9 @@ class Customer {
 		return $this->fax;
   	}
 	
+	public function getDiscount() {
+		return $this->discount;
+  	}
   	public function getNewsletter() {
 		return $this->newsletter;	
   	}

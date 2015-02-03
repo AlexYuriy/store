@@ -7,6 +7,7 @@ class Affiliate {
 	private $telephone;
 	private $fax;
 	private $code;
+	private $discount;
 	
   	public function __construct($registry) {
 		$this->config = $registry->get('config');
@@ -25,7 +26,7 @@ class Affiliate {
 				$this->telephone = $affiliate_query->row['telephone'];
 				$this->fax = $affiliate_query->row['fax'];
 				$this->code = $affiliate_query->row['code'];
-							
+				$this->discount = $affiliate_query->row['discount'];			
       			$this->db->query("UPDATE " . DB_PREFIX . "affiliate SET ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE affiliate_id = '" . (int)$this->session->data['affiliate_id'] . "'");
 			} else {
 				$this->logout();

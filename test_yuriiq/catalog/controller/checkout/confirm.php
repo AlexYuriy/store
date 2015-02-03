@@ -123,6 +123,7 @@ class ControllerCheckoutConfirm extends Controller {
 				$data['email'] = $this->customer->getEmail();
 				$data['telephone'] = $this->customer->getTelephone();
 				$data['fax'] = $this->customer->getFax();
+				$data['discount'] = $this->customer->getDiscount();
 
 				$this->load->model('account/address');
 
@@ -135,6 +136,7 @@ class ControllerCheckoutConfirm extends Controller {
 				$data['email'] = $this->session->data['guest']['email'];
 				$data['telephone'] = $this->session->data['guest']['telephone'];
 				$data['fax'] = $this->session->data['guest']['fax'];
+				$data['discount'] =0;
 
 				$payment_address = $this->session->data['guest']['payment'];
 			}
@@ -275,7 +277,8 @@ class ControllerCheckoutConfirm extends Controller {
 			$data['totals'] = $total_data;
 			$data['comment'] = $this->session->data['comment'];
 			$data['total'] = $total;
-
+			//$data['discount']=//$total*(1-$data['discount']/100);
+			
 			if (isset($this->request->cookie['tracking'])) {
 				$this->load->model('affiliate/affiliate');
 
