@@ -246,8 +246,8 @@ class ControllerCheckoutConfirm extends Controller {
 					'download'   => $product['download'],
 					'quantity'   => $product['quantity'],
 					'subtract'   => $product['subtract'],
-					'price'      => $product['price'],
-					'total'      => $product['total'],
+					'price'      => $product['price']*(1-$data['discount']/100),
+					'total'      => $product['total']*(1-$data['discount']/100),
 					'tax'        => $this->tax->getTax($product['price'], $product['tax_class_id']),
 					'reward'     => $product['reward']
 				); 
@@ -276,7 +276,7 @@ class ControllerCheckoutConfirm extends Controller {
 			$data['vouchers'] = $voucher_data;
 			$data['totals'] = $total_data;
 			$data['comment'] = $this->session->data['comment'];
-			$data['total'] = $total;
+			$data['total'] = $total*(1-$data['discount']/100);
 			//$data['discount']=//$total*(1-$data['discount']/100);
 			
 			if (isset($this->request->cookie['tracking'])) {
