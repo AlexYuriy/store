@@ -122,6 +122,8 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['text_rewrite'] = $this->language->get('text_rewrite');
 			$this->data['text_save'] = $this->language->get('text_save');
 			$this->data['text_change_cart'] = $this->language->get('text_change_cart');
+			$this->data['text_checkbox'] = $this->language->get('text_checkbox');
+			
 
 			$this->data['column_image'] = $this->language->get('column_image');
 			$this->data['column_name'] = $this->language->get('column_name');
@@ -245,6 +247,12 @@ class ControllerCheckoutCart extends Controller {
 				} else {
 					$price = false;
 				}
+				if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
+					$value_price_s = $product['price']*(1-($this->customer->getDiscount())/100);
+					$price_s = $this->currency->format($this->tax->calculate($value_price_s, $product['tax_class_id'], $this->config->get('config_tax')));
+				} else {
+					$price_s = false;
+				}
 
 				// Display prices
 				if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
@@ -252,7 +260,13 @@ class ControllerCheckoutCart extends Controller {
 				} else {
 					$total = false;
 				}
-
+				if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
+					$value_total_s = $product['price']*(1-($this->customer->getDiscount())/100);
+					$total_s = $this->currency->format($this->tax->calculate($value_total_s, $product['tax_class_id'], $this->config->get('config_tax')) * $product['quantity']);
+				} else {
+					$total_s = false;
+				}
+				
 				$profile_description = '';
 
 				if ($product['recurring']) {
@@ -277,7 +291,7 @@ class ControllerCheckoutCart extends Controller {
 						$profile_description .= sprintf($this->language->get('text_payment_until_canceled_description'), $recurring_price, $product['recurring_cycle'], $frequencies[$product['recurring_frequency']], $product['recurring_duration']);
 					}
 				}
-
+				
 				$this->data['products'][] = array(
 					'key'                 => $product['key'],
 					'thumb'               => $image,
@@ -288,7 +302,9 @@ class ControllerCheckoutCart extends Controller {
 					'stock'               => $product['stock'] ? true : !(!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning')),
 					'reward'              => ($product['reward'] ? sprintf($this->language->get('text_points'), $product['reward']) : ''),
 					'price'               => $price,
+					'price_new'           => $price_s,
 					'total'               => $total,
+					'total_new'           => $total_s,
 					'href'                => $this->url->link('product/product', 'product_id=' . $product['product_id']),
 					'remove'              => $this->url->link('checkout/cart', 'remove=' . $product['key']),
 					'recurring'           => $product['recurring'],

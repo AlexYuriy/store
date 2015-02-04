@@ -1887,6 +1887,13 @@ ul.box-filter > li ul {
 	padding: 3px;
 	text-align: right;
 }
+.price-old {
+	color: #F00;
+	text-decoration: line-through;
+}
+.price-new {
+	font-weight: bold;
+}
 /* checkout */
 .checkout-heading {
 	background: #F8F8F8;

@@ -82,8 +82,14 @@
               &nbsp;
               <input type="image" src="catalog/view/theme/default/image/update.png" alt="<?php echo $button_update; ?>" title="<?php echo $button_update; ?>" />
               &nbsp;<a href="<?php echo $product['remove']; ?>"><img src="catalog/view/theme/default/image/remove.png" alt="<?php echo $button_remove; ?>" title="<?php echo $button_remove; ?>" /></a></td>
-            <td class="price"><?php echo $product['price']; ?></td>
-            <td class="total"><?php echo $product['total']; ?></td>
+            <td class="price">
+				<span class="price-show"><?php echo $product['price']; ?></span> <br>
+				<span class="price-new hidden"><?php echo $product['price_new']; ?></span>
+			</td>
+            <td class="total">
+				<span class="price-show"><?php echo $product['total']; ?></span> <br>
+				<span class="price-new hidden"><?php echo $product['total_new']; ?></span>
+			</td>
           </tr>
           <?php } ?>
           <?php foreach ($vouchers as $vouchers) { ?>
@@ -208,11 +214,20 @@
   </div>
   <?php } ?>
   <div class="cart-total">
+  <input type="checkbox" name="show_discount" /><?php echo $text_checkbox; ?>
     <table id="total">
       <?php foreach ($totals as $total) { ?>
       <tr>
         <td class="right"><b><?php echo $total['title']; ?>:</b></td>
-        <td class="right"><?php echo $total['text']; ?></td>
+        <td class="right">
+		<?php if (isset($total['text_s']) ) { ?>
+			<span class="price-show"><?php echo $total['text']; ?></span> <br>
+			<span class="price-new hidden"><?php echo $total['text_s']; ?></span>
+		<?php } else { ?>
+			<?php echo $total['text']; ?>
+		<?php } ?>
+			</td>
+		</td>
       </tr>
       <?php } ?>
     </table>
@@ -231,11 +246,16 @@ $('input[name=\'next\']').bind('change', function() {
 	$('#' + this.value).show();
 });
 
-// сохранение имени и оповещение об этом пользователя
-//function save_cart_name(name) {
-// Проблема с &amp;
-//window.location.href = '<?php echo $url_rewrite_cart ?>'+ name; 
-//};
+$('input[name=\'show_discount\']').bind('change', function() {
+	if (this.checked) 
+	{
+		$('.price-new').removeClass('hidden');
+		$('.price-show').addClass('price-old');
+	} else {
+		$('.price-new').addClass('hidden');
+		$('.price-show').removeClass('price-old');
+	}
+});
 
  //--> 
 </script>
