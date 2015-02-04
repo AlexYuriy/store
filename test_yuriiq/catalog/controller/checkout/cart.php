@@ -19,49 +19,6 @@ class ControllerCheckoutCart extends Controller {
 			unset($this->session->data['payment_methods']); 
 			unset($this->session->data['reward']);
 			$this->redirect($this->url->link('checkout/cart'));  			
-		}
-		// Rename 
-		if (isset($this->request->post['rename']) 
-			&& ($this->request->post['rename'] == 'yes')) {
-			$new_name = $this->request->post['save'];
-			$this->model_checkout_cart->editCurrentCartName($new_name);
-			$this->session->data['success'] = $this->language->get('text_success_save_name');
-			$this->redirect($this->url->link('checkout/cart') );
-		}
-        // save
-        if (isset($this->request->post['save'])) {
-			$cart_name = $this->request->post['save'];
-			if (empty($cart_name)) {
-				$this->session->data['error_warning'] = $this->language->get('empty_cart_name');
-			} else { 
-				$ok = $this->model_checkout_cart->saveCart($cart_name);
-				if ($ok) $this->session->data['success'] = $this->language->get('save_cart_success');
-				else $this->session->data['error_warning'] = $this->language->get('save_cart_error');
-				$this->redirect($this->url->link('account/carts', '', 'SSL'));
-			}
-		}
-        // rewrite
-        if (isset($this->request->get['rewrite'])) {
-			$cart_name = $this->request->get['rewrite'];
-			if (empty($cart_name)) {
-				$this->session->data['error_warning'] = $this->language->get('empty_cart_name');
-			} else { 
-				$ok = $this->model_checkout_cart->rewriteCart() ;
-				if ($ok) $this->session->data['success'] = $this->language->get('save_cart_success');
-				else $this->session->data['error_warning'] = $this->language->get('save_cart_error');
-				$this->redirect($this->url->link('account/carts', '', 'SSL'));
-				}
-		}
-		// create new cart
-    	if (isset($this->request->get['create'])) {
-		    // если здесь не 0 - сохраняет, иначе не сохраняет
-		    $save_cart_flag = $this->request->get['create'];
-		    if ($save_cart_flag){
-		        $this->model_checkout_cart->rewriteCart();
-		    }
-		    $this->cart->clear();
-		    $ok = $this->model_checkout_cart->setCurrentCartIDToNull();
-		    if ($ok) $this->session->data['success'] = $this->language->get('save_cart_success');
 		}		
 		// Remove
 		if (isset($this->request->get['remove'])) {
@@ -202,11 +159,10 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['confirm_yes'] = $this->language->get('confirm_yes');
 			
 			$this->data['text_cart_name']  = $this->model_checkout_cart->getCurrentCartName();
-			$this->data['url_save_cart']   = $this->url->link('checkout/cart&save=', '', 'SSL');
-			$this->data['url_rewrite_cart']= $this->url->link('checkout/cart&rewrite=', '', 'SSL');
-			$this->data['url_clear_cart']  = $this->url->link('checkout/cart/clearCurrentCart', '', 'SSL');
-			$this->data['url_create_cart'] = $this->url->link('checkout/cart&create=', '', 'SSL');
-			$this->data['url_save_cart_name'] = $this->url->link('checkout/cart/editCurrentCartName&new_name=', '', 'SSL') ;
+			$this->data['url_rewrite_cart'] = $this->url->link('checkout/cart/rewriteCurrentCart');
+			$this->data['url_save_cart'] = $this->url->link('checkout/cart/saveCart');
+			$this->data['url_clear_cart'] = $this->url->link('checkout/cart/clearCart');
+			$this->data['url_save_clear_cart'] = $this->url->link('checkout/cart/saveClearCart');
 			
 			$this->data['text_trial'] = $this->language->get('text_trial');
 			$this->data['text_recurring'] = $this->language->get('text_recurring');
@@ -839,11 +795,8 @@ class ControllerCheckoutCart extends Controller {
 
 	public function country() {
 		$json = array();
-
 		$this->load->model('localisation/country');
-
 		$country_info = $this->model_localisation_country->getCountry($this->request->get['country_id']);
-
 		if ($country_info) {
 			$this->load->model('localisation/zone');
 
@@ -858,20 +811,69 @@ class ControllerCheckoutCart extends Controller {
 				'status'            => $country_info['status']		
 			);
 		}
-
 		$this->response->setOutput(json_encode($json));
 	}
-		
-	// изменяет имя текущей корзины. 
-	public function editCurrentCartName(){
-	    $this->load->model('checkout/cart');
-		$this->language->load('checkout/cart');
-        $new_name = $this->request->get['new_name'];
-        $this->model_checkout_cart->editCurrentCartName($new_name);
-		$this->session->data['success'] = $this->language->get('text_success_save_name');
-		$this->redirect($this->url->link('checkout/cart', '', 'SSL') );
-	}
 	
-
+		// Работа с многими корзинами 
+	public function rewriteCurrentCart() {	
+		if ($this->customer->isLogged()) {
+			$this->load->model('checkout/cart');
+			$this->language->load('checkout/cart');	
+			// editCurrentCartName
+			if (isset($this->request->post['cart_name']) ) 
+			{
+			 	$cart_name = $this->request->post['cart_name'];
+			} else {
+				$cart_name = $this->model_checkout_cart->getCurrentCartName();
+			}
+			if (empty($cart_name)) {
+				$this->error['warning'] = $this->language->get('empty_cart_name');
+			} else {
+				$ok = $this->model_checkout_cart->rewriteCart($cart_name);
+				if ($ok) $this->session->data['success'] = $this->language->get('text_success_save_name');
+				else $this->error['warning'] = $this->language->get('save_cart_error');
+			}
+			$this->redirect($this->url->link('checkout/cart'));
+		} else $this->redirect($this->url->link('account/login'));
+	}
+	// 
+	public function saveCart() {
+		if ($this->customer->isLogged()) {
+			$this->load->model('checkout/cart');
+			$this->language->load('checkout/cart');	
+			$cart_name = $this->model_checkout_cart->getCurrentCartName();
+			$ok = $this->model_checkout_cart->saveCart($cart_name);
+			if ($ok) $this->session->data['success'] = $this->language->get('save_cart_success');
+			else $this->error['warning'] = $this->language->get('save_cart_error');
+			$this->redirect($this->url->link('account/carts'));
+		} else $this->redirect($this->url->link('account/login'));
+	}
+	//
+	public function clearCart() {
+		if ($this->customer->isLogged()) {
+			$this->load->model('checkout/cart');
+			$this->language->load('checkout/cart');
+		    $this->cart->clear();
+		    $ok = $this->model_checkout_cart->setCurrentCartIDToNull();
+			// Добавить сообщение для пользователя
+			if ($ok) $this->session->data['success'] = $this->language->get('text_success_clear_cart');
+		}
+		$this->redirect($this->url->link('checkout/cart'));
+	}
+	//
+	public function saveClearCart() {
+		if ($this->customer->isLogged()) {
+			$this->load->model('checkout/cart');
+			$this->language->load('checkout/cart');	
+			$cart_name = $this->model_checkout_cart->getCurrentCartName();
+			$ok = $this->model_checkout_cart->saveCart($cart_name);
+			if ($ok) $this->session->data['success'] = $this->language->get('save_cart_success');
+			else $this->error['warning'] = $this->language->get('save_cart_error');
+		    $this->cart->clear();
+		    $ok = $this->model_checkout_cart->setCurrentCartIDToNull();
+			if ($ok) $this->session->data['success'] = $this->language->get('text_success_clear_cart');
+			$this->redirect($this->url->link('checkout/cart'));
+		} else $this->redirect($this->url->link('account/login'));
+	}
 }
 ?>

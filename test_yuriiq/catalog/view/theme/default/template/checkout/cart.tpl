@@ -16,17 +16,16 @@
     <?php } ?>
   </div>
    <?php if ($this->customer->isLogged()) { ?>
-      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+      <form action="<?php echo $url_rewrite_cart; ?>" method="post" enctype="multipart/form-data">
 		<div class="buttons-cart">
                 <h1 id="cart-header" onclick="switchToRename();"><?php echo $text_cart_name; ?></h1>
                 <span class="title-message" id="text-change-cart" onclick="switchToRename();"> <?php echo $text_change_cart; ?> </span>
-                <input type="text" name="save" maxlength="55" id="edit-cart-name" value="<?php echo $text_cart_name; ?>" />
+                <input type="text" name="cart_name" maxlength="55" id="edit-cart-name" value="<?php echo $text_cart_name; ?>" />
                 <input type="image" name="rename" value="yes" id="name-ok" title="<?php echo $button_save_name; ?>" src="catalog/view/theme/default/image/success.png" /> 
                 <img id="name-cancel" onclick='switchApToRename();' title="<?php echo $button_save_name; ?>" src="catalog/view/theme/default/image/remove.png" /> 
-				<img onclick="print_cart();" title="<?php echo $button_print; ?>" src="catalog/view/theme/default/image/print.png" class="button-cart" /> 
-                <img title="<?php echo $text_button_clear; ?>" src="catalog/view/theme/default/image/clear.png" id="clear_cart" class="button-cart" /> 
-                <img title="<?php echo $button_save_list; ?>" src="catalog/view/theme/default/image/save.png" id="save_cart" class="button-cart" />
-				<img title="<?php echo $button_create; ?>" src="catalog/view/theme/default/image/create.png" id="new_cart" class="button-cart" /> 
+				<img class="button-cart" onclick="print_cart();" title="<?php echo $button_print; ?>" src="catalog/view/theme/default/image/print.png"/> 
+                <img id="clear_cart" class="button-cart" title="<?php echo $text_button_clear; ?>" src="catalog/view/theme/default/image/clear.png" /> 
+                <img id="save_cart" class="button-cart" onclick="window.location.href = '<?php echo $url_save_cart; ?>';" title="<?php echo $button_save_list; ?>" src="catalog/view/theme/default/image/save.png" />
 		</div>
 	  </form>
    <?php } else {?>
@@ -235,7 +234,7 @@ $('input[name=\'next\']').bind('change', function() {
 // сохранение имени и оповещение об этом пользователя
 //function save_cart_name(name) {
 // Проблема с &amp;
-//window.location.href = '<?php echo $url_save_cart_name ?>'+ name; 
+//window.location.href = '<?php echo $url_rewrite_cart ?>'+ name; 
 //};
 
  //--> 
@@ -322,42 +321,14 @@ function createEmptyCart() {
  */
 
 jQuery(function ($) {
-	$('#new_cart').click(function (e) {
-		e.preventDefault();
-
-		// example of calling the confirm function
-		// you must use a callback function to perform the "yes" action
-		confirm("<?php echo $text_save; ?>", 
-				function() { window.location.href = '<?php echo $url_create_cart; ?>1';}, 
-				function() { window.location.href = '<?php echo $url_create_cart; ?>0';});
-	});
-});
-
-jQuery(function ($) {
 	$('#clear_cart').click(function (e) {
 		e.preventDefault();
 
 		// example of calling the confirm function
 		// you must use a callback function to perform the "yes" action
 		confirm("<?php echo $text_save; ?>", 
-				function() { window.location.href = '<?php echo $url_create_cart; ?>1';}, 
-				function() { window.location.href = '<?php echo $url_create_cart; ?>0';});
-	});
-});
-
-jQuery(function ($) {
-	$('#save_cart').click(function (e) {
-		e.preventDefault();
-
-		// example of calling the confirm function
-		// you must use a callback function to perform the "yes" action
-		confirm("<?php echo $text_rewrite; ?>", 
-				function() { 
-				var name = document.getElementById("edit-cart-name").value;
-				window.location.href = '<?php echo $url_rewrite_cart; ?>'+name;}, 
-				function() { 
-				var name = document.getElementById("edit-cart-name").value;
-				window.location.href = '<?php echo $url_save_cart; ?>'+name;});
+				function() { window.location.href = '<?php echo $url_save_clear_cart; ?>';}, 
+				function() { window.location.href = '<?php echo $url_clear_cart; ?>';});
 	});
 });
 
