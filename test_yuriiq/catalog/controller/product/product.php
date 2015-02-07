@@ -590,6 +590,7 @@ class ControllerProductProduct extends Controller {
 			}
 
 			$this->children = array(
+				'module/currency',
 				'common/column_left',
 				'common/column_right',
 				'common/content_top',
@@ -675,6 +676,7 @@ class ControllerProductProduct extends Controller {
 			}
 
 			$this->children = array(
+				'module/currency',
 				'common/column_left',
 				'common/column_right',
 				'common/content_top',

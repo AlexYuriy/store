@@ -75,7 +75,6 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
   <figure id="logo"><a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a></figure>
   <?php } ?>
   <?php echo $language; ?>
-  <?php echo $currency; ?>
   <div id="search">
     <div class="button-search"><i class="fa fa-search"></i></div>
     <input type="search" name="search" placeholder="<?php echo $text_search; ?>" value="<?php echo $search; ?>" />

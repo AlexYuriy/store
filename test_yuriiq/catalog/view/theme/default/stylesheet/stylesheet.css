@@ -149,10 +149,7 @@ label {
 	margin-right: 5px;
 }
 #currency {
-	width: 105px;
-	position: absolute;
-	top: 15px;
-	left: 360px;
+	float:right;
 	color: #999;
 	line-height: 17px;
 }
