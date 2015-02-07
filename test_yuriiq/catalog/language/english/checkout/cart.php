@@ -58,8 +58,8 @@ $_['error_profile_required']	= 'Please select a payment profile!';
 $_['error_country']	= 'Please select a country!';
 $_['error_minimum']	= 'Minimum order amount for %s is %s!';
 $_['error_product']	= 'Warning: There are no products in your cart!';
-$_['error_points']	= 'Warning: You don\';
-$_['error_coupon']	= 'Warning: Coupon is either invalid, expired or reached it\';
+$_['error_points']	= 'Warning: You don\'t have points';
+$_['error_coupon']	= 'Warning: Coupon is either invalid, expired or reached it';
 $_['error_required']	= '%s required!';
 $_['error_shipping']	= 'Warning: Shipping method required!';
 $_['error_voucher']	= 'Warning: Gift Voucher is either invalid or the balance has been used up!';
@@ -93,4 +93,6 @@ $_['confirm_yes']	= ' Yes';
 
 // heading
 $_['heading_title']	= 'Shopping Cart';
+
+$_['text_checkbox'] = 'Discount';
 ?>

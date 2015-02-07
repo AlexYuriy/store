@@ -8,7 +8,7 @@ $_['text_agree']	= 'I have read and agree to the <a class="colorbox" href="%s" a
 $_['text_payment_profile']	= 'Payment Profile';
 $_['text_checkout_shipping_address']	= 'Step 4: Delivery Details';
 $_['text_checkout']	= 'Checkout Options:';
-$_['text_register_account']	= 'By creating an account you will be able to shop faster, be up to date on an order\';
+$_['text_register_account']	= 'By creating an account you will be able to shop faster, be up to date on an order';
 $_['text_your_address']	= 'Your Address';
 $_['text_checkout_shipping_method']	= 'Step 3: Delivery Method';
 $_['text_day']	= 'day';

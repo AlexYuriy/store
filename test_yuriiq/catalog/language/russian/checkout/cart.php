@@ -83,4 +83,5 @@ $_['confirm_yes']	= 'Да';
 
 // heading
 $_['heading_title']	= 'Корзина покупок';
+$_['text_checkbox'] = 'Показать с учетом скидки';
 ?>

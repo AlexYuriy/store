@@ -213,6 +213,7 @@
     </div>
   </div>
   <?php } ?>
+   <?php if ($this->customer->isLogged()) { ?>
   <div class="cart-total">
   <input type="checkbox" name="show_discount" /><?php echo $text_checkbox; ?>
     <table id="total">
@@ -232,6 +233,7 @@
       <?php } ?>
     </table>
   </div>
+  <?php } ?>
   <div class="buttons">
     <div class="right"><a href="<?php echo $checkout; ?>" class="button"><?php echo $button_checkout; ?></a></div>
     <div class="left"><a href="<?php echo $continue; ?>" class="button"><?php echo $button_shopping; ?></a></div>

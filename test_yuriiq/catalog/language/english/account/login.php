@@ -1,7 +1,7 @@
 <?php
 
 // text
-$_['text_register_account']	= 'By creating an account you will be able to shop faster, be up to date on an order\';
+$_['text_register_account']	= 'By creating an account you will be able to shop faster, be up to date on an order';
 $_['text_account']	= 'Account';
 $_['text_i_am_returning_customer']	= 'I am a returning customer';
 $_['text_login']	= 'Login';

@@ -58,8 +58,8 @@ $_['error_profile_required']	= 'Bitte wählen Sie eine Zahlungsprofil!';
 $_['error_country']	= 'Bitte wählen Sie ein Land!';
 $_['error_minimum']	= 'Mindestbestellmenge für %s is %s!';
 $_['error_product']	= 'Hinweis: Es gibt keine Produkte in Ihrem Warenkorb!';
-$_['error_points']	= 'Warning: You don\';
-$_['error_coupon']	= 'Warning: Coupon is either invalid, expired or reached it\';
+$_['error_points']	= 'Warning: You don';
+$_['error_coupon']	= 'Warning: Coupon is either invalid, expired or reached it';
 $_['error_required']	= '%s erforderlich!';
 $_['error_shipping']	= 'Achtung: Versandverfahren notwendig!';
 $_['error_voucher']	= 'Warning: Gift Voucher is either invalid or the balance has been used up!**';
@@ -93,4 +93,5 @@ $_['confirm_yes']	= ' Ja';
 
 // heading
 $_['heading_title']	= 'Warenkorb';
+$_['text_checkbox'] = 'Diskount';
 ?>
