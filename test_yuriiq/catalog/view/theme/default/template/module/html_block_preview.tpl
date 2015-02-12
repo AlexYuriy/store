@@ -8,7 +8,6 @@
 		<?php } ?>
 		<style type="text/css">
 			body {
-				padding: 0;
 				margin: 0;
 				background: #F7F7F7;
 				font-family: Verdana, Arial, Helvetica, sans-serif;

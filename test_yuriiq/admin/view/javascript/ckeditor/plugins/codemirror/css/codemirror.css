@@ -49,7 +49,7 @@
 .cm-keymap-fat-cursor pre.CodeMirror-cursor {
   width: auto;
   border: 0;
-  background: transparent;
+
   background: rgba(0, 200, 0, .4);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#6600c800, endColorstr=#4c00c800);
 }

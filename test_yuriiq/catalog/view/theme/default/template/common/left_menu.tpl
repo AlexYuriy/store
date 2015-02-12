@@ -1,4 +1,5 @@
 <!-- LeftMenu -->
+<!--suppress HtmlUnknownTarget -->
 <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/left_menu.css" />
 <script type="text/javascript" src="catalog/view/javascript/left_menu.js"></script>
 <div id="sidebar_right_space" onclick="closeMenu(); return(false)" > </div>

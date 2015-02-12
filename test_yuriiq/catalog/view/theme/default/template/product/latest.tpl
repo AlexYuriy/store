@@ -95,9 +95,8 @@ function displaybutton (view) {
 					speed : 400
 				});
             });
-};
-
-function display(view) {
+}
+	function display(view) {
 	if (view == 'list') {
 		$('.product-grid').attr('class', 'product-list');
 		

@@ -6,14 +6,14 @@
 </head>
 <body style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #000000;">
 <div style="width: 680px;"><a href="<?php echo $store_url; ?>" title="<?php echo $store_name; ?>"><img src="<?php echo $logo; ?>" alt="<?php echo $store_name; ?>" style="margin-bottom: 20px; border: none;" /></a>
-  <p style="margin-top: 0px; margin-bottom: 20px;"><?php echo $text_greeting; ?></p>
+  <p style="margin-top: 0; margin-bottom: 20px;"><?php echo $text_greeting; ?></p>
   <?php if ($customer_id) { ?>
-  <p style="margin-top: 0px; margin-bottom: 20px;"><?php echo $text_link; ?></p>
-  <p style="margin-top: 0px; margin-bottom: 20px;"><a href="<?php echo $link; ?>"><?php echo $link; ?></a></p>
+  <p style="margin-top: 0; margin-bottom: 20px;"><?php echo $text_link; ?></p>
+  <p style="margin-top: 0; margin-bottom: 20px;"><a href="<?php echo $link; ?>"><?php echo $link; ?></a></p>
   <?php } ?>
   <?php if ($download) { ?>
-  <p style="margin-top: 0px; margin-bottom: 20px;"><?php echo $text_download; ?></p>
-  <p style="margin-top: 0px; margin-bottom: 20px;"><a href="<?php echo $download; ?>"><?php echo $download; ?></a></p>
+  <p style="margin-top: 0; margin-bottom: 20px;"><?php echo $text_download; ?></p>
+  <p style="margin-top: 0; margin-bottom: 20px;"><a href="<?php echo $download; ?>"><?php echo $download; ?></a></p>
   <?php } ?>
   <table style="border-collapse: collapse; width: 100%; border-top: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; margin-bottom: 20px;">
     <thead>
@@ -23,15 +23,17 @@
     </thead>
     <tbody>
       <tr>
-        <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;"><b><?php echo $text_order_id; ?></b> <?php echo $order_id; ?><br />
-          <b><?php echo $text_date_added; ?></b> <?php echo $date_added; ?><br />
-          <b><?php echo $text_payment_method; ?></b> <?php echo $payment_method; ?><br />
+        <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;"><span
+              style="font-weight: bold;"><?php echo $text_order_id; ?></span> <?php echo $order_id; ?><br />
+          <span style="font-weight: bold;"><?php echo $text_date_added; ?></span> <?php echo $date_added; ?><br />
+          <span style="font-weight: bold;"><?php echo $text_payment_method; ?></span> <?php echo $payment_method; ?><br />
           <?php if ($shipping_method) { ?>
-          <b><?php echo $text_shipping_method; ?></b> <?php echo $shipping_method; ?>
+          <span style="font-weight: bold;"><?php echo $text_shipping_method; ?></span> <?php echo $shipping_method; ?>
           <?php } ?></td>
-        <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;"><b><?php echo $text_email; ?></b> <?php echo $email; ?><br />
-          <b><?php echo $text_telephone; ?></b> <?php echo $telephone; ?><br />
-          <b><?php echo $text_ip; ?></b> <?php echo $ip; ?><br /></td>
+        <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;"><span
+              style="font-weight: bold;"><?php echo $text_email; ?></span> <?php echo $email; ?><br />
+          <span style="font-weight: bold;"><?php echo $text_telephone; ?></span> <?php echo $telephone; ?><br />
+          <span style="font-weight: bold;"><?php echo $text_ip; ?></span> <?php echo $ip; ?><br /></td>
       </tr>
     </tbody>
   </table>
@@ -83,7 +85,8 @@
         <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;"><?php echo $product['name']; ?>
           <?php foreach ($product['option'] as $option) { ?>
           <br />
-          &nbsp;<small> - <?php echo $option['name']; ?>: <?php echo $option['value']; ?></small>
+          &nbsp;<span
+                style="font-size: small;"> - <?php echo $option['name']; ?>: <?php echo $option['value']; ?></span>
           <?php } ?></td>
         <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;"><?php echo $product['model']; ?></td>
         <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 7px;"><?php echo $product['quantity']; ?></td>
@@ -104,14 +107,14 @@
     <tfoot>
       <?php foreach ($totals as $total) { ?>
       <tr>
-        <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 7px;" colspan="4"><b><?php echo $total['title']; ?>:</b></td>
+        <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 7px; font-weight: bold; font-weight: bold;" colspan="4"><b><?php echo $total['title']; ?>:</b></td>
         <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 7px;"><?php echo $total['text']; ?></td>
       </tr>
       <?php } ?>
     </tfoot>
   </table>
-  <p style="margin-top: 0px; margin-bottom: 20px;"><?php echo $text_footer; ?></p>
-  <p style="margin-top: 0px; margin-bottom: 20px;"><?php echo $text_powered; ?></p>
+  <p style="margin-top: 0; margin-bottom: 20px;"><?php echo $text_footer; ?></p>
+  <p style="margin-top: 0; margin-bottom: 20px;"><?php echo $text_powered; ?></p>
 </div>
 </body>
 </html>

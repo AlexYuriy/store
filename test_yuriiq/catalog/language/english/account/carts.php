@@ -26,11 +26,11 @@ $_['text_payment_method']	= 'Payment Method:';
 
 // save
 $_['save_cart_success']	= 'Blank ID cart';
-$_['save_cart_error']	= 'Warning: cart isn't save';
+$_['save_cart_error']	= 'Warning: cart isn\'t save';
 
 // remove
 $_['remove_cart_success']	= 'Cart successfully removed';
-$_['remove_cart_error']	= 'Warning: cart isn't delete';
+$_['remove_cart_error']	= 'Warning: cart isn\'t delete';
 
 // button
 $_['button_save']	= 'Save';

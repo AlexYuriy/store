@@ -167,7 +167,7 @@ $('#button-cart').bind('click', function() {
 		data: $('.blog-info input[type=\'text\'], .blog-info input[type=\'hidden\'], .blog-info input[type=\'radio\']:checked, .blog-info input[type=\'checkbox\']:checked, .blog-info select, .blog-info textarea'),
 		dataType: 'json',
 		success: function(json) {
-			$('.success, .warning, .attention, information, .error').remove();
+			$('.success, .warning, .attention, .information, .error').remove();
 			
 			if (json['error']) {
 				if (json['error']['option']) {

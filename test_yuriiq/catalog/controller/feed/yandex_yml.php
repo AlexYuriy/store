@@ -828,4 +828,4 @@ class ControllerFeedYandexYml extends Controller {
 		return $attr;
 	}
 }
-?>
+

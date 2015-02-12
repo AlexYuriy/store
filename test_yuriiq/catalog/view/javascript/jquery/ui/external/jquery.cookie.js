@@ -68,6 +68,7 @@ jQuery.cookie = function (key, value, options) {
         }
 
         if (typeof options.expires === 'number') {
+            //noinspection JSUndefinedPropertyAssignment
             var days = options.expires, t = options.expires = new Date();
             t.setDate(t.getDate() + days);
         }

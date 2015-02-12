@@ -677,4 +677,4 @@ class ControllerAccountReturn extends Controller {
 		$captcha->showImage();
 	}	
 }
-?>
+

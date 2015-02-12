@@ -556,6 +556,7 @@ extend(QUnit, {
 	triggerEvent: function( elem, type, event ) {
 		if ( document.createEvent ) {
 			event = document.createEvent("MouseEvents");
+			//noinspection JSDeprecatedSymbols
 			event.initMouseEvent(type, true, true, elem.ownerDocument.defaultView,
 				0, 0, 0, 0, 0, false, false, false, false, 0, null);
 			elem.dispatchEvent( event );

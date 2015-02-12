@@ -7,12 +7,13 @@
 <style type="text/css">
 body {font-family:Arial, Helvetica, sans-serif;/*font-size:14px;*/}
 a {color:#006400;}
-p {padding: 5px 0px 0px 5px;}
-.vas ul {padding: 0px 10px 0px 15px;}
+p {padding: 5px 0 0 5px;}
+
+.vas ul {padding: 0 10px 0px 15px;}
 .vas li {list-style-type:circle;}
 h3 {padding:0px 0px 0px 5px;font-size:100%;}
 h1 {color:#006400;padding:0px 0px 0px 5px;font-size:120%;}
-li {list-style-type: none;padding-bottom:5px;padding: 6px 0px 0px 5px;}
+li {list-style-type: none;padding: 6px 0px 0px 5px;}
 .main {font-size:12px;}
 .list {font-size:12px;padding: 6px 15px 0px 5px;}
 .main input {font-size:12px;background-color:#CCFFCC;}
@@ -41,13 +42,13 @@ function print1() {
     <tr>
       <td width="220" valign="top" height="250" align="center" style="border-bottom:#000000 1px solid; border-right:#000000 1px solid;">&nbsp;<strong>Платеж</strong></td>
       <td valign="top" style="border-bottom:#000000 1px solid; border-right:#000000 1px solid;">
-      <li><strong>Получатель: </strong> <font style="font-size:90%"> <?php echo $bank ?></font>&nbsp;&nbsp;&nbsp;<br />
-        <li><strong>ИНН:</strong> <?php echo $inn ?>&nbsp;&nbsp;<font style="font-size:11px"> &nbsp;</font> <strong>P/сч.:</strong> <?php echo $rs ?>&nbsp;&nbsp;<br />
-        <li> <strong>в:</strong> <font style="font-size:90%"><?php echo $bankuser ?></font><br />
+      <li><strong>Получатель: </strong> <span style="font-size:90%"> <?php echo $bank ?></span>&nbsp;&nbsp;&nbsp;<br />
+        <li><strong>ИНН:</strong> <?php echo $inn ?>&nbsp;&nbsp;<span style="font-size:11px"> &nbsp;</span> <strong>P/сч.:</strong> <?php echo $rs ?>&nbsp;&nbsp;<br />
+        <li> <strong>в:</strong> <span style="font-size:90%"><?php echo $bankuser ?></span><br />
         <li><strong>БИК:</strong> <?php echo $bik ?>&nbsp; <strong>К/сч.:</strong> <?php echo $ks ?> <br />
-        <li><strong>Платеж:</strong> <font style="font-size:90%">Оплата заказа № <?php echo $order_id ?></font><br />
+        <li><strong>Платеж:</strong> <span style="font-size:90%">Оплата заказа № <?php echo $order_id ?></span><br />
         <li><strong>Плательщик:</strong> <?php echo $name ?> <br />
-        <li><strong>Адрес плательщика:</strong> <font style="font-size:90%"> <?php echo $address ?></font><br />
+        <li><strong>Адрес плательщика:</strong> <span style="font-size:90%"> <?php echo $address ?></span><br />
         <li><strong>ИНН плательщика:</strong> ____________&nbsp;&nbsp;&nbsp;&nbsp; <strong>№ л/сч. плательщика:</strong> ______________
         <li><strong>Сумма:</strong> <?php echo $amount ?> руб. &nbsp;&nbsp;&nbsp;&nbsp;<strong>Сумма оплаты услуг банка:</strong> ______ руб. __ коп.<br />
           <br />
@@ -57,13 +58,14 @@ function print1() {
     </tr>
     <tr>
       <td width="220" valign="top" height="250" align="center" style="border-bottom:#000000 1px solid; border-right:#000000 1px solid;">&nbsp;<strong>Квитанция</strong></td>
-      <td valign="top" style="border-bottom:#000000 1px solid; border-right:#000000 1px solid;"> <li><strong>Получатель: </strong> <font style="font-size:90%"> <?php echo $bank ?></font>&nbsp;&nbsp;&nbsp;<br />
-        <li><strong>ИНН:</strong> <?php echo $inn ?>&nbsp;&nbsp;<font style="font-size:11px"> &nbsp;</font> <strong>P/сч.:</strong> <?php echo $rs ?>&nbsp;&nbsp;<br />
-        <li> <strong>в:</strong> <font style="font-size:90%"><?php echo $bankuser ?></font><br />
+      <td valign="top" style="border-bottom:#000000 1px solid; border-right:#000000 1px solid;"> <li><strong>Получатель: </strong> <span
+              style="font-size:90%"> <?php echo $bank ?></span>&nbsp;&nbsp;&nbsp;<br />
+        <li><strong>ИНН:</strong> <?php echo $inn ?>&nbsp;&nbsp;<span style="font-size:11px"> &nbsp;</span> <strong>P/сч.:</strong> <?php echo $rs ?>&nbsp;&nbsp;<br />
+        <li> <strong>в:</strong> <span style="font-size:90%"><?php echo $bankuser ?></span><br />
         <li><strong>БИК:</strong> <?php echo $bik ?>&nbsp; <strong>К/сч.:</strong> <?php echo $ks ?>
-        <li><strong>Платеж:</strong> <font style="font-size:90%">Оплата заказа № <?php echo $order_id ?></font><br />
+        <li><strong>Платеж:</strong> <span style="font-size:90%">Оплата заказа № <?php echo $order_id ?></span><br />
         <li><strong>Плательщик:</strong> <?php echo $name ?><br />
-        <li><strong>Адрес плательщика:</strong> <font style="font-size:90%"> <?php echo $address ?></font><br />
+        <li><strong>Адрес плательщика:</strong> <span style="font-size:90%"> <?php echo $address ?></span><br />
         <li><strong>ИНН плательщика:</strong> ____________&nbsp;&nbsp;&nbsp;&nbsp; <strong>№ л/сч. плательщика:</strong> ______________
         <li><strong>Сумма:</strong> <?php echo $amount ?> руб. &nbsp;&nbsp;&nbsp;&nbsp;<strong>Сумма оплаты услуг банка:</strong> ______ руб. __ коп.<br />
           <br />

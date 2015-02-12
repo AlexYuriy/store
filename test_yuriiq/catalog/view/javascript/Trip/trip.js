@@ -574,7 +574,7 @@
      * @return {Boolean} whether current trip is the first one
      */
     isFirst: function() {
-      return (this.tripIndex === 0) ? true: false;
+      return (this.tripIndex === 0);
     },
 
     /**
@@ -585,7 +585,7 @@
      * @return {Boolean} whether current trip is the last one
      */
     isLast: function() {
-      return (this.tripIndex === this.tripData.length - 1) ? true: false;
+      return (this.tripIndex === this.tripData.length - 1);
     },
 
     /**
@@ -612,14 +612,12 @@
       }
 
       // have to check `sel` & `content` two required fields
-      if (typeof o.content === 'undefined' ||
-        typeof o.sel === 'undefined' ||
-        o.sel === null ||
-        o.sel.length === 0 ||
-        $(o.sel).length === 0) {
-          return false;
-      }
-      return true;
+      return !(typeof o.content === 'undefined' ||
+      typeof o.sel === 'undefined' ||
+      o.sel === null ||
+      o.sel.length === 0 ||
+      $(o.sel).length === 0);
+
     },
 
     /**

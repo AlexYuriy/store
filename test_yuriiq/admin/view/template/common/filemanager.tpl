@@ -92,7 +92,6 @@ img {
 	height: 105px;
 	background: #F7F7F7;
 	border: 1px solid #CCCCCC;
-	cursor: pointer;
 	cursor: move;
 	position: relative;
 }

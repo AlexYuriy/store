@@ -18,7 +18,7 @@ var banner = function() {
 			$(next).parent().height($(next).outerHeight());
 		}
 	});
-}
+};
 
 setTimeout(banner, 2000);
 //--></script>

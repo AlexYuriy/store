@@ -115,7 +115,7 @@
 			} else {
 				nivoCaption.stop().fadeTo(settings.animSpeed, 0);
 			}
-		}
+		};
 		
         //Process initial  caption
         processCaption(settings);
@@ -271,7 +271,7 @@
 					);
 				}
 			}
-        }
+        };
 		
 		// Add boxes for box animations
 		var createBoxes = function(slider, settings, vars){
@@ -305,7 +305,7 @@
 					}
 				}
 			}
-		}
+		};
 
         // Private run method
 		var nivoRun = function(slider, kids, settings, nudge){
@@ -610,19 +610,19 @@
 					timeBuff += 100;
 				}
 			}
-		}
+		};
 		
 		// Shuffle an array
 		var shuffle = function(arr){
 			for(var j, x, i = arr.length; i; j = parseInt(Math.random() * i), x = arr[--i], arr[i] = arr[j], arr[j] = x);
 			return arr;
-		}
+		};
         
         // For debugging
         var trace = function(msg){
             if (this.console && typeof console.log != "undefined")
                 console.log(msg);
-        }
+        };
         
         // Start / Stop
         this.stop = function(){
@@ -630,14 +630,14 @@
                 $(element).data('nivo:vars').stop = true;
                 trace('Stop Slider');
             }
-        }
+        };
         
         this.start = function(){
             if($(element).data('nivo:vars').stop){
                 $(element).data('nivo:vars').stop = false;
                 trace('Start Slider');
             }
-        }
+        };
         
         //Trigger the afterLoad callback
         settings.afterLoad.call(this);

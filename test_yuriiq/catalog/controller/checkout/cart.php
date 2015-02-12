@@ -892,4 +892,4 @@ class ControllerCheckoutCart extends Controller {
 		} else $this->redirect($this->url->link('account/login'));
 	}
 }
-?>
+

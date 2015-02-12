@@ -5,7 +5,7 @@
   <div class="box-content">
     <div class="box-product">
       <?php foreach ($reviews as $review) { ?>
-      <div style="margin:0px;width:100%;">
+      <div style="margin:0;width:100%;">
         <?php if ($review['product_id']) {?>
           <?php if ($review['prod_thumb']) { ?>
           <div class="image"><a href="<?php echo $review['prod_href']; ?>"><img src="<?php echo $review['prod_thumb']; ?>" alt="<?php echo $review['prod_name']; ?>" title="<?php echo $review['prod_name']; ?>"/></a></div>
@@ -22,10 +22,10 @@
           <?php } ?>
         </div>
       </div>
-      <div style="margin:0px;width:100%;"><?php echo $review['description']?> <a href="<?php echo $review['href']?>">...&raquo;</a></div>
-      <div style="margin-bottom:20px;margin-right:0px;font-style:italic;font-weight:bold;text-align:right;width:100%;"><?php echo $review['author']?></div>
+      <div style="margin:0;width:100%;"><?php echo $review['description']?> <a href="<?php echo $review['href']?>">...&raquo;</a></div>
+      <div style="margin-bottom:20px;margin-right:0;font-style:italic;font-weight:bold;text-align:right;width:100%;"><?php echo $review['author']?></div>
       <?php } ?>
-      <div style="margin:0px;text-align:right;width:100%;"><a href="<?php echo $link_all_reviews; ?>" class="button"><span><?php echo $text_all_reviews;?></span></a></div>
+      <div style="margin:0;text-align:right;width:100%;"><a href="<?php echo $link_all_reviews; ?>" class="button"><span><?php echo $text_all_reviews;?></span></a></div>
     </div>
   </div>
 </div>

@@ -72,7 +72,7 @@
 #related-product .box-product:hover,
 #related-product .box-product {
 	border: none;
-	padding: 0px;
+	padding: 0;
 }
 #related-product .price {
 	font-size: 15px;

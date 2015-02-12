@@ -73,6 +73,6 @@
         else {
             document.getElementById('scroll_to_top').style.display = "none";
         }
-    }
+    };
     
  

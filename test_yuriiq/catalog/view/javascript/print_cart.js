@@ -8,8 +8,8 @@
 	var elements = document.body.getElementsByTagName("div");
 	var length   = elements.length;
 	var lengthForPrint = forPrintClass.length;
-	var out = [], i, j, k;
-	var notShow = new Array();
+		var i, j;
+		var notShow = new Array();
 	var print;	// печатать ли элемент
 	
 	// если этот элемент не подлежит печати - убираем со страницы
@@ -27,7 +27,7 @@
 	    for (j = 0; j < lengthForPrint; j++) {
 		 if (elements[i].className == forPrintClass[j]) {
 		    print = true;
-		    continue;
+
 		 }		 
 	    }
 	    
@@ -35,7 +35,7 @@
 	    for (j = 0; j < lengthForPrint; j++){
 		if (elements[i].id == forPrintId[j] || print){
 		    print = true;
-		    continue;
+
 		}
 	    }
 	    
@@ -47,10 +47,10 @@
 	// печать
 	window.print();
 	document.getElementById('map-img').style.display = "none";
-	window.onfocus=function(){ location.reload();}
+	window.onfocus=function(){ location.reload();};
 	location.reload();
 	
-    };
+    }
     
     function printDoc(forPrintId){
 	

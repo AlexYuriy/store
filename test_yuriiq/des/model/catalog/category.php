@@ -278,8 +278,7 @@ class ModelCatalogCategory extends Model {
 				'meta_keyword'     => $result['meta_keyword'],
 				'doc_links'		   => $result['doc_links'],
 				'meta_description' => $result['meta_description'],
-				'description'      => $result['description'],
-				'doc_links'      => $result['doc_links']
+				'description'      => $result['description']
 			);
 		}
 

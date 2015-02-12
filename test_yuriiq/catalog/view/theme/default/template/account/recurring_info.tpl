@@ -94,7 +94,6 @@
 <?php echo $footer; ?>
 <script type="text/javascript"><!--
     function confirmCancel(){
-        var confirmed = confirm("<?php echo $text_confirm_cancel; ?>");
-        return confirmed;
+       return confirm("<?php echo $text_confirm_cancel; ?>");
     }
 //--></script>

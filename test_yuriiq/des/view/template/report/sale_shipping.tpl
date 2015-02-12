@@ -18,11 +18,11 @@
             <input type="text" name="filter_date_end" value="<?php echo $filter_date_end; ?>" id="date-end" size="12" /></td>
           <td><?php echo $entry_group; ?>
             <select name="filter_group">
-              <?php foreach ($groups as $groups) { ?>
-              <?php if ($groups['value'] == $filter_group) { ?>
-              <option value="<?php echo $groups['value']; ?>" selected="selected"><?php echo $groups['text']; ?></option>
+              <?php foreach ($groups as $group) { ?>
+              <?php if ($group['value'] == $filter_group) { ?>
+              <option value="<?php echo $group['value']; ?>" selected="selected"><?php echo $group['text']; ?></option>
               <?php } else { ?>
-              <option value="<?php echo $groups['value']; ?>"><?php echo $groups['text']; ?></option>
+              <option value="<?php echo $group['value']; ?>"><?php echo $group['text']; ?></option>
               <?php } ?>
               <?php } ?>
             </select></td>

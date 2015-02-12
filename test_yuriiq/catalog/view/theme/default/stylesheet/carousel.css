@@ -13,7 +13,7 @@
 	direction: rtl;
 }
 .jcarousel-skin-opencart .jcarousel-container-horizontal {
-	padding: 0px 40px;
+	padding: 0 40px;
 }
 .jcarousel-skin-opencart .jcarousel-clip {
 	overflow: hidden;
@@ -64,7 +64,7 @@
 .jcarousel-skin-opencart .jcarousel-prev-horizontal {
 	position: absolute;
 	top: 28px;
-	left: 0px;
+	left: 0;
 	width: 32px;
 	height: 32px;
 	cursor: pointer;
@@ -72,7 +72,7 @@
 }
 .jcarousel-skin-opencart .jcarousel-direction-rtl .jcarousel-prev-horizontal {
 	left: auto;
-	right: 0px;
+	right: 0;
 }
 .jcarousel-skin-opencart .jcarousel-prev-horizontal:hover, .jcarousel-skin-opencart .jcarousel-prev-horizontal:focus {
 }

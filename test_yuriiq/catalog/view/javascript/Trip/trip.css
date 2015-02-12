@@ -232,7 +232,7 @@
 
   100% {
     -webkit-transform-origin: left bottom;
-    -webkit-transform: rotate(0);
+    -webkit-transform: rotate(0deg);
     opacity: 1; } }
 
 @-webkit-keyframes rotateInUpLeft {
@@ -243,7 +243,7 @@
 
   100% {
     -webkit-transform-origin: left bottom;
-    -webkit-transform: rotate(0);
+    -webkit-transform: rotate(0deg);
     opacity: 1; } }
 
 @-webkit-keyframes rotateInUpRight {
@@ -1505,7 +1505,7 @@
   opacity: 0.2; }
 
 .trip-block.yeti {
-  padding: 0px;
+  padding: 0;
   background: #008cba;
   color: #fff;
   -webkit-box-shadow: rgba(0, 0, 0, 0.39) 0 2px 2px 0;
@@ -1523,17 +1523,17 @@
     position: relative;
     font-size: 18px;
     background: #006687;
-    margin: 0px;
-    border-radius: 3px 3px 0px 0px;
+    margin: 0;
+    border-radius: 3px 3px 0 0;
     padding: 5px; }
   .trip-block.yeti .trip-content {
     font-size: 12px;
     padding: 15px;
     max-width: 450px; }
   .trip-block.yeti .trip-close {
-    right: 0px;
-    top: 0px;
-    margin: 3px 8px 0px 0px;
+    right: 0;
+    top: 0;
+    margin: 3px 8px 0 0;
     color: #fff;
     font-size: 16px; }
     .trip-block.yeti .trip-close:hover {
@@ -1547,8 +1547,8 @@
     background: #006687; }
   .trip-block.yeti .trip-progress-wrapper .trip-next {
     float: right;
-    border-radius: 0px 0px 5px 0px; }
+    border-radius: 0 0 5px 0; }
   .trip-block.yeti .trip-progress-wrapper .trip-prev {
     display: none;
     float: left;
-    border-radius: 0px 0px 0px 5px; }
+    border-radius: 0 0 0 5px; }
