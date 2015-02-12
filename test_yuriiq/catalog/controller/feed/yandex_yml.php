@@ -172,10 +172,10 @@ class ControllerFeedYandexYml extends Controller {
 				if (isset($yandex_yml_categ_mapping[$product['category_id']]) && $yandex_yml_categ_mapping[$product['category_id']]) {
 					$data['market_category'] = $yandex_yml_categ_mapping[$product['category_id']];
 				}
-				$data['delivery'] = 'true';
-				if ($export_delivery_cost) {
+				$data['delivery'] = 'false';
+				/*if ($export_delivery_cost) {
 					$data['local_delivery_cost'] = $local_delivery_cost;
-				}
+				}*/
 				if ($pickup)
 					$data['pickup'] = $pickup;
 				if ($store)

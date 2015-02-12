@@ -22,7 +22,7 @@ class Request {
 		$this->server = $_SERVER;
 	}
 	
-  	public function clean($data) {
+  	/*public function clean($data) {
     	if (is_array($data)) {
 	  		foreach ($data as $key => $value) {
 				unset($data[$key]);
@@ -34,6 +34,19 @@ class Request {
 		}
 
 		return $data;
+	}*/
+	public function clean($data) {
+	if (is_array($data)) {
+		foreach ($data as $key => $value) {
+			unset($data[$key]);
+			
+			$data[$this->clean(str_replace('amp;','',$key))] = $this->clean($value);
+		}
+	} else { 
+		$data = htmlspecialchars($data, ENT_COMPAT);
 	}
+
+	return $data;
+}
 }
 ?>

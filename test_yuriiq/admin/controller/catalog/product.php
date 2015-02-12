@@ -195,7 +195,7 @@ class ControllerCatalogProduct extends Controller {
 			$product_specials = $this->model_catalog_product->getProductSpecials($result['product_id']);
 			
 			foreach ($product_specials  as $product_special) {
-				if (($product_special['date_start'] == '0000-00-00' || $product_special['date_start'] > date('Y-m-d')) && ($product_special['date_end'] == '0000-00-00' || $product_special['date_end'] < date('Y-m-d'))) {
+				if (($product_special['date_start'] == '0000-00-00' || $product_special['date_start'] >= date('Y-m-d')) && ($product_special['date_end'] == '0000-00-00' || $product_special['date_end'] <= date('Y-m-d'))) {
 					$special = $product_special['price'];
 			
 					break;
@@ -210,7 +210,7 @@ class ControllerCatalogProduct extends Controller {
 				'model'      	=> $result['model'],
 				'price'      	=> $result['price'],
 				'special'    	=> $special,
-				'image'		=> $image,
+				'image'			=> $image,
 				'quantity'   	=> $result['quantity'],
 				'status'     	=> ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
 				'selected'   	=> isset($this->request->post['selected']) && in_array($result['product_id'], $this->request->post['selected']),
@@ -651,7 +651,7 @@ class ControllerCatalogProduct extends Controller {
 			$product_specials = $this->model_catalog_product->getProductSpecials($result['product_id']);
 
 			foreach ($product_specials  as $product_special) {
-				if (($product_special['date_start'] == '0000-00-00' || $product_special['date_start'] < date('Y-m-d')) && ($product_special['date_end'] == '0000-00-00' || $product_special['date_end'] > date('Y-m-d'))) {
+				if (($product_special['date_start'] == '0000-00-00' || $product_special['date_start'] <= date('Y-m-d')) && ($product_special['date_end'] == '0000-00-00' || $product_special['date_end'] >= date('Y-m-d'))) {
 					$special = $product_special['price'];
 
 					break;

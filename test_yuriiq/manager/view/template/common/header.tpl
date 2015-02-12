@@ -71,6 +71,7 @@ $(document).ready(function(){
       <li id="catalog"><a class="top"><?php echo $text_catalog; ?></a>
         <ul>
           <li><a href="<?php echo $category; ?>"><?php echo $text_category; ?></a></li>
+          <li><a href="<?php echo $cachemanager; ?>"><?php echo $text_cachemanager; ?></a></li>
           <li><a href="<?php echo $product; ?>"><?php echo $text_product; ?></a></li>
 		  <?php if($coolfilter != ''){ ?>
           <li>
