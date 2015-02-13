@@ -38,6 +38,7 @@ final class DBMySQLi {
 			}
 		} else {
 			throw new ErrorException('Error: ' . $this->link->error . '<br />Error No: ' . $this->link->errno . '<br />' . $sql);
+			/** @noinspection PhpUnreachableStatementInspection */
 			exit();
 		}
 	}

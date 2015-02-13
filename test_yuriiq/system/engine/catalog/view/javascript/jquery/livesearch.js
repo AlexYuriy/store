@@ -44,7 +44,7 @@ function doLiveSearch( ev, keywords ) {
 
 function upDownEvent( ev ) {
 	var elem = document.getElementById('livesearch_search_results');
-	var fkey = $('#search').find('[name=search]').first();
+	//var fkey = $('#search').find('[name=search]').first();
 
 	if( elem ) {
 		var length = elem.childNodes.length - 1;
@@ -69,7 +69,7 @@ function upDownEvent( ev ) {
 				text = elem.childNodes[updown].childNodes[0].innerText;
 			}
 
-			$('#search').find('[name=search]').first().val( new String(text).replace(/(\s\(.*?\))$/, '') );
+			$('#search').find('[name=search]').first().val( String(text).replace(/(\s\(.*?\))$/, '') );
 		}
 	}
 
