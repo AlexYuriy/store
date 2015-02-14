@@ -22,7 +22,7 @@
         <?php echo $order['store_url']; ?></td>
       <td align="right" valign="top"><table>
           <tr>
-            <td><b><?php echo $text_date_added; ?></b></td>
+            <td style="font-weight: bold;"><b><?php echo $text_date_added; ?></b></td>
             <td><?php echo $order['date_added']; ?></td>
           </tr>
           <?php if ($order['invoice_no']) { ?>

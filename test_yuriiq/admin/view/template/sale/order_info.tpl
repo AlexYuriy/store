@@ -40,7 +40,7 @@
           </tr>
           <tr>
             <td><?php echo $text_store_url; ?></td>
-            <td><a href="<?php echo $store_url; ?>" target="_blank"><u><?php echo $store_url; ?></u></a></td>
+            <td><a href="<?php echo $store_url; ?>" target="_blank"><cite><?php echo $store_url; ?></cite></a></td>
           </tr>
           <?php if ($customer) { ?>
           <tr>

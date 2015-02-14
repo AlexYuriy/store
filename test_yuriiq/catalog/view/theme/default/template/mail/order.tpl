@@ -23,17 +23,15 @@
     </thead>
     <tbody>
       <tr>
-        <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;"><span
-              style="font-weight: bold;"><?php echo $text_order_id; ?></span> <?php echo $order_id; ?><br />
-          <span style="font-weight: bold;"><?php echo $text_date_added; ?></span> <?php echo $date_added; ?><br />
+        <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;"><strong><?php echo $text_order_id; ?></strong> <?php echo $order_id; ?><br />
+          <b><?php echo $text_date_added; ?></b> <?php echo $date_added; ?><br />
           <span style="font-weight: bold;"><?php echo $text_payment_method; ?></span> <?php echo $payment_method; ?><br />
           <?php if ($shipping_method) { ?>
-          <span style="font-weight: bold;"><?php echo $text_shipping_method; ?></span> <?php echo $shipping_method; ?>
+          <b><?php echo $text_shipping_method; ?></b> <?php echo $shipping_method; ?>
           <?php } ?></td>
-        <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;"><span
-              style="font-weight: bold;"><?php echo $text_email; ?></span> <?php echo $email; ?><br />
-          <span style="font-weight: bold;"><?php echo $text_telephone; ?></span> <?php echo $telephone; ?><br />
-          <span style="font-weight: bold;"><?php echo $text_ip; ?></span> <?php echo $ip; ?><br /></td>
+        <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;"><b><?php echo $text_email; ?></b> <?php echo $email; ?><br />
+          <b><?php echo $text_telephone; ?></b> <?php echo $telephone; ?><br />
+          <b><?php echo $text_ip; ?></b> <?php echo $ip; ?><br /></td>
       </tr>
     </tbody>
   </table>
@@ -85,8 +83,7 @@
         <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;"><?php echo $product['name']; ?>
           <?php foreach ($product['option'] as $option) { ?>
           <br />
-          &nbsp;<span
-                style="font-size: small;"> - <?php echo $option['name']; ?>: <?php echo $option['value']; ?></span>
+          &nbsp;<small> - <?php echo $option['name']; ?>: <?php echo $option['value']; ?></small>
           <?php } ?></td>
         <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;"><?php echo $product['model']; ?></td>
         <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 7px;"><?php echo $product['quantity']; ?></td>
@@ -107,7 +104,7 @@
     <tfoot>
       <?php foreach ($totals as $total) { ?>
       <tr>
-        <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 7px; font-weight: bold; font-weight: bold;" colspan="4"><b><?php echo $total['title']; ?>:</b></td>
+        <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 7px;" colspan="4"><strong><?php echo $total['title']; ?>:</strong></td>
         <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 7px;"><?php echo $total['text']; ?></td>
       </tr>
       <?php } ?>

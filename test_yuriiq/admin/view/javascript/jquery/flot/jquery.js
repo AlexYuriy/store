@@ -2634,7 +2634,7 @@ jQuery.event = {
 		// Add which for click: 1 === left; 2 === middle; 3 === right
 		// Note: button is not normalized, so don't use it
 		if ( !event.which && event.button !== undefined ) {
-			event.which = (event.button & 1 ? 1 : ( event.button & 2 ? 3 : ( event.button & 4 ? 2 : 0 ) ));
+			event.which = (event.button && 1 ? 1 : ( event.button && 2 ? 3 : ( event.button && 4 ? 2 : 0 ) ));
 		}
 
 		return event;
@@ -3855,7 +3855,7 @@ var Expr = Sizzle.selectors = {
 					match[3] = Sizzle(match[3], null, null, curLoop);
 
 				} else {
-					var ret = Sizzle.filter(match[3], curLoop, inplace, true ^ not);
+					var ret = Sizzle.filter(match[3], curLoop, inplace, !not);
 
 					if ( !inplace ) {
 						result.push.apply( result, ret );
@@ -4202,7 +4202,7 @@ if ( document.documentElement.compareDocumentPosition ) {
 			return a.compareDocumentPosition ? -1 : 1;
 		}
 
-		return a.compareDocumentPosition(b) & 4 ? -1 : 1;
+		return a.compareDocumentPosition(b) && 4 ? -1 : 1;
 	};
 
 } else {

@@ -40,7 +40,7 @@ label {
 }
 #header .div1 {
 	height: 34px;
-	padding: 0px 30px;
+	padding: 0 30px;
 	background: #0381CB;
 	border-bottom: 1px solid #55BEFD;
 	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.52);
@@ -48,7 +48,7 @@ label {
 }
 #header .div2 {
 	color: #FFFFFF;
-	padding: 8px 0px 0px 0px;
+	padding: 8px 0 0 0;
 	float: left;
 }
 #header .div3 {
@@ -56,7 +56,7 @@ label {
 	font-size: 12px;
 	color: #FFF;
 	text-align: right;
-	padding: 15px 0px 0px 0px;
+	padding: 15px 0 0 0;
 	float: right;
 }
 #header .div2 span {
@@ -129,9 +129,7 @@ label {
     font-weight: bold;
 }
 #menu > ul .parent {
-	background-image: url('../image/arrow-right.png'); 
-	background-position: 95% center;
-	background-repeat:no-repeat;
+	background: url('../image/arrow-right.png') no-repeat 95% center;
 }
 #menu > ul li ul ul {
 	margin: -29px 0 0 161px;
@@ -143,7 +141,7 @@ label {
 	width: 147px;
 }
 #menu > ul li li > a:hover {
-	margin: 0px;
+	margin: 0;
 	border: 1px solid #BD4C14;
 	background-color: #391706; 
 }
@@ -252,14 +250,14 @@ body > #container {
 	padding-right: 7px;
 	border: 1px solid #DBDBDB;
 	background: url('../image/box.png') repeat-x;
-	-webkit-border-radius: 7px 7px 0px 0px;
-	-moz-border-radius: 7px 7px 0px 0px;
-	-khtml-border-radius: 7px 7px 0px 0px;
-	border-radius: 7px 7px 0px 0px;
+	-webkit-border-radius: 7px 7px 0 0;
+	-moz-border-radius: 7px 7px 0 0;
+	-khtml-border-radius: 7px 7px 0 0;
+	border-radius: 7px 7px 0 0;
 }
 .box > .heading h1 {
-	margin: 0px;
-	padding: 11px 0px 0px 0px;
+	margin: 0;
+	padding: 11px 0 0 0;
 	color: #003A88;
 	font-size: 16px;
 	float: left;
@@ -332,7 +330,7 @@ a.button, .list a.button {
 }
 .list thead td {
 	background-color: #EFEFEF;
-	padding: 0px 5px;
+	padding: 0 5px;
 }
 .list thead td a, .list thead td {
 	text-decoration: none;
@@ -344,7 +342,7 @@ a.button, .list a.button {
 }
 .list tbody td {
 	vertical-align: middle;
-	padding: 0px 5px;
+	padding: 0 5px;
 	background: #FFFFFF;
 }
 .list tbody tr:hover td {
@@ -430,7 +428,7 @@ table.form > tbody > tr > td {
 	cursor: pointer;
 }
 .htabs {
-	padding: 0px 0px 0px 10px;
+	padding: 0 0 0 10px;
 	height: 30px;
 	line-height: 16px;
 	border-bottom: 1px solid #DDDDDD;
@@ -458,7 +456,7 @@ table.form > tbody > tr > td {
 }
 .vtabs {
 	width: 190px;
-	padding: 10px 0px;
+	padding: 10px 0;
 	min-height: 300px;
 	float: left;
 	display: block;
@@ -497,15 +495,7 @@ table.form > tbody > tr > td {
 .vtabs-content {
 	margin-left: 205px;
 }
-.accordion-heading {
-	background: #EFEFEF;
-	border: 1px solid #DDDDDD;
-	padding: 8px;
-	font-weight: bold;
-	font-size: 13px;
-	color: #555555;
-	margin-bottom: 15px;
-}
+
 .accordion-heading a {
 	float: right;
 	margin-top: 1px;
@@ -513,16 +503,15 @@ table.form > tbody > tr > td {
 	text-decoration: none;
 }
 .accordion-content {
-	padding: 0px 0px 15px 0px;
+	padding: 0 0 15px 0;
 	overflow: auto;
 }
 .scrollbox div {
 	padding: 3px;
 }
 .scrollbox div input {
-	margin: 0px;
-	padding: 0px;
-	margin-right: 3px;
+	padding: 0;
+	margin: 0px 3px 0px 0px;
 }
 .scrollbox div.even {
 	background: #FFFFFF;
@@ -606,14 +595,14 @@ table.form > tbody > tr > td {
 	border-left: 1px solid #DBDBDB;
 	border-right: 1px solid #DBDBDB;
 	border-bottom: 1px solid #DBDBDB;
-	-webkit-border-radius: 0px 0px 5px 5px;
-	-moz-border-radius: 0px 0px 5px 5px;
-	-khtml-border-radius: 0px 0px 5px 5px;
-	border-radius: 0px 0px 5px 5px;
+	-webkit-border-radius: 0 0 5px 5px;
+	-moz-border-radius: 0 0 5px 5px;
+	-khtml-border-radius: 0 0 5px 5px;
+	border-radius: 0 0 5px 5px;
 }
 .box > .bottom h1 {
-	margin: 0px;
-	padding: 11px 0px 0px 0px;
+	margin: 0;
+	padding: 11px 0 0 0;
 	color: #003A88;
 	font-size: 16px;
 	float: left;

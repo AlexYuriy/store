@@ -391,8 +391,8 @@ function image_upload(field, thumb) {
 		modal: false,
 		dialogClass: 'dlg'
 	});
-};
-//--></script> 
+}
+    //--></script>
 <script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-timepicker-addon.js"></script> 
 <script type="text/javascript"><!--
 $('.date').datepicker({dateFormat: 'yy-mm-dd'});

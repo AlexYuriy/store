@@ -139,8 +139,8 @@ function image_upload(field, thumb) {
 		modal: false,
 		dialogClass: 'dlg'
 	});
-};
-//--></script> 
+}
+    //--></script>
 <!-- /LeftMenu -->
 <?php echo $footer; ?>
 

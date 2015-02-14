@@ -20,4 +20,3 @@ $_['text_return']	= 'Retourenanforderungen';
 
 // heading
 $_['heading_title']	= 'Mein Konto';
-?>

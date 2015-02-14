@@ -421,7 +421,7 @@ $('#form-submit').click(function() {
 	$('.yandex-categ').each(function() {
 		if ($(this).val() == '')
 			$(this).attr('disabled', 'disabled');
-	})
+	});
 	$('#submitting_submit').trigger('click');
 });
 
@@ -450,13 +450,13 @@ $('#unavailable').change(function() {
 		$('#in_stock').attr('disabled', false);
 		$(this).removeAttr('disabled');
 	}
-})
+});
 
 $('.yandex-categ').each(function() {
 	if ($(this).val() != '') {
 		$(this).css('width','96%');
 	}
-})
+});
 
 $('.yandex-categ').focus(function() {
 	$(this).css('width','96%');
@@ -512,7 +512,7 @@ $('#blacklist-type-select').change(function() {
 		$('#whitelist-product-label').show();
 		$('#blacklist-product-label').hide();
 	}
-})
+});
 $('#blacklist-type-select').trigger('change');
 
 $('input[name="yandex_yml_product_blacklist"]').autocomplete({

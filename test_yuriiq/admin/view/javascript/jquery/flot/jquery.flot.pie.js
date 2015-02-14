@@ -92,10 +92,7 @@ More detail and specific examples can be found in the included HTML file.
 				
 				// set labels.show
 				if (options.series.pie.label.show=='auto')
-					if (options.legend.show)
-						options.series.pie.label.show = false;
-					else
-						options.series.pie.label.show = true;
+					options.series.pie.label.show = !options.legend.show;
 				
 				// set radius
 				if (options.series.pie.radius=='auto')

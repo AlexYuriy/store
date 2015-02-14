@@ -22,11 +22,7 @@
 .no-margin-bottom {
 	margin-bottom: 0 !important;
 }
-.theme-more {
-	position: relative;
-	top: -10px;
-	margin-bottom: -30px;
-}
+
 .theme-style {
 	position: relative;
 	top: -20px;
@@ -84,7 +80,7 @@ table.list .title {
 	font-weight: bold;
 }
 #dialog {
-	padding: 3px 0px 0px 0px;
+	padding: 3px 0 0 0;
 	position: relative;
 }
 #dialog .throbber {

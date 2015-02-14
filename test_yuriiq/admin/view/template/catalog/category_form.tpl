@@ -361,8 +361,8 @@ function image_upload(field, thumb) {
 		modal: false,
 		dialogClass: 'dlg'
 	});
-};
-//--></script> 
+}
+    //--></script>
 <script type="text/javascript"><!--
 $('#tabs a').tabs(); 
 $('#languages a').tabs();

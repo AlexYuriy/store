@@ -15,7 +15,7 @@ var ru2en = {
     }
     return tmp_str.toLowerCase();
   }
-}
+};
 
 function setTranslit(source, dest, rewrite) {
 	var name = $("input[name='"+source+"']").val();

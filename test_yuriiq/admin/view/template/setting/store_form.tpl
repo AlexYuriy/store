@@ -569,8 +569,8 @@ function image_upload(field, thumb) {
 		resizable: false,
 		modal: false
 	});
-};
-//--></script> 
+}
+    //--></script>
 <script type="text/javascript"><!--
 $('#tabs a').tabs();
 //--></script> 

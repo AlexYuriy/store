@@ -9,7 +9,7 @@
   body  {
   font-family: Arial, Sans-Serif;
   font-size: 13px;
-  background-color: #F8F8F8;/*цвет фона*/
+  background-color: #F8F8F8;/*пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ*/
   padding: 10px;
   text-align: center;
   margin:0;
@@ -35,8 +35,7 @@
   input {line-height:20px; height:25px;}
   .buttons input {height:30px;}
   .buttons input:hover {border: solid 1px #33677F; background-color:#E6E6E6;}
-  .activeField { background-color: #ffffff;  border: solid 1px #2390C1; }
-  .idle  {  border: solid 1px #787878;  background-color:#FFFFFF;  }
+
   .error {color:#FF0000;}
    span.success{ font-size:16px;   text-align:center;  color:#18650E;  display:block;  }
 </style>

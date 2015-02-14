@@ -202,4 +202,3 @@ if (isset($action)) {
 
 // Output
 $response->output();
-?>

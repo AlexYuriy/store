@@ -149,7 +149,7 @@ function getSalesChart(range) {
 				xaxis: {
             		ticks: json.xaxis
 				}
-			}
+			};
 
 			$.plot($('#report'), [json.order, json.customer], option);
 		}

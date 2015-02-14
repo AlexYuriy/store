@@ -95,11 +95,9 @@
 				}
 			else { 
 				if ($("#parent_id :selected").hasClass('0')){  $('input[name="top"]').removeAttr('checked');
-				};
-		  				
-			};
-		 		 
-			});
+                }
+            }
+            });
 
 //--></script> 
             <tr>
@@ -256,8 +254,8 @@ function image_upload(field, thumb) {
 		modal: false,
 		dialogClass: 'dlg'
 	});
-};
-//--></script> 
+}
+    //--></script>
 <script type="text/javascript"><!--
 $('#tabs a').tabs(); 
 $('#languages a').tabs();

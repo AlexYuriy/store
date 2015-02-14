@@ -669,8 +669,8 @@
 						}
 					}
 				}
-				if(this.callback("check_move", [nod, ref_node, how, this]) == false) return false;
-				return true;
+				return this.callback("check_move", [nod, ref_node, how, this]) != false;
+
 			},
 
 			hover_branch : function (obj) {
@@ -1044,7 +1044,7 @@
 						.bind("keyup",			function (event) { 
 								var key = event.keyCode || event.which;
 								if(key == 27) { this.value = last_value; this.blur(); return }
-								if(key == 13) { this.blur(); return; }
+								if(key == 13) { this.blur();  }
 							});
 					_this.inp.blur(function(event) {
 							if(this.value == "") this.value = last_value; 
@@ -1526,8 +1526,7 @@
 				tree_component.cntr --;
 			}
 		}
-	};
-
+	}
 	// instance manager
 	tree_component.cntr = 0;
 	tree_component.inst = {};
@@ -1784,7 +1783,10 @@
 		}
 		if(opts.url) {
 			if(document.createStyleSheet) {
-				try { document.createStyleSheet(opts.url); } catch (e) { };
+				try {
+					document.createStyleSheet(opts.url);
+				} catch (e) {
+				}
 			}
 			else {
 				var newSS	= document.createElement('link');

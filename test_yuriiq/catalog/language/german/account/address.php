@@ -39,4 +39,3 @@ $_['entry_country']	= 'Land:';
 
 // heading
 $_['heading_title']	= 'Adressbuch';
-?>

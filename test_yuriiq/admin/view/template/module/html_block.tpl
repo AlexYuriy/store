@@ -443,7 +443,7 @@ $('.content').delegate('.live-view', 'click', function(event){
 	var data = '#' + parent_id + ' .config input, #' + parent_id + ' .config textarea, #' + parent_id + ' .config select';
 	data += ', #' + languale_id + ' input, #' + languale_id + ' textarea, #' + languale_id + ' select';
 	
-	$('#content').prepend('<div id="dialog" style="padding: 3px 0px 0px 0px;"><div class="throbber">&nbsp;</div><iframe name="preview-iframe" id="preview-iframe" style="padding:0; margin: 0; display: block; width: 100%; height: 100%;" frameborder="no" scrolling="auto"></iframe></div>');
+	$('#content').prepend('<div id="dialog" style="padding: 3px 0 0 0;"><div class="throbber">&nbsp;</div><iframe name="preview-iframe" id="preview-iframe" style="padding:0; margin: 0; display: block; width: 100%; height: 100%;" frameborder="no" scrolling="auto"></iframe></div>');
 	
 	$('#dialog').dialog({
 		title: '<?php echo $text_preview; ?>',

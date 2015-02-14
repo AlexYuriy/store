@@ -1,15 +1,19 @@
 /* LOCKED */
 .tree-themeroller .locked li a { color:gray; }
 /* DOTS */
-.tree-themeroller ul { background-position:6px 1px; background-repeat:repeat-y; background-image:url(data:image/gif;base64,R0lGODlhAgACAIAAAB4dGf///yH5BAEAAAEALAAAAAACAAIAAAICRF4AOw==); _background-image:url("dot_for_ie.gif"); *background-image:url("dot_for_ie.gif"); }
-.tree-themeroller li { background-position:-64px -16px; background-repeat:no-repeat; background-image:url("icons.png"); }
+.tree-themeroller ul {
+    background: url(data:image/gif;base64,R0lGODlhAgACAIAAAB4dGf///yH5BAEAAAEALAAAAAACAAIAAAICRF4AOw==) repeat-y 6px 1px;
+    _background-image:url("dot_for_ie.gif"); *background-image:url("dot_for_ie.gif"); }
+.tree-themeroller li {
+    background: url("icons.png") no-repeat -64px -16px;
+}
 /* NO DOTS */
-.tree-themeroller .no_dots, .tree-themeroller .no_dots ul { background:transparent; }
-.tree-themeroller .no_dots li.leaf { background-image:none; background-color:transparent; }
+.tree-themeroller .no_dots li.leaf {
+    background: transparent none;
+}
 /* OPEN or CLOSED */
 .tree-themeroller li.open { background:url("icons.png") -32px -48px no-repeat; }
 .tree-themeroller li.closed, #jstree-dragged.tree-themeroller li li.open { background:url("icons.png") -48px -32px no-repeat; }
-#jstree-marker { background-image:url("icons.png"); }
 
 .tree-themeroller li, .tree-themeroller li a, .tree-themeroller li a ins { line-height:16px !important; }
 .tree-themeroller li a .ui-icon { overflow:visible; }
@@ -20,7 +24,9 @@
 .tree-themeroller li a.clicked, .tree-themeroller li a.clicked:hover, .tree-themeroller li span.clicked { background: #beebff; border:1px solid #99defd; padding:0px 3px 0px 3px; }
 */
 /* ICONS */
-.tree-themeroller ul li a.loading ins { background-image:url("throbber.gif") !important; background-position:0 0 !important; } /* UL is added to make selector stronger */
+.tree-themeroller ul li a.loading ins {
+    background: url("throbber.gif") 0 0 !important;
+} /* UL is added to make selector stronger */
 /*
 .tree-themeroller ins { background-image:url("icons.png"); background-position:0 0; background-repeat:no-repeat; }
 .tree-themeroller li a ins.forbidden { background-position:-16px -16px; }
@@ -29,7 +35,6 @@
 */
 
 #jstree-dragged.tree-themeroller ins { background:url("icons.png") -16px -32px no-repeat; }
-#jstree-dragged.tree-themeroller ins.forbidden { background:url("icons.png") -16px -16px no-repeat; }
 
 /* CONTEXT MENU 
 .tree-themeroller-context a ins { background-image:url("icons.png"); background-repeat:no-repeat; background-position:-64px -64px; }

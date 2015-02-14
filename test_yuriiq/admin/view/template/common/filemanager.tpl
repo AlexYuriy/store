@@ -27,7 +27,7 @@ img {
 	border: 0;
 }
 #container {
-	padding: 0px 10px 7px 10px;
+	padding: 0 10px 7px 10px;
 	height: 340px;
 }
 #menu {
@@ -79,8 +79,7 @@ img {
 	float: left;
 	padding: 8px 5px 8px 25px;
 	margin-right: 5px;
-	background-position: 5px 6px;
-	background-repeat: no-repeat;
+	background: no-repeat 5px 6px;
 	cursor: pointer;
 }
 .button:hover {
@@ -98,9 +97,8 @@ img {
 
 #updateImage a { 
 width: 130px; 
-height: 16px; 
-background: #0381CB; 
-color: #fbfbfb; 
+height: 16px;
+	color: #fbfbfb;
 text-align: center; 
 padding: 5px; 
 line-height: 16px; 
@@ -108,10 +106,11 @@ font-size: 115%;
 font-weight: bold; 
 margin: auto; 
 border-radius: 2px;  
-border: 1px solid #0381CB; 
-background-position: 0px -50px;}
+border: 1px solid #0381CB;
+	background: #0381CB 0px -50px;
+}
 
-#updateImage a:hover { background-position: 0px 0px; }
+#updateImage a:hover { background-position: 0 0; }
 
 button.btn {float: left; font-size: 10px; margin-top: 6px;}
 
@@ -119,15 +118,13 @@ button.btn {float: left; font-size: 10px; margin-top: 6px;}
 
 .fileSize { clear: both; display: block; }
 
-.btnExtra { width: 58px; font-size: 9px; margin: 3px; }
-
 #search { width: 50px; padding: 5px;  margin: 3px auto; border: 2px solid #ddd; border-radius: 8px; font-size: 20px;}
 
 #searchBox { position: fixed; right: 28px; bottom: 37px; background: #ddd; padding: 5px;  border-radius: 3px; box-shadow: -1px -1px 6px #ccc;}
 
 #lblSearch { font-size: 9px; display: block; }
 
-#visualFeedback { width: 240px;  position: fixed; right: 30px; top: 35px; border: 2px solid #fbfbfb; z-index: 99; background: #000; border-radius: 8px; box-shadow: 0px 0px 10px #ccc; overflow: hidden; display: none; }
+#visualFeedback { width: 240px;  position: fixed; right: 30px; top: 35px; border: 2px solid #fbfbfb; z-index: 99; background: #000; border-radius: 8px; box-shadow: 0 0 10px #ccc; overflow: hidden; display: none; }
 #visualFeedback span{ font-size: 12px; color: #fbfbfb;  font-weight: bold; padding: 13px; display: block; }
 
 </style>
@@ -180,7 +177,7 @@ $(document).ready(function() {
             }}).next().button({
             icons: {
                 primary: "ui-icon-pencil"
-            }})
+            }});
 			
 	$('input#search').focus();
 
@@ -192,8 +189,7 @@ $(document).ready(function() {
     }
     filename = filename.substr(0, len) + (name.length > len ? '<span style="color: red;">&laquo;</span>' : '');
     return filename + '.' + ext;
-	};
-	
+	}
 	function feedback(message, color) {
 	
 	$('#visualFeedback').stop().remove();
@@ -207,8 +203,7 @@ $(document).ready(function() {
 		}, function() {
 		$(this).fadeOut(1000);
 		});
-	};
-	
+	}
 	$('#column-left').tree({
 		plugins : {
 			cookie : {}
@@ -252,7 +247,7 @@ $(document).ready(function() {
 						}
 					];
 					
-					return { 'directory': '' } 
+					return { 'directory': '' };
 					$('#column-left a.clicked').prepend('(' + json.length + ')');
 				} else {
 					TREE_OBJ.settings.data.opts.static = false;  
@@ -744,9 +739,8 @@ $('input#search').keyup(function(event) {
 		
 		parent.$('#dialog').remove();	
 		<?php } ?>
-	};
-	
-	});
+		}
+		});
 	
 	$('#copy').bind('click', function() {
 		$('#dialog').remove();
@@ -944,7 +938,7 @@ $('input#search').keyup(function(event) {
 				var tree = $.tree.reference('#column-left a');
 				$('#column-left a').live('click', function() {
 				window.dr = $(tree.selected).attr('directory');
-				})
+				});
 				
 	$('#uploadmulti').click(function() { 
 		
@@ -1015,7 +1009,7 @@ $('input#search').keyup(function(event) {
 			
 			})
 				
-		})
+		});
 
 		// end Upload+ main code
 });

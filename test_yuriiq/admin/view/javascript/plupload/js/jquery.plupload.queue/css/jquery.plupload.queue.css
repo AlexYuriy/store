@@ -26,13 +26,6 @@
 	text-decoration: none;
 }
 
-.plupload_disabled, a.plupload_disabled:hover {
-    color: #737373;
-    border-color: #c5c5c5;
-    background: #ededed url('../img/buttons-disabled.png') no-repeat 0 center;
-	cursor: default;
-}
-
 .plupload_add {
 	background-position: -181px center;
 }
@@ -122,9 +115,6 @@
 	height: 16px;
 }
 
-li.plupload_uploading {background: #ECF3DC url('../img/backgrounds.gif') repeat-x 0 -238px;}
-li.plupload_done {color:#AAA}
-
 li.plupload_delete a {
 	background: url('../img/delete.gif');
 }
@@ -150,7 +140,7 @@ li.plupload_done a {
 	padding: 1px;
 }
 .plupload_progress_bar {
-	width: 0px;
+	width: 0;
 	height: 7px;
 	background: #CDEB8B;
 }
@@ -161,7 +151,6 @@ li.plupload_done a {
 
 /* Floats */
 
-.plupload_clear,.plupload_clearer {clear: both;}
 .plupload_clearer, .plupload_progress_bar {
 	display: block;
 	font-size: 0;

@@ -1436,8 +1436,8 @@ function image_upload(field, thumb) {
 		modal: false,
 		dialogClass: 'dlg'
 	});
-};
-//--></script> 
+}
+    //--></script>
 <script type="text/javascript"><!--
 var image_row = <?php echo $image_row; ?>;
 

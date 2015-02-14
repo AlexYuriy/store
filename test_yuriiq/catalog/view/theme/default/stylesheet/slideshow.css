@@ -27,17 +27,6 @@
 	left: 0;
 }
 /* If an image is wrapped in a link */
-.nivoSlider a.nivo-imageLink {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	border: 0;
-	padding: 0;
-	margin: 0;
-	display: none;
-}
 /* The slices and boxes in the Slider */
 .nivo-slice {
 	display:block;
@@ -65,9 +54,7 @@
 .nivo-caption a {
 	display:inline !important;
 }
-.nivo-html-caption {
-	display:none;
-}
+
 /* Direction nav styles (e.g. Next & Prev) */
 .nivo-directionNav a {
 	position:absolute;
@@ -105,15 +92,7 @@
 	border: 0;
 	display: block;
 }
-.slideshow .nivo-controlNav {
-	position: absolute;
-	right: 50%;
-	margin: -18px;
-	bottom: -5px;
-	text-align: center;
-	height: 22px;
-	z-index: 1;
-}
+
 .slideshow .nivo-controlNav a {
 	vertical-align: top;
 	display: block;

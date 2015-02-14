@@ -5,15 +5,15 @@
 	z-index: 99999;
 	border: solid 1px #CCC;
 	background: #EEE;
-	padding: 0px;
-	margin: 0px;
+	padding: 0;
+	margin: 0;
 	display: none;
 }
 
 .menu LI {
 	list-style: none;
-	padding: 0px;
-	margin: 0px;
+	padding: 0;
+	margin: 0;
 }
 
 .menu A {
@@ -22,11 +22,9 @@
 	display: block;
 	line-height: 20px;
 	height: 20px;
-	background-position: 6px center;
-	background-repeat: no-repeat;
+	background: no-repeat 6px center;
 	outline: none;
-	padding: 1px 5px;
-	padding-left: 28px;
+	padding: 1px 5px 1px 28px;
 	font-family: "Trebuchet MS", Sans-serif;
 	font-size: 10pt;	
 }

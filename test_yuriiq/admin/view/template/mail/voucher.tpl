@@ -12,7 +12,7 @@ body, td, th, input, textarea, select, a {
 	font-size: 12px;
 }
 p {
-	margin-top: 0px;
+	margin-top: 0;
 	margin-bottom: 20px;
 }
 a, a:visited, a b {

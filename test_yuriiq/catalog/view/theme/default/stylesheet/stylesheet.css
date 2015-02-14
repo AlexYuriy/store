@@ -197,9 +197,7 @@ label {
 	padding-right: 6px;
 	line-height: 25px;
 }
-#header #cart .heading .fa-sort-asc {
-    vertical-align: 1px;
-}
+
 #header #cart .content {
 	clear: both;
 	display: none;
@@ -207,10 +205,7 @@ label {
 	top: -1px;
 	padding: 8px;
 	min-height: 150px;
-	border-top: 1px solid #EEEEEE;
-	border-left: 1px solid #EEEEEE;
-	border-right: 1px solid #EEEEEE;
-	border-bottom: 1px solid #EEEEEE;
+	border: 1px solid #EEEEEE;
 	-webkit-border-radius: 0 7px 7px 7px;
 	-moz-border-radius: 0 7px 7px 7px;
 	-khtml-border-radius: 0 7px 7px 7px;
@@ -268,9 +263,7 @@ label {
 .mini-cart-info .remove img {
 	cursor: pointer;
 }
-.mini-cart-total {
-	text-align: right;
-}
+
 .mini-cart-total table {
 	border-collapse: collapse;
 	display: inline-block;
@@ -358,12 +351,6 @@ label {
       margin-top: 10px;
       margin-left: 20px;
   }
-
-.answer {
-    margin-top: 10px;
-    margin-left: 40px;
-    display: none;
-}
 
 /* menu */
 #menu {
@@ -723,10 +710,9 @@ a.button {
 
 .button.active,
 .button:active {
-  background-color: #2f96b4;
-  background-color: #24748c \9;
-  background-image: none;
-  outline: 0;
+	background-color: #24748c \9;
+	background: #2f96b4 none;
+	outline: 0;
   -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
      -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
           box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -735,9 +721,8 @@ a.button {
 .button.disabled,
 .button[disabled] {
   cursor: default;
-  background-color: #e6e6e6;
-  background-image: none;
-  opacity: 0.65;
+	background: #e6e6e6 none;
+	opacity: 0.65;
   filter: alpha(opacity=65);
   -webkit-box-shadow: none;
      -moz-box-shadow: none;
@@ -776,11 +761,6 @@ button.button.button-small,
 input[type="submit"].button.button-small {
   *padding-top: 3px;
   *padding-bottom: 3px;
-}
-button.button.button-mini,
-input[type="submit"].button.button-mini {
-  *padding-top: 1px;
-  *padding-bottom: 1px;
 }
 
 .buttons-cart {
@@ -1095,16 +1075,14 @@ ul.box-filter > li ul {
 .manufacturer-list ul {
 	float: left;
 	width: 25%;
-	margin: 0;
 	padding: 0;
 	list-style: none;
-	margin-bottom: 10px;
+	margin: 0 0 10px;
 }
 /* product */
 .product-filter {
 	background: #EEEEEE;
 	border: 1px solid #DBDEE1;
-	border-radius: 3px;
 	margin-bottom: 25px;
 	overflow: hidden;
 	padding: 5px;
@@ -1433,9 +1411,7 @@ ul.box-filter > li ul {
 	border-bottom: 1px solid #E7E7E7;
 	line-height: 20px;
 }
-.product-info .review .pluso {
-	border: none;
-}
+
 .review .fa-star,
 .review .fa-star-o {
 	color: #999999;
@@ -1636,10 +1612,7 @@ ul.box-filter > li ul {
 .order-info a{
 	text-decoration: none;
 }
-.order-detail {
-	background: #EFEFEF;
-	font-weight: bold;
-}
+
 /* carts */
 #edit-cart-name {
         display: none;

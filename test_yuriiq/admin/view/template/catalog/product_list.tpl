@@ -340,22 +340,16 @@ $('.filter input').autocomplete({
 		$.post('index.php?route=catalog/product/status&token=<?php echo $token; ?>', 'status=' + ($(this).attr('checked') ? '1' : '0') + '&product_id=' + product_id);
         var text = $(this).next().text() == '<?php echo $text_disabled; ?>' ? '<?php echo $text_enabled; ?>' : '<?php echo $text_disabled; ?>';
         $(this).next().text(text);
-   };
-
-
-
-
-$(".inlineEdit").live("click", updatePrice);
+    }
+    $(".inlineEdit").live("click", updatePrice);
 
 function updatePrice() {
 		var  save =  '</br><a class="save"><img src="view/image/add.png" alt="<?php echo $button_save; ?>" title="<?php echo $button_save; ?>" /></a>&nbsp;';
-	    var  revert= '<a class="revert"><img src="view/image/delete.png" alt="<?php echo $button_cancel; ?>" title="<?php echo $button_cancel; ?>" /></a>'
+	    var  revert= '<a class="revert"><img src="view/image/delete.png" alt="<?php echo $button_cancel; ?>" title="<?php echo $button_cancel; ?>" /></a>';
 		$(this).after('<div class="editor"><input type="text" name="price" value="' + $(this).text() + '" size="30" />' + save + revert +'</div>');
 		$(this).hide();
-};
-    
-
-$(".revert").live("click", function () {
+}
+    $(".revert").live("click", function () {
  	   	$(this).parent().parent().find('.inlineEdit').show();
 		$(this).parent().parent().find('.editor').remove();
 });
@@ -376,13 +370,11 @@ $(".inlineEditq").live("click", updateTextq);
 
 function updateTextq() {
 		var  saveq =  '</br><a class="saveq"><img src="view/image/add.png" alt="<?php echo $button_save; ?>" title="<?php echo $button_save; ?>" /></a>&nbsp;';
-	    var  revertq= '<a class="revertq"><img src="view/image/delete.png" alt="<?php echo $button_cancel; ?>" title="<?php echo $button_cancel; ?>" /></a>'
+	    var  revertq= '<a class="revertq"><img src="view/image/delete.png" alt="<?php echo $button_cancel; ?>" title="<?php echo $button_cancel; ?>" /></a>';
 		$(this).after('<div class="editor"><input type="text" name="quantity" value="' + $(this).text() + '" size="30" />' + saveq + revertq +'</div>');
 		$(this).hide();
-};
-    
-
-$(".revertq").live("click", function () {
+}
+    $(".revertq").live("click", function () {
  	   	$(this).parent().parent().find('.inlineEditq').show();
 		$(this).parent().parent().find('.editor').remove();
 });
@@ -402,13 +394,11 @@ $(".inlineEditm").live("click", updateTextm);
 
 function updateTextm() {
 		var  savem =  '</br><a class="savem"><img src="view/image/add.png" alt="<?php echo $button_save; ?>" title="<?php echo $button_save; ?>" /></a>&nbsp;';
-	    var  revertm= '<a class="revertm"><img src="view/image/delete.png" alt="<?php echo $button_cancel; ?>" title="<?php echo $button_cancel; ?>" /></a>'
+	    var  revertm= '<a class="revertm"><img src="view/image/delete.png" alt="<?php echo $button_cancel; ?>" title="<?php echo $button_cancel; ?>" /></a>';
 		$(this).after('<div class="editor"><input type="text" name="model" value="' + $(this).text() + '" size="30" />' + savem + revertm +'</div>');
 		$(this).hide();
-};
-    
-
-$(".revertm").live("click", function () {
+}
+    $(".revertm").live("click", function () {
  	   	$(this).parent().parent().find('.inlineEditm').show();
 		$(this).parent().parent().find('.editor').remove();
 });
@@ -427,13 +417,11 @@ $(".inlineEditn").live("click", updateTextn);
 
 function updateTextn() {
 		var  saven =  '</br><a class="saven"><img src="view/image/add.png" alt="<?php echo $button_save; ?>" title="<?php echo $button_save; ?>" /></a>&nbsp;';
-	    var  revertn= '<a class="revertn"><img src="view/image/delete.png" alt="<?php echo $button_cancel; ?>" title="<?php echo $button_cancel; ?>" /></a>'
+	    var  revertn= '<a class="revertn"><img src="view/image/delete.png" alt="<?php echo $button_cancel; ?>" title="<?php echo $button_cancel; ?>" /></a>';
 		$(this).after('<div class="editor"><input type="text" name="name" value="' + $(this).text() + '" size="55" />' + saven + revertn +'</div>');
 		$(this).hide();
-};
-    
-
-$(".revertn").live("click", function () {
+}
+    $(".revertn").live("click", function () {
  	   	$(this).parent().parent().find('.inlineEditn').show();
 		$(this).parent().parent().find('.editor').remove();
 });

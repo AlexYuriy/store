@@ -9,19 +9,19 @@ body {font-family:Arial, Helvetica, sans-serif;/*font-size:14px;*/}
 a {color:#006400;}
 p {padding: 5px 0 0 5px;}
 
-.vas ul {padding: 0 10px 0px 15px;}
+.vas ul {padding: 0 10px 0 15px;}
 .vas li {list-style-type:circle;}
-h3 {padding:0px 0px 0px 5px;font-size:100%;}
-h1 {color:#006400;padding:0px 0px 0px 5px;font-size:120%;}
-li {list-style-type: none;padding: 6px 0px 0px 5px;}
+h3 {padding:0 0 0 5px;font-size:100%;}
+h1 {color:#006400;padding:0 0 0 5px;font-size:120%;}
+li {list-style-type: none;padding: 6px 0 0 5px;}
 .main {font-size:12px;}
-.list {font-size:12px;padding: 6px 15px 0px 5px;}
+.list {font-size:12px;padding: 6px 15px 0 5px;}
 .main input {font-size:12px;background-color:#CCFFCC;}
 .text14 {font-family:"Times New Roman", Times, serif;font-size:14px;}
 .text14 strong {font-family:"Times New Roman", Times, serif;font-size:11px;}
 .link {font-size:12px;}
 .link a {text-decoration:none;color:#006400;}
-.link_u {font-size:12px;}
+
 .link_u a {color:#006400;}
 </style>
 
