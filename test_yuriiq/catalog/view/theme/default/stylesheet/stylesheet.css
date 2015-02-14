@@ -396,25 +396,24 @@ label {
 	background: #fff url(../image/menu_sep.png) center right no-repeat;
 	padding: 0;
 }
-#menu > ul > li:hover {
-
-}
 
 #menu > ul > li#last  {
 	background: #fff;
 }
 #menu > ul > li > a {
+	text-align: center;	
+}
+#menu > ul li > a {
 	font-size: 16px;
 	color: #424449;
 	line-height: 14px;
 	text-decoration: none;
-	text-align: center;	
 	display: block;
 	padding: 10px;
 	margin: 6px;
 	position: relative;
 }
-#menu > ul > li:hover > a , #menu > ul > li > a.active {
+#menu > ul  li:hover > a , #menu > ul > li > a.active {
 	background: #00ABCB url(../image/menu_act.png) center left repeat-x;
 	color: #fff;
 	-webkit-border-radius: 5px;
@@ -423,12 +422,12 @@ label {
 	border-radius: 5px;
 }
 
-#menu > ul > li > a.hidden {
+#menu > ul li > a.hidden {
 	display: none;
 	margin-top: -40px;
 }
 
-#menu > ul > li:hover > a.hidden {
+#menu > ul li:hover > a.hidden {
 	display: block;
 }
 
@@ -467,6 +466,7 @@ label {
 	min-width: 120px;
 	margin: 6px;
 }
+/*
 #menu > ul > li ul > li > a:hover {
 	background: #00ABCB url(../image/menu_act.png) center left repeat-x;
 	-webkit-border-radius: 5px;
@@ -474,13 +474,15 @@ label {
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
 }
+*/
 #menu > ul > li > div > ul > li > a {
 	color: #000;
 }
-
+/*
 #menu > ul > li > div > ul > li > a:hover {
 	color: #fff;
 }
+*/
 .breadcrumb {
 	color: #CCCCCC;
 	margin-bottom: 10px;
