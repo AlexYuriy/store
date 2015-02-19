@@ -424,7 +424,7 @@ label {
 
 #menu > ul li > a.hidden {
 	display: none;
-	margin-top: -40px;
+	margin-top: -42px;
 }
 
 #menu > ul li:hover > a.hidden {
