@@ -108,6 +108,7 @@ class ControllerCatalogCoolfilter extends Controller {
 		$this->data['column_action'] = $this->language->get('column_action');
 		$this->data['button_fast_edit'] = $this->language->get('button_fast_edit');
 		$this->data['button_insert'] = $this->language->get('button_insert');
+		$this->data['description'] = $this->language->get('description');
 		$this->data['button_delete'] = $this->language->get('button_delete');
 
  		if (isset($this->error['warning'])) {
@@ -140,6 +141,7 @@ class ControllerCatalogCoolfilter extends Controller {
 		$this->data['text_delete'] = $this->language->get('text_delete');
 		$this->data['text_default'] = $this->language->get('text_default');
 		$this->data['text_add_value'] = $this->language->get('text_add_value');
+		$this->data['description'] = $this->language->get('description');
 		$this->data['text_value'] = $this->language->get('text_value');
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');

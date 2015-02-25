@@ -79,8 +79,7 @@ img {
 	float: left;
 	padding: 8px 5px 8px 25px;
 	margin-right: 5px;
-	background-position: 5px 6px;
-	background-repeat: no-repeat;
+	background: no-repeat 5px 6px;
 	cursor: pointer;
 }
 .button:hover {
@@ -98,9 +97,8 @@ img {
 
 #updateImage a { 
 width: 130px; 
-height: 16px; 
-background: #0381CB; 
-color: #fbfbfb; 
+height: 16px;
+	color: #fbfbfb;
 text-align: center; 
 padding: 5px; 
 line-height: 16px; 
@@ -108,8 +106,9 @@ font-size: 115%;
 font-weight: bold; 
 margin: auto; 
 border-radius: 2px;  
-border: 1px solid #0381CB; 
-background-position: 0px -50px;}
+border: 1px solid #0381CB;
+	background: #0381CB 0px -50px;
+}
 
 #updateImage a:hover { background-position: 0px 0px; }
 

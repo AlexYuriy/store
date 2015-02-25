@@ -5,11 +5,17 @@
 /* LOCKED */
 .tree-apple .locked li a { color:gray; }
 /* DOTS */
-.tree-apple ul { background-position:6px 1px; background-repeat:repeat-y; background-image:url(data:image/gif;base64,R0lGODlhAgACAIAAAB4dGf///yH5BAEAAAEALAAAAAACAAIAAAICRF4AOw==); _background-image:url("dot_for_ie.gif"); *background-image:url("dot_for_ie.gif"); }
-.tree-apple li { background-position:-64px -16px; background-repeat:no-repeat; background-image:url("icons.png"); }
+.tree-apple ul {
+    background: url(data:image/gif;base64,R0lGODlhAgACAIAAAB4dGf///yH5BAEAAAEALAAAAAACAAIAAAICRF4AOw==) repeat-y 6px 1px;
+    _background-image:url("dot_for_ie.gif"); *background-image:url("dot_for_ie.gif"); }
+.tree-apple li {
+    background: url("icons.png") no-repeat -64px -16px;
+}
 /* NO DOTS */
 .tree-apple .no_dots, .tree-apple .no_dots ul { background:transparent; }
-.tree-apple .no_dots li.leaf { background-image:none; background-color:transparent; }
+.tree-apple .no_dots li.leaf {
+    background: transparent none;
+}
 /* OPEN or CLOSED */
 .tree-apple li.open { background:url("icons.png") -32px -48px no-repeat; }
 .tree-apple li.closed, #jstree-dragged.tree-apple li li.open { background:url("icons.png") -48px -32px no-repeat; }
@@ -19,8 +25,12 @@
 .tree-apple li a:hover, .tree-apple li a.hover, .tree-apple li span { background: #e7f4f9; border:1px solid #d8f0fa; padding:0px 3px 0px 3px; }
 .tree-apple li a.clicked, .tree-apple li a.clicked:hover, .tree-apple li span.clicked { background: #beebff; border:1px solid #99defd; padding:0px 3px 0px 3px; }
 /* ICONS */
-.tree-apple ins { background-image:url("icons.png"); background-position:0 0; background-repeat:no-repeat; }
-.tree-apple ul li a.loading ins { background-image:url("throbber.gif") !important; background-position:0 0 !important; } /* UL is added to make selector stronger */
+.tree-apple ins {
+    background: url("icons.png") no-repeat 0 0;
+}
+.tree-apple ul li a.loading ins {
+    background: url("throbber.gif") 0 0 !important;
+} /* UL is added to make selector stronger */
 .tree-apple li a ins.forbidden { background-position:-16px -16px; }
 .tree-apple .locked li a ins { background-position:0 -48px; }
 .tree-apple li span ins { background-position:-16px 0; }
@@ -28,7 +38,9 @@
 #jstree-dragged.tree-apple ins.forbidden { background:url("icons.png") -16px -16px no-repeat; }
 
 /* CONTEXT MENU */
-.tree-apple-context a ins { background-image:url("icons.png"); background-repeat:no-repeat; background-position:-64px -64px; }
+.tree-apple-context a ins {
+    background: url("icons.png") no-repeat -64px -64px;
+}
 .tree-apple-context a ins.create { background-position:0 -16px; }
 .tree-apple-context a ins.rename { background-position:-16px 0px; }
 .tree-apple-context a ins.remove { background-position:0 -32px; }

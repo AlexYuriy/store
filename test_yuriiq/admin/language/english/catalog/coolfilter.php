@@ -47,4 +47,5 @@ $_['style_images']           = 'Images';
 // Error
 $_['error_permission']       = 'Permission denied!';
 $_['error_required_data']    = 'Required data not found!';
+$_['description'] 			 = 'description';
 ?>

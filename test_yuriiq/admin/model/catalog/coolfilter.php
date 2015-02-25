@@ -9,9 +9,9 @@ class ModelCatalogCoolfilter extends Model {
     $option_id = $this->db->getLastId();
 
     foreach ($data['category_option_description'] as $language_id => $value) {
-			$this->db->query("INSERT INTO `" . DB_PREFIX . "category_option_description` SET option_id = '" . (int)$option_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "'");
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "category_option_description` SET option_id = '" . (int)$option_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "'");
 		}
-    
+
 	
 	if (isset($data['coolfilter_group_id'])) {
 		foreach ($data['coolfilter_group_id'] as $coolfilter_group_id) {
@@ -41,7 +41,7 @@ class ModelCatalogCoolfilter extends Model {
     $this->db->query("DELETE FROM `" . DB_PREFIX . "category_option_description` WHERE option_id = '" . (int)$option_id . "'");
 
     foreach ($data['category_option_description'] as $language_id => $value) {
-			$this->db->query("INSERT INTO `" . DB_PREFIX . "category_option_description` SET option_id = '" . (int)$option_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "'");
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "category_option_description` SET option_id = '" . (int)$option_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "'");
 	}
 	
 	$this->db->query("DELETE FROM `" . DB_PREFIX . "coolfilter_group_option_to_coolfilter_group` WHERE option_id = '" . (int)$option_id . "'");
@@ -239,6 +239,7 @@ class ModelCatalogCoolfilter extends Model {
         `option_id` int(10) NOT NULL,
         `language_id` int(10) NOT NULL,
         `name` varchar(127) NOT NULL,
+        `description` text,
         PRIMARY KEY  (`option_id`,`language_id`)
       ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
       

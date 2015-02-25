@@ -129,9 +129,7 @@ label {
     font-weight: bold;
 }
 #menu > ul .parent {
-	background-image: url('../image/arrow-right.png'); 
-	background-position: 95% center;
-	background-repeat:no-repeat;
+	background: url('../image/arrow-right.png') no-repeat 95% center;
 }
 #menu > ul li ul ul {
 	margin: -29px 0 0 161px;
@@ -520,9 +518,8 @@ table.form > tbody > tr > td {
 	padding: 3px;
 }
 .scrollbox div input {
-	margin: 0px;
 	padding: 0px;
-	margin-right: 3px;
+	margin: 0px 3px 0px 0px;
 }
 .scrollbox div.even {
 	background: #FFFFFF;

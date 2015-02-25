@@ -20,9 +20,7 @@ div.plupload div.plupload_header {border-width: 0 0 1px 0; position: relative;}
 }
 
 .plupload_header_content {
-	background-image: url('../img/plupload.png');
-	background-repeat: no-repeat;
-	background-position: 8px center;
+	background: url('../img/plupload.png') no-repeat 8px center;
 	min-height: 56px;
 	padding-left: 60px;
 	position:relative;
