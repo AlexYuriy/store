@@ -55,4 +55,3 @@ $_['load_cart_error']	= 'Fehler beim laden Korb';
 
 // heading
 $_['heading_title']	= 'Auftragshistorie';
-?>

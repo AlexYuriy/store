@@ -197,9 +197,7 @@ label {
 	padding-right: 6px;
 	line-height: 25px;
 }
-#header #cart .heading .fa-sort-asc {
-    vertical-align: 1px;
-}
+
 #header #cart .content {
 	clear: both;
 	display: none;
@@ -265,9 +263,7 @@ label {
 .mini-cart-info .remove img {
 	cursor: pointer;
 }
-.mini-cart-total {
-	text-align: right;
-}
+
 .mini-cart-total table {
 	border-collapse: collapse;
 	display: inline-block;
@@ -355,12 +351,6 @@ label {
       margin-top: 10px;
       margin-left: 20px;
   }
-
-.answer {
-    margin-top: 10px;
-    margin-left: 40px;
-    display: none;
-}
 
 /* menu */
 #menu {
@@ -773,11 +763,6 @@ button.button.button-small,
 input[type="submit"].button.button-small {
   *padding-top: 3px;
   *padding-bottom: 3px;
-}
-button.button.button-mini,
-input[type="submit"].button.button-mini {
-  *padding-top: 1px;
-  *padding-bottom: 1px;
 }
 
 .buttons-cart {
@@ -1428,9 +1413,7 @@ ul.box-filter > li ul {
 	border-bottom: 1px solid #E7E7E7;
 	line-height: 20px;
 }
-.product-info .review .pluso {
-	border: none;
-}
+
 .review .fa-star,
 .review .fa-star-o {
 	color: #999999;
@@ -1631,10 +1614,7 @@ ul.box-filter > li ul {
 .order-info a{
 	text-decoration: none;
 }
-.order-detail {
-	background: #EFEFEF;
-	font-weight: bold;
-}
+
 /* carts */
 #edit-cart-name {
         display: none;

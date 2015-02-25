@@ -101,7 +101,7 @@ CodeMirror.tagRangeFinder = function(cm, start) {
       }
       l++;
     }
-    return;
+
   }
 };
 

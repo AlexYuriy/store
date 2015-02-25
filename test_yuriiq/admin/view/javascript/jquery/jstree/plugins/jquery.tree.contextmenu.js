@@ -76,7 +76,10 @@
 			exec : function (cmd) {
 				if($.tree.plugins.contextmenu.data.t == false) return;
 				var opts = $.extend(true, {}, $.tree.plugins.contextmenu.defaults, $.tree.plugins.contextmenu.data.t.settings.plugins.contextmenu);
-				try { opts.items[cmd].action.apply(null, [$.tree.plugins.contextmenu.data.a, $.tree.plugins.contextmenu.data.t]); } catch(e) { };
+				try {
+					opts.items[cmd].action.apply(null, [$.tree.plugins.contextmenu.data.a, $.tree.plugins.contextmenu.data.t]);
+				} catch (e) {
+				}
 			},
 
 			callbacks : {
@@ -123,7 +126,7 @@
 				event.stopPropagation();
 				event.preventDefault();
 				return false;
-			})
+			});
 		$(document).bind("mousedown", function(event) { if($(event.target).parents("#jstree-contextmenu").size() == 0) $.tree.plugins.contextmenu.hide(); });
 	});
 })(jQuery);

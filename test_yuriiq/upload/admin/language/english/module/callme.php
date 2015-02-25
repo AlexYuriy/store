@@ -17,7 +17,3 @@ $_['text_pink'] = 'Pink';
 $_['text_blue'] = 'Blue';
 $_['text_yes'] = 'Yes';
 $_['text_no'] = 'No';
-
-
-
-?>

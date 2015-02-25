@@ -612,9 +612,10 @@ function removeBanIP(ip) {
 				$('#' + id).replaceWith('<a id="' + id + '" onclick="addBanIP(\'' + ip + '\');"><?php echo $text_add_ban_ip; ?></a>');
 			}
 		}
-	});	
-};
-//--></script> 
+	});
+
+}
+    //--></script>
 <script type="text/javascript"><!--
 $('.htabs a').tabs();
 $('.vtabs a').tabs();

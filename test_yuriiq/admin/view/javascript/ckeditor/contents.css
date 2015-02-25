@@ -18,12 +18,6 @@ body
 	margin: 20px;
 }
 
-.cke_editable
-{
-	font-size: 13px;
-	line-height: 1.6em;
-}
-
 blockquote
 {
 	font-style: italic;
@@ -54,7 +48,7 @@ a
 ol,ul,dl
 {
 	/* IE7: reset rtl list margin. (#7334) */
-	*margin-right: 0px;
+	*margin-right: 0;
 	/* preserved spaces for list items with text direction other than the list. (#6249,#8049)*/
 	padding: 0 40px;
 }
@@ -67,7 +61,7 @@ h1,h2,h3,h4,h5,h6
 
 hr
 {
-	border: 0px;
+	border: 0;
 	border-top: 1px solid #ccc;
 }
 

@@ -130,6 +130,6 @@ function image_upload(field, thumb) {
 		modal: false,
 		dialogClass: 'dlg'
 	});
-};
-//--></script> 
+}
+  //--></script>
 <?php echo $footer; ?>

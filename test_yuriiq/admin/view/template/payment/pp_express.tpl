@@ -390,6 +390,6 @@
             resizable: false,
             modal: false
         });
-    };
+    }
     //--></script>
 <?php echo $footer; ?> 

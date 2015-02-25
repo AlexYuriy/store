@@ -33,16 +33,7 @@
 .product-list .stock {
 	margin-top:15px;
 }
-.nalichie .stock_green,
-.product-list .stock .stock_green {
-    color: #007800;
-	margin-left: 2px;
-}
-.nalichie .stock_red,
-.product-list .stock .stock_red {
-    color: #FF0000;
-	margin-left: 2px;
-}
+
 .product-grid .stock {
 	display:none;
 }
@@ -99,10 +90,7 @@
 .blog-right .review > div {
    float: left;
 }
-.blog-right > div .pluso {
-   float: right;
-   width: 180px;
-}
+
 .blog-info .colorbox {
     float: left;
     margin: 5px;

@@ -20,7 +20,7 @@ $.ui.dialog.prototype._init = function() {
 		}, function() {
       $(this).removeClass('ui-state-hover');
 		}).click(function() {
-	  var myDialog = $('.dlg')
+	  var myDialog = $('.dlg');
       var newWidth = $(window).width()-11;
 	  myDialog.animate({left: 1, width:newWidth},200);
 	  $(this).hide(); 

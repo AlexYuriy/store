@@ -37,7 +37,6 @@
 */
 
 #jstree-dragged.tree-themeroller ins { background:url("icons.png") -16px -32px no-repeat; }
-#jstree-dragged.tree-themeroller ins.forbidden { background:url("icons.png") -16px -16px no-repeat; }
 
 /* CONTEXT MENU 
 .tree-themeroller-context a ins { background-image:url("icons.png"); background-repeat:no-repeat; background-position:-64px -64px; }

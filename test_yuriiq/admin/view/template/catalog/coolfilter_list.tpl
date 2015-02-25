@@ -8,8 +8,6 @@
   </div>
 
 <style type="text/css">
-  .value,.cat{background:none repeat scroll 0 0 #EDEDED; border-left:4px solid #DBDBDB;display:inline-block;margin:3px;min-width:190px; padding:2px 3px;  }
-  .cat{background: #FCF7C1;border-color:#F8EDA5;}
 </style>
 <?php if ($error_warning) { ?>
 <div class="warning"><?php echo $error_warning; ?></div>

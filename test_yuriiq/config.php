@@ -24,4 +24,3 @@ define('DB_USERNAME', 'k18379_dbuser');
 define('DB_PASSWORD', '-zYFyQcR');
 define('DB_DATABASE', 'k18379_db');
 define('DB_PREFIX', 'oc_prefix_');
-?>

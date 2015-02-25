@@ -24,4 +24,3 @@ $_['email_subject']  = 'Request sent: %s';
 $_['error_name']     = 'Name!';
 $_['error_tel']    = 'Telefone!';
 $_['error_capcha']    = 'Wrong answer!';
-?>

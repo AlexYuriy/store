@@ -1,12 +1,8 @@
 /* LOCKED */
 .tree-default .locked li a { color:gray; }
 /* DOTS */
-.tree-default ul {
-    background: url(data:image/gif;base64,R0lGODlhAgACAIAAAB4dGf///yH5BAEAAAEALAAAAAACAAIAAAICRF4AOw==) repeat-y 6px 1px;
-    _background-image:url("dot_for_ie.gif"); *background-image:url("dot_for_ie.gif"); }
-.tree-default li {
-    background: url("icons.png") no-repeat -64px -16px;
-}
+.tree-default ul { background-position:6px 1px; background-repeat:repeat-y; background-image:url(data:image/gif;base64,R0lGODlhAgACAIAAAB4dGf///yH5BAEAAAEALAAAAAACAAIAAAICRF4AOw==); _background-image:url("dot_for_ie.gif"); *background-image:url("dot_for_ie.gif"); }
+.tree-default li { background-position:-64px -16px; background-repeat:no-repeat; background-image:url("icons.png"); }
 /* NO DOTS */
 .tree-default .no_dots, .tree-default .no_dots ul { background:transparent; }
 .tree-default .no_dots li.leaf {
@@ -18,8 +14,8 @@
 #jstree-marker { background-image:url("icons.png"); }
 /* DEFAULT, HOVER, CLICKED, LOADING STATES */
 .tree-default li a, .tree-default li span { border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px; }
-.tree-default li a:hover, .tree-default li a.hover, .tree-default li span { background: #e7f4f9; border:1px solid #d8f0fa; padding:0px 3px 0px 3px; }
-.tree-default li a.clicked, .tree-default li a.clicked:hover, .tree-default li span.clicked { background: #beebff; border:1px solid #99defd; padding:0px 3px 0px 3px; }
+.tree-default li a:hover, .tree-default li a.hover, .tree-default li span { background: #e7f4f9; border:1px solid #d8f0fa; padding:0 3px 0 3px; }
+.tree-default li a.clicked, .tree-default li a.clicked:hover, .tree-default li span.clicked { background: #beebff; border:1px solid #99defd; padding:0 3px 0 3px; }
 /* ICONS */
 .tree-default ins {
     background: url("icons.png") no-repeat 0 0;
@@ -38,5 +34,5 @@
     background: url("icons.png") no-repeat -64px -64px;
 }
 .tree-default-context a ins.create { background-position:0 -16px; }
-.tree-default-context a ins.rename { background-position:-16px 0px; }
+.tree-default-context a ins.rename { background-position:-16px 0; }
 .tree-default-context a ins.remove { background-position:0 -32px; }

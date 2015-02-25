@@ -141,4 +141,3 @@ $controller->addPreAction(new Action('common/' . $seo_type));
 $action = new Action('feed/yandex_yml/savetofile', array(dirname(__FILE__).'/yandex_yml.xml'));
 $controller->dispatch($action, '');
 //$controller->saveToFile(dirname(__FILE__).'/yandex_yml.xml');
-?>
