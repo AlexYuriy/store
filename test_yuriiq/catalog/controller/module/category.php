@@ -58,7 +58,7 @@ class ControllerModuleCategory extends Controller {
 					'href'        => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id'])	
 				);		
 			}
-			if (($category['image']) && ($category['image']!= 'no_image.jpg') ) {	
+			if (($category['image']) && ($category['image']!= 'no_image.jpg') ) {
 				$image = $this->model_tool_image->resize($category['image'], 
 								$this->config->get('config_image_menu_category_width'), 
 								$this->config->get('config_image_menu_category_height'));
@@ -67,6 +67,7 @@ class ControllerModuleCategory extends Controller {
 			}
 			$this->data['categories'][] = array(
 				'category_id' => $category['category_id'],
+				'top'		  => $category['top'],
 				'name'        => $category['name'] . ($this->config->get('config_product_count') ? ' (' . $total . ')' : ''),
 				'children'    => $children_data,
 				'image'  => $image,

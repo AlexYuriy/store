@@ -90,3 +90,36 @@
 #coolfilter_apply_button {
 	margin-top:20px;
 }
+.coolfilter_question{
+	position: relative;
+	width: 20px;
+	top: 3px;
+}
+.coolfilter_description {
+	display: inline-block;
+	position: relative;
+	text-decoration: none;
+	cursor: pointer;
+}
+.coolfilter_tip {
+	display: none;
+	position: absolute;
+	z-index: 9998;
+	top: 0;
+	left: 100%;
+	background: #EDEDED;
+	text-align: left;
+	color: #000;
+	cursor: default;
+	padding: 5px;
+	margin: -15px 0 0 10px; /*регулирует положение, значения зависят от применяемой конструкции*/
+	width: 200px;
+	min-height: 50px;
+	height: auto;
+}
+a.coolfilter_description.coolfilter_active {
+	font-weight: normal!important;
+}
+a.coolfilter_description:focus .coolfilter_tip {
+	display:block;
+}

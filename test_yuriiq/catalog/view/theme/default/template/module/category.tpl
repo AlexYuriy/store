@@ -2,7 +2,14 @@
   <div class="box-heading"><?php echo $heading_title; ?></div>
   <div class="box-content">
     <ul class="box-category">
-      <?php foreach ($categories as $category) { ?>
+
+      <?php
+      foreach ($categories as $category) {
+        if ($category['category_id'] == $category_id) {$sort_cat=$category['top'];break;};
+      }
+      foreach ($categories as $category) {
+        if ($category['top']==$sort_cat) {?>
+
       <li>
         <a href="<?php echo $category['href']; ?>" <?php if ($category['category_id'] == $category_id) echo 'class="active"'; ?> >
 		<?php 
@@ -26,7 +33,7 @@
         </ul>
         <?php } ?>
       </li>
-      <?php } ?>
+      <?php } }?>
     </ul>
   </div>
 </div>

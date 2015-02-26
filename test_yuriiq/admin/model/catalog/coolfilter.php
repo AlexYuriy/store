@@ -195,6 +195,7 @@ class ModelCatalogCoolfilter extends Model {
       $option_data[] = array(
         'option_id'     => $option['option_id'],
         'name'          => $option['name'],
+        'description'   => $option['description'],
 		'style'			=> $option_type_style['style_id'],
 		'type'			=> $option_type_style['type_index'],
 		'coolfilter_group'  => $coolfilter_group_query->rows,

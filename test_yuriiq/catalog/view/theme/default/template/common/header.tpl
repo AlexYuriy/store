@@ -108,10 +108,15 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
           <?php for (; $i < $j; $i++) { ?>
           <?php if (isset($category['children'][$i])) { 
 		  		$image_menu = $category['children'][$i]['image_menu'];
-				$name = $category['children'][$i]['name'];?>
-          <li><a href="<?php echo $category['children'][$i]['href']; ?>">
-		  <?php if ($image_menu) { ?><img src="<?php echo $image_menu; ?>" alt="<?php echo $name; ?>" /><?php }
+				$name = $category['children'][$i]['name'];
+				$name2 = $category['children'][$i]['name2'];
+				$href = $category['children'][$i]['href']; ?>
+          <li><a href="<?php echo $href; ?>">
+		  <?php if ($image_menu) { ?><img src="<?php echo $image_menu; ?>" alt="<?php echo $name; ?>" /> <?php }
 			    echo $name; ?></a>
+				<a class="hidden" href="<?php echo $href; ?>">
+		  <?php if ($image_menu) { ?><img src="<?php echo $image_menu; ?>" alt="<?php echo $name2; ?>" /> <?php }
+			    echo $name2; ?></a>
           </li>
           <?php } ?>
           <?php } ?>
