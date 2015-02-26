@@ -25,17 +25,29 @@
   </div>
   <div class="content">
     <form id="form" action="<?php echo $action; ?>" method="post">
+      <div id="languages" class="htabs">
+        <?php foreach ($languages as $language) { ?>
+          <a href="#language<?php echo $language['language_id']; ?>"><img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a>
+        <?php } ?>
+      </div>
+      <?php foreach ($languages as $language) { ?>
+        <div id="language<?php echo $language['language_id']; ?>">
+          <table class="form">
+            <tr>
+              <td><?php echo $entry_name; ?></td>
+              <td><input type="text" name="category_option_description[<?php echo $language['language_id']; ?>][name]" value="<?php echo (isset($name[$language['language_id']]) ? $name[$language['language_id']]['name'] : ''); ?>" /></td>
+            </tr>
+            <tr>
+              <td><?php echo $description; ?></td>
+              <td><textarea name="category_option_description[<?php echo $language['language_id']; ?>][description]" id="description<?php echo $language['language_id']; ?>"><?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['description'] : ''; ?></textarea></td>
+            </tr>
+          </table>
+        </div>
+      <?}?>
+    </div>
       <div>
         <table class="form">
-          <tr>
-            <td><?php echo $entry_name; ?></td>
-            <td>
-            <?php foreach ($languages as $language) { ?>
-              <input type="text" name="category_option_description[<?php echo $language['language_id']; ?>][name]" value="<?php echo (isset($name[$language['language_id']]) ? $name[$language['language_id']]['name'] : ''); ?>" />&nbsp;<img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" /><br />
-            <?php } ?>
-            </td>
-          </tr>
-          <tr>
+           <tr>
             <td><?php echo $entry_type; ?></td>
             <td>
               <select name="type">
@@ -105,14 +117,13 @@
             </td>
           </tr>
         </table>
-      </div>
+
     </form>
   </div>
 </div>
 </div>
 </div>
 <?php echo $footer; ?>
-
 <script>
 	function checkPrice () {
 		if ($("select[name='type']").val() == 'price') {
@@ -128,3 +139,19 @@
 		checkPrice();
 	});
 </script>
+<script type="text/javascript"><!--
+  $('#languages a').tabs();
+  //--></script>
+<script type="text/javascript" src="view/javascript/ckeditor/ckeditor.js"></script>
+<script type="text/javascript"><!--
+  <?php foreach ($languages as $language) { ?>
+  CKEDITOR.replace('description<?php echo $language['language_id']; ?>', {
+    filebrowserBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
+    filebrowserImageBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
+    filebrowserFlashBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
+    filebrowserUploadUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
+    filebrowserImageUploadUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
+    filebrowserFlashUploadUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
+  });
+  <?php } ?>
+  //--></script>
