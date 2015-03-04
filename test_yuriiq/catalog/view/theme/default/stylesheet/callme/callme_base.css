@@ -9,3 +9,15 @@ height: 200px;
 padding: 0;
 }
 #callme_button > a.callme {width: 22px; height: 200px;}
+
+#corp_button > a { 
+position: absolute ;
+right: 158px;
+top: 0;
+width: 200px;
+z-index: 999;
+cursor: pointer;
+height: 222px;
+padding: 0;
+}
+#corp_button > a.corp {width: 200px; height: 22px;}

@@ -2,3 +2,5 @@
 
 #callme_button > a {background: url("../../image/callme/callme_button_blue.png") 0 0 transparent;}
 #callme_button >a:hover {background: url("../../image/callme/callme_button_blue.png") 22px 0 transparent; }
+#corp_button > a {background: url("../../image/callme/corp_button_blue.png") 0 0 transparent;}
+#corp_button >a:hover {background: url("../../image/callme/corp_button_blue.png") 0 22px transparent; }
