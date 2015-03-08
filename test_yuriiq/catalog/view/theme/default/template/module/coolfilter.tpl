@@ -10,12 +10,12 @@
             <?php if ($coolfilter['style_id'] == 'list') { ?>
                 <div class="coolfilter-item coolfilter-item-list">
                     <b><?php echo $coolfilter['name']; ?></b>
-					<?php if ($coolfilter['description']){?>
+					<?php if ($coolfilter['description']) { ?>
 						<a class="coolfilter_description" tabindex="1">
 							<img src="catalog/view/theme/default/image/question.png" alt="description" class="coolfilter_question" />
-							<div class="coolfilter_tip"><? echo html_entity_decode($coolfilter['description']);?></div>
+							<div class="coolfilter_tip"><?php echo html_entity_decode($coolfilter['description']); ?></div>
 						</a>
-					<?}?>
+					<?php } ?>
                     <ul>
                     <?php foreach ($coolfilter['coolfilters'] as $coolfilter_value) { ?>
                         <?php if ($coolfilter_value['count'] || !$count_enabled) { ?>
@@ -30,12 +30,12 @@
             <?php if ($coolfilter['style_id'] == 'checkbox') { ?>
                 <div class="coolfilter-item coolfilter-item-checkbox">
                     <b><?php echo $coolfilter['name']; ?></b>
-					<?php if ($coolfilter['description']){?>
+					<?php if ($coolfilter['description']) { ?>
 						<a class="coolfilter_description" tabindex="1">
 							<img src="catalog/view/theme/default/image/question.png" alt="description" class="coolfilter_question" />
-							<div class="coolfilter_tip"><? echo html_entity_decode($coolfilter['description']);?></div>
+							<div class="coolfilter_tip"><?php echo html_entity_decode($coolfilter['description']); ?></div>
 						</a>
-					<?}?>
+					<?php } ?>
                     <ul>
                     <?php foreach ($coolfilter['coolfilters'] as $coolfilter_value) { ?>
 						<?php if ($coolfilter_value['count'] || !$count_enabled) { ?>
@@ -54,9 +54,9 @@
 					<?php if ($coolfilter['description']){?>
 						<a class="coolfilter_description" tabindex="1">
 							<img src="catalog/view/theme/default/image/question.png" alt="description" class="coolfilter_question" />
-							<div class="coolfilter_tip"><? echo html_entity_decode($coolfilter['description']);?></div>
+							<div class="coolfilter_tip"><?php echo html_entity_decode($coolfilter['description']);?></div>
 						</a>
-					<?}?>
+					<?php } ?>
                     <div class="coolfilter-item-select-list">
 						<ul>
 						<?php foreach ($coolfilter['coolfilters'] as $coolfilter_value) { ?>
@@ -85,12 +85,12 @@
 			<?php if ($coolfilter['style_id'] == 'slider') { ?>
                 <div class="coolfilter-item coolfilter-item-slider">
                     <b><?php echo $coolfilter['name']; ?></b>
-					<?php if ($coolfilter['description']){?>
+					<?php if ($coolfilter['description']) { ?>
 						<a class="coolfilter_description" tabindex="1">
 							<img src="catalog/view/theme/default/image/question.png" alt="description" class="coolfilter_question" />
-							<div class="coolfilter_tip"><? echo html_entity_decode($coolfilter['description']);?></div>
+							<div class="coolfilter_tip"><?php echo html_entity_decode($coolfilter['description']); ?></div>
 						</a>
-					<?}?>
+					<?php } ?>
 					<div class="coolfilter-item-slider-body">
 					<input type="text" id="price" style="border:0; color:#f6931f; background:#fff; font-weight:bold;" class="coolfilter_active" data-key="p" data-value="<?php echo $coolfilter['coolfilters'][0]['value'] . ',' . $coolfilter['coolfilters'][1]['value']; ?>" disabled="disabled" />
 					<div id="slider-range" class="slider-range"></div>

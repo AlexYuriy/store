@@ -24,13 +24,12 @@
 		<!-- корзина -->      
 		<a id="sidebar_cart" href="<?php echo $shopping_cart; ?>">
 		    <img class="sidebar_item_img" src="image/left_menu/cart.png" title="Корзина">
-			<?php $num_products = 0; ?>
-		    <?php if ($products || $vouchers) { ?>
-			<?php foreach ($products as $product) { ?>
-			    <?php $num_products += $product['quantity'];} ?>
-			<?php foreach ($vouchers as $voucher) { ?>
-			    <?php $num_products += $voucher['quantity'];} ?>
-		    <?php } ?>
+			<?php $num_products = 0; 
+			if ($products || $vouchers) 
+			{ 
+				foreach ($products as $product) { $num_products += $product['quantity'];} 
+				foreach ($vouchers as $voucher) { $num_products += $voucher['quantity'];} 
+			} ?>
 			<span id="cart-total" <?php if (!$num_products) echo 'class="hidden"'; ?> ><?php echo $num_products; ?></span>			
 		</a>
 		<!-- Личный кабинет" -->
@@ -60,7 +59,7 @@
 				<div><ul>
 						<?php foreach($manufacturer as $manufacturers){ ?>
 							<li><a href="<?php echo $manufacturers['href']; ?>"><?php echo $manufacturers['name']; ?></a></li>
-						<? } ?>
+						<?php } ?>
 				</ul></div>
 				</li>
 			<?php } ?>
@@ -91,46 +90,7 @@
                 <?php echo $text_welcome; ?>    
     <?php } ?>
     </div> 
-    <?php /* <!-- корзина -->
-    <div id="sidebar_cart_panel" class="sidebar_panel">  
-            <h2><i class="fa fa-shopping-cart fa-lg"></i> <?php echo $text_cart; ?></h2>
-                <?php if ($products || $vouchers) { ?>
-                <!-- перечисляются товары с описанием -->
-                    <?php foreach ($products as $product) { ?>
-                    <a href="<?php echo $product['href']; ?>">
-					<table><tr>
-						<td><?php echo $product['name']; ?>
-                          <?php foreach ($product['option'] as $option) { ?>
-                          - <small><?php echo $option['name']; ?> <?php echo $option['value']; ?></small><br />
-                          <?php } ?>
-						</td>
-                      <td><?php echo $product['quantity']; ?>&nbsp;x</td>
-                      <td class="nowrap"><?php echo $product['total']; ?></td>
-                    </tr></table></a>
-                    <?php } ?>
-                    <?php foreach ($vouchers as $voucher) { ?>
-                    <table><tr>
-                      <td><?php echo $voucher['description']; ?></td>
-                      <td>1&nbsp;x </td>
-                      <td><?php echo $voucher['amount']; ?></td>
-                    </tr></table>
-                    <?php } ?>
-                <!-- нижняя строка корзины -->
-                  <table>
-                    <?php foreach ($totals as $total) { ?>
-                    <tr>
-                      <td><b><?php echo $total['title']; ?>:</b></td>
-                      <td class="right"><?php echo $total['text']; ?></td>
-                    </tr>
-                    <?php } ?>
-                  </table>
-				  <br>
-						<a href="<?php echo $shopping_cart; ?>"><?php echo $text_cart; ?></a> 
-						<a href="<?php echo $checkout; ?>"><?php echo $text_checkout; ?></a> 
-						<a href="<?php echo $order; ?>"><?php echo $text_order; ?></a> 
-                <?php } else { ?>
-          <p><?php echo $text_empty; ?></p>
-                <?php } ?>
-        </div> */ ?>
+
 </div>
 <!-- /LeftMenu -->
+

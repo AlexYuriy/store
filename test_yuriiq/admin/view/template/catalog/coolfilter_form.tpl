@@ -43,7 +43,7 @@
             </tr>
           </table>
         </div>
-      <?}?>
+      <?php } ?>
     </div>
       <div>
         <table class="form">
