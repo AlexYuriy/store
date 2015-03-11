@@ -61,20 +61,21 @@ class ModelCatalogCategory extends Model {
 			return false;
 		}
 	}
-		public function getCategoryDocLinks($path_string) {
+	
+	public function getCategoryDocLinks($path_string) {
 		$tmp=explode("path=",$path_string);
 		if(isset($tmp[1])) {
 			$temp_id=explode("_",$tmp[1]);
-			for($i=0;isset($temp_id[$i]);$i++){
+			for($i=0;isset($temp_id[$i]);$i++) {
 				$category_id=$temp_id[$i];
 			}
-		} 
-		else {
+		} else {
 			$temp_id=explode("/",$path_string);
-			for($i=1;isset($temp_id[$i]);$i++){
+			for($i=1;isset($temp_id[$i]);$i++) {
 				$category_id_string=$temp_id[$i-1];
-			}
+			} // TODO что делать, если нет id категории? 
 			$subquery=$this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE keyword like '" . $category_id_string .  "'");
+			if (!isset($subquery->row['query'])) return false;
 			$tmp=explode("category_id=",$subquery->row['query']);
 			$category_id=$tmp[1];
 		}

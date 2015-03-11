@@ -4,6 +4,7 @@
     <ul class="box-category">
 
       <?php
+      $sort_cat = '';
       foreach ($categories as $category) {
         if ($category['category_id'] == $category_id) {$sort_cat=$category['top'];break;};
       }

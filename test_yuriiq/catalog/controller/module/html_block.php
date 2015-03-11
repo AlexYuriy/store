@@ -44,9 +44,11 @@ class ControllerModuleHtmlBlock extends Controller {
 				$category_info = $this->model_catalog_category->getCategory($path_id);
 			}		
 
-			$category_id = array_pop($parts);
+			$category_id = array_pop($parts); // TODO что делать, если id некорректный? 
 			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category_description WHERE category_id = '" . (int)$category_id . "'");
-			$doc_links = $query->row['doc_links'];
+			if (isset($query->row['doc_links'])) 
+				$doc_links = $query->row['doc_links'];
+			else 	$doc_links = '';
 		
 		
 		if (self::$_depth > self::$_depth_limit) return;

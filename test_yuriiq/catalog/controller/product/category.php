@@ -30,10 +30,10 @@ class ControllerProductCategory extends Controller {
 		}
 		
 		if (isset($this->request->get['coolfilter'])) {
-	        $coolfilter = $this->request->get['coolfilter'];
+			$coolfilter = $this->request->get['coolfilter'];
 			$this->document->setRobots('noindex,follow');
 		} else {
-	        $coolfilter = '';
+			$coolfilter = '';
 		}
 
 		if (isset($this->request->get['page'])) {
@@ -70,8 +70,8 @@ class ControllerProductCategory extends Controller {
 			}
 
 			if (isset($this->request->get['coolfilter'])) {
-	          $url .= '&coolfilter=' . $this->request->get['coolfilter'];
-	        }
+				$url .= '&coolfilter=' . $this->request->get['coolfilter'];
+			}
 
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
@@ -117,6 +117,7 @@ class ControllerProductCategory extends Controller {
 							'meta_keyword' => '',
 							'seo_h1' => $this->language->get('text_all_products'),
 							'image' => '',
+							'doc_links' => '',
 							'description' => '');
 						//india style fix	
 						$this->request->get['path'] = 0;
@@ -160,34 +161,7 @@ class ControllerProductCategory extends Controller {
 			$this->data['button_wishlist'] = $this->language->get('button_wishlist');
 			$this->data['button_compare'] = $this->language->get('button_compare');
 			$this->data['button_continue'] = $this->language->get('button_continue');
-
 			// Set the last category breadcrumb		
-			$url = '';
-
-			if (isset($this->request->get['sort'])) {
-				$url .= '&sort=' . $this->request->get['sort'];
-			}	
-
-			if (isset($this->request->get['order'])) {
-				$url .= '&order=' . $this->request->get['order'];
-			}
-
-			if (isset($this->request->get['coolfilter'])) {
-	          $url .= '&coolfilter=' . $this->request->get['coolfilter'];
-	        }
-
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-			
-			if (isset($this->request->get['coolfilter'])) {
-	          $url .= '&coolfilter=' . $this->request->get['coolfilter'];
-	        }
-
-			if (isset($this->request->get['limit'])) {
-				$url .= '&limit=' . $this->request->get['limit'];
-			}
-
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $category_info['name'],
 				'href'      => $this->url->link('product/category', 'path=' . $this->request->get['path']),
@@ -220,8 +194,8 @@ class ControllerProductCategory extends Controller {
 			}
 
 			if (isset($this->request->get['coolfilter'])) {
-	          $url .= '&coolfilter=' . $this->request->get['coolfilter'];
-	        }
+				$url .= '&coolfilter=' . $this->request->get['coolfilter'];
+			}
 
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
@@ -328,10 +302,6 @@ class ControllerProductCategory extends Controller {
 
 			if (isset($this->request->get['filter'])) {
 				$url .= '&filter=' . $this->request->get['filter'];
-			}
-			
-			if (isset($this->request->get['coolfilter'])) {
-				$url .= '&coolfilter=' . $this->request->get['coolfilter'];
 			}
 
 			if (isset($this->request->get['limit'])) {
