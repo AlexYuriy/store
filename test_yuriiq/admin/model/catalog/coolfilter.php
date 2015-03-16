@@ -179,34 +179,25 @@ class ModelCatalogCoolfilter extends Model {
 	}
 
   public function getOptions() {
-    $option_data = array();
-
-    $option_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "category_option` co LEFT JOIN `" . DB_PREFIX . "category_option_description` cod ON (co.option_id = cod.option_id) WHERE cod.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY sort_order");
-
-    foreach ($option_query->rows as $option) {
-	  
+	$option_data = array();
+	$option_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "category_option` co LEFT JOIN `" . DB_PREFIX . "category_option_description` cod ON (co.option_id = cod.option_id) WHERE cod.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY sort_order");
+	foreach ($option_query->rows as $option) {
 	  $coolfilter_group_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "coolfilter_group` c LEFT JOIN `" . DB_PREFIX . "coolfilter_group_option_to_coolfilter_group` cotc ON (c.coolfilter_group_id = cotc.coolfilter_group_id) LEFT JOIN `" . DB_PREFIX . "coolfilter_group_description` cd ON (cd.coolfilter_group_id = cotc.coolfilter_group_id) WHERE cotc.option_id = '" . (int)$option['option_id'] . "' AND cd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
-	  
-	  
 	  $option_type_style_query = $this->db->query("SELECT t1.type_index,t2.style_id FROM `" . DB_PREFIX . "type_option` as t1, `" . DB_PREFIX . "style_option` as t2 WHERE t1.option_id = t2.option_id AND t1.option_id = '" . (int)$option['option_id'] . "'");
-	
 	  $option_type_style = $option_type_style_query->row;
-	
-      $option_data[] = array(
-        'option_id'     => $option['option_id'],
-        'name'          => $option['name'],
-        'description'   => $option['description'],
+	  $option_data[] = array(
+		'option_id'     => $option['option_id'],
+		'name'          => $option['name'],
+		'description'   => $option['description'],
 		'style'			=> $option_type_style['style_id'],
 		'type'			=> $option_type_style['type_index'],
 		'coolfilter_group'  => $coolfilter_group_query->rows,
-        'sort_order'    => $option['sort_order'],
-        'status'        => $option['status']
-      );
+		'sort_order'    => $option['sort_order'],
+		'status'        => $option['status']
+	);
     }
-
     return $option_data;
-  }
-
+	}
 
   public function getTotalOptions() {
     $query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "category_option`");
@@ -214,10 +205,9 @@ class ModelCatalogCoolfilter extends Model {
     return $query->row['total'];
   }
 
-
-
   public function showTable($table) {
-    if (mysql_num_rows(mysql_query("SHOW TABLES LIKE '" . DB_PREFIX . $table . "'"))) {
+    $query = $this->db->query("SHOW TABLES LIKE '" . DB_PREFIX . $table . "'");
+    if ($query) {
       return TRUE;
     } else {
       return FALSE;
