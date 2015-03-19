@@ -91,7 +91,9 @@
 						</a>
 					<?php } ?>
 					<div class="coolfilter-item-slider-body">
+					<?php echo $currency_symbol_left; ?>
 					<input type="text" id="price" style="border:0; color:#f6931f; background:#fff; font-weight:bold;" class="coolfilter_active" data-key="p" data-value="<?php echo $coolfilter['coolfilters'][0]['value'] . ',' . $coolfilter['coolfilters'][1]['value']; ?>" disabled="disabled" />
+					<?php echo $currency_symbol_right; ?>
 					<div id="slider-range" class="slider-range"></div>
 					</div>
 					<script>
@@ -112,7 +114,7 @@
 							max: <?php echo $coolfilter['coolfilters'][1]['value']; ?>,
 							values: [ startValue, endValue ],
 							slide: function( event, ui ) {
-								$( "#price" ).val( "<?php echo $currency_symbol_left; ?>" + ui.values[ 0 ].toFixed(<?php echo $count_symbols; ?>) + "<?php echo $currency_symbol_right; ?> - <?php echo $currency_symbol_left; ?>" + ui.values[ 1 ].toFixed(<?php echo $count_symbols; ?>) + "<?php echo $currency_symbol_right; ?>" );
+								$( "#price" ).val(  ui.values[ 0 ].toFixed(<?php echo $count_symbols; ?>) + " - "+ ui.values[ 1 ].toFixed(<?php echo $count_symbols; ?>)  );
 							},
 							change: function( event, ui ) {
 								/*var href = '<?php echo htmlspecialchars_decode($coolfilter['coolfilters'][0]['href']); ?>';
@@ -122,8 +124,7 @@
 								$( "#price" ).attr("data-value", ui.values[ 0 ] + "," + ui.values[ 1 ]);
 							}
 						});
-						$( "#price" ).val( "<?php echo $currency_symbol_left; ?>" + $( "#slider-range" ).slider( "values", 0 ).toFixed(<?php echo $count_symbols; ?>) + 
-							"<?php echo $currency_symbol_right; ?> - <?php echo $currency_symbol_left; ?>" + $( "#slider-range" ).slider( "values", 1 ).toFixed(<?php echo $count_symbols; ?>) + "<?php echo $currency_symbol_right; ?>" );
+						$( "#price" ).val(  $( "#slider-range" ).slider( "values", 0 ).toFixed(<?php echo $count_symbols; ?>) + " - "+ $( "#slider-range" ).slider( "values", 1 ).toFixed(<?php echo $count_symbols; ?>)  );
 					});
 					</script>
                 </div>
