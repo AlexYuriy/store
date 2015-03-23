@@ -60,20 +60,14 @@ class ControllerModuleCoolfilter extends Controller {
 	
 	public function getVal() {
 			$this->language->load('module/coolfilter');
-			$this->data['heading_title'] = $this->language->get('heading_title');
 			$this->data['text_apply'] = $this->language->get('text_apply');
-			$this->data['text_reset_coolfilter'] = $this->language->get('text_reset_coolfilter');
 			$this->data['count_enabled'] = $this->config->get('count_enabled');
 			$this->data['currency_symbol_left'] = $this->currency->getSymbolLeft($this->currency->getCode());
 			$this->data['currency_symbol_right'] = $this->currency->getSymbolRight($this->currency->getCode());
 			$this->data['count_symbols'] = $this->currency->getDecimalPlace($this->currency->getCode());
 			$this->load->model('catalog/product');
+			$this->load->model('catalog/category');
 			$this->load->model('catalog/coolfilter');
-			if (file_exists('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/coolfilter.css')) {
-				$this->document->addStyle('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/coolfilter.css');
-			} else {
-				$this->document->addStyle('catalog/view/theme/default/stylesheet/coolfilter.css');
-			}
 			// Получить id группы фильтра
 			if (isset($this->request->get['coolfilter_group_id'])) {
 				$coolfilter_group_id = $this->request->get['coolfilter_group_id'];
@@ -82,12 +76,16 @@ class ControllerModuleCoolfilter extends Controller {
 			}
 			$this->data['coolfilter_group_id'] = $coolfilter_group_id;
 			// Получить id категории
-			if (isset($this->request->get['path'])) {
-				$parts = explode('_', $this->request->get['path']);
-				$categorie_id = end($parts);
+			if (isset($this->request->get['categorie_id'])) {
+				$categorie_id = $this->request->get['categorie_id'];
 			} else {
 				$categorie_id = 0;
 			}
+			$category = $this->model_catalog_category->getCategory($categorie_id)  ;
+			if ($category) $this->data['heading_title'] = $category['name']  ; //$this->language->get('heading_title');
+			else $this->data['heading_title'] = '';
+			$this->data['price_id'] = 'price_' . $categorie_id . $coolfilter_group_id;
+			$this->data['slider_range_id'] = 'slider_range_' . $categorie_id . $coolfilter_group_id;
 			// Получить все фильтры данной группы для данной категории
 			$coolfilter_group_options = $this->model_catalog_coolfilter->getOptionBycoolfilterGroupsId($coolfilter_group_id, $categorie_id);
 			if (!empty($coolfilter_group_options)) {

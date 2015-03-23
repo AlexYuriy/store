@@ -18,7 +18,7 @@
                     <ul>
                     <?php foreach ($coolfilter['coolfilters'] as $coolfilter_value) { ?>
                         <?php if ($coolfilter_value['count'] || !$count_enabled) { ?>
-							<li><a href="<?php echo $coolfilter_value['href']; ?>" <?php if($coolfilter_value['active']) { ?>class="coolfilter_active"<?php } ?> data-key="<?php echo $coolfilter_value['key']; ?>" data-value="<?php echo $coolfilter_value['value']; ?>"><?php echo $coolfilter_value['name']; ?> <?php echo $coolfilter_value['view_count']; ?> </a> </li>
+							<li><a  <?php if($coolfilter_value['active']) { ?>class="coolfilter_active"<?php } ?> data-key="<?php echo $coolfilter_value['key']; ?>" data-value="<?php echo $coolfilter_value['value']; ?>"><?php echo $coolfilter_value['name']; ?> <?php echo $coolfilter_value['view_count']; ?> </a> </li>
 						<?php } else { ?>
 							<li><?php echo $coolfilter_value['name']; ?> <?php echo $coolfilter_value['view_count']; ?></li>
 						<?php } ?>
@@ -38,7 +38,7 @@
                     <ul>
                     <?php foreach ($coolfilter['coolfilters'] as $coolfilter_value) { ?>
 						<?php if ($coolfilter_value['count'] || !$count_enabled) { ?>
-							<li><input type="checkbox" <?php if($coolfilter_value['active']) { ?>checked="checked"<?php } ?>><a href="<?php echo $coolfilter_value['href']; ?>" <?php if($coolfilter_value['active']) { ?>class="coolfilter_active"<?php } ?> data-key="<?php echo $coolfilter_value['key']; ?>" data-value="<?php echo $coolfilter_value['value']; ?>"><?php echo $coolfilter_value['name']; ?> <?php echo $coolfilter_value['view_count']; ?> </a></li>
+							<li><input type="checkbox" <?php if($coolfilter_value['active']) { ?>checked="checked"<?php } ?>><a  <?php if($coolfilter_value['active']) { ?>class="coolfilter_active"<?php } ?> data-key="<?php echo $coolfilter_value['key']; ?>" data-value="<?php echo $coolfilter_value['value']; ?>"><?php echo $coolfilter_value['name']; ?> <?php echo $coolfilter_value['view_count']; ?> </a></li>
 						<?php } else { ?>
 							<li><input type="checkbox" disabled="disabled"><?php echo $coolfilter_value['name']; ?> <?php echo $coolfilter_value['view_count']; ?></li>
 						<?php } ?>
@@ -83,173 +83,54 @@
             <?php } ?>
 			<?php if ($coolfilter['style_id'] == 'slider') { ?>
                 <div class="coolfilter-item coolfilter-item-slider">
-                    <b><?php echo $coolfilter['name']; ?></b>
-					<?php if ($coolfilter['description']) { ?>
-						<a class="coolfilter_description" tabindex="1">
-							<img src="catalog/view/theme/default/image/question.png" alt="description" class="coolfilter_question" />
-							<div class="coolfilter_tip"><?php echo html_entity_decode($coolfilter['description']); ?></div>
-						</a>
-					<?php } ?>
-					<div class="coolfilter-item-slider-body">
-					<input type="text" id="price" style="border:0; color:#f6931f; background:#fff; font-weight:bold;" class="coolfilter_active" data-key="p" data-value="<?php echo $coolfilter['coolfilters'][0]['value'] . ',' . $coolfilter['coolfilters'][1]['value']; ?>" disabled="disabled" />
-					<div id="slider-range" class="slider-range"></div>
-					</div>
-					<script>
-					$(function() {
-						if (/\Wp:[\d\.]+,[\d\.]+/.test(location.href)) {
-							var myRe = /\Wp:([\d\.]+),([\d\.]+)/;
-							var pricecoolfilterValue = myRe.exec(location.href);
-							startValue = pricecoolfilterValue[1];
-							endValue = pricecoolfilterValue[2];
-							$("#price").attr('data-value', startValue + ',' + endValue);
-						} else {
-							startValue = <?php echo $coolfilter['coolfilters'][0]['value']; ?>;
-							endValue = <?php echo $coolfilter['coolfilters'][1]['value']; ?>;
-						}
-						$( "#slider-range" ).slider({
-							range: true,
-							min: <?php echo $coolfilter['coolfilters'][0]['value']; ?>,
-							max: <?php echo $coolfilter['coolfilters'][1]['value']; ?>,
-							values: [ startValue, endValue ],
-							slide: function( event, ui ) {
-								$( "#price" ).val( "<?php echo $currency_symbol_left; ?>" + ui.values[ 0 ].toFixed(<?php echo $count_symbols; ?>) + "<?php echo $currency_symbol_right; ?> - <?php echo $currency_symbol_left; ?>" + ui.values[ 1 ].toFixed(<?php echo $count_symbols; ?>) + "<?php echo $currency_symbol_right; ?>" );
-							},
-							change: function( event, ui ) {
-								/*var href = '<?php echo htmlspecialchars_decode($coolfilter['coolfilters'][0]['href']); ?>';
-								var exp = /p:[\d\.,]+/g;
-								href = href.replace(exp, "p:" + ui.values[ 0 ] + "," + ui.values[ 1 ]);
-								location = href;*/
-								$( "#price" ).attr("data-value", ui.values[ 0 ] + "," + ui.values[ 1 ]);
-							}
-						});
-						$( "#price" ).val( "<?php echo $currency_symbol_left; ?>" + $( "#slider-range" ).slider( "values", 0 ).toFixed(<?php echo $count_symbols; ?>) + 
-							"<?php echo $currency_symbol_right; ?> - <?php echo $currency_symbol_left; ?>" + $( "#slider-range" ).slider( "values", 1 ).toFixed(<?php echo $count_symbols; ?>) + "<?php echo $currency_symbol_right; ?>" );
-					});
-					</script>
+                    <b><?php echo $coolfilter['name']; ?> ( <?php echo $currency_symbol_left . $currency_symbol_right; ?> )  </b> <!-- TODO: разделитель валют. -->
+			<?php if ($coolfilter['description']) { ?>
+				<a class="coolfilter_description" tabindex="1">
+					<img src="catalog/view/theme/default/image/question.png" alt="description" class="coolfilter_question" />
+					<div class="coolfilter_tip"><?php echo html_entity_decode($coolfilter['description']); ?></div>
+				</a>
+			<?php } ?>
+			<div class="coolfilter-item-slider-body">
+				<input type="text" id="<?php echo $price_id; ?>" style="border:0; color:#f6931f; background:#fff; font-weight:bold;" class="coolfilter_active" data-key="p" data-value="<?php echo $coolfilter['coolfilters'][0]['value'] . ',' . $coolfilter['coolfilters'][1]['value']; ?>" disabled="disabled" />
+				<div id="<?php echo $slider_range_id; ?>" class="slider-range"></div>
+			</div>
+			<script>
+			$(function() {
+				if (/\Wp:[\d\.]+,[\d\.]+/.test(location.href)) {
+					var myRe = /\Wp:([\d\.]+),([\d\.]+)/;
+					var pricecoolfilterValue = myRe.exec(location.href);
+					startValue = pricecoolfilterValue[1];
+					endValue = pricecoolfilterValue[2];
+					$("#<?php echo $price_id; ?>").attr('data-value', startValue + ',' + endValue);
+				} else {
+					startValue = <?php echo $coolfilter['coolfilters'][0]['value']; ?>;
+					endValue = <?php echo $coolfilter['coolfilters'][1]['value']; ?>;
+				}
+				$( "#<?php echo $slider_range_id; ?>" ).slider({
+					range: true,
+					min: <?php echo $coolfilter['coolfilters'][0]['value']; ?>,
+					max: <?php echo $coolfilter['coolfilters'][1]['value']; ?>,
+					values: [ startValue, endValue ],
+					slide: function( event, ui ) {
+						$( "#<?php echo $price_id; ?>" ).val(  ui.values[ 0 ].toFixed(<?php echo $count_symbols; ?>) + " - "+ ui.values[ 1 ].toFixed(<?php echo $count_symbols; ?>)  );
+					},
+					change: function( event, ui ) {
+						/*var href = '<?php echo htmlspecialchars_decode($coolfilter['coolfilters'][0]['href']); ?>';
+						var exp = /p:[\d\.,]+/g;
+						href = href.replace(exp, "p:" + ui.values[ 0 ] + "," + ui.values[ 1 ]);
+						location = href;*/
+						$( "#<?php echo $price_id; ?>" ).attr("data-value", ui.values[ 0 ] + "," + ui.values[ 1 ]);
+					}
+				});
+				$( "#<?php echo $price_id; ?>" ).val(  $( "#<?php echo $slider_range_id; ?>" ).slider( "values", 0 ).toFixed(<?php echo $count_symbols; ?>) + " - "+ $( "#<?php echo $slider_range_id; ?>" ).slider( "values", 1 ).toFixed(<?php echo $count_symbols; ?>)  );
+			});
+			</script>
                 </div>
             <?php } ?>
 
 		<?php } ?>
 	<?php } ?>
-	<a id="coolfilter_apply_button" class="button"><span><?php echo $text_apply; ?></span></a>
   </div>
-  <div class="bottom">&nbsp;</div>
-
-<script>
-	addButtonReset();
-	
-	$("#coolfilter_apply_button").click(function() {
-		location = getUrl(getCoolfilter()) ;
-	});
-	
-	$(".coolfilter-item-select-head").click(function(){
-		$(".coolfilter-item-select-list").not($(this).next(".coolfilter-item-select-list")).hide();
-		$(this).next(".coolfilter-item-select-list").toggle(); 
-		return false;
-	});
-	
-	$(document).click(function(e){ 
-		var $target = $(e.target);
-		if (!$target.is("a") && !$target.is("input:checkbox")) { 
-			$(".coolfilter-item-select-list").hide(); 
-		} 
-	});
-	
-	$(".coolfilter-item a").click(function(e){ 
-		e.preventDefault();
-		$(this).toggleClass("coolfilter_active");
-		var checkbox = $(this).siblings("input:checkbox");
-		if (checkbox.is(':checked')) {
-			checkbox.attr('checked', false);
-		} else {
-			checkbox.attr('checked', true);
-		}
-		showVal();
-	});
-	
-	
-	 $(".coolfilter-item-checkbox input:checkbox, .coolfilter-item-select input:checkbox").click(function(){
-		$(this).siblings("a").toggleClass("coolfilter_active");
-		$(this).parents(".coolfilter-item-select-list").show();
-		showVal();
-	});
-		
-	function getCoolfilter() {
-		var coolfilter = '';
-		var arr = {};
-		$(".coolfilter_active").each(function(i){
-			var key = $(this).attr("data-key");
-			var value = $(this).attr("data-value");
-			if (arr[key] === undefined) {
-				arr[key] = '';
-				arr[key] += value;
-			} else {
-				arr[key] += ',' + value;
-			}
-		
-		});	
-		$.each(arr, function(index,val){
-			coolfilter += index + ':' + val + ';';
-		});
-		coolfilter = coolfilter.substr(0, coolfilter.length - 1);
-		return coolfilter;
-	}
-	
-	function getUrl(coolfilter) {
-		var href = location.href;
-		var exp = /&page=(.*?)(&|$)/g;
-		href = href.replace(exp, "");
-		var exp = /&coolfilter=(.*?)(&|$)/g;
-		href = href.replace(exp, "");
-		href = href.replace(exp, "$2") + '&coolfilter=' + coolfilter;
-		return href;
-	}
-	
-	function getAjaxUrl(coolfilter) {
-		var href = location.href;
-		var param = href.split('&');
-		var path = '';
-		for (var key in param) { 
-			var val = param [key];
-			if (val.substr(0,4) == 'path' ) path = '&' + val;
-		}
-		var href = 'index.php?route=module/coolfilter/getVal' + path + '&coolfilter=' + coolfilter  + '&coolfilter_group_id=<?php echo $coolfilter_group_id;?>';
-		return href;
-	}
-	
-	function addButtonReset() {
-		var href = location.href;
-		if (/(\?|&)coolfilter=(.*?)/.test(href)) {
-			$("#coolfilter_apply_button").after('<br><br>[ <a onclick="resetcoolfilter();"><?php echo $text_reset_coolfilter; ?></a> ]');
-		}
-	}
-	
-	function resetcoolfilter() {
-		var href = location.href;
-		var exp = /(\?|\&)coolfilter=(.*)?(&|$)/g;
-		href = href.replace(exp, "");
-		location = href;
-	}
-	
-	function showVal() {
-/*	$.ajax({
-		url: getAjaxUrl(getCoolfilter()),			
-		success: function(data) {
-		dataType: 'json',
-			alert(data);
-			$('#MainCoolFilter').html(data);
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-		});
-*/
-	}	
-	
-	
-</script>
-
-  
 
 </div>
 </noindex>

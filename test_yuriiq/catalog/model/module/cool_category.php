@@ -1,7 +1,5 @@
 <?php
-################################################################################################
-#  DIY Module Builder for Opencart 1.5.1.x From HostJars http://opencart.hostjars.com 		   #
-################################################################################################
+
 class ModelModuleCoolCategory extends Model {
 	
 	//Place any functions you like in here to access the DB and present data to the controller to display or otherwise
@@ -11,7 +9,8 @@ class ModelModuleCoolCategory extends Model {
 	//Example function to get customer firstnames:
 	function getCoolfilterGroupId($category_id) {
 		$query = $this->db->query("SELECT coolfilter_group_id FROM `" . DB_PREFIX . "coolfilter_group_to_category` WHERE category_id = '" . (int)$category_id . "'");
-		return (int)$query->row['coolfilter_group_id'] ;//
+		if (isset($query->row['coolfilter_group_id'])) return (int)$query->row['coolfilter_group_id'] ;
+		else return false;
 	}
 	
 }

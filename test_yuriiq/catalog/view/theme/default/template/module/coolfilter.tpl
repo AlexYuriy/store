@@ -83,7 +83,7 @@
             <?php } ?>
 			<?php if ($coolfilter['style_id'] == 'slider') { ?>
                 <div class="coolfilter-item coolfilter-item-slider">
-                    <b><?php echo $coolfilter['name']; ?></b>
+                    <b><?php echo $coolfilter['name']; ?> ( <?php echo $currency_symbol_left . $currency_symbol_right; ?> )  </b> <!-- TODO: разделитель валют. -->
 					<?php if ($coolfilter['description']) { ?>
 						<a class="coolfilter_description" tabindex="1">
 							<img src="catalog/view/theme/default/image/question.png" alt="description" class="coolfilter_question" />
@@ -91,9 +91,9 @@
 						</a>
 					<?php } ?>
 					<div class="coolfilter-item-slider-body">
-					<?php echo $currency_symbol_left; ?>
+	
 					<input type="text" id="price" style="border:0; color:#f6931f; background:#fff; font-weight:bold;" class="coolfilter_active" data-key="p" data-value="<?php echo $coolfilter['coolfilters'][0]['value'] . ',' . $coolfilter['coolfilters'][1]['value']; ?>" disabled="disabled" />
-					<?php echo $currency_symbol_right; ?>
+
 					<div id="slider-range" class="slider-range"></div>
 					</div>
 					<script>
