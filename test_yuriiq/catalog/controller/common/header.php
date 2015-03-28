@@ -169,13 +169,15 @@ class ControllerCommonHeader extends Controller {
 				
 
 				// Level 1
+				$image_menu = $this->model_tool_image->resize($category['image'], 160, 30);
 				$this->data['categories'][] = array(
 					'name'     => $category['name'],
 					'name2'    => $category['seo_h1'],
 					'children' => $children_data,
 					'active'   => in_array($category['category_id'], $parts),
 					'column'   => $category['column'] ? $category['column'] : 1,
-					'href'     => $this->url->link('product/category', 'path=' . $category['category_id'])
+					'href'     => $this->url->link('product/category', 'path=' . $category['category_id'] ),
+					'image_menu' => $image_menu  
 				);
 			}
 		}
