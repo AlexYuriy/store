@@ -8,7 +8,7 @@
         <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
         <?php } ?>
         <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
-        <?php if ($product['price']) { ?>
+        <?php if ($product['price']>0) { ?>
         <div class="price">
           <?php if (!$product['special']) { ?>
           <?php echo $product['price']; ?>
