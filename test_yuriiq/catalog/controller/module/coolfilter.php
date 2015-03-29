@@ -42,8 +42,10 @@ class ControllerModuleCoolfilter extends Controller {
 			}
 			$categories_id[] = $categorie_id; 
 			$categories_id = array_merge_recursive($categories_id, $this->model_catalog_coolfilter->getChildrenCategorie($categorie_id));
-			// Получить соотвествия для фильтров в данной категории	
+			// Получить соотвествия для фильтров в данной категории
+			echo "I coolfilter_types=" .  serialize ( $coolfilter_types ) . "; categories_id =" . implode (":",$categories_id)  ;	
 			$coolfilterItemNames = $this->getcoolfilterItemNames($coolfilter_types, $categories_id);
+			echo "I coolfilterItemNames=" .  serialize ( $coolfilterItemNames ) ;
 			// Передача данных фильтра в представление
 			$this->data['coolfilters'] = array_merge_recursive($coolfilter_group_options_by_index, $coolfilterItemNames);
 			// Сортировка данных фильтра
@@ -57,78 +59,13 @@ class ControllerModuleCoolfilter extends Controller {
 			$this->render();
 		}
 	}
-	
-	public function getVal() {
-			$this->language->load('module/coolfilter');
-			$this->data['text_apply'] = $this->language->get('text_apply');
-			$this->data['count_enabled'] = $this->config->get('count_enabled');
-			$this->data['currency_symbol_left'] = $this->currency->getSymbolLeft($this->currency->getCode());
-			$this->data['currency_symbol_right'] = $this->currency->getSymbolRight($this->currency->getCode());
-			$this->data['count_symbols'] = $this->currency->getDecimalPlace($this->currency->getCode());
-			$this->load->model('catalog/product');
-			$this->load->model('catalog/category');
-			$this->load->model('catalog/coolfilter');
-			// Получить id группы фильтра
-			if (isset($this->request->get['coolfilter_group_id'])) {
-				$coolfilter_group_id = $this->request->get['coolfilter_group_id'];
-			} else {
-				$coolfilter_group_id = 0;
-			}
-			$this->data['coolfilter_group_id'] = $coolfilter_group_id;
-			// Получить id категории
-			if (isset($this->request->get['categorie_id'])) {
-				$categorie_id = $this->request->get['categorie_id'];
-			} else {
-				$categorie_id = 0;
-			}
-			$category = $this->model_catalog_category->getCategory($categorie_id)  ;
-			if ($category) $this->data['heading_title'] = $category['name']  ; //$this->language->get('heading_title');
-			else $this->data['heading_title'] = '';
-			$this->data['price_id'] = 'price_' . $categorie_id . $coolfilter_group_id;
-			$this->data['slider_range_id'] = 'slider_range_' . $categorie_id . $coolfilter_group_id;
-			// Получить все фильтры данной группы для данной категории
-			$coolfilter_group_options = $this->model_catalog_coolfilter->getOptionBycoolfilterGroupsId($coolfilter_group_id, $categorie_id);
-			if (!empty($coolfilter_group_options)) {
-				// Выбрать уникальные типы фильтров
-				// Для уменьшения количества циклов, в цикл добвалена реструктуризация ключей массива фильтров по индекску
-				$coolfilter_types = array();
-				$coolfilter_group_options_by_index = array();
-				foreach ($coolfilter_group_options as $coolfilter_group_option) {
-					$coolfilter_types_parts = explode('_', $coolfilter_group_option['type_index']);
-					$coolfilter_types[reset($coolfilter_types_parts)][$coolfilter_group_option['type_index']] = end($coolfilter_types_parts);
-					// Реструктуризация
-					$coolfilter_group_options_by_index[$coolfilter_group_option['type_index']] = $coolfilter_group_option;
-				}
-				$categories_id[] = $categorie_id; 
-				$categories_id = array_merge_recursive($categories_id, $this->model_catalog_coolfilter->getChildrenCategorie($categorie_id));
-				// Получить соотвествия для фильтров в данной категории	
-				$coolfilterItemNames = $this->getcoolfilterItemNames($coolfilter_types, $categories_id);
-				// Передача данных фильтра в представление
-				$this->data['coolfilters'] = array_merge_recursive($coolfilter_group_options_by_index, $coolfilterItemNames);
-				// Сортировка данных фильтра
-				uasort($this->data['coolfilters'], array('ControllerModulecoolfilter', 'sortcoolfilters'));
-				$this->template = $this->config->get('config_template') . '/template/module/cool_category_filter.tpl';
-				if (!file_exists(DIR_TEMPLATE .  $this->template )) {
-					$this->template = 'default/template/module/cool_category_filter.tpl';
-				}
-				$this->response->setOutput($this->render());				
-			}
-//		echo 'data=' . 0 . PHP_EOL;		
-//		$this->response->setOutput(json_encode($this->data['coolfilters']));
-//		$this->response->setOutput($this->render());		
-	}
 
 	// Сортировка фильтров по значению sort_order, указанному в системе
 	static private function sortcoolfilters($array_first, $array_second) {
-
-	if ($array_first['sort_order'] == $array_second['sort_order']) {
-
-		return 0; 
-	}
-	
-
-	return ($array_first['sort_order'] < $array_second['sort_order']) ? -1 : 1; 
-
+		if ($array_first['sort_order'] == $array_second['sort_order']) {
+			return 0; 
+		}
+		return ($array_first['sort_order'] < $array_second['sort_order']) ? -1 : 1; 
 	}
 	
 	private function getUrl() {
