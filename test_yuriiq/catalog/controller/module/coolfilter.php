@@ -43,9 +43,7 @@ class ControllerModuleCoolfilter extends Controller {
 			$categories_id[] = $categorie_id; 
 			$categories_id = array_merge_recursive($categories_id, $this->model_catalog_coolfilter->getChildrenCategorie($categorie_id));
 			// Получить соотвествия для фильтров в данной категории
-			echo "I coolfilter_types=" .  serialize ( $coolfilter_types ) . "; categories_id =" . implode (":",$categories_id)  ;	
 			$coolfilterItemNames = $this->getcoolfilterItemNames($coolfilter_types, $categories_id);
-			echo "I coolfilterItemNames=" .  serialize ( $coolfilterItemNames ) ;
 			// Передача данных фильтра в представление
 			$this->data['coolfilters'] = array_merge_recursive($coolfilter_group_options_by_index, $coolfilterItemNames);
 			// Сортировка данных фильтра

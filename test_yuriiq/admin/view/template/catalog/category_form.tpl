@@ -52,22 +52,6 @@
                 <td><?php echo $entry_description; ?></td>
                 <td><textarea name="category_description[<?php echo $language['language_id']; ?>][description]" id="description<?php echo $language['language_id']; ?>"><?php echo isset($category_description[$language['language_id']]) ? $category_description[$language['language_id']]['description'] : ''; ?></textarea></td>
               </tr>
-            <tr>
-              <td><?php echo $entry_download; ?></td>
-              <td><input type="text" name="download" value="" /></td>
-            </tr>			
-            <tr>
-              <td>&nbsp;</td>
-              <td><div id="category-download" class="scrollbox">
-                  <?php $class = 'odd'; ?>
-                  <?php foreach ($category_downloads as $category_download) { ?>
-                  <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
-                  <div id="category-download<?php echo $category_download['download_id']; ?>" class="<?php echo $class; ?>"> <?php echo $category_download['name']; ?><img src="view/image/delete.png" alt="" />
-                    <input type="hidden" name="category_download[]" value="<?php echo $category_download['download_id']; ?>" />
-                  </div>
-                  <?php } ?>
-                </div></td>
-            </tr>
             </table>
           </div>
           <?php } ?>
@@ -91,6 +75,22 @@
                   <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
                   <div id="category-filter<?php echo $category_filter['filter_id']; ?>" class="<?php echo $class; ?>"><?php echo $category_filter['name']; ?><img src="view/image/delete.png" alt="" />
                     <input type="hidden" name="category_filter[]" value="<?php echo $category_filter['filter_id']; ?>" />
+                  </div>
+                  <?php } ?>
+                </div></td>
+            </tr>
+            <tr>
+              <td><?php echo $entry_download; ?></td>
+              <td><input type="text" name="download" value="" /></td>
+            </tr>			
+            <tr>
+              <td>&nbsp;</td>
+              <td><div id="category-download" class="scrollbox">
+                  <?php $class = 'odd'; ?>
+                  <?php foreach ($category_downloads as $category_download) { ?>
+                  <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+                  <div id="category-download<?php echo $category_download['download_id']; ?>" class="<?php echo $class; ?>"> <?php echo $category_download['name']; ?><img src="view/image/delete.png" alt="" />
+                    <input type="hidden" name="category_download[]" value="<?php echo $category_download['download_id']; ?>" />
                   </div>
                   <?php } ?>
                 </div></td>
