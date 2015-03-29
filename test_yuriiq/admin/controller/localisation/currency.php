@@ -361,21 +361,22 @@ class ControllerLocalisationCurrency extends Controller {
 		}
 
 		if (isset($this->request->post['symbol_left'])) {
-			$this->data['symbol_left'] = $this->request->post['symbol_left'];
+			$symbol_left = $this->request->post['symbol_left'];
 		} elseif (!empty($currency_info)) {
-			$this->data['symbol_left'] = $currency_info['symbol_left'];
+			$symbol_left = $currency_info['symbol_left'];
 		} else {
-			$this->data['symbol_left'] = '';
+			$symbol_left = '';
 		}
+		$this->data['symbol_left'] = htmlspecialchars($symbol_left);
 
 		if (isset($this->request->post['symbol_right'])) {
-			$this->data['symbol_right'] = $this->request->post['symbol_right'];
+			$symbol_right = $this->request->post['symbol_right'];
 		} elseif (!empty($currency_info)) {
-			$this->data['symbol_right'] = $currency_info['symbol_right'];
+			$symbol_right = $currency_info['symbol_right'];
 		} else {
-			$this->data['symbol_right'] = '';
+			$symbol_right = '';
 		}
-
+		$this->data['symbol_right'] = htmlspecialchars($symbol_right);
 		if (isset($this->request->post['decimal_place'])) {
 			$this->data['decimal_place'] = $this->request->post['decimal_place'];
 		} elseif (!empty($currency_info)) {
