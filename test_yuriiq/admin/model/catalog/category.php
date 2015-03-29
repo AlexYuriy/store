@@ -37,6 +37,12 @@ class ModelCatalogCategory extends Model {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "category_to_store SET category_id = '" . (int)$category_id . "', store_id = '" . (int)$store_id . "'");
 			}
 		}
+		
+		if (isset($data['category_download'])) {
+			foreach ($data['category_download'] as $download_id) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "category_to_download SET category_id = '" . (int)$category_id . "', download_id = '" . (int)$download_id . "'");
+			}
+		}
 
 		// Set which layout to use with this category
 		if (isset($data['category_layout'])) {
@@ -67,7 +73,7 @@ class ModelCatalogCategory extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "category_description WHERE category_id = '" . (int)$category_id . "'");
 
 		foreach ($data['category_description'] as $language_id => $value) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', description = '" . $this->db->escape($value['description']) . "', doc_links = '" . $this->db->escape($value['doc_links']) . "', seo_title = '" . $this->db->escape($value['seo_title']) . "', seo_h1 = '" . $this->db->escape($value['seo_h1']) . "'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', description = '" . $this->db->escape($value['description']) . "', seo_title = '" . $this->db->escape($value['seo_title']) . "', seo_h1 = '" . $this->db->escape($value['seo_h1']) . "'");
 		}
 
 		// MySQL Hierarchical Data Closure Table Pattern
@@ -137,6 +143,14 @@ class ModelCatalogCategory extends Model {
 			}
 		}
 		
+		$this->db->query("DELETE FROM " . DB_PREFIX . "category_to_download WHERE category_id = '" . (int)$category_id . "'");
+
+		if (isset($data['category_download'])) {
+			foreach ($data['category_download'] as $download_id) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "category_to_download SET category_id = '" . (int)$category_id . "', download_id = '" . (int)$download_id . "'");
+			}
+		}		
+		
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_related_wb WHERE category_id = '" . (int)$category_id . "'");
 	
 		if (isset($data['product_related'])) {
@@ -200,11 +214,11 @@ class ModelCatalogCategory extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "category_filter WHERE category_id = '" . (int)$category_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "category_to_store WHERE category_id = '" . (int)$category_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "category_to_layout WHERE category_id = '" . (int)$category_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "category_to_download WHERE category_id = '" . (int)$category_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_category WHERE category_id = '" . (int)$category_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'category_id=" . (int)$category_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_related_wb WHERE category_id = '" . (int)$category_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "article_related_wb WHERE category_id = '" . (int)$category_id . "'");
-
 		$this->cache->delete('category');
 	} 
 
@@ -276,7 +290,6 @@ class ModelCatalogCategory extends Model {
 				'seo_title'        => $result['seo_title'],
 				'seo_h1'           => $result['seo_h1'],
 				'meta_keyword'     => $result['meta_keyword'],
-				'doc_links'		   => $result['doc_links'],
 				'meta_description' => $result['meta_description'],
 				'description'      => $result['description']
 			);
@@ -383,6 +396,21 @@ class ModelCatalogCategory extends Model {
 		}
 
 		return $category_data;
+	}
+	
+	public function getCategoryDownloads($category_id) {
+		$category_download_data = array();
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category_to_download WHERE category_id = '" . (int)$category_id . "'");
+		foreach ($query->rows as $result) {
+			$category_download_data[] = $result['download_id'];
+		}
+
+		return $category_download_data;
+	}
+	
+	public function getTotalCategoriesByDownloadId($download_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "category_to_download WHERE download_id = '" . (int)$download_id . "'");
+		return $query->row['total'];
 	}
 	
 	public function getProductRelated($category_id) {

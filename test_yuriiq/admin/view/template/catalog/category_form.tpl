@@ -52,10 +52,22 @@
                 <td><?php echo $entry_description; ?></td>
                 <td><textarea name="category_description[<?php echo $language['language_id']; ?>][description]" id="description<?php echo $language['language_id']; ?>"><?php echo isset($category_description[$language['language_id']]) ? $category_description[$language['language_id']]['description'] : ''; ?></textarea></td>
               </tr>
-			  <tr>
-                <td><?php echo $entry_description; ?></td>
-				 <td><textarea name="category_description[<?php echo $language['language_id']; ?>][doc_links]"  id="doc_links<?php echo $language['language_id']; ?>"><?php echo isset($category_description[$language['language_id']]) ? $category_description[$language['language_id']]['doc_links'] : ''; ?></textarea></td>
-			  </tr>
+            <tr>
+              <td><?php echo $entry_download; ?></td>
+              <td><input type="text" name="download" value="" /></td>
+            </tr>			
+            <tr>
+              <td>&nbsp;</td>
+              <td><div id="category-download" class="scrollbox">
+                  <?php $class = 'odd'; ?>
+                  <?php foreach ($category_downloads as $category_download) { ?>
+                  <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+                  <div id="category-download<?php echo $category_download['download_id']; ?>" class="<?php echo $class; ?>"> <?php echo $category_download['name']; ?><img src="view/image/delete.png" alt="" />
+                    <input type="hidden" name="category_download[]" value="<?php echo $category_download['download_id']; ?>" />
+                  </div>
+                  <?php } ?>
+                </div></td>
+            </tr>
             </table>
           </div>
           <?php } ?>
@@ -249,15 +261,6 @@ CKEDITOR.replace('description<?php echo $language['language_id']; ?>', {
 	filebrowserFlashUploadUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
 	
 });
-CKEDITOR.replace('doc_links<?php echo $language['language_id']; ?>', {
-	filebrowserBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserImageBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserFlashBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserUploadUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserImageUploadUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserFlashUploadUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
-	
-});
 
 <?php } ?>
 //--></script> 
@@ -295,6 +298,44 @@ $('input[name=\'path\']').autocomplete({
 });
 //--></script> 
 <script type="text/javascript"><!--
+// Downloads
+$('input[name=\'download\']').autocomplete({
+	delay: 500,
+	source: function(request, response) {
+		$.ajax({
+			url: 'index.php?route=catalog/download/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request.term),
+			dataType: 'json',
+			success: function(json) {		
+				response($.map(json, function(item) {
+					return {
+						label: item.name,
+						value: item.download_id
+					}
+				}));
+			}
+		});
+	}, 
+	select: function(event, ui) {
+		$('#category-download' + ui.item.value).remove();
+		
+		$('#category-download').append('<div id="category-download' + ui.item.value + '">' + ui.item.label + '<img src="view/image/delete.png" alt="" /><input type="hidden" name="category_download[]" value="' + ui.item.value + '" /></div>');
+
+		$('#category-download div:odd').attr('class', 'odd');
+		$('#category-download div:even').attr('class', 'even');
+				
+		return false;
+	},
+	focus: function(event, ui) {
+      return false;
+   }
+});
+
+$('#category-download div img').live('click', function() {
+	$(this).parent().remove();
+	
+	$('#category-download div:odd').attr('class', 'odd');
+	$('#category-download div:even').attr('class', 'even');	
+});
 // Filter
 $('input[name=\'filter\']').autocomplete({
 	delay: 500,

@@ -214,7 +214,8 @@ class ControllerCatalogCategory extends Controller {
 		$this->data['entry_seo_h1'] = $this->language->get('entry_seo_h1');
 		
 		$this->data['entry_related_wb'] = $this->language->get('entry_related_wb');
-		$this->data['entry_related_article'] = $this->language->get('entry_related_article');
+		$this->data['entry_related_article'] = $this->language->get('entry_related_article'); 
+		$this->data['entry_download'] = $this->language->get('entry_download');
 
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
@@ -441,13 +442,32 @@ class ControllerCatalogCategory extends Controller {
 		} else {
 			$products = array();
 		}
-
-	 				
-
 		$this->data['product_related'] = array();
-			
-		$this->load->model('catalog/product');
-		
+		// Downloads
+		$this->load->model('catalog/download');
+
+		if (isset($this->request->post['category_download'])) {
+			$category_downloads = $this->request->post['category_download'];
+		} elseif (isset($this->request->get['category_id'])) {
+			$category_downloads = $this->model_catalog_category->getCategoryDownloads($this->request->get['category_id']);
+		} else {
+			$category_downloads = array();
+		}
+
+		$this->data['category_downloads'] = array();
+
+		foreach ($category_downloads as $download_id) {
+			$download_info = $this->model_catalog_download->getDownload($download_id);
+
+			if ($download_info) {
+				$this->data['category_downloads'][] = array(
+					'download_id' => $download_info['download_id'],
+					'name'        => $download_info['name']
+				);
+			}
+		}
+		// download /
+		$this->load->model('catalog/product');		
 		foreach ($products as $product_id) {
 			$related_info = $this->model_catalog_product->getProduct($product_id);
 			
