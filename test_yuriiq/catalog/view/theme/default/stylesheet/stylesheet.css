@@ -368,7 +368,7 @@ label {
 /* menu */
 #menu {
 	background: #fff;
-	height: 40px;
+	height: 43px;
 	margin-bottom: 15px;
 	position: relative;
 	-webkit-border-radius: 5px 5px 0 0;
@@ -376,13 +376,12 @@ label {
 	-khtml-border-radius: 5px 5px 0 0;
 	border-radius: 5px 5px 0 0;
 	border: 1px solid #aaa;
-	padding-top: 3px;
 	padding-bottom: 5px;
 	z-index:9;
 }
 #menu img {
 	vertical-align: top;
-	padding-right: 1px;
+	padding: 4px 1px 4px 0;
 }
 #menu ul {
 	list-style: none;
@@ -409,17 +408,11 @@ label {
 	line-height: 14px;
 	text-decoration: none;
 	display: block;
-	padding: 5px;
-	margin: 3px;
 	position: relative;
 }
 #menu > ul   li:hover > a , #menu > ul > li > a.active {
 	background: #00ABCB url(../image/menu_act.png) center left repeat-x;
 	color: #fff;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
 }
 
 #menu > ul   li > a.hidden {

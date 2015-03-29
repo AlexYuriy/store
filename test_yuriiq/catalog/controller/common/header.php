@@ -169,7 +169,7 @@ class ControllerCommonHeader extends Controller {
 				
 
 				// Level 1
-				$image_menu = $this->model_tool_image->resize($category['image'], 160, 30);
+				$image_menu = $this->model_tool_image->resize($category['image'], 160, 40);
 				$this->data['categories'][] = array(
 					'name'     => $category['name'],
 					'name2'    => $category['seo_h1'],
