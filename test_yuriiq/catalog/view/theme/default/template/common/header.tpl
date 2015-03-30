@@ -97,10 +97,8 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
 <?php if ($categories) { ?>
 <div id="menu">
   <ul>
-    <?php $n = sizeof($categories);
-	foreach ($categories as $category) { ?>
-    <li <?php --$n; 
-	if (!$n) echo ' id="last" '; ?> >
+    <?php foreach ($categories as $category) { ?>
+    <li>
 	<a href="<?php echo $category['href']; ?>" <?php if ($category['active']) echo 'class="active"'; ?> >
 	  <?php $image_menu = $category['image_menu'];
 	  	if ($image_menu) { ?><img src="<?php echo $image_menu; ?>" alt="<?php echo $name; ?>" /> <?php } ?> 

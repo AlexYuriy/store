@@ -859,7 +859,7 @@ class ControllerProductProduct extends Controller {
 		}
 
 		$download_info = $this->model_catalog_product->getDownload($product_id, $download_id);
-
+	
 		if ($download_info) {
 			$file = DIR_DOWNLOAD . $download_info['filename'];
 			$mask = basename($download_info['mask']);

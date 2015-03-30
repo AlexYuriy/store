@@ -395,9 +395,13 @@ label {
 	background: #fff url(../image/menu_sep.png) center right no-repeat;
 	padding: 0;
 }
-
-#menu > ul > li#last  {
+#menu > ul > li:first-child {
+	border-radius: 5px 0 0 0;
+}
+#menu > ul > li:last-child  {
 	background: #fff;
+	width: 16.67%;
+	border-radius: 0 5px 0 0;
 }
  #menu > ul > li > a {
 	text-align: center;	
@@ -414,7 +418,12 @@ label {
 	background: #00ABCB url(../image/menu_act.png) center left repeat-x;
 	color: #fff;
 }
-
+#menu > ul > li:first-child:hover > a , #menu > ul > li:first-child > a.active {
+	border-radius: 5px 0 0 0;
+}
+#menu > ul > li:last-child:hover > a , #menu > ul > li:last-child > a.active {
+	border-radius: 0 5px 0 0;
+}
 #menu > ul   li > a.hidden {
 	display: none;
 	margin-top: -42px;
