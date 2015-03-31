@@ -143,7 +143,7 @@ class ModelCatalogCategory extends Model {
 			}
 		}
 		
-		/*$this->db->query("DELETE FROM " . DB_PREFIX . "category_to_download WHERE category_id = '" . (int)$category_id . "'");*/
+		$this->db->query("DELETE FROM " . DB_PREFIX . "category_to_download WHERE category_id = '" . (int)$category_id . "'");
 
 		if (isset($data['category_download'])) {
 			foreach ($data['category_download'] as $download_id) {

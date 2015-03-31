@@ -3,16 +3,10 @@
 class ControllerModuleDownloads extends Controller {
 	protected function index() {
 		$this->language->load('module/downloads');
-
-		//Get the title from the language file
 		$this->data['heading_title'] = $this->language->get('heading_title');
 		if (isset($this->request->get['path'])) {
 			$parts = explode('_', (string)$this->request->get['path']);
-		} else {
-			$parts = array();
-		}
-		if (isset($parts[0])) {
-			$category_id = $parts[0];
+			$category_id = (int)array_pop($parts);
 		} else {
 			$category_id = 0;
 		}
@@ -23,28 +17,9 @@ class ControllerModuleDownloads extends Controller {
 		foreach ($results as $result) {
 			if (file_exists(DIR_DOWNLOAD . $result['filename'])) {
 				$size = filesize(DIR_DOWNLOAD . $result['filename']);
-				$i = 0;
-				$suffix = array(
-					'B',
-					'KB',
-					'MB',
-					'GB',
-					'TB',
-					'PB',
-					'EB',
-					'ZB',
-					'YB'
-				);
-
-				while (($size / 1024) > 1) {
-					$size = $size / 1024;
-					$i++;
-				}
-
 				$this->data['downloads'][] = array(
 				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
 				'name'       => $result['name'],
-				'size'       => round(substr($size, 0, strpos($size, '.') + 4), 2) . $suffix[$i],
 				'href'       => $this->url->link('module/downloads/download', 'category_id='. $category_id . '&download_id=' . $result['download_id'])
 				);
 			}

@@ -607,6 +607,10 @@ class ModelToolExchange1c extends Model {
 			,'top'            => isset($data['top']) ? $data['top'] : 1
 			,'parent_id'      => $parent
 			,'category_store' => isset($data['category_store']) ? $data['category_store'] : array(0)
+			,'category_download' => isset($data['category_download']) ? $data['category_download'] : array(0)
+			,'category_filter'=> isset($data['category_download']) ? $data['category_download'] : array(0)
+			,'article_related'=> isset($data['category_download']) ? $data['category_download'] : array(0)
+			,'category_layout'=> isset($data['category_download']) ? $data['category_download'] : array(0)
 			,'keyword'        => isset($data['keyword']) ? $data['keyword'] : ''
 			,'image'          => (isset($category->Картинка)) ? (string)$category->Картинка : ((isset($data['image'])) ? $data['image'] : 'no_image.jpg')
 			,'sort_order'     => (isset($category->Сортировка)) ? (int)$category->Сортировка : ((isset($data['sort_order'])) ? $data['sort_order'] : 0)
