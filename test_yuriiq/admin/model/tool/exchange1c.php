@@ -435,7 +435,7 @@ class ModelToolExchange1c extends Model {
 		$data = array();
 
 		// Группы
-		if($xml->Классификатор->Группы) $this->insertCategory($xml->Классификатор->Группы->Группа, 0, $language_id);
+		if($xml->Классификатор->Группы) $this->insertCategory($xml->Классификатор->Группы->Группа, 0 );
 
 		// Свойства
 		if ($xml->Классификатор->Свойства) $this->insertAttribute($xml->Классификатор->Свойства->Свойство);
@@ -600,97 +600,54 @@ class ModelToolExchange1c extends Model {
 	 * @param	array	новые данные
 	 * @return	array
 	 */
-	private function initCategory($category, $parent, $data = array(), $language_id) {
-
-		$result = array(
-			 'status'         => isset($data['status']) ? $data['status'] : 1
-			,'top'            => isset($data['top']) ? $data['top'] : 1
-			,'parent_id'      => $parent
-			,'category_store' => isset($data['category_store']) ? $data['category_store'] : array(0)
-			,'category_download' => isset($data['category_download']) ? $data['category_download'] : array(0)
-			,'category_filter'=> isset($data['category_download']) ? $data['category_download'] : array(0)
-			,'article_related'=> isset($data['category_download']) ? $data['category_download'] : array(0)
-			,'category_layout'=> isset($data['category_download']) ? $data['category_download'] : array(0)
-			,'keyword'        => isset($data['keyword']) ? $data['keyword'] : ''
-			,'image'          => (isset($category->Картинка)) ? (string)$category->Картинка : ((isset($data['image'])) ? $data['image'] : 'no_image.jpg')
-			,'sort_order'     => (isset($category->Сортировка)) ? (int)$category->Сортировка : ((isset($data['sort_order'])) ? $data['sort_order'] : 0)
-			,'column'         => 1
-		);
-
-		$result['category_description'] = array(
-			1 => array(
-				 'name'             => (string)$category->Наименование
-				,'meta_keyword'     => (isset($data['category_description'][$language_id]['meta_keyword'])) ? $data['category_description'][$language_id]['meta_keyword'] : ''
-				,'meta_description'	=> (isset($data['category_description'][$language_id]['meta_description'])) ? $data['category_description'][$language_id]['meta_description'] : ''
-				,'description'		=> (isset($category->Описание)) ? (string)$category->Описание : ((isset($data['category_description'][$language_id]['description'])) ? $data['category_description'][$language_id]['description'] : '')
-				,'seo_title'        => (isset($data['category_description'][$language_id]['seo_title'])) ? $data['category_description'][$language_id]['seo_title'] : (string)$category->Наименование
-				,'seo_h1'           => (isset($data['category_description'][$language_id]['seo_h1'])) ? $data['category_description'][$language_id]['seo_h1'] : (string)$category->Наименование
-			),
-			2 => array(
-				 'name'             => (string)$category->Наименование
-				,'meta_keyword'     => (isset($data['category_description'][$language_id]['meta_keyword'])) ? $data['category_description'][$language_id]['meta_keyword'] : ''
-				,'meta_description'	=> (isset($data['category_description'][$language_id]['meta_description'])) ? $data['category_description'][$language_id]['meta_description'] : ''
-				,'description'		=> (isset($category->Описание)) ? (string)$category->Описание : ((isset($data['category_description'][$language_id]['description'])) ? $data['category_description'][$language_id]['description'] : '')
-				,'seo_title'        => (isset($data['category_description'][$language_id]['seo_title'])) ? $data['category_description'][$language_id]['seo_title'] : (string)$category->Наименование
-				,'seo_h1'           => (isset($data['category_description'][$language_id]['seo_h1'])) ? $data['category_description'][$language_id]['seo_h1'] : (string)$category->Наименование
-			),
-			3 => array(
-				 'name'             => (string)$category->Наименование
-				,'meta_keyword'     => (isset($data['category_description'][$language_id]['meta_keyword'])) ? $data['category_description'][$language_id]['meta_keyword'] : ''
-				,'meta_description'	=> (isset($data['category_description'][$language_id]['meta_description'])) ? $data['category_description'][$language_id]['meta_description'] : ''
-				,'description'		  => (isset($category->Описание)) ? (string)$category->Описание : ((isset($data['category_description'][$language_id]['description'])) ? $data['category_description'][$language_id]['description'] : '')
-				,'seo_title'        => (isset($data['category_description'][$language_id]['seo_title'])) ? $data['category_description'][$language_id]['seo_title'] : (string)$category->Наименование
-				,'seo_h1'           => (isset($data['category_description'][$language_id]['seo_h1'])) ? $data['category_description'][$language_id]['seo_h1'] : (string)$category->Наименование
-			),
-		);
-
-		return $result;
+	private function initCategory($category, $parent, $data = array() ) {
+		$data['parent_id'] 	= $parent;
+		$data['image'] 		= (isset($category->Картинка)) ? (string)$category->Картинка : ((isset($data['image'])) ? $data['image'] : 'no_image.jpg') ;
+		$data['sort_order'] 	= (isset($category->Сортировка))  ? (int)$category->Сортировка : ((isset($data['sort_order'])) ? $data['sort_order'] : 0) ;
+		$data['column']	 	= 1;
+		if (!isset($data['status'])) $data['status'] =  1;
+		if (!isset($data['keyword'])) $data['keyword'] = '';
+		if (isset($data['category_description'])) {
+			foreach ($data['category_description'] as $category_description) {
+				$category_description['name'] = (string)$category->Наименование ;
+				if (isset($category->Описание)) {
+					$category_description['description'] = (string)$category->Описание ;
+				}
+			}
+		} else $data['category_description'] = array(0);
+		return $data;
 	}
-
-
 	/**
 	 * Функция добавляет корневую категорию и всех детей
 	 *
 	 * @param	SimpleXMLElement
 	 * @param	int
 	 */
-	private function insertCategory($xml, $parent = 0, $language_id) {
-
+	private function insertCategory($xml, $parent = 0 ) {
 		$this->load->model('catalog/category');
-
-		foreach ($xml as $category){
-
+		foreach ($xml as $category) {
 			if (isset($category->Ид) && isset($category->Наименование) ){ 
 				$id =  (string)$category->Ид;
-
 				$data = array();
-
 				$query = $this->db->query('SELECT * FROM `' . DB_PREFIX . 'category_to_1c` WHERE `1c_category_id` = "' . $this->db->escape($id) . '"');
-
 				if ($query->num_rows) {
 					$category_id = (int)$query->row['category_id'];
 					$data = $this->model_catalog_category->getCategory($category_id);
 					$data['category_description'] = $this->model_catalog_category->getCategoryDescriptions($category_id);
-					$data = $this->initCategory($category, $parent, $data, $language_id);
+					$data = $this->initCategory($category, $parent, $data );
 					$this->model_catalog_category->editCategory($category_id, $data);
 				}
 				else {
-					$data = $this->initCategory($category, $parent, array(), $language_id);
-					//$category_id = $this->getCategoryIdByName($data['category_description'][1]['name']) ? $this->getCategoryIdByName($data['category_description'][1]['name']) : $this->model_catalog_category->addCategory($data);
+					$data = $this->initCategory($category, $parent, array() );
 					$category_id = $this->model_catalog_category->addCategory($data);
 					$this->db->query('INSERT INTO `' . DB_PREFIX . 'category_to_1c` SET category_id = ' . (int)$category_id . ', `1c_category_id` = "' . $this->db->escape($id) . '"');
 				}
-
 				$this->CATEGORIES[$id] = $category_id;
 			}
-
-			if ($category->Группы) $this->insertCategory($category->Группы->Группа, $category_id, $language_id);
+			if ($category->Группы) $this->insertCategory($category->Группы->Группа, $category_id );
 		}
-
 		unset($xml);
 	}
-
-
 	/**
 	 * Создает атрибуты из свойств
 	 *
@@ -1104,17 +1061,6 @@ class ModelToolExchange1c extends Model {
 			return false;
 		}
 	}
-
-	private function getCategoryIdByName($name) {
-		$query = $this->db->query("SELECT category_id FROM `" . DB_PREFIX . "category_description` WHERE `name` = '" . $name . "'");
-		if ($query->num_rows) {
-			return $query->row['category_id'];
-		}
-		else {
-			return false;
-		}
-	}
-
 	/**
 	 * Получает путь к картинке и накладывает водяные знаки
 	 *

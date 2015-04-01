@@ -98,6 +98,13 @@ class ControllerModuleDownloads extends Controller {
 		$this->response->setOutput($this->render());
 	}
 	
+	public function install() {
+		$this->load->model('module/downloads');
+		$this->model_module_downloads->initDownload();
+	}
+
+	public function uninstall() { }
+
 	private function validate() {
 		if (!$this->user->hasPermission('modify', 'module/downloads')) {
 			$this->error['warning'] = $this->language->get('error_permission');

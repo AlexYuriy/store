@@ -54,7 +54,7 @@ class ModelCatalogCategory extends Model {
 		}
 		
 		$this->cache->delete('seo_pro');
-        $this->cache->delete('seo_url');
+		$this->cache->delete('seo_url');
 
 		if ($data['keyword']) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'category_id=" . (int)$category_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
@@ -127,33 +127,29 @@ class ModelCatalogCategory extends Model {
 			$this->db->query("REPLACE INTO `" . DB_PREFIX . "category_path` SET category_id = '" . (int)$category_id . "', `path_id` = '" . (int)$category_id . "', level = '" . (int)$level . "'");
 		}
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "category_filter WHERE category_id = '" . (int)$category_id . "'");
-
 		if (isset($data['category_filter'])) {
+			$this->db->query("DELETE FROM " . DB_PREFIX . "category_filter WHERE category_id = '" . (int)$category_id . "'");
 			foreach ($data['category_filter'] as $filter_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "category_filter SET category_id = '" . (int)$category_id . "', filter_id = '" . (int)$filter_id . "'");
 			}		
 		}
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "category_to_store WHERE category_id = '" . (int)$category_id . "'");
-
 		if (isset($data['category_store'])) {		
+			$this->db->query("DELETE FROM " . DB_PREFIX . "category_to_store WHERE category_id = '" . (int)$category_id . "'");
 			foreach ($data['category_store'] as $store_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "category_to_store SET category_id = '" . (int)$category_id . "', store_id = '" . (int)$store_id . "'");
 			}
 		}
-		
-		$this->db->query("DELETE FROM " . DB_PREFIX . "category_to_download WHERE category_id = '" . (int)$category_id . "'");
 
 		if (isset($data['category_download'])) {
+			$this->db->query("DELETE FROM " . DB_PREFIX . "category_to_download WHERE category_id = '" . (int)$category_id . "'");
 			foreach ($data['category_download'] as $download_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "category_to_download SET category_id = '" . (int)$category_id . "', download_id = '" . (int)$download_id . "'");
 			}
-		}		
-		
-		$this->db->query("DELETE FROM " . DB_PREFIX . "product_related_wb WHERE category_id = '" . (int)$category_id . "'");
+		}
 	
 		if (isset($data['product_related'])) {
+			$this->db->query("DELETE FROM " . DB_PREFIX . "product_related_wb WHERE category_id = '" . (int)$category_id . "'");
 			foreach ($data['product_related'] as $related_id) {
 				$this->db->query("DELETE FROM " . DB_PREFIX . "product_related_wb WHERE category_id = '" . (int)$category_id . "' AND product_id = '" . (int)$related_id . "'");
 				$this->db->query("INSERT INTO " . DB_PREFIX . "product_related_wb SET category_id = '" . (int)$category_id . "', product_id = '" . (int)$related_id . "'");
@@ -162,9 +158,8 @@ class ModelCatalogCategory extends Model {
 			}
 		}
 		
-		$this->db->query("DELETE FROM " . DB_PREFIX . "article_related_wb WHERE category_id = '" . (int)$category_id . "'");
-	
 		if (isset($data['article_related'])) {
+			$this->db->query("DELETE FROM " . DB_PREFIX . "article_related_wb WHERE category_id = '" . (int)$category_id . "'");
 			foreach ($data['article_related'] as $related_id) {
 				$this->db->query("DELETE FROM " . DB_PREFIX . "article_related_wb WHERE category_id = '" . (int)$category_id . "' AND article_id = '" . (int)$related_id . "'");
 				$this->db->query("INSERT INTO " . DB_PREFIX . "article_related_wb SET category_id = '" . (int)$category_id . "', article_id = '" . (int)$related_id . "'");
@@ -173,9 +168,8 @@ class ModelCatalogCategory extends Model {
 			}
 		}
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "category_to_layout WHERE category_id = '" . (int)$category_id . "'");
-
 		if (isset($data['category_layout'])) {
+			$this->db->query("DELETE FROM " . DB_PREFIX . "category_to_layout WHERE category_id = '" . (int)$category_id . "'");
 			foreach ($data['category_layout'] as $store_id => $layout) {
 				if ($layout['layout_id']) {
 					$this->db->query("INSERT INTO " . DB_PREFIX . "category_to_layout SET category_id = '" . (int)$category_id . "', store_id = '" . (int)$store_id . "', layout_id = '" . (int)$layout['layout_id'] . "'");
@@ -184,10 +178,8 @@ class ModelCatalogCategory extends Model {
 		}
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'category_id=" . (int)$category_id. "'");
-
 		$this->cache->delete('seo_pro');
-        $this->cache->delete('seo_url');
-		
+		$this->cache->delete('seo_url');
 		if ($data['keyword']) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'category_id=" . (int)$category_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
