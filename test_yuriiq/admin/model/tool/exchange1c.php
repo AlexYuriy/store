@@ -601,18 +601,53 @@ class ModelToolExchange1c extends Model {
 	 * @return	array
 	 */
 	private function initCategory($category, $parent, $data = array(), $language_id) {
-		$data['parent_id'] 	= $parent;
-		$data['image'] 		= (isset($category->Картинка)) ? (string)$category->Картинка : ((isset($data['image'])) ? $data['image'] : 'no_image.jpg') ;
-		$data['sort_order'] 	= (isset($category->Сортировка))  ? (int)$category->Сортировка : ((isset($data['sort_order'])) ? $data['sort_order'] : 0) ;
-		$data['column']	 	= 1;
-		foreach ($data['category_description'] as $category_description) {
-			$category_description['name'] = (string)$category->Наименование ;
-			if (isset($category->Описание)) {
-				$category_description['description'] = (string)$category->Описание ;
-			}
-		}
-		return $data;
+
+		$result = array(
+			 'status'         => isset($data['status']) ? $data['status'] : 1
+			,'top'            => isset($data['top']) ? $data['top'] : 1
+			,'parent_id'      => $parent
+			,'category_store' => isset($data['category_store']) ? $data['category_store'] : array(0)
+			,'category_download' => isset($data['category_download']) ? $data['category_download'] : array(0)
+			,'category_filter'=> isset($data['category_download']) ? $data['category_download'] : array(0)
+			,'article_related'=> isset($data['category_download']) ? $data['category_download'] : array(0)
+			,'category_layout'=> isset($data['category_download']) ? $data['category_download'] : array(0)
+			,'keyword'        => isset($data['keyword']) ? $data['keyword'] : ''
+			,'image'          => (isset($category->Картинка)) ? (string)$category->Картинка : ((isset($data['image'])) ? $data['image'] : 'no_image.jpg')
+			,'sort_order'     => (isset($category->Сортировка)) ? (int)$category->Сортировка : ((isset($data['sort_order'])) ? $data['sort_order'] : 0)
+			,'column'         => 1
+		);
+
+		$result['category_description'] = array(
+			1 => array(
+				 'name'             => (string)$category->Наименование
+				,'meta_keyword'     => (isset($data['category_description'][$language_id]['meta_keyword'])) ? $data['category_description'][$language_id]['meta_keyword'] : ''
+				,'meta_description'	=> (isset($data['category_description'][$language_id]['meta_description'])) ? $data['category_description'][$language_id]['meta_description'] : ''
+				,'description'		=> (isset($category->Описание)) ? (string)$category->Описание : ((isset($data['category_description'][$language_id]['description'])) ? $data['category_description'][$language_id]['description'] : '')
+				,'seo_title'        => (isset($data['category_description'][$language_id]['seo_title'])) ? $data['category_description'][$language_id]['seo_title'] : (string)$category->Наименование
+				,'seo_h1'           => (isset($data['category_description'][$language_id]['seo_h1'])) ? $data['category_description'][$language_id]['seo_h1'] : (string)$category->Наименование
+			),
+			2 => array(
+				 'name'             => (string)$category->Наименование
+				,'meta_keyword'     => (isset($data['category_description'][$language_id]['meta_keyword'])) ? $data['category_description'][$language_id]['meta_keyword'] : ''
+				,'meta_description'	=> (isset($data['category_description'][$language_id]['meta_description'])) ? $data['category_description'][$language_id]['meta_description'] : ''
+				,'description'		=> (isset($category->Описание)) ? (string)$category->Описание : ((isset($data['category_description'][$language_id]['description'])) ? $data['category_description'][$language_id]['description'] : '')
+				,'seo_title'        => (isset($data['category_description'][$language_id]['seo_title'])) ? $data['category_description'][$language_id]['seo_title'] : (string)$category->Наименование
+				,'seo_h1'           => (isset($data['category_description'][$language_id]['seo_h1'])) ? $data['category_description'][$language_id]['seo_h1'] : (string)$category->Наименование
+			),
+			3 => array(
+				 'name'             => (string)$category->Наименование
+				,'meta_keyword'     => (isset($data['category_description'][$language_id]['meta_keyword'])) ? $data['category_description'][$language_id]['meta_keyword'] : ''
+				,'meta_description'	=> (isset($data['category_description'][$language_id]['meta_description'])) ? $data['category_description'][$language_id]['meta_description'] : ''
+				,'description'		  => (isset($category->Описание)) ? (string)$category->Описание : ((isset($data['category_description'][$language_id]['description'])) ? $data['category_description'][$language_id]['description'] : '')
+				,'seo_title'        => (isset($data['category_description'][$language_id]['seo_title'])) ? $data['category_description'][$language_id]['seo_title'] : (string)$category->Наименование
+				,'seo_h1'           => (isset($data['category_description'][$language_id]['seo_h1'])) ? $data['category_description'][$language_id]['seo_h1'] : (string)$category->Наименование
+			),
+		);
+
+		return $result;
 	}
+
+
 	/**
 	 * Функция добавляет корневую категорию и всех детей
 	 *
