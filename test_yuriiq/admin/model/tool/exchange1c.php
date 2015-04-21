@@ -178,6 +178,7 @@ class ModelToolExchange1c extends Model {
 		if ($xml->ПакетПредложений->ТипыЦен->ТипЦены) {
 			foreach ($xml->ПакетПредложений->ТипыЦен->ТипЦены as $type) {
 				$price_types[(string)$type->Ид] = (string)$type->Наименование;
+				$this->log->write(" ТипЦены  > " . $data['price']);
 			}
 		}
 
@@ -435,7 +436,7 @@ class ModelToolExchange1c extends Model {
 		$data = array();
 
 		// Группы
-		if($xml->Классификатор->Группы) $this->insertCategory($xml->Классификатор->Группы->Группа, 0 );
+		if($xml->Классификатор->Группы->Группа->Группы->Группа->Группы) $this->insertCategory($xml->Классификатор->Группы->Группа->Группы->Группа->Группы->Группа, 0 );
 
 		// Свойства
 		if ($xml->Классификатор->Свойства) $this->insertAttribute($xml->Классификатор->Свойства->Свойство);
