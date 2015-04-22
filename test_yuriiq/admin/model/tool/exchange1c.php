@@ -1,7 +1,15 @@
 <?php
 
 class ModelToolExchange1c extends Model {
-
+	
+	public function setDefaultCurrency($price,$currency) {
+		if(!empty($price)) {
+		$query = $this->db->query("SELECT value FROM " . DB_PREFIX . "currency WHERE currency_id = '" .(int)$currency. "'");
+			if ($query->num_rows) {
+			return $final_price = ($price * $query->row['value']);
+			}
+		}
+	}
 	private $CATEGORIES = array();
 	private $PROPERTIES = array();
 
@@ -183,20 +191,18 @@ class ModelToolExchange1c extends Model {
 		}
 
 		if (!empty($config_price_type) && count($config_price_type) > 0) {
-			$config_price_type_main = array_shift($config_price_type);
+			//$config_price_type_main = array_shift($config_price_type);
 		}
 
 		// Инициализация массива скидок для оптимизации алгоритма
-		if (!empty($config_price_type) && count($config_price_type) > 0) {
+		/*if (!empty($config_price_type) && count($config_price_type) > 0) {
 			$discount_price_type = array();
 			foreach ($config_price_type as $obj) {
 				$discount_price_type[$obj['keyword']] = array(
-					'customer_group_id' => $obj['customer_group_id'],
-					'quantity' => $obj['quantity'],
-					'priority' => $obj['priority']
+					'currency' => $obj['currency_id']
 				); 
 			}
-		}
+		}*/
 		
 		$offer_cnt = 0;
 
@@ -222,9 +228,23 @@ class ModelToolExchange1c extends Model {
 	
 					//Цена за единицу
 					if ($offer->Цены) {
+						foreach ($offer->Цены->Цена as $price) {
+						
+							if ((float)$price->ЦенаЗаЕдиницу>0)
+							{
+							foreach ($config_price_type as $obj) {
+											if ($obj['keyword'] = $price_types[(string)$price->ИдТипаЦены])
+											{
+											$key = $price_types[(string)$price->ИдТипаЦены];
+											$data['base_price'] = (float)$offer->Цены->Цена->ЦенаЗаЕдиницу;
+											$data['currency_id'] = $obj['currency_id'];
+											$data['price'] = setDefaultCurrency($data['base_price'],$data['currency_id']);
+											}
+						}	
+						}}
 	
 						// Первая цена по умолчанию - $config_price_type_main
-						if (!$config_price_type_main['keyword']) {
+						/*if (!$config_price_type_main['keyword']) {
 							$data['price'] = (float)$offer->Цены->Цена->ЦенаЗаЕдиницу;
 						}
 						else {
@@ -257,7 +277,7 @@ class ModelToolExchange1c extends Model {
 									unset($value);
 								}
 							}
-						}
+						}*/
 					}
 	
 					//Количество

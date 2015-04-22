@@ -11,7 +11,8 @@ class ControllerModuleExchange1c extends Controller {
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->load->model('setting/setting');
-			
+		$this->load->model('localisation/currency'); 
+		$this->data['currencies'] = $this->model_localisation_currency->getCurrencies(); 	
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->request->post['exchange1c_order_date'] = $this->config->get('exchange1c_order_date');
 			$this->model_setting_setting->editSetting('exchange1c', $this->request->post);
@@ -166,9 +167,7 @@ class ControllerModuleExchange1c extends Controller {
 			if(empty($this->data['exchange1c_price_type'])) {
 				$this->data['exchange1c_price_type'][] = array(
 					'keyword'			=> '',
-					'customer_group_id'		=> 0,
-					'quantity'			=> 0,
-					'priority'			=> 0
+					'currency'			=> 0
 				);
 			}
 		}
