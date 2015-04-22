@@ -103,7 +103,16 @@
             </tr>
             <tr>
                 <td><?php echo $entry_price; ?></td>
-                <td><input type="text" name="price" value="<?php echo $price; ?>" /></td>
+                <td><input type="text" name="base_price" value="<?php echo $base_price; ?>" />
+				<select name="currency_id">
+                <?php foreach ($currencies as $currency) { ?>
+                <?php if ($currency['currency_id'] == $currency_id) { ?>
+                <option value="<?php echo $currency['currency_id']; ?>" selected="selected"><?php echo $currency['title']; ?></option>
+                <?php } else { ?>
+                <option value="<?php echo $currency['currency_id']; ?>"><?php echo $currency['title']; ?></option>
+                <?php } ?>
+                <?php } ?>
+              </select></td>
             </tr>
             <tr>
               <td><?php echo $entry_tax_class; ?></td>

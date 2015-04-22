@@ -1075,7 +1075,17 @@ class ControllerCatalogProduct extends Controller {
 		$this->load->model('localisation/language');
 
 		$this->data['languages'] = $this->model_localisation_language->getLanguages();
-
+		
+		if (isset($this->request->post['base_price'])) {
+			$this->data['base_price'] = $this->request->post['base_price'];
+		} elseif (!empty($product_info)) {
+			$this->data['base_price'] = $product_info['base_price'];
+		} else {
+			$this->data['base_price'] = ' ';
+		}
+		$this->load->model('localisation/currency'); $this->data['currencies'] = $this->model_localisation_currency->getCurrencies(); 
+ 
+		
 		if (isset($this->request->post['product_description'])) {
 			$this->data['product_description'] = $this->request->post['product_description'];
 		} elseif (isset($this->request->get['product_id'])) {
