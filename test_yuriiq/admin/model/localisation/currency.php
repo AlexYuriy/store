@@ -20,8 +20,10 @@ class ModelLocalisationCurrency extends Model {
 		$data['symbol_right'] = htmlspecialchars_decode( $data['symbol_right'] );
 		$this->db->query("UPDATE " . DB_PREFIX . "currency SET title = '" . $this->db->escape($data['title']) . "', code = '" . $this->db->escape($data['code']) . "', symbol_left = '" . $this->db->escape($data['symbol_left']) . "', symbol_right = '" . $this->db->escape($data['symbol_right']) . "', decimal_place = '" . $this->db->escape($data['decimal_place']) . "', value = '" . $this->db->escape($data['value']) . "', status = '" . (int)$data['status'] . "', date_modified = NOW() WHERE currency_id = '" . (int)$currency_id . "'");
 		$results = $this->db->query("SELECT product_id,price,base_price from  " . DB_PREFIX . "product where currency_id='".$currency_id."'");
+		$query = $this->db->query("SELECT value FROM " . DB_PREFIX . "currency WHERE currency_id = '" .(int)$currency_id. "'");
+		$currency=$query->row['value'];
 		foreach ($results as $result) {
-		$result['price']=setDefaultCurrency($result['base_price'],$currency_id);
+		$result['price']=$result['base_price']*$currency;
 		$this->db->query("UPDATE " . DB_PREFIX . "product SET product price = '". $result['price'] . "' where product_id='".$result['product_id']."'");
 		}
 		
