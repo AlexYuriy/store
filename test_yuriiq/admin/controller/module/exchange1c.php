@@ -27,6 +27,7 @@ class ControllerModuleExchange1c extends Controller {
 		$this->data['entry_password'] = $this->language->get('entry_password');
 		$this->data['entry_allow_ip'] = $this->language->get('entry_allow_ip');
 		$this->data['text_price_default'] = $this->language->get('text_price_default');
+		$this->data['text_currency_default'] = $this->language->get('text_currency_default');	
 		$this->data['entry_config_price_type'] = $this->language->get('entry_config_price_type');
 		$this->data['entry_customer_group'] = $this->language->get('entry_customer_group');
 		$this->data['entry_quantity'] = $this->language->get('entry_quantity');
@@ -68,14 +69,15 @@ class ControllerModuleExchange1c extends Controller {
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_order_currency'] = $this->language->get('entry_order_currency');
 		$this->data['entry_order_notify'] = $this->language->get('entry_order_notify');
+		$this->data['entry_currency'] = $this->language->get('entry_currrency');
 		$this->data['entry_upload'] = $this->language->get('entry_upload');
 		$this->data['button_upload'] = $this->language->get('button_upload');
-
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_remove'] = $this->language->get('button_remove');
 
+		
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		}
@@ -373,12 +375,13 @@ class ControllerModuleExchange1c extends Controller {
 
 		$cache = DIR_CACHE . 'exchange1c/';
 		$json = array();
-
+		$this->log->write("Начат разбор файла: ");
 		if (!empty($this->request->files['file']['name'])) {
-
+			
 			$zip = new ZipArchive;
 			
 			if ($zip->open($this->request->files['file']['tmp_name']) === true) {
+				$this->log->write("zip: ");
 				$this->modeCatalogInit(false);
 
 				$zip->extractTo($cache);
@@ -402,23 +405,27 @@ class ControllerModuleExchange1c extends Controller {
 
 			}
 			else {
-
+				$this->log->write("!zip");
 				// Читаем первые 256 байт и определяем файл по сигнатуре, ибо мало ли, какое у него имя
 				$handle = fopen($this->request->files['file']['tmp_name'], 'r');
-				$buffer = fread($handle, 256);
+				$buffer = fread($handle, 1024);
+				$this->log->write($buffer);
 				fclose($handle);
 
-				if (strpos($buffer, 'Классификатор')) {
+				if (strpos($buffer, 'ПакетПредложений')) {
+					$this->log->write("offers.xml");	
+					move_uploaded_file($this->request->files['file']['tmp_name'], $cache . 'offers.xml');
+					$this->modeImport('offers.xml');
+				}
+				elseif (strpos($buffer, 'Классификатор')) {
+					$this->log->write("import");
 					$this->modeCatalogInit(false);
 					move_uploaded_file($this->request->files['file']['tmp_name'], $cache . 'import.xml');
 					$this->modeImport('import.xml');
 				
 				}
-				else if (strpos($buffer, 'ПакетПредложений')) {
-					move_uploaded_file($this->request->files['file']['tmp_name'], $cache . 'offers.xml');
-					$this->modeImport('offers.xml');
-				}
 				else {
+					$this->log->write("error.xml");
 					$json['error'] = $this->language->get('text_upload_error');
 					exit;
 				}
@@ -530,7 +537,7 @@ class ControllerModuleExchange1c extends Controller {
 	}
 
 	public function modeImport($manual = false) {
-
+		
 		$cache = DIR_CACHE . 'exchange1c/';
 
 		if ($manual) {
