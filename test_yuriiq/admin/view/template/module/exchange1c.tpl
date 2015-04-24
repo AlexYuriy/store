@@ -69,8 +69,9 @@
             <thead>
               <tr>
                 <td class="left"><?php echo $entry_config_price_type; ?></td>
-                <td class="left"><?php echo $entry_currency; ?></td>
-                 <td></td>
+                <td class="right"><?php echo $entry_currency; ?></td>
+
+                <td></td>
               </tr>
             </thead>
             <tbody>
@@ -78,41 +79,32 @@
               <?php foreach ($exchange1c_price_type as $obj) { ?>
                 <?php if ($price_row == 0) {?>
                   <tr id="exchange1c_price_type_row<?php echo $price_row; ?>">
-                    <td class="left"><input type="text" name="exchange1c_price_type[<?php echo $price_row; ?>][keyword]" value="<?php echo $obj['keyword']; ?>" /></td>
-                    <td class="left"><?php  echo $text_price_default; ?><input type="hidden" name="exchange1c_price_type[<?php echo $price_row; ?>][customer_group_id]" value="0" /></td>
-					<td class="left">
-						<select name="exchange1c_price_type[<?php echo $price_row; ?>][currency]">
-						<?php foreach ($currencies as $currency) { ?>
-							<?php if ($currency['currency_id'] == $obj['currency'] { ?>
-							<option value="<?php echo $currency['currency_id']; ?>" selected="selected"><?php echo $currency['title']; ?></option>
-							<?php } else { ?>
-							<option value="<?php echo $currency['currency_id']; ?>"><?php echo $currency['title']; ?></option>
-							<?php } ?>
-							<?php } ?>
-						</select>
-					</td>
-           
-                    <?php/*<td class="center">-<input type="hidden" name="exchange1c_price_type[<?php echo $price_row; ?>][quantity]" value="0" /></td>
-                    <td class="center">-<input type="hidden" name="exchange1c_price_type[<?php echo $price_row; ?>][priority]" value="0" /></td>
-                    <td class="left">&nbsp;</td>*/?>
+                  <td class="left"><input type="text" name="exchange1c_price_type[<?php echo $price_row; ?>][keyword]" value="<?php echo $obj['keyword']; ?>" /></td>
+                   <td class="center"><select type="hidden" name="exchange1c_price_type[<?php echo $price_row; ?>][currency_id]">
+	<?php foreach ($currencies as $currency) { ?>
+	<?php if ($currency['currency_id'] == 6) { ?>
+	<option value="<?php echo $currency['currency_id']; ?>" selected="selected"><?php echo $currency['title']; ?></option>
+	<?php } else { ?>
+	<option value="<?php echo $currency['currency_id']; ?>"><?php echo $currency['title']; ?></option>
+	<?php } ?>
+	<?php } ?>
+	</select>
+	</td>
+                    <td class="left">&nbsp;</td>
                   </tr>
                 <?php } else { ?>
                   <tr id="exchange1c_price_type_row<?php echo $price_row; ?>">
                     <td class="left"><input type="text" name="exchange1c_price_type[<?php echo $price_row; ?>][keyword]" value="<?php echo $obj['keyword']; ?>" /></td>
-                    <td class="left">
-						<select name="exchange1c_price_type[<?php echo $price_row; ?>][currency]">
-						<?php foreach ($currencies as $currency) { ?>
-							<?php if ($currency['currency_id'] == $obj['currency'] { ?>
-							<option value="<?php echo $currency['currency_id']; ?>" selected="selected"><?php echo $currency['title']; ?></option>
-							<?php } else { ?>
-							<option value="<?php echo $currency['currency_id']; ?>"><?php echo $currency['title']; ?></option>
-							<?php } ?>
-							<?php } ?>
-						</select>
-					</td>
-                    <?php /*<td class="center"><input type="text" name="exchange1c_price_type[<?php echo $price_row; ?>][quantity]" value="<?php echo $obj['quantity']; ?>" size="2" /></td>
-                    <td class="center"><input type="text" name="exchange1c_price_type[<?php echo $price_row; ?>][priority]" value="<?php echo $obj['priority']; ?>" size="2" /></td>*/?>
-                    <td class="center"><a onclick="$('#exchange1c_price_type_row<?php echo $price_row; ?>').remove();" class="button"><?php echo $button_remove; ?></a></td>
+                    <td class="left"><select name="exchange1c_price_type[<?php echo $price_row; ?>][currency_id]">
+                     <?php foreach ($currencies as $currency) { ?>
+                        <?php if ($currency['currency_id'] == $obj['currency_id']) { ?>
+                          <option value="<?php echo $currency['currency_id']; ?>" selected="selected"><?php echo $currency['title']; ?></option>
+                        <?php } else { ?>
+                          <option value="<?php echo $currency['currency_id']; ?>"><?php echo $currency['title']; ?></option>
+                        <?php } ?>
+                      <?php } ?>
+                      </select></td>
+                   <td class="center"><a onclick="$('#exchange1c_price_type_row<?php echo $price_row; ?>').remove();" class="button"><?php echo $button_remove; ?></a></td>
                   </tr>
                 <?php } ?>
                 <?php $price_row++; ?>
@@ -120,7 +112,7 @@
             </tbody>
             <tfoot>
               <tr>
-                <td colspan="4"></td>
+                <td colspan="2"></td>
                 <td class="left"><a onclick="addConfigPriceType();" class="button"><?php echo $button_insert; ?></a></td>
               </tr>
             </tfoot>
@@ -321,9 +313,9 @@ function addConfigPriceType() {
     html  = '';
     html += '  <tr id="exchange1c_price_type_row' + price_row + '">'; 
     html += '    <td class="left"><input type="text" name="exchange1c_price_type[' + price_row + '][keyword]" value="" /></td>';
-    html += '    <td class="left"><select name="exchange1c_price_type[' + price_row + '][currency]">';
+    html += '    <td class="left"><select name="exchange1c_price_type[' + price_row + '][currency_id]">';
     <?php foreach ($currencies as $currency) { ?>
-    html += '       <option value="<?php echo $currency['currency_id']; ?>"><?php echo $currency['title']; ?></option>';
+    html += '      <option value="<?php echo $currency['currency_id']; ?>"><?php echo $currency['title']; ?></option>';
     <?php } ?>
     html += '    </select></td>';
     html += '    <td class="center"><a onclick="$(\'#exchange1c_price_type_row' + price_row + '\').remove();" class="button"><?php echo $button_remove; ?></a></td>';

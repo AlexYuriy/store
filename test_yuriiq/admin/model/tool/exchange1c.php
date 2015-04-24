@@ -9,6 +9,7 @@ class ModelToolExchange1c extends Model {
 			return $final_price = ($price * $query->row['value']);
 			}
 		}
+
 	}
 	private $CATEGORIES = array();
 	private $PROPERTIES = array();
@@ -186,7 +187,8 @@ class ModelToolExchange1c extends Model {
 		if ($xml->ПакетПредложений->ТипыЦен->ТипЦены) {
 			foreach ($xml->ПакетПредложений->ТипыЦен->ТипЦены as $type) {
 				$price_types[(string)$type->Ид] = (string)$type->Наименование;
-				$this->log->write(" ТипЦены  > " . $data['price']);
+				$this->log->write(" ТипЦены  > " . (string)$type->Наименование);// $data['price']);
+
 			}
 		}
 
@@ -229,17 +231,17 @@ class ModelToolExchange1c extends Model {
 					//Цена за единицу
 					if ($offer->Цены) {
 						foreach ($offer->Цены->Цена as $price) {
-						
 							if ((float)$price->ЦенаЗаЕдиницу>0)
 							{
 							foreach ($config_price_type as $obj) {
-											if ($obj['keyword'] = $price_types[(string)$price->ИдТипаЦены])
-											{
-											$key = $price_types[(string)$price->ИдТипаЦены];
-											$data['base_price'] = (float)$offer->Цены->Цена->ЦенаЗаЕдиницу;
-											$data['currency_id'] = $obj['currency_id'];
-											$data['price'] = setDefaultCurrency($data['base_price'],$data['currency_id']);
-											}
+								if ($obj['keyword'] == (string)$price_types[(string)$price->ИдТипаЦены])
+								{
+								$key = $price_types[(string)$price->ИдТипаЦены];
+								$data['base_price'] = (float)$price->ЦенаЗаЕдиницу;
+
+								$data['currency_id'] = $obj['currency_id'];
+								$data['price'] = $this->setDefaultCurrency($data['base_price'],$data['currency_id']);							
+}
 						}	
 						}}
 	
@@ -319,6 +321,8 @@ class ModelToolExchange1c extends Model {
 								'quantity'                => isset($data['quantity']) ? (int)$data['quantity'] : 0,
 								'subtract'                => 0,
 								'price'                   => isset($data['price']) ? (int)$data['price'] : 0,
+								'base_price'                   => isset($data['base_price']) ? (int)$data['base_price'] : 0,
+								'currency_id'                   => isset($data['currency_id']) ? (int)$data['currency_id'] : 6,
 								'price_prefix'            => '+',
 								'points'                  => 0,
 								'points_prefix'           => '+',
@@ -362,7 +366,7 @@ class ModelToolExchange1c extends Model {
 					}
 				}
 
-				if (!$exchange1c_relatedoptions || $new_product) {
+				/*if (!$exchange1c_relatedoptions || $new_product) {
 					
 					if ($offer->СкидкиНаценки) {
 						$value = array();
@@ -387,7 +391,7 @@ class ModelToolExchange1c extends Model {
 					}
 	
 					$data['status'] = 1;
-				}
+				}*/
 				
 				if (!$exchange1c_relatedoptions || $offer_cnt == count($xml->ПакетПредложений->Предложения->Предложение)
 					|| $data['1c_id'] != substr($xml->ПакетПредложений->Предложения->Предложение[$offer_cnt]->Ид, 0, strlen($data['1c_id'])) ) {
@@ -815,6 +819,8 @@ class ModelToolExchange1c extends Model {
 
 			,'location'     => (isset($product['location'])) ? $product['location'] : (isset($data['location']) ? $data['location']: '')
 			,'price'        => (isset($product['price'])) ? $product['price'] : (isset($data['price']) ? $data['price']: 0)
+			,'base_price'   => (isset($product['base_price'])) ? $product['base_price'] : (isset($data['base_price']) ? $data['base_price']: 0)
+			,'currency_id'        => (isset($product['currency_id'])) ? $product['currency_id'] : (isset($data['currency_id']) ? $data['currency_id']: 0)
 			,'tax_class_id' => (isset($product['tax_class_id'])) ? $product['tax_class_id'] : (isset($data['tax_class_id']) ? $data['tax_class_id']: 0)
 			,'quantity'     => (isset($product['quantity'])) ? $product['quantity'] : (isset($data['quantity']) ? $data['quantity']: 0)
 			,'minimum'      => (isset($product['minimum'])) ? $product['minimum'] : (isset($data['minimum']) ? $data['minimum']: 1)
@@ -1002,10 +1008,11 @@ class ModelToolExchange1c extends Model {
 		$product_old = $this->getProductWithAllData($product_id);
 
 		// Работаем с ценой на разные варианты товаров.
-		if(!empty($product['product_option'][0])){
+		/*if(!empty($product['product_option'][0])){
 			if(isset($product_old['price']) && (float) $product_old['price'] > 0){
 
 				$price = (float) $product_old['price'] - (float) $product['product_option'][0]['product_option_value'][0]['price'];
+				
 
 				$product['product_option'][0]['product_option_value'][0]['price_prefix'] = ($price > 0) ? '-':'+';
 				$product['product_option'][0]['product_option_value'][0]['price'] = abs($price);
@@ -1017,7 +1024,7 @@ class ModelToolExchange1c extends Model {
 				$product['product_option'][0]['product_option_value'][0]['price'] = 0;
 			}
 
-		}
+		}*/
 
 		$this->load->model('catalog/product');
 

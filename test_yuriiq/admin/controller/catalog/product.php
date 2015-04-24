@@ -1083,7 +1083,19 @@ class ControllerCatalogProduct extends Controller {
 		} else {
 			$this->data['base_price'] = ' ';
 		}
-		$this->load->model('localisation/currency'); $this->data['currencies'] = $this->model_localisation_currency->getCurrencies(); 
+
+	
+		
+		if (isset($this->request->post['currency_id'])) {
+			$this->data['currency_id'] = $this->request->post['currency_id'];	
+		} elseif (!empty($product_info)) {
+			$this->data['currency_id'] = $product_info['currency_id'];
+		} else {
+			$this->data['currency_id'] = 6;
+		}
+
+		$this->load->model('localisation/currency'); 
+		$this->data['currencies'] = $this->model_localisation_currency->getCurrencies(); 
  
 		
 		if (isset($this->request->post['product_description'])) {

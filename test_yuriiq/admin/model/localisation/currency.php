@@ -9,23 +9,17 @@ class ModelLocalisationCurrency extends Model {
 		}
 	}
 	public function addCurrency($data) {
-		$data['value']=1/$data['value'];
+		//$data['value']=1/$data['value'];
 		$this->db->query("INSERT INTO " . DB_PREFIX . "currency SET title = '" . $this->db->escape($data['title']) . "', code = '" . $this->db->escape($data['code']) . "', symbol_left = '" . $this->db->escape($data['symbol_left']) . "', symbol_right = '" . $this->db->escape($data['symbol_right']) . "', decimal_place = '" . $this->db->escape($data['decimal_place']) . "', value = '" . $this->db->escape($data['value']) . "', status = '" . (int)$data['status'] . "', date_modified = NOW()");
 		$this->cache->delete('currency');
 	}
 
 	public function editCurrency($currency_id, $data) {
-		$data['value']=1/$data['value'];
+		//$data['value']=1/$data['value'];
 		$data['symbol_left'] = htmlspecialchars_decode( $data['symbol_left'] );
 		$data['symbol_right'] = htmlspecialchars_decode( $data['symbol_right'] );
 		$this->db->query("UPDATE " . DB_PREFIX . "currency SET title = '" . $this->db->escape($data['title']) . "', code = '" . $this->db->escape($data['code']) . "', symbol_left = '" . $this->db->escape($data['symbol_left']) . "', symbol_right = '" . $this->db->escape($data['symbol_right']) . "', decimal_place = '" . $this->db->escape($data['decimal_place']) . "', value = '" . $this->db->escape($data['value']) . "', status = '" . (int)$data['status'] . "', date_modified = NOW() WHERE currency_id = '" . (int)$currency_id . "'");
-		$results = $this->db->query("SELECT product_id,price,base_price from  " . DB_PREFIX . "product where currency_id='".$currency_id."'");
-		$query = $this->db->query("SELECT value FROM " . DB_PREFIX . "currency WHERE currency_id = '" .(int)$currency_id. "'");
-		$currency=$query->row['value'];
-		foreach ($results as $result) {
-		$result['price']=$result['base_price']*$currency;
-		$this->db->query("UPDATE " . DB_PREFIX . "product SET product price = '". $result['price'] . "' where product_id='".$result['product_id']."'");
-		}
+		$this->db->query("UPDATE " . DB_PREFIX . "product SET price = base_price * " . $data['value'] . " where currency_id='".$currency_id."'");
 		
 		//$this->db->query("UPDATE " . DB_PREFIX . "product SET product price = '" . setDefaultCurrency( . "' base_price '". ,$currency_id). "' where p.currency_id='".$currency_id."'");
 		$this->cache->delete('currency');
@@ -38,20 +32,20 @@ class ModelLocalisationCurrency extends Model {
 	}
 
 	public function getCurrency($currency_id) {
-		$query = $this->db->query("SELECT DISTINCT *, 1/value as value FROM " . DB_PREFIX . "currency WHERE currency_id = '" . (int)$currency_id . "'");
+		$query = $this->db->query("SELECT DISTINCT *, value as value FROM " . DB_PREFIX . "currency WHERE currency_id = '" . (int)$currency_id . "'");
 
 		return $query->row;
 	}
 
 	public function getCurrencyByCode($currency) {
-		$query = $this->db->query("SELECT DISTINCT *, 1/value as value FROM " . DB_PREFIX . "currency WHERE code = '" . $this->db->escape($currency) . "'");
+		$query = $this->db->query("SELECT DISTINCT *, value as value FROM " . DB_PREFIX . "currency WHERE code = '" . $this->db->escape($currency) . "'");
 
 		return $query->row;
 	}
 
 	public function getCurrencies($data = array()) {
 		if ($data) {
-			$sql = "SELECT *, 1/value as value FROM " . DB_PREFIX . "currency";
+			$sql = "SELECT *, value as value FROM " . DB_PREFIX . "currency";
 
 			$sort_data = array(
 				'title',
@@ -93,7 +87,7 @@ class ModelLocalisationCurrency extends Model {
 			if (!$currency_data) {
 				$currency_data = array();
 
-				$query = $this->db->query("SELECT *, 1/value as value FROM " . DB_PREFIX . "currency ORDER BY title ASC");
+				$query = $this->db->query("SELECT *, value as value FROM " . DB_PREFIX . "currency ORDER BY title ASC");
 
 				foreach ($query->rows as $result) {
 					$currency_data[$result['code']] = array(
