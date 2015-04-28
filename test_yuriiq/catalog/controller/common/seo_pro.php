@@ -205,6 +205,9 @@ class ControllerCommonSeoPro extends Controller {
 		$queries = array();
 		foreach ($data as $key => $value) {
 			switch ($key) {
+				case 'sub_category':
+				case 'description': 
+				case 'search':
 				case 'product_id':
 				case 'manufacturer_id':
 				case 'category_id':

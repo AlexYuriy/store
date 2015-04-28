@@ -34,7 +34,6 @@
 		</div>
       <?php if (($price!=0) || ($special)) { ?>
       <div class="price">
-	  	<?php echo $currency; ?>
 	    <?php echo $text_price; ?>
         <?php if (!$special) { ?>
         <?php echo $price; ?>

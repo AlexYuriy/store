@@ -42,7 +42,7 @@ label {
 	height: 34px;
 	padding: 0px 30px;
 	background: #0381CB;
-	border-bottom: 1px solid #55BEFD;
+	border-bottom: 1px solid #E39B2F;
 	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.52);
 	min-width: 900px;
 }
@@ -69,7 +69,7 @@ label {
 }
 #menu {
 	background: #0381CB;
-	border-bottom: 1px solid #55BEFD;
+	border-bottom: 1px solid #E39B2F;
 	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.52);
 	clear: both;
 	height: 34px;

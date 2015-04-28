@@ -94,7 +94,7 @@ label {
 /* header */
 #header-bg {
 	background: none repeat scroll 0 0 #F8F8F8;
-	border-bottom: 1px solid #55BEFD;
+	border-bottom: 1px solid #E39B2F;
 	height: 156px;
 	left: 0;
 	position: absolute;
@@ -426,7 +426,7 @@ label {
 }
 #menu > ul   li > a.hidden {
 	display: none;
-	margin-top: -42px;
+	margin-top: -50px;
 }
 
 #menu > ul   li:hover > a.hidden {
@@ -1048,7 +1048,7 @@ ul.box-filter > li ul {
 	float: left;
 	padding: 0;
 	margin:  5px;
-	border: 1px solid #55BEFD;
+	border: 1px solid #E39B2F;
 	-webkit-border-radius: 5px ;
 	-moz-border-radius: 5px ;
 	-khtml-border-radius: 5px ;

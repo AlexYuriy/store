@@ -36,12 +36,6 @@ require_once(DIR_SYSTEM . 'startup.php');
 // Database
 $db = new DB(DB_DRIVER, DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 $db->query("UPDATE " . DB_PREFIX . "currency SET value = '" . $result . "', date_modified = NOW() WHERE currency_id = '6'");
-$query = $db->query("SELECT value FROM " . DB_PREFIX . "currency WHERE currency_id = '" .(int)$currency_id. "'");
-$currency=$query->row['value'];
-$results = $db->query("SELECT product_id,price,base_price from  " . DB_PREFIX . "product where currency_id='".$currency_id."'");
-foreach ($results as $result) {
-		$result['price']=$result['base_price']*$currency;
-		$db->query("UPDATE " . DB_PREFIX . "product SET product price = '". $result['price'] . "' where product_id='".$result['product_id']."'");
-}
+$this->db->query("UPDATE " . DB_PREFIX . "product SET price = base_price * " . $result . " where currency_id='6'");
 ?>
 
