@@ -1,4 +1,4 @@
-<?php 
+`<?php 
 class ControllerModuleCallme extends Controller {
 	private $error = array(); 
 	    
@@ -7,8 +7,8 @@ class ControllerModuleCallme extends Controller {
 		$callme_module_cfg = $this->config->get('callme_setting');		
 		$this->data['height'] = '360';
 		
-		if ($callme_module_cfg['showfieldtime'] == '1') $this->data['height'] = '425'; 
-		if ($callme_module_cfg['capcha'] == '1') $this->data['height'] = '425'; 
+		if ($callme_module_cfg['showfieldtime'] == '1') $this->data['height'] = '355'; 
+		if ($callme_module_cfg['capcha'] == '1') $this->data['height'] = '350'; 
 		if ($callme_module_cfg['showfieldtime'] == '1' && $callme_module_cfg['capcha'] == '1') $this->data['height'] = '475'; 
 		
 		if ($callme_module_cfg['button_status'] == '1') {

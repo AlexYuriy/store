@@ -333,12 +333,14 @@ class ControllerModuleExchange1c extends Controller {
 
 	// ---
 	public function modeCheckauth() {
-
+		
 		// Проверяем включен или нет модуль
 		if (!$this->config->get('exchange1c_status')) {
 			echo "failure\n";
 			echo "1c module OFF";
 			exit;
+			
+		
 		}
 
 		// Разрешен ли IP
@@ -347,7 +349,6 @@ class ControllerModuleExchange1c extends Controller {
 			$allow_ips = explode("\r\n", $this->config->get('exchange1c_allow_ip'));
 
 			if (!in_array($ip, $allow_ips)) {
-				echo "failure\n";
 				echo "IP is not allowed";
 				exit;
 			}
@@ -364,7 +365,6 @@ class ControllerModuleExchange1c extends Controller {
 			echo "error password";
 			exit;
 		}
-
 		echo "success\n";
 		echo "key\n";
 		echo md5($this->config->get('exchange1c_password')) . "\n";
@@ -469,7 +469,6 @@ class ControllerModuleExchange1c extends Controller {
 
 	public function modeSaleInit() {
 		$limit = 100000 * 1024;
-	
 		echo "zip=no\n";
 		echo "file_limit=".$limit."\n";
 	}
@@ -605,7 +604,7 @@ class ControllerModuleExchange1c extends Controller {
 			,'exchange_status'	=> $this->config->get('exchange1c_order_status_to_exchange')
 			,'new_status'	=> $this->config->get('exchange1c_order_status')
 			,'notify'		=> $this->config->get('exchange1c_order_notify')
-			,'currency'		=> $this->config->get('exchange1c_order_currency') ? $this->config->get('exchange1c_order_currency') : 'руб.'
+			,'currency'		=> $this->config->get('exchange1c_order_currency') ? $this->config->get('exchange1c_order_currency') : 'RUB.'
 		));
 
 		// Обновляем данные о последнем запросе заказов
@@ -614,7 +613,7 @@ class ControllerModuleExchange1c extends Controller {
 		$config['exchange1c_order_date'] = date('Y-m-d H:i:s');
 		$this->model_setting_setting->editSetting('exchange1c', $config);
 		
-		echo iconv('utf-8', 'cp1251', $orders);
+		echo $orders;//iconv('utf-8', 'cp1251', $orders);
 	}
 
 

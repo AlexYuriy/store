@@ -116,6 +116,7 @@ $registry->set('user', new User($registry));
 // Front Controller
 $controller = new Front($registry);
 // Router
+$log->write($request);
 if (isset($request->get['mode']) && $request->get['type'] == 'catalog') {
 	switch ($request->get['mode']) {
 		case 'checkauth':

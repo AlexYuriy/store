@@ -20,7 +20,7 @@ function euro()
     $xml->close();
 }
 // $this->model_localisation_currency->editCurrency('1', $xml->value);
-$result = 1/ (str_replace(",", ".", euro()) * 1.02);
+$result = (str_replace(",", ".", euro()) * 1.02);
 
 // Version
 define('VERSION', '1.5.5.1.2');

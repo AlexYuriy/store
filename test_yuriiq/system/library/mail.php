@@ -271,9 +271,9 @@ class Mail {
 				}
 
 				if ($this->verp) {
-					fputs($handle, 'MAIL FROM: <' . $this->from . '>XVERP' . $this->crlf);
+					fputs($handle, 'MAIL FROM: <' . $this->username  . '>XVERP' . $this->crlf);
 				} else {
-					fputs($handle, 'MAIL FROM: <' . $this->from . '>' . $this->crlf);
+					fputs($handle, 'MAIL FROM: <' . $this->username  . '>' . $this->crlf);
 				}
 
 				$reply = '';

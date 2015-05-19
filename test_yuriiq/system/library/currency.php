@@ -59,7 +59,7 @@ class Currency {
 			$currency = $this->code;
     	}
 
-    	if ($value) {
+    	/*if ($value) {
       		//$value = $value;
     	} else {
       		$value = $this->currencies[$currency]['value'];
@@ -69,8 +69,8 @@ class Currency {
       		$value = (float)$number * $value;
     	} else {
       		$value = $number;
-    	}
-
+    	}*/
+		$value = $number;
 		if ($format && (int)$value == 0) {
 		return $this->language->get('text_zero');
 }

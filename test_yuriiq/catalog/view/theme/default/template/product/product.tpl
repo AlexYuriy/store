@@ -1,11 +1,15 @@
 <?php echo $header; ?><?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content"><?php echo $content_top; ?>
+<div class="category_paper">
+<div class="breadcrumb_line">
   <div class="breadcrumb">
     <?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
-    <?php if($i+1<count($breadcrumbs)) { ?><?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a><?php } ?>
+    <?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a><?php } ?>
     <?php } ?>
   </div>
-  <h1><?php echo $heading_title; ?></h1>
+</div>
+  <div class="category_title"><h1><?php echo $heading_title; ?></h1>
+  </div>
   <div class="product-info">
     <?php if ($thumb || $images) { ?>
     <div class="left">
@@ -356,7 +360,7 @@
       <div class="right"><a id="button-review" class="button"><?php echo $button_continue; ?></a></div>
 	</div>
 	<?php } else { echo $reviews_login; } ?>
-  </div>
+  </div>  
   <?php } ?>
   <?php if ($products) { ?>
   <div id="tab-related" class="tab-content">
@@ -388,7 +392,7 @@
         <a onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button"><?php echo $button_cart; ?></a></div>
       <?php } ?>
     </div>
-  </div>
+</div>
   <?php } ?>
   <?php if ($products2) { ?>
   <div id="tab-related2" class="tab-content">
@@ -468,7 +472,9 @@
     <?php } ?>
   </div>
   <?php } ?>
-  <?php echo $content_bottom; ?></div>
+  </div>
+  <?php echo $content_bottom; ?>
+
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$('.colorbox').colorbox({

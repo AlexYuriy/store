@@ -49,13 +49,15 @@ class ModelToolExchange1c extends Model {
 					 'Ид'          => $order['order_id']
 					,'Номер'       => $order['order_id']
 					,'Дата'        => $date
-					,'Время'       => $time
-					,'Валюта'      => $params['currency']
-					,'Курс'        => 1
 					,'ХозОперация' => 'Заказ товара'
 					,'Роль'        => 'Продавец'
+					,'Валюта'      => $params['currency']
+					,'Курс'        => 1					
 					,'Сумма'       => $order['total']
-					,'Комментарий' => $order['comment']
+					,'АдресДоставки' => $order['comment']
+					,'ДополнениеКАдресуДоставки' => $order['comment']
+					,'Время'       => $time
+					,'Комментарий' => $order['comment'].' Метод доставки:'.$order['shipping_method']
 				);
 
 				$document['Документ' . $document_counter]['Контрагенты']['Контрагент'] = array(
@@ -63,6 +65,7 @@ class ModelToolExchange1c extends Model {
 					,'Наименование'		    => $order['payment_lastname'] . ' ' . $order['payment_firstname']
 					,'Роль'               => 'Покупатель'
 					,'ПолноеНаименование'	=> $order['payment_lastname'] . ' ' . $order['payment_firstname']
+					,'ИНН'		        => '7814522256'
 					,'Фамилия'            => $order['payment_lastname']
 					,'Имя'			          => $order['payment_firstname']
 					,'Адрес' => array(
@@ -88,17 +91,35 @@ class ModelToolExchange1c extends Model {
 					$id = $this->get1CProductIdByProductId($product['product_id']);
 					
 					$document['Документ' . $document_counter]['Товары']['Товар' . $product_counter] = array(
-						 'Ид'             => $id
+						 'Ид'             => $id,
+						 'ИдКаталога'     => ''
 						,'Наименование'   => $product['name']
 						,'ЦенаЗаЕдиницу'  => $product['price']
-						,'БазоваяЕдиница Код="796" НаименованиеПолное="Штука" МеждународноеСокращение="PCE"' => "шт"						
+						,'БазоваяЕдиница' => "шт"						
 						,'Количество'     => $product['quantity']
 						,'Сумма'          => $product['total']
 						,'ЗначенияРеквизитов' => array( 
-							'ЗначениеРеквизита' => array( 
+							'ЗначениеРеквизита1' => array( 
 								'Наименование' 	=> "ВидНоменклатуры"
 								,'Значение'		=> "Товар"
 								)
+							,'ЗначениеРеквизита2' => array( 
+								'Наименование' 	=> "ТипНоменклатуры"
+								,'Значение'		=> "Товар"
+								)
+							,'ЗначениеРеквизита3' => array( 
+								'Наименование' 	=> "Статус заказа"
+								,'Значение'		=> "Ожидание"
+								)
+							,'ЗначениеРеквизита4' => array( 
+								'Наименование' 	=> "Статус заказа ИД"
+								,'Значение'		=> "Ожидание"
+								)
+							,'ЗначениеРеквизита5' => array( 
+								'Наименование' 	=> "Адрес доставки"
+								,'Значение'		=> $order['shipping_address_1'].', '.$order['shipping_city'].', '.$order['shipping_postcode'].', '.$order['shipping_country']
+								)
+
 							)
 					);
 					
@@ -126,12 +147,12 @@ class ModelToolExchange1c extends Model {
 
 					$product_counter++;
 				}
-
+		
 				$document_counter++;
 			}
 		}
 		
-		$root = '<?xml version="1.0" encoding="utf-8"?><КоммерческаяИнформация ВерсияСхемы="2.04" ДатаФормирования="' . date('Y-m-d', time()) . '" />';
+		$root = '<?xml version="1.0" encoding="UTF-8"?><КоммерческаяИнформация ВерсияСхемы="2.04" ДатаФормирования="' . date('Y-m-d', time()) . '" />';
 		$xml = $this->array_to_xml($document, new SimpleXMLElement($root));
 
 		return $xml->asXML();
@@ -166,9 +187,17 @@ class ModelToolExchange1c extends Model {
 					$this->array_to_xml($value, $subnode);
 				}
 			}
-			else {
-				$xml->addChild($key, $value);
-			}
+			else 
+				{
+					$xml->addChild($key, $value);
+					if ($key =='Базовая единица') 
+					{
+					$xml->addAttribute('Код', '796');
+					$xml->addAttribute('НаименованиеПолное', 'Штука');
+					$xml->addAttribute('МеждународноеСокращение', 'PCE');
+					}
+				}
+			
 		}
 		return $xml;
 	}

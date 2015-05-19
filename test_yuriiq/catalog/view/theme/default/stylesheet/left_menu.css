@@ -13,7 +13,6 @@
 	position: fixed;
 	height: 100%;
     margin-left: 0;
-	background-color: #F8F8F8;	
 }
 
 #sidebar{
@@ -50,7 +49,6 @@
 	border-radius: 3px;		
 }
 #scroll_to_top, #scroll_to_bottom {
-    background-color: #F8F8F8;
     width: 100%;
     height: 80px;	
     display: none;

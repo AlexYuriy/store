@@ -53,15 +53,16 @@
     <span class="error"><?php echo $error_name; ?></span>
     <?php } ?>	<br />
     <input type="text" name="name" required class="idle" value="<?php echo $name; ?>" onblur="this.className='idle'" onfocus="this.className='activeField'"/>
-     	 
+     	 <br />
     <?php echo $entry_tel; ?>
     <?php if ($error_tel) { ?>
     <span class="error"><?php echo $error_tel; ?></span>
     <?php } ?>	
 	<br />
-    <input type="tel" name="tel" class="idle" required pattern="(\+?\d[- .]*){7,13}" value="<?php echo $tel; ?>" onblur="this.className='idle'" onfocus="this.className='activeField'" />
+    <input type="tel" name="tel" class="idle" value="<?php echo $tel; ?>" onblur="this.className='idle'" onfocus="this.className='activeField'" />
 	
 	<?php if ($callme_setting['showfieldtime']==1) { ?>
+	<br />
 	<?php echo $entry_time; ?>
 	<br />
     <input type="text" name="time1" class="idle" value="<?php echo $time1; ?>" onblur="this.className='idle'" onfocus="this.className='activeField'" /> --

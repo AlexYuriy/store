@@ -1,26 +1,31 @@
 <?php echo $header; ?><?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content"><?php echo $content_top; ?>
+<div class="category_paper">
+<div class="breadcrumb_line">
   <div class="breadcrumb">
     <?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
-    <?php if($i+1<count($breadcrumbs)) { ?><?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a><?php } ?>
+    <?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a><?php } ?>
     <?php } ?>
   </div>
+</div>
   <div class="category-img">
    <?php if ($thumb) { ?>
     <div class="image"><img src="<?php echo $thumb; ?>" alt="<?php echo $heading_title; ?>" /></div>
     <?php } ?>
 	</div>
-  <h1><?php echo $heading_title; ?></h1>
-  <?php if ($thumb || $description) { ?>
-    <?php if ($description) { ?>
+  <div class="category_title">
+	<h1><?php echo $heading_title; ?></h1>
+	<?php if ($description) { ?>
 	<div class="category-info">
     <?php echo $description; ?>
 	</div>
     <?php } ?>
+	</div>
+  <?php if ($thumb || $description) { ?>
   <?php } ?>
   <?php if ($categories) { ?>
-  <h2><?php echo $text_refine; ?></h2>
   <div class="category-list">
+	<h2><?php echo $text_refine; ?></h2>
     <ul><?php foreach ($categories as $category) { 
 			$image = $category['image']; $name = $category['name']; $href = $category['href'];?>
 		<li><a href="<?php echo $href; ?>"><?php 
@@ -31,9 +36,10 @@
   </div>	
   <?php } ?>
   <?php if ($products) { ?>
-  <div class="product-filter">
-    <div class="display"><?php echo $text_display; ?> <i class="fa fa-list fa-lg"></i><a onclick="displaybutton('grid');"><i class="fa fa-th fa-lg"></i></a></div>
-    <div class="product-compare"><a href="<?php echo $compare; ?>" id="compare-total"><i class="fa fa-files-o"></i> <?php echo $text_compare; ?></a></div>
+  <?/*<div class="product-filter">*/?>
+    <div class="display">
+	<?php echo $text_display; ?> <i class="fa fa-list fa-lg"></i><a onclick="displaybutton('grid');"><i class="fa fa-th fa-lg"></i></a></div>
+    <?/*<div class="product-compare"><a href="<?php echo $compare; ?>" id="compare-total"><i class="fa fa-files-o"></i> <?php echo $text_compare; ?></a></div>
 	<div class="limit"><b><?php echo $text_limit; ?></b>
       <select onchange="location = this.value;">
         <?php foreach ($limits as $limits) { ?>
@@ -57,10 +63,12 @@
       </select>
     </div>
   </div>
-  <div class="product-list">
+  */?>
+  <div class="product-grid">
     <?php foreach ($products as $product) { ?>
     <div>
-      <?php if ($product['thumb']) { ?>
+      <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+	  <?php if ($product['thumb']) { ?>
       <div class="image"><a href="<?php echo $product['href']; ?>">
 	  <img class="imagejail" src="catalog/view/theme/default/image/grey.gif" width="<?php echo $product['thumbwidth']; ?>" height="<?php echo $product['thumbheight']; ?>" data-src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" />
 	  <noscript>
@@ -68,7 +76,6 @@
 	  </noscript>
 	  </a></div>
       <?php } ?>
-      <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
       <div class="description">
 	  <?php if (!$product['description_mini']) { ?>
 		<?php echo $product['description']; ?>
@@ -76,6 +83,15 @@
 		<?php echo $product['description_mini']; ?>
       <?php } ?>
 	  </div> 
+	  <div class="rating">
+				  <?php for ($i = 1; $i <= 5; $i++) { ?>
+                  <?php if ($product['rating'] < $i) { ?>
+                  <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+                  <?php } else { ?>
+                  <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+                  <?php } ?>
+                  <?php } ?>
+	  </div>
       <?php if (($product['price']) || ($product['special'])) { ?>
       <div class="price">
         <?php if (!$product['special']) { ?>
@@ -94,20 +110,13 @@
       </div>
       <div class="wishlist"><a onclick="addToWishList('<?php echo $product['product_id']; ?>');"><i class="fa fa-heart-o"></i><?php echo $button_wishlist; ?></a></div>
       <div class="compare"><a onclick="addToCompare('<?php echo $product['product_id']; ?>');"><i class="fa fa-files-o"></i><?php echo $button_compare; ?></a></div>
-	  <div class="rating">
-				  <?php for ($i = 1; $i <= 5; $i++) { ?>
-                  <?php if ($product['rating'] < $i) { ?>
-                  <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                  <?php } else { ?>
-                  <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
-                  <?php } ?>
-                  <?php } ?>
-	  </div>
+	  
     </div>
     <?php } ?>
   </div>
   <div class="pagination"><?php echo $pagination; ?></div>
   <?php } ?>
+  </div>
   <?php if (!$categories && !$products) { ?>
   <div class="content"><?php echo $text_empty; ?></div>
   <div class="buttons">
@@ -137,15 +146,14 @@ function displaybutton (view) {
 			if (price != null) {
 				html += '<div class="price">' + price  + '</div>';
 			}
-			
-			html += '  <div class="cart">' + $(element).find('.cart').html() + '</div>';
-			html += '  <div class="wishlist">' + $(element).find('.wishlist').html() + '</div>';
-			html += '  <div class="compare">' + $(element).find('.compare').html() + '</div>';
 			var rating = $(element).find('.rating').html();
 			
 			if (rating != null) {
 				html += '<div class="rating">' + rating + '</div>';
-			}
+			}	
+			html += '  <div class="wishlist">' + $(element).find('.wishlist').html() + '</div>';
+			html += '  <div class="compare">' + $(element).find('.compare').html() + '</div>';
+			html += '  <div class="cart">' + $(element).find('.cart').html() + '</div>';
 			html += '</div>';			
 			
 			html += '<div class="left">';
@@ -157,8 +165,9 @@ function displaybutton (view) {
 			}
 					
 			html += '  <div class="name">' + $(element).find('.name').html() + '</div>';
+			
 			html += '  <div class="description">' + $(element).find('.description').html() + '</div>';
-				
+			
 			html += '</div>';
 						
 			$(element).html(html);
