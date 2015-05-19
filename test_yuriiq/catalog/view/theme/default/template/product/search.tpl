@@ -1,5 +1,6 @@
 <?php echo $header; ?><?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content"><?php echo $content_top; ?>
+<div class="category_paper">
   <div class="breadcrumb_line">
   <div class="breadcrumb">
     <?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
@@ -7,8 +8,9 @@
     <?php } ?>
   </div>
 </div>
+	<div class="category_title">
   <h1><?php echo $heading_title; ?></h1>
-  <b><?php echo $text_critea; ?></b>
+  </div>
   <div class="content">
     <p><?php echo $entry_search; ?>
       <?php if ($search) { ?>
@@ -46,46 +48,19 @@
       <input type="checkbox" name="sub_category" value="1" id="sub_category" />
       <?php } ?>
       <label for="sub_category"><?php echo $text_sub_category; ?></label>
-    </p>
+    
     <?php if ($description) { ?>
     <input type="checkbox" name="description" value="1" id="description" checked="checked" />
     <?php } else { ?>
     <input type="checkbox" name="description" value="1" id="description" />
     <?php } ?>
     <label for="description"><?php echo $entry_description; ?></label>
-  </div>
-  <div class="buttons">
+	</p>
     <div class="right"><input type="button" value="<?php echo $button_search; ?>" id="button-search" class="button" /></div>
   </div>
   <h2><?php echo $text_search; ?></h2>
   <?php if ($products) { ?>
-  <div class="product-filter">
-    <div class="display"><?php echo $text_display; ?> <i class="fa fa-list fa-lg"></i> <a onclick="displaybutton('grid');"><i class="fa fa-th fa-lg"></i></a></div>
-    <div class="product-compare"><a href="<?php echo $compare; ?>" id="compare-total"><i class="fa fa-files-o"></i> <?php echo $text_compare; ?></a></div>
-	<div class="limit"><b><?php echo $text_limit; ?></b>
-      <select onchange="location = this.value;">
-        <?php foreach ($limits as $limits) { ?>
-        <?php if ($limits['value'] == $limit) { ?>
-        <option value="<?php echo $limits['href']; ?>" selected="selected"><?php echo $limits['text']; ?></option>
-        <?php } else { ?>
-        <option value="<?php echo $limits['href']; ?>"><?php echo $limits['text']; ?></option>
-        <?php } ?>
-        <?php } ?>
-      </select>
-    </div>
-    <div class="sort"><b><?php echo $text_sort; ?></b>
-      <select onchange="location = this.value;">
-        <?php foreach ($sorts as $sorts) { ?>
-        <?php if ($sorts['value'] == $sort . '-' . $order) { ?>
-        <option value="<?php echo $sorts['href']; ?>" selected="selected"><?php echo $sorts['text']; ?></option>
-        <?php } else { ?>
-        <option value="<?php echo $sorts['href']; ?>"><?php echo $sorts['text']; ?></option>
-        <?php } ?>
-        <?php } ?>
-      </select>
-    </div>
-  </div>
-  <div class="product-list">
+    <div class="product-list">
     <?php foreach ($products as $product) { ?>
     <div>
       <?php if ($product['thumb']) { ?>
@@ -136,7 +111,7 @@
   <?php } else { ?>
   <div class="content"><?php echo $text_empty; ?></div>
   <?php }?>
-  <?php echo $content_bottom; ?></div>
+  <?php echo $content_bottom; ?></div></div>
 <script type="text/javascript"><!--
 $('#content input[name=\'search\']').keydown(function(e) {
 	if (e.keyCode == 13) {
