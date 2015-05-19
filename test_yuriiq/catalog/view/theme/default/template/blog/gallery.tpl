@@ -1,5 +1,6 @@
 <?php echo $header; ?><?php echo $content_top; ?><?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content">
+<div class="category_paper">
  <div class="breadcrumb_line">
   <div class="breadcrumb">
     <?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
@@ -156,7 +157,7 @@
   <?php } ?>
   <?php } ?>
   <?php echo $content_bottom; ?>
-  </div>
+  </div></div>
   <script type="text/javascript">
 $(document).ready(function(){
 

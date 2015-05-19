@@ -1,4 +1,5 @@
 <?php echo $header; ?><?php echo $content_top; ?><?php echo $column_left; ?><?php echo $column_right; ?>
+<div class="category_paper">
 <div id="content">
   <div class="breadcrumb_line">
   <div class="breadcrumb">
@@ -7,7 +8,9 @@
     <?php } ?>
   </div>
 </div>
+<div class="category_title">
   <h1><?php echo $heading_title; ?></h1>
+  </div>
   <div class="blog-info">
 	<div class="blog-description"><?php echo $description; ?></div>
 	</div>
@@ -144,7 +147,7 @@
   <?php } ?>
   <?php } ?>
   <?php echo $content_bottom; ?>
-  </div>
+  </div></div>
   <script type="text/javascript">
 $(document).ready(function(){
 

@@ -1,5 +1,6 @@
 <?php echo $header; ?><?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content"><?php echo $content_top; ?>
+<div class="category_paper">
   <div class="breadcrumb_line">
   <div class="breadcrumb">
     <?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
@@ -7,7 +8,9 @@
     <?php } ?>
   </div>
 </div>
+	<div class="category_title">
   <h1><?php echo $heading_title; ?></h1>
+  </div>
   <?php if ($products) { ?>
   <div class="product-filter">
     <div class="display"><?php echo $text_display; ?> <i class="fa fa-list fa-lg"></i> <a onclick="displaybutton('grid');"><i class="fa fa-th fa-lg"></i></a></div>
@@ -87,6 +90,7 @@
   <div class="content"><?php echo $text_empty; ?></div>
   <?php }?>
   <?php echo $content_bottom; ?></div>
+  </div>
 <script type="text/javascript"><!--
 function displaybutton (view) {
 	display(view);

@@ -1,4 +1,5 @@
 <?php echo $header; ?><?php echo $column_left; ?><?php echo $column_right; ?>
+<div class="category_paper">
 <div id="content"><?php echo $content_top; ?>
   <div class="breadcrumb_line">
   <div class="breadcrumb">
@@ -9,8 +10,6 @@
 </div>
   <h1><?php echo $heading_title; ?></h1>
   <img src="/image/templates/error.png">
-  <div class="buttons">
-    <div class="right"><a href="<?php echo $continue; ?>" class="button"><?php echo $button_continue; ?></a></div>
-  </div>
+</div>
   <?php echo $content_bottom; ?></div>
 <?php echo $footer; ?>

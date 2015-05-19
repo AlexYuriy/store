@@ -9,7 +9,9 @@
 <div class="warning"><?php echo $error_warning; ?><img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>
 <?php } ?>
 <?php echo $column_left; ?><?php echo $column_right; ?>
-<div id="content"><?php echo $content_top; ?>
+<div class="category_paper">
+<div id="content">
+<?php echo $content_top; ?>
   <div class="breadcrumb_line">
   <div class="breadcrumb">
     <?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
@@ -289,6 +291,7 @@ $('#button-save-list').live('click', function() {
 	<div class='buttons'>
 		<div class='cancel simplemodal-close'><?php echo $confirm_cancel; ?></div><div class='no'><?php echo $confirm_no; ?></div><div class='yes'><?php echo $confirm_yes; ?></div>
 	</div>
+</div>
 </div>
 <link type='text/css' href='catalog/view/theme/default/stylesheet/confirm.css' rel='stylesheet' media='screen' />
 <script type='text/javascript' src='catalog/view/javascript/confirm/jquery.js'></script>
