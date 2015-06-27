@@ -506,7 +506,7 @@ class ModelToolExchange1c extends Model {
 		$data = array();
 
 		// Группы
-		if($xml->Классификатор->Группы->Группа->Группы->Группа->Группы) $this->insertCategory($xml->Классификатор->Группы->Группа->Группы->Группа->Группы->Группа, 0 );
+		if($xml->Классификатор->Группы->Группа->Группы->Группа->Группы->Группа->Группы) $this->insertCategory($xml->Классификатор->Группы->Группа->Группы->Группа->Группы->Группа, 0 );
 
 		// Свойства
 		if ($xml->Классификатор->Свойства) $this->insertAttribute($xml->Классификатор->Свойства->Свойство);
@@ -695,8 +695,10 @@ class ModelToolExchange1c extends Model {
 	 * @param	int
 	 */
 	private function insertCategory($xml, $parent = 0 ) {
+		$this->log->write("CAT_WRITE_START!!!");
 		$this->load->model('catalog/category');
 		foreach ($xml as $category) {
+			$this->log->write("CAT_WRITE!!!");
 			if (isset($category->Ид) && isset($category->Наименование) ){ 
 				$id =  (string)$category->Ид;
 				$data = array();
@@ -714,6 +716,7 @@ class ModelToolExchange1c extends Model {
 					$this->db->query('INSERT INTO `' . DB_PREFIX . 'category_to_1c` SET category_id = ' . (int)$category_id . ', `1c_category_id` = "' . $this->db->escape($id) . '"');
 				}
 				$this->CATEGORIES[$id] = $category_id;
+				$this->log->write("CAT_WRITE!!!");
 			}
 			if ($category->Группы) $this->insertCategory($category->Группы->Группа, $category_id );
 		}
@@ -852,7 +855,7 @@ class ModelToolExchange1c extends Model {
 	private function initProduct($product, $data = array(), $language_id) {
 
 		$this->load->model('tool/image');
-
+		
 		$result = array(
 			'product_description' => array()
 			,'model'    => (isset($product['model'])) ? $product['model'] : (isset($data['model']) ? $data['model']: '')
@@ -862,7 +865,6 @@ class ModelToolExchange1c extends Model {
 			,'jan'      => (isset($product['jan'])) ? $product['jan'] : (isset($data['jan']) ? $data['jan']: '')
 			,'isbn'     => (isset($product['isbn'])) ? $product['isbn'] : (isset($data['isbn']) ? $data['isbn']: '')
 			,'mpn'      => (isset($product['mpn'])) ? $product['mpn'] : (isset($data['mpn']) ? $data['mpn']: '')
-
 			,'location'     => (isset($product['location'])) ? $product['location'] : (isset($data['location']) ? $data['location']: '')
 			,'price'        => (isset($product['price'])) ? $product['price'] : (isset($data['price']) ? $data['price']: 0)
 			,'base_price'   => (isset($product['base_price'])) ? $product['base_price'] : (isset($data['base_price']) ? $data['base_price']: 0)
@@ -942,7 +944,7 @@ class ModelToolExchange1c extends Model {
 				,'tag'              => isset($product['tag']) ? $product['tag']: (isset($data['product_description'][$language_id]['tag']) ? $data['product_description'][$language_id]['tag']: '')
 			),
 		);
-
+		
 		if (isset($product['product_option'])) {
 			$product['product_option_id'] = '';
 			$product['name'] = '';
@@ -959,15 +961,34 @@ class ModelToolExchange1c extends Model {
 		else {
 			$product['product_option'] = array();
 		}
-
-		if (isset($product['category_1c_id']) && isset($this->CATEGORIES[$product['category_1c_id']])) {
-			$result['product_category'] = array((int)$this->CATEGORIES[$product['category_1c_id']]);
-			$result['main_category_id'] = (int)$this->CATEGORIES[$product['category_1c_id']];
+		
+		
+		if (isset($product['category_1c_id'])) {
+			
+			if (is_object($product['category_1c_id'])) {
+				//this->log->write("Object");
+				foreach ($product['category_1c_id'] as $category_item) {
+					if (isset($this->CATEGORIES[(string)$category_item])) {
+						$result['product_category'][] = (int)$this->CATEGORIES[(string)$category_item];
+						$result['main_category_id'] = 0;
+					}
+				}
+			} else {
+				//$this->log->write("NotObject");
+				$product['category_1c_id'] = (string)$product['category_1c_id'];
+				if (isset($this->CATEGORIES[$product['category_1c_id']])) {
+					//$this->log->write("SetD");
+					$result['product_category'] = array((int)$this->CATEGORIES[$product['category_1c_id']]);
+					$result['main_category_id'] = (int)$this->CATEGORIES[$product['category_1c_id']];
+				} else {
+					//$this->log->write("UnSet");
+					$result['product_category'] = isset($data['product_category']) ? $data['product_category'] : array(0);
+					$result['main_category_id'] = isset($data['main_category_id']) ? $data['main_category_id'] : 0;
+				}
+			}
 		}
-		else {
-			$result['product_category'] = isset($data['product_category']) ? $data['product_category']: array(0);
-			$result['main_category_id'] = isset($data['main_category_id']) ? $data['main_category_id']: 0;
-		}
+		else {$this->log->write("HsNo1cCatiD");}
+				
 		
 		if (isset($product['related_options_use'])) {
 			$result['related_options_use'] = $product['related_options_use'];
@@ -1037,7 +1058,7 @@ class ModelToolExchange1c extends Model {
 	 * @param int
 	 */
 	private function updateProduct($product, $product_id = false, $language_id) {
-
+		
 		// Проверяем что обновлять?
 		if ($this->config->get('exchange1c_relatedoptions')) {
 			if ($product_id == false) {

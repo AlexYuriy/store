@@ -116,13 +116,11 @@ $registry->set('user', new User($registry));
 // Front Controller
 $controller = new Front($registry);
 // Router
-$log->write($request);
 if (isset($request->get['mode']) && $request->get['type'] == 'catalog') {
 	switch ($request->get['mode']) {
 		case 'checkauth':
 			$action = new Action('module/exchange1c/modeCheckauth');
 		break;
-		
 		case 'init':
 			$action = new Action('module/exchange1c/modeCatalogInit');
 		break;
@@ -142,14 +140,10 @@ if (isset($request->get['mode']) && $request->get['type'] == 'catalog') {
 		case 'checkauth':
 			$action = new Action('module/exchange1c/modeCheckauth');
 		break;
-		
 		case 'init':
 			$action = new Action('module/exchange1c/modeSaleInit');
 		break;
 		case 'query':
-			$action = new Action('module/exchange1c/modeQueryOrders');
-		break;
-		case 'query.':
 			$action = new Action('module/exchange1c/modeQueryOrders');
 		break;
 		case 'success':

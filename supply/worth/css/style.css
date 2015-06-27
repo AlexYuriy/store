@@ -1,4 +1,4 @@
-/* Theme Name:Worthy - Free Powerful Theme by HtmlCoder
+/* Theme Name:Worthy - Free Powerful 	 by HtmlCoder
 Author:HtmlCoder
 Author URI:http://www.htmlcoder.me
 Version:1.0.0
@@ -115,8 +115,6 @@ blockquote {
 /* Layout
 ----------------------------------------------------------------------------- */
 .header {
-	color: #ffffff;
-	background-color: rgba(0, 0, 0, 0.10);
 	padding: 10px 0;
 	-webkit-transition: all 0.2s ease-in-out;
 	-moz-transition: all 0.2s ease-in-out;
@@ -465,17 +463,36 @@ textarea {
 	margin-bottom: 0;
 }
 .main-navigation .navbar-default {
+	position: absolute;
 	background-color: transparent;
-	border: none;
+	border-color: transparent;
+	top: 0px;
+	right: 80px;
+	height: 100px;
+	text-transform: uppercase;
 }
+
+.main-navigation .navbar-default .navbar-nav > li {
+	transform: rotate(-45deg);
+	margin-top: 50px;
+	width: 47px;
+}
+
 .main-navigation .navbar-default .navbar-nav > li > a {
 	color: #fff;
 	padding: 10px 20px;
-	font-size: 18px;
 	font-weight: 300;
+	display: block;
+	border-top: 1px solid #C0C3C2;
+	width: 180px;
+	padding: 5px 0px 7px 20px;
+	color: #8C93A5;
+	text-decoration: none;
+	border-bottom: 1px solid #C0C3C2;
+	background-color:rgba(0,0,0,0.7);
 }
 .main-navigation .navbar-default .navbar-nav > li.active > a {
-	background-color: transparent;
+	background-color: rgba(0, 0, 0, 0.5);
 	color: #e39b2f;
 }
 .main-navigation .navbar-default .navbar-nav > li > a:hover,
@@ -484,8 +501,6 @@ textarea {
 }
 @media (min-width:768px) {
 	.main-navigation .navbar-default .navbar-nav > li > a {
-		padding-top: 30px;
-		padding-bottom: 30px;
 		-webkit-transition: all 0.3s ease-in-out;
 		-moz-transition: all 0.3s ease-in-out;
 		-o-transition: all 0.3s ease-in-out;
@@ -502,40 +517,9 @@ textarea {
 		float: left !important;
 	}
 }
-@media (max-width:767px) {
-	.header.navbar-fixed-top {
-		position: absolute;
-	}
-}
 
 /* Fixed Header
 ----------------------------------------------------------------------------- */
-.fixed-header-on .header {
-	background-color: rgba(0, 0, 0, 0.95);
-	padding: 5px 0;
-}
-.fixed-header-on .site-name {
-	font-size: 24px;
-}
-.fixed-header-on .logo {
-	
-	margin-top: 0;
-	margin-bottom: 0;
-}
-@media (min-width:768px) {
-	.fixed-header-on .navbar-default .navbar-nav > li > a {
-		padding-top: 20px;
-		padding-bottom: 20px;
-	}
-}
-@media (max-width:991px) {
-	.fixed-header-on .logo,
-	.fixed-header-on .site-name,
-	.fixed-header-on .site-slogan {
-		display: none;
-	}
-}
-
 /* Blocks/Widgets
 ----------------------------------------------------------------------------- */
 /* Logo, Site Name, Site Slogan
