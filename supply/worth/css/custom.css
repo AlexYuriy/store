@@ -246,7 +246,7 @@ div.cs-skin-circular-left
 	opacity: 0.7;
 }
 
-.cs-skin-circular .cs-options li:first-child { background-image: url(../images/home.png); }
+.cs-skin-circular .cs-options li:first-child { background-image: url(../images/banner.png); }
 .cs-skin-circular .cs-options li:nth-child(2) { background-image: url(../images/company.png); }
 .cs-skin-circular .cs-options li:nth-child(3) { background-image: url(../images/services.png); }
 .cs-skin-circular .cs-options li:nth-child(4) { background-image: url(../images/portfolio.png); }

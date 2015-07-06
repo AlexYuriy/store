@@ -3,7 +3,7 @@
 <html lang="rus">
 <!--<![endif]-->
 	<head>
-		<? include "loc.php"?>
+		<?php include "loc.php"?>
 		<meta charset="utf-8">
 		<title>GlobalTech</title>
 		<meta name="description" content="страница монтажной компании Globaltech">
@@ -24,7 +24,7 @@
 					<select class="cs-select cs-skin-circular">
 						<option value="" disabled selected>Выберите элемент</option>
 						<option value="banner">#banner</option>
-						<option value="about">#about</option>
+						<option value="company">#company</option>
 						<option value="services">#services</option>
 						<option value="portfolio">#portfolio</option>
 						<option value="clients">#clients</option>
@@ -35,8 +35,8 @@
 					<select class="cs-select cs-skin-circular cs-skin-circular-left">
 						<option value="RU">/worth/ru-ru/</option>
 						<option value="DE">/worth/de-de/</option>
-						<option value="IT">/worth/it-it/</option>
 						<option value="EN">/worth/en-us/</option>
+                                                <option value="IT">/worth/it-it/</option>
 					</select>							
 				</section>
 					<!--div class="main-navigation animated">				
@@ -45,7 +45,7 @@
 								<div class="navbar-collapse scrollspy smooth-scroll" id="navbar-collapse-1">
 									<ul class="nav navbar-nav navbar-right">
 										<li class="active"><a href="#banner"><?php echo $home;?></a></li>
-										<li><a href="#about"><?php echo $company;?></a></li>
+										<li><a href="#company"><?php echo $company;?></a></li>
 										<li><a href="#services"><?php echo $services;?></a></li>
 										<li><a href="#portfolio"><?php echo $portfolio;?></a></li>
 										<li><a href="#clients"><?php echo $reviews;?></a></li>
@@ -76,7 +76,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<h1 id="about" class="title text-center"><?php echo $company_header;?></h1>
+						<h1 id="company" class="title text-center"><?php echo $company_header;?></h1>
 						<p class="lead text-center"><?php echo $logo_descr;?></p>
 						<div class="space"></div>
 						<div class="row">
