@@ -17,6 +17,7 @@
 		<link href="../css/animations.css" rel="stylesheet">
 		<link href="../css/style.css" rel="stylesheet">
 		<link href="../css/custom.css" rel="stylesheet">
+		<link href="../css/menu.css" rel="stylesheet">
 	</head>	
 	<body class="no-trans">
 		<header class="codrops-header">
@@ -32,31 +33,15 @@
 					</select>
 				</section>	
 				<section>
-					<select class="cs-select cs-skin-circular cs-skin-circular-left">
-						<option value="RU">/worth/ru-ru/</option>
-						<option value="DE">/worth/de-de/</option>
-						<option value="EN">/worth/en-us/</option>
-                                                <option value="IT">/worth/it-it/</option>
-					</select>							
+					<div class="main-item"></div>
+					<a class="main-item" href="javascript:void(0);" tabindex="1" style=" background-image: url('/../images/RU.png');" ></a> 
+					<ul class="sub-menu"> 
+					   <li><a href="/worth/ru-ru/"></a></li> 
+					   <li><a href="/worth/de-de/"></a></li> 
+					   <li><a href="/worth/en-us/"></a></li>
+					   <li><a href="/worth/it-it/"></a></li>  
+					</ul> 							
 				</section>
-					<!--div class="main-navigation animated">				
-						<nav class="navbar navbar-default" role="navigation">
-							<div class="container-fluid">
-								<div class="navbar-collapse scrollspy smooth-scroll" id="navbar-collapse-1">
-									<ul class="nav navbar-nav navbar-right">
-										<li class="active"><a href="#banner"><?php echo $home;?></a></li>
-										<li><a href="#company"><?php echo $company;?></a></li>
-										<li><a href="#services"><?php echo $services;?></a></li>
-										<li><a href="#portfolio"><?php echo $portfolio;?></a></li>
-										<li><a href="#clients"><?php echo $reviews;?></a></li>
-										<li><a href="#contact"><?php echo $contacts;?></a></li>
-									</ul>
-								</div>									
-							</div>
-						</nav>
-					</div-->
-					
-			
 		</header>
 
 		<div id="banner" class="banner">
